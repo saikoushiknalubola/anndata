@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Wheat, Soil, Bell, Users, Recycle, Home, ChevronLeft } from 'lucide-react';
+import { Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft } from 'lucide-react';
 import Logo from './Logo';
 
 interface LayoutProps {
@@ -22,7 +22,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/crop-advisor', label: 'Crop Advisor', icon: Wheat },
-    { path: '/soil-scanner', label: 'Soil Scanner', icon: Soil },
+    { path: '/soil-scanner', label: 'Soil Scanner', icon: Leaf },
     { path: '/alerts', label: 'Alerts', icon: Bell },
     { path: '/farmer-tips', label: 'Farmer Tips', icon: Users },
     { path: '/waste-ideas', label: 'Waste Ideas', icon: Recycle },

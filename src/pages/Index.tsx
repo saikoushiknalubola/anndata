@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Wheat, Soil, Bell, Users, Recycle } from 'lucide-react';
+import { Wheat, Leaf, Bell, Users, Recycle } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Card from '../components/Card';
@@ -27,7 +27,7 @@ const HomePage = () => {
     },
     { 
       title: "Soil Scanner", 
-      icon: <Soil size={18} />, 
+      icon: <Leaf size={18} />, 
       path: "/soil-scanner",
       color: "bg-gradient-to-br from-earth to-earth/80" 
     },

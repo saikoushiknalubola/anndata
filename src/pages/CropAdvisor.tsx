@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Plant, ArrowRight } from 'lucide-react';
+import { Wheat, ArrowRight } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -72,7 +72,7 @@ const CropAdvisor = () => {
           <Card className="bg-gradient-to-br from-leaf/10 to-cream animate-grow-fade">
             <div className="flex items-start">
               <div className="bg-leaf text-white p-2 rounded-full mr-3">
-                <Plant size={20} />
+                <Wheat size={20} />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-leaf">
