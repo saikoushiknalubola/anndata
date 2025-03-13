@@ -1,7 +1,11 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Wheat, Leaf, Bell, Users, Recycle, FileText, Info, HelpCircle, BarChart, RefreshCw, Users2 } from 'lucide-react';
+import { 
+  Wheat, Leaf, Bell, Users, Recycle, FileText, Info, 
+  HelpCircle, BarChart, RefreshCw, Users2, Phone, 
+  BookOpen, Cloud, DollarSign, GraduationCap, Smartphone 
+} from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Card from '../components/Card';
@@ -88,6 +92,35 @@ const HomePage = () => {
       content: t('communitySupportDesc')
     }
   ];
+  
+  // New resource sections for farmers
+  const resourceSections = [
+    {
+      title: t('digitalInitiative'),
+      icon: <Smartphone size={20} className="text-saffron" />,
+      content: t('digitalDesc')
+    },
+    {
+      title: t('governmentResources'),
+      icon: <FileText size={20} className="text-leaf" />,
+      content: t('resourcesDesc')
+    },
+    {
+      title: t('weatherInsights'),
+      icon: <Cloud size={20} className="text-earth" />,
+      content: t('weatherDesc')
+    },
+    {
+      title: t('marketPrices'),
+      icon: <DollarSign size={20} className="text-saffron" />,
+      content: t('pricesDesc')
+    },
+    {
+      title: t('learningResources'),
+      icon: <GraduationCap size={20} className="text-leaf" />,
+      content: t('learningDesc')
+    }
+  ];
 
   return (
     <Layout>
@@ -99,6 +132,9 @@ const HomePage = () => {
           <p className="text-earth text-sm max-w-xs mx-auto">
             {t('modernSolutions')}
           </p>
+          <div className="mt-2 text-xs text-saffron font-medium">
+            {t('digitalIndia')}
+          </div>
         </Card>
 
         <div className="grid grid-cols-1 gap-3 animate-slide-up">
@@ -132,7 +168,7 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* New Impact Section - Replacing Our Impact */}
+        {/* Impact Section */}
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-earth text-center">{t('howWeImpact')}</h2>
           <p className="text-center text-sm text-earth/80 mb-4">{t('impactDesc')}</p>
@@ -149,6 +185,36 @@ const HomePage = () => {
             </Card>
           ))}
         </div>
+        
+        {/* New Resources Section */}
+        <div className="mt-8 space-y-4">
+          <h2 className="text-xl font-semibold text-earth text-center">{t('governmentResources')}</h2>
+          
+          {resourceSections.map((section, index) => (
+            <Card key={index} className="bg-gradient-to-r from-white/80 to-cream/30 border border-earth/10">
+              <div className="flex items-start">
+                <div className="bg-earth/10 p-2 rounded-full mr-3">{section.icon}</div>
+                <div>
+                  <h3 className="font-semibold text-earth">{section.title}</h3>
+                  <p className="text-sm text-earth/80 mt-1">{section.content}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Helpline Section */}
+        <Card className="mt-6 bg-saffron/10 border border-saffron/30">
+          <div className="flex items-center">
+            <div className="bg-saffron text-white p-2 rounded-full mr-3">
+              <Phone size={20} />
+            </div>
+            <div className="text-left">
+              <h3 className="font-semibold text-earth">{t('helplineText')}</h3>
+              <p className="text-saffron font-bold">{t('helplineNumber')}</p>
+            </div>
+          </div>
+        </Card>
 
         <div className="text-center mt-6 mb-2">
           <p className="text-xs text-earth/70">

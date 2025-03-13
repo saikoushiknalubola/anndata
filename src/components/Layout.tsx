@@ -34,10 +34,10 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   return (
     <div className="page-container relative">
       <header className="page-header flex flex-col items-center justify-center mb-4 relative">
-        <div className="absolute right-0 top-0">
+        <div className="absolute right-0 top-0 z-10">
           <LanguageSelector />
         </div>
-        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
+        <div className="logo-container w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-1">
           <Logo />
         </div>
         {title && (
