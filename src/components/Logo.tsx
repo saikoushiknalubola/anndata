@@ -1,7 +1,7 @@
 
 const Logo = () => {
   return (
-    <div className="w-20 h-20 mb-2 animate-float">
+    <div className="w-full h-full flex items-center justify-center">
       <img 
         src="/lovable-uploads/992d0dd2-6727-405a-98df-8665671e81a3.png" 
         alt="Andata Logo" 

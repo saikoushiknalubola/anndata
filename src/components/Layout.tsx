@@ -30,10 +30,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
 
   return (
     <div className="page-container relative">
-      <header className="page-header">
-        <Logo />
+      <header className="page-header flex flex-col items-center justify-center mb-4">
+        <div className="w-16 h-16 md:w-20 md:h-20">
+          <Logo />
+        </div>
         {title && (
-          <div className="mt-2 flex items-center justify-center">
+          <div className="mt-2 w-full flex items-center justify-center">
             {showBackButton && (
               <Link to="/" className="absolute left-4 text-earth hover:text-saffron transition-colors">
                 <ChevronLeft size={24} />
@@ -44,11 +46,11 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         )}
       </header>
       
-      <main className={`pb-16 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+      <main className={`pb-20 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
         {children}
       </main>
       
-      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50">
+      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10">
         <div className="max-w-md mx-auto flex items-center justify-around">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -61,7 +63,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 } transition-colors duration-200`}
               >
                 <item.icon size={isActive ? 22 : 20} />
-                <span className="text-xs mt-1">{item.label}</span>
+                <span className="text-[10px] md:text-xs mt-1">{item.label}</span>
               </Link>
             );
           })}
