@@ -48,3 +48,23 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .page-header {
+    padding-top: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .page-container {
+    padding-top: 8px;
+  }
+  
+  /* Ensure logo is visible on mobile */
+  .page-header .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+}

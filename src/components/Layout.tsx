@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft } from 'lucide-react';
 import Logo from './Logo';
+import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,6 +15,7 @@ interface LayoutProps {
 const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   const location = useLocation();
   const [mounted, setMounted] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -20,18 +23,21 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   }, [location.pathname]);
 
   const navItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/crop-advisor', label: 'Crop Advisor', icon: Wheat },
-    { path: '/soil-scanner', label: 'Soil Scanner', icon: Leaf },
-    { path: '/alerts', label: 'Alerts', icon: Bell },
-    { path: '/farmer-tips', label: 'Farmer Tips', icon: Users },
-    { path: '/waste-ideas', label: 'Waste Ideas', icon: Recycle },
+    { path: '/', label: t('home'), icon: Home },
+    { path: '/crop-advisor', label: t('cropAdvisor'), icon: Wheat },
+    { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
+    { path: '/alerts', label: t('alerts'), icon: Bell },
+    { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
+    { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },
   ];
 
   return (
     <div className="page-container relative">
-      <header className="page-header flex flex-col items-center justify-center mb-4">
-        <div className="w-16 h-16 md:w-20 md:h-20">
+      <header className="page-header flex flex-col items-center justify-center mb-4 relative">
+        <div className="absolute right-0 top-0">
+          <LanguageSelector />
+        </div>
+        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
           <Logo />
         </div>
         {title && (

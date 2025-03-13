@@ -1,14 +1,16 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Wheat, Leaf, Bell, Users, Recycle, FileText, Info, HelpCircle } from 'lucide-react';
+import { Wheat, Leaf, Bell, Users, Recycle, FileText, Info, HelpCircle, BarChart, RefreshCw, Users2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { toast } from '@/components/ui/use-toast';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     toast({
@@ -20,31 +22,31 @@ const HomePage = () => {
 
   const navButtons = [
     { 
-      title: "Crop Advisor", 
+      title: t('cropAdvisor'), 
       icon: <Wheat size={18} />, 
       path: "/crop-advisor",
       color: "bg-gradient-to-br from-saffron to-saffron/80" 
     },
     { 
-      title: "Soil Scanner", 
+      title: t('soilScanner'), 
       icon: <Leaf size={18} />, 
       path: "/soil-scanner",
       color: "bg-gradient-to-br from-earth to-earth/80" 
     },
     { 
-      title: "Alerts", 
+      title: t('alerts'), 
       icon: <Bell size={18} />, 
       path: "/alerts",
       color: "bg-gradient-to-br from-saffron to-earth/90" 
     },
     { 
-      title: "Farmer Tips", 
+      title: t('farmerTips'), 
       icon: <Users size={18} />, 
       path: "/farmer-tips",
       color: "bg-gradient-to-br from-leaf to-leaf/80" 
     },
     { 
-      title: "Waste Ideas", 
+      title: t('wasteIdeas'), 
       icon: <Recycle size={18} />, 
       path: "/waste-ideas",
       color: "bg-gradient-to-br from-earth to-earth/80" 
@@ -53,19 +55,37 @@ const HomePage = () => {
 
   const infoSections = [
     {
-      title: "About Andata",
+      title: t('aboutAndata'),
       icon: <Info size={20} className="text-saffron" />,
-      content: "Andata is an AI-powered farming assistant designed for small-scale Indian farmers. We combine traditional farming knowledge with modern technology to help farmers increase yield and sustainability."
+      content: t('aboutDesc')
     },
     {
-      title: "Why Choose Us",
+      title: t('whyChooseUs'),
       icon: <HelpCircle size={20} className="text-leaf" />,
-      content: "Our platform provides personalized recommendations based on your location, soil conditions, and local weather patterns. We help you make informed decisions without the need for expensive equipment or expertise."
+      content: t('whyDesc')
     },
     {
-      title: "How It Works",
+      title: t('howItWorks'),
       icon: <FileText size={20} className="text-earth" />,
-      content: "Simply select your location, upload soil photos, and receive instant AI-generated recommendations. Get alerts for weather changes, pest control, and connect with other farmers to share knowledge."
+      content: t('howDesc')
+    }
+  ];
+
+  const impactSections = [
+    {
+      title: t('reduceWaste'),
+      icon: <RefreshCw size={20} className="text-saffron" />,
+      content: t('reduceWasteDesc')
+    },
+    {
+      title: t('increaseYield'),
+      icon: <BarChart size={20} className="text-leaf" />,
+      content: t('increaseYieldDesc')
+    },
+    {
+      title: t('communitySupport'),
+      icon: <Users2 size={20} className="text-earth" />,
+      content: t('communitySupportDesc')
     }
   ];
 
@@ -74,11 +94,10 @@ const HomePage = () => {
       <div className="space-y-6">
         <Card className="text-center py-6 px-4 bg-gradient-to-br from-cream to-white">
           <h1 className="text-2xl font-bold text-leaf mb-3 animate-pulse-gentle">
-            Empower Your Farm with AI
+            {t('empowerFarm')}
           </h1>
           <p className="text-earth text-sm max-w-xs mx-auto">
-            Modern solutions for traditional farming.
-            Get personalized recommendations based on your location and needs.
+            {t('modernSolutions')}
           </p>
         </Card>
 
@@ -98,7 +117,7 @@ const HomePage = () => {
         </div>
 
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-earth text-center">Farming Made Smarter</h2>
+          <h2 className="text-xl font-semibold text-earth text-center">{t('farmingSmarter')}</h2>
           
           {infoSections.map((section, index) => (
             <Card key={index} className="bg-white/80">
@@ -113,27 +132,27 @@ const HomePage = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-leaf/10 to-cream/50 rounded-lg p-4 mt-6">
-          <h3 className="font-semibold text-earth text-center mb-2">Our Impact</h3>
-          <div className="grid grid-cols-3 gap-2 text-center">
-            <div>
-              <p className="text-saffron font-bold text-xl">1000+</p>
-              <p className="text-xs text-earth/70">Farmers</p>
-            </div>
-            <div>
-              <p className="text-leaf font-bold text-xl">24+</p>
-              <p className="text-xs text-earth/70">Districts</p>
-            </div>
-            <div>
-              <p className="text-earth font-bold text-xl">30%</p>
-              <p className="text-xs text-earth/70">Yield Increase</p>
-            </div>
-          </div>
+        {/* New Impact Section - Replacing Our Impact */}
+        <div className="mt-8 space-y-4">
+          <h2 className="text-xl font-semibold text-earth text-center">{t('howWeImpact')}</h2>
+          <p className="text-center text-sm text-earth/80 mb-4">{t('impactDesc')}</p>
+          
+          {impactSections.map((section, index) => (
+            <Card key={index} className="bg-gradient-to-r from-white/80 to-cream/30">
+              <div className="flex items-start">
+                <div className="mr-3 mt-1">{section.icon}</div>
+                <div>
+                  <h3 className="font-semibold text-earth">{section.title}</h3>
+                  <p className="text-sm text-earth/80 mt-1">{section.content}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
         </div>
 
         <div className="text-center mt-6 mb-2">
           <p className="text-xs text-earth/70">
-            Version 1.0 | Developed for small-scale Indian farmers
+            {t('version')}
           </p>
         </div>
       </div>

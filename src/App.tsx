@@ -1,29 +1,22 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/Index';
+import CropAdvisor from './pages/CropAdvisor';
+import SoilScanner from './pages/SoilScanner';
+import Alerts from './pages/Alerts';
+import FarmerTips from './pages/FarmerTips';
+import WasteIdeas from './pages/WasteIdeas';
+import NotFound from './pages/NotFound';
+import { Toaster } from '@/components/ui/toaster';
+import './App.css';
+import { LanguageProvider } from './contexts/LanguageContext';
 
-// Pages
-import Index from "./pages/Index";
-import CropAdvisor from "./pages/CropAdvisor";
-import SoilScanner from "./pages/SoilScanner";
-import Alerts from "./pages/Alerts";
-import FarmerTips from "./pages/FarmerTips";
-import WasteIdeas from "./pages/WasteIdeas";
-import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+function App() {
+  return (
+    <LanguageProvider>
+      <Router>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/crop-advisor" element={<CropAdvisor />} />
           <Route path="/soil-scanner" element={<SoilScanner />} />
           <Route path="/alerts" element={<Alerts />} />
@@ -31,9 +24,10 @@ const App = () => (
           <Route path="/waste-ideas" element={<WasteIdeas />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+        <Toaster />
+      </Router>
+    </LanguageProvider>
+  );
+}
 
 export default App;
