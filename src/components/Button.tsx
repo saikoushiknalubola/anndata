@@ -12,6 +12,7 @@ interface ButtonProps {
   fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
   icon?: ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 const Button = ({
@@ -23,12 +24,20 @@ const Button = ({
   loading = false,
   fullWidth = false,
   type = 'button',
-  icon
+  icon,
+  size = 'md'
 }: ButtonProps) => {
   const baseClasses = {
     primary: 'btn-primary',
     secondary: 'btn-secondary',
     accent: 'btn-accent'
+  };
+
+  const sizeClasses = {
+    xs: 'px-2 py-1 text-xs',
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg'
   };
 
   return (
@@ -38,13 +47,14 @@ const Button = ({
       disabled={disabled || loading}
       className={`
         ${baseClasses[variant]} 
+        ${sizeClasses[size]}
         ${fullWidth ? 'w-full' : ''}
         ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
         ${className}
       `}
     >
       {loading ? (
-        <Loader2 className="animate-spin mr-2" size={20} />
+        <Loader2 className="animate-spin mr-2" size={size === 'xs' ? 14 : size === 'sm' ? 16 : size === 'lg' ? 22 : 20} />
       ) : icon ? (
         <span className="mr-2">{icon}</span>
       ) : null}

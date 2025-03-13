@@ -49,6 +49,28 @@
   color: #888;
 }
 
+/* Custom Button Styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-saffron to-saffron/90 hover:from-saffron/90 hover:to-saffron 
+         text-white px-4 md:px-6 py-2 rounded-full 
+         font-medium shadow-md hover:shadow-lg transition-all duration-300 
+         flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-earth/90 to-earth hover:from-earth hover:to-earth/90 
+         text-white px-4 md:px-6 py-2 rounded-full 
+         font-medium shadow-md hover:shadow-lg transition-all duration-300 
+         flex items-center justify-center gap-2;
+}
+
+.btn-accent {
+  @apply bg-gradient-to-r from-leaf/90 to-leaf hover:from-leaf hover:to-leaf/90 
+         text-white px-4 md:px-6 py-2 rounded-full 
+         font-medium shadow-md hover:shadow-lg transition-all duration-300 
+         flex items-center justify-center gap-2;
+}
+
 /* Mobile optimizations */
 @media (max-width: 480px) {
   .page-header {
@@ -79,4 +101,58 @@
     background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
     z-index: -1;
   }
+  
+  /* Make the navbar more compact on small screens */
+  .fixed.bottom-0 .flex {
+    gap: 4px;
+  }
+}
+
+/* Voice Assistant Button */
+.voice-assistant-btn {
+  @apply fixed right-4 bottom-20 bg-saffron text-white p-3 rounded-full shadow-lg z-20 
+         hover:bg-saffron/90 transition-colors duration-200 flex items-center justify-center;
+}
+
+/* Custom Animations */
+@keyframes pulse-gentle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse-gentle {
+  animation: pulse-gentle 2s infinite ease-in-out;
+}
+
+/* Gradient backgrounds */
+.gradient-orange-brown {
+  background: linear-gradient(135deg, #FF5722 0%, #8D5524 100%);
+}
+
+.gradient-green-cream {
+  background: linear-gradient(135deg, #388E3C 0%, #FFF3E0 100%);
+}
+
+.gradient-earth-saffron {
+  background: linear-gradient(135deg, #8D5524 0%, #FF5722 100%);
+}
+
+/* Custom scrollbar for a more polished look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 82, 34, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 82, 34, 0.6);
 }

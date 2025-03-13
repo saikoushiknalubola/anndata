@@ -6,6 +6,8 @@ import SoilScanner from './pages/SoilScanner';
 import Alerts from './pages/Alerts';
 import FarmerTips from './pages/FarmerTips';
 import WasteIdeas from './pages/WasteIdeas';
+import LearnFarming from './pages/LearnFarming';
+import WeatherDashboard from './pages/WeatherDashboard';
 import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
 import './App.css';
@@ -22,6 +24,8 @@ function App() {
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/farmer-tips" element={<FarmerTips />} />
           <Route path="/waste-ideas" element={<WasteIdeas />} />
+          <Route path="/learn-farming" element={<LearnFarming />} />
+          <Route path="/weather" element={<WeatherDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
