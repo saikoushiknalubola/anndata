@@ -8,7 +8,10 @@ import {
   Sheet, 
   SheetContent, 
   SheetTrigger,
-  SheetClose
+  SheetClose,
+  SheetTitle,
+  SheetHeader,
+  SheetDescription
 } from './ui/sheet';
 import { useIsMobile } from '../hooks/use-mobile';
 
@@ -42,33 +45,32 @@ const MenuSection = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
-        <div className="flex flex-col h-full">
-          <div className="p-4 border-b">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-earth">{t('menu')}</h2>
-              <SheetClose asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <X size={24} />
-                  <span className="sr-only">Close</span>
-                </Button>
+        <SheetHeader className="p-4 border-b">
+          <SheetTitle className="text-xl font-semibold text-earth">{t('menu')}</SheetTitle>
+          <SheetDescription className="sr-only">
+            Application navigation menu
+          </SheetDescription>
+          <SheetClose asChild className="absolute right-4 top-4">
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <X size={24} />
+              <span className="sr-only">Close</span>
+            </Button>
+          </SheetClose>
+        </SheetHeader>
+        <div className="flex-1 overflow-auto p-4">
+          <nav className="flex flex-col space-y-1">
+            {menuItems.map((item) => (
+              <SheetClose asChild key={item.path}>
+                <Link
+                  to={item.path}
+                  className="p-3 hover:bg-cream rounded-md transition-colors text-earth hover:text-saffron font-medium"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </Link>
               </SheetClose>
-            </div>
-          </div>
-          <div className="flex-1 overflow-auto p-4">
-            <nav className="flex flex-col space-y-1">
-              {menuItems.map((item) => (
-                <SheetClose asChild key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="p-3 hover:bg-cream rounded-md transition-colors text-earth hover:text-saffron font-medium"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </SheetClose>
-              ))}
-            </nav>
-          </div>
+            ))}
+          </nav>
         </div>
       </SheetContent>
     </Sheet>

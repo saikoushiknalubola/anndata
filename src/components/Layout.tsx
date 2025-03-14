@@ -46,16 +46,17 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
     <div className="page-container relative">
       <header className="page-header flex flex-col items-center justify-center mb-6 relative pt-14">
         <div className="w-full flex justify-between items-center absolute top-0 px-4 py-3">
-          <div className="flex-1">
-            {showBackButton && (
+          <div className="flex-1 flex items-center">
+            {showBackButton ? (
               <Link to="/" className="text-earth hover:text-saffron transition-colors">
                 <ChevronLeft size={24} />
               </Link>
+            ) : (
+              <LanguageSelector />
             )}
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center">
             <MenuSection />
-            <LanguageSelector />
           </div>
         </div>
         <div className="logo-container w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-6">
