@@ -104,7 +104,16 @@
   
   /* Make the navbar more compact on small screens */
   .fixed.bottom-0 .flex {
-    gap: 4px;
+    gap: 2px;
+  }
+  
+  /* Fix text overlap in bottom nav */
+  .fixed.bottom-0 .flex .text-[10px] {
+    font-size: 9px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -155,4 +164,17 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 82, 34, 0.6);
+}
+
+/* Fix header spacing and padding */
+.page-header {
+  padding-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Fix navigation text overlap */
+.fixed.bottom-0 .flex a span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

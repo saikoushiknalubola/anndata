@@ -1,121 +1,77 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useIsMobile } from '../hooks/use-mobile';
 import { Button } from './ui/button';
-import { Drawer, DrawerContent, DrawerTrigger } from './ui/drawer';
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetTrigger,
+  SheetClose
+} from './ui/sheet';
+import { useIsMobile } from '../hooks/use-mobile';
 
-interface MenuSectionProps {
-  className?: string;
-}
-
-const MenuSection: React.FC<MenuSectionProps> = ({ className }) => {
+const MenuSection = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const menuRef = useRef<HTMLDivElement>(null);
   
   const menuItems = [
-    { path: '/', label: t('home'), color: 'bg-cream hover:bg-cream/80' },
-    { path: '/crop-advisor', label: t('cropAdvisor'), color: 'bg-saffron/10 hover:bg-saffron/30' },
-    { path: '/soil-scanner', label: t('soilScanner'), color: 'bg-leaf/10 hover:bg-leaf/30' },
-    { path: '/alerts', label: t('alerts'), color: 'bg-cream hover:bg-cream/80' },
-    { path: '/farmer-tips', label: t('farmerTips'), color: 'bg-saffron/10 hover:bg-saffron/30' },
-    { path: '/waste-ideas', label: t('wasteIdeas'), color: 'bg-leaf/10 hover:bg-leaf/30' },
-    { path: '/learn-farming', label: t('learnFarming'), color: 'bg-cream hover:bg-cream/80' },
-    { path: '/weather', label: t('weather'), color: 'bg-saffron/10 hover:bg-saffron/30' },
+    { path: '/', label: t('home') },
+    { path: '/crop-advisor', label: t('cropAdvisor') },
+    { path: '/soil-scanner', label: t('soilScanner') },
+    { path: '/alerts', label: t('alerts') },
+    { path: '/farmer-tips', label: t('farmerTips') },
+    { path: '/waste-ideas', label: t('wasteIdeas') },
+    { path: '/learn-farming', label: t('learnFarming') },
+    { path: '/weather', label: t('weather') },
+    { path: '/helpline', label: t('helpline') },
   ];
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Handle drawer state change
-  const handleDrawerOpenChange = (open: boolean) => {
-    setIsDrawerOpen(open);
-  };
-
-  if (isMobile) {
-    return (
-      <div className={`relative ${className}`} ref={menuRef}>
-        <Drawer open={isDrawerOpen} onOpenChange={handleDrawerOpenChange}>
-          <DrawerTrigger asChild>
-            <Button 
-              variant="ghost" 
-              className="flex items-center justify-center p-2 rounded-full bg-earth/10 text-earth hover:bg-earth/20 transition-colors"
-              aria-label={t('menu')}
-            >
-              <Menu size={24} />
-            </Button>
-          </DrawerTrigger>
-          <DrawerContent className="px-4 py-6 bg-white">
-            <div className="max-h-[80vh] overflow-y-auto flex flex-col space-y-2">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`block px-4 py-3 text-base font-medium text-earth rounded-lg transition-colors ${item.color}`}
-                  onClick={() => setIsDrawerOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </DrawerContent>
-        </Drawer>
-      </div>
-    );
-  }
-
   return (
-    <div className={`relative ${className}`} ref={menuRef}>
-      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-        <DropdownMenuTrigger asChild>
-          <Button 
-            variant="ghost" 
-            className="flex items-center space-x-1 px-3 py-2 rounded-md bg-earth/10 text-earth hover:bg-earth/20 transition-colors"
-          >
-            <span>{t('menu')}</span>
-            <ChevronDown size={16} />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 bg-white p-1">
-          {menuItems.map((item) => (
-            <DropdownMenuItem key={item.path} asChild className="p-0 focus:bg-transparent">
-              <Link
-                to={item.path}
-                className={`w-full px-3 py-2 rounded-md text-earth transition-colors ${item.color}`}
-              >
-                {item.label}
-              </Link>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button 
+          variant="ghost" 
+          size="icon"
+          className="p-1 rounded-full bg-earth/10 text-earth hover:bg-earth/20 transition-colors"
+        >
+          <Menu size={isMobile ? 20 : 24} />
+          <span className="sr-only">{t('menu')}</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
+        <div className="flex flex-col h-full">
+          <div className="p-4 border-b">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-earth">{t('menu')}</h2>
+              <SheetClose asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <X size={24} />
+                  <span className="sr-only">Close</span>
+                </Button>
+              </SheetClose>
+            </div>
+          </div>
+          <div className="flex-1 overflow-auto p-4">
+            <nav className="flex flex-col space-y-1">
+              {menuItems.map((item) => (
+                <SheetClose asChild key={item.path}>
+                  <Link
+                    to={item.path}
+                    className="p-3 hover:bg-cream rounded-md transition-colors text-earth hover:text-saffron font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </SheetClose>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
