@@ -6,6 +6,7 @@ import Logo from './Logo';
 import LanguageSelector from './LanguageSelector';
 import MenuSection from './MenuSection';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useIsMobile } from '../hooks/use-mobile';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   const location = useLocation();
   const [mounted, setMounted] = useState(false);
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
@@ -38,7 +40,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   return (
     <div className="page-container relative">
       <header className="page-header flex flex-col items-center justify-center mb-4 relative">
-        <div className="w-full flex justify-between items-center absolute top-0 px-4">
+        <div className="w-full flex justify-between items-center absolute top-0 px-4 py-2">
           <div className="flex-1">
             {showBackButton && (
               <Link to="/" className="text-earth hover:text-saffron transition-colors">
@@ -46,7 +48,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
               </Link>
             )}
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <MenuSection />
             <LanguageSelector />
           </div>
@@ -67,7 +69,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
       
       <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10">
         <div className="max-w-md mx-auto flex items-center justify-around overflow-x-auto">
-          {navItems.map((item) => {
+          {navItems.slice(0, isMobile ? 5 : navItems.length).map((item) => {
             const isActive = location.pathname === item.path;
             return (
               <Link 
