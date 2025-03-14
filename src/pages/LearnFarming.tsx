@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { BookOpen, VolumeUp, Loader2 } from 'lucide-react';
+import { BookOpen, Volume, Loader2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -140,7 +140,7 @@ const LearnFarming = () => {
                     
                     <Button
                       variant="accent"
-                      icon={<VolumeUp size={18} />}
+                      icon={<Volume size={18} />}
                       onClick={() => handleReadAloud(resource)}
                       loading={speakingId === resource.id}
                       disabled={speakingId !== null}

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Cloud, Thermometer, Droplets, VolumeUp, Loader2 } from 'lucide-react';
+import { Cloud, Thermometer, Droplets, Volume, Loader2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
@@ -127,7 +127,7 @@ const WeatherDashboard = () => {
                       <Button
                         variant="secondary"
                         size="sm"
-                        icon={<VolumeUp size={14} />}
+                        icon={<Volume size={14} />}
                         onClick={() => handleReadAloud(data)}
                         loading={speakingId === data.id}
                         disabled={speakingId !== null}
