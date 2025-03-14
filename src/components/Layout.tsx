@@ -4,6 +4,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft, BookOpen, Cloud, LifeBuoy } from 'lucide-react';
 import Logo from './Logo';
 import LanguageSelector from './LanguageSelector';
+import MenuSection from './MenuSection';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface LayoutProps {
@@ -37,19 +38,24 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   return (
     <div className="page-container relative">
       <header className="page-header flex flex-col items-center justify-center mb-4 relative">
-        <div className="absolute right-0 top-0 z-10">
-          <LanguageSelector />
+        <div className="w-full flex justify-between items-center absolute top-0 px-4">
+          <div className="flex-1">
+            {showBackButton && (
+              <Link to="/" className="text-earth hover:text-saffron transition-colors">
+                <ChevronLeft size={24} />
+              </Link>
+            )}
+          </div>
+          <div className="flex items-center space-x-2">
+            <MenuSection />
+            <LanguageSelector />
+          </div>
         </div>
-        <div className="logo-container w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-1">
+        <div className="logo-container w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-1 mt-10">
           <Logo />
         </div>
         {title && (
           <div className="mt-2 w-full flex items-center justify-center">
-            {showBackButton && (
-              <Link to="/" className="absolute left-4 text-earth hover:text-saffron transition-colors">
-                <ChevronLeft size={24} />
-              </Link>
-            )}
             <h1 className="text-xl font-semibold text-earth">{title}</h1>
           </div>
         )}

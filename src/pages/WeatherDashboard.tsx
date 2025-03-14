@@ -101,7 +101,7 @@ const WeatherDashboard = () => {
 
   return (
     <Layout title="Weather Dashboard" showBackButton>
-      <div className="space-y-4 md:space-y-6">
+      <div className="space-y-4 md:space-y-6 px-2 md:px-4">
         <Card>
           <h2 className="text-lg font-semibold text-earth mb-2 md:mb-4">Warangal District Weather</h2>
           <p className="text-sm text-earth/80 mb-3 md:mb-4">
@@ -130,7 +130,7 @@ const WeatherDashboard = () => {
               <Loader2 className="animate-spin text-earth" size={30} />
             </div>
           ) : getFilteredData().length > 0 ? (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4">
               {getFilteredData().map((data) => (
                 <Card 
                   key={data.id} 
@@ -150,22 +150,22 @@ const WeatherDashboard = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-2 grid grid-cols-2 gap-2">
+                    <div className="mt-2 grid grid-cols-2 gap-2 md:gap-3">
                       <div className="flex items-center">
                         <Thermometer size={16} className="text-saffron mr-1" />
-                        <span className="text-earth font-medium">{data.temp}°C</span>
+                        <span className="text-earth font-medium text-sm">{data.temp}°C</span>
                       </div>
                       <div className="flex items-center">
                         <Droplets size={16} className="text-blue-500 mr-1" />
-                        <span className="text-earth">{data.rainChance}% rain</span>
+                        <span className="text-earth text-sm">{data.rainChance}% rain</span>
                       </div>
                       <div className="flex items-center">
                         <Wind size={16} className="text-gray-500 mr-1" />
-                        <span className="text-earth">{data.windSpeed} km/h</span>
+                        <span className="text-earth text-sm">{data.windSpeed} km/h</span>
                       </div>
                       <div className="flex items-center">
                         <Cloud size={16} className="text-earth/70 mr-1" />
-                        <span className="text-earth">{data.humidity}% humid</span>
+                        <span className="text-earth text-sm">{data.humidity}% humid</span>
                       </div>
                     </div>
                     
@@ -196,7 +196,7 @@ const WeatherDashboard = () => {
           <p className="text-sm text-earth/80 mb-2">
             Today's farming recommendation based on weather conditions:
           </p>
-          <p className="text-leaf font-medium p-3 bg-leaf/10 rounded-lg">
+          <p className="text-leaf font-medium p-3 bg-leaf/10 rounded-lg text-sm md:text-base">
             {getFilteredData().some(d => d.rainChance > 50) 
               ? "Consider postponing outdoor activities like spraying pesticides. Good time for rice planting preparation."
               : "Favorable conditions for crop spraying and harvesting. Consider irrigation for dry crops."
@@ -206,7 +206,7 @@ const WeatherDashboard = () => {
 
         <Card className="bg-gradient-to-r from-cream to-white border border-earth/10">
           <h3 className="text-md font-semibold text-earth mb-2">5-Day Forecast</h3>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto pb-2">
             <div className="flex space-x-3 py-2 min-w-max">
               {[1, 2, 3, 4, 5].map((day) => (
                 <div key={day} className="flex flex-col items-center p-2 bg-white/60 rounded-lg border border-earth/10 min-w-[80px]">
