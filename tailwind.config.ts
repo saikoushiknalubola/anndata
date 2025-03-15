@@ -110,7 +110,8 @@ export default {
         'slide-up': 'slide-up 0.5s ease-out'
       },
       fontFamily: {
-        'hindi': ['Poppins', 'sans-serif']
+        'hindi': ['Poppins', 'sans-serif'],
+        'decorative': ['Shrikhand', 'cursive']
       }
     }
   },

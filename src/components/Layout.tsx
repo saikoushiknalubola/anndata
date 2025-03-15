@@ -59,12 +59,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-20 h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-6">
+        <div className="logo-container w-25 h-25 md:w-30 md:h-30 flex items-center justify-center mb-3 mt-7 pulse-gentle">
           <Logo />
         </div>
         {title && (
-          <div className="mt-3 mb-2 w-full flex items-center justify-center">
-            <h1 className="text-xl font-semibold text-earth">{title}</h1>
+          <div className="mt-4 mb-2 w-full flex items-center justify-center">
+            <h1 className="text-2xl font-decorative text-earth text-glow">{title}</h1>
           </div>
         )}
       </header>
@@ -82,10 +82,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 key={item.path}
                 to={item.path}
                 className={`flex flex-col items-center p-1 ${
-                  isActive ? 'text-saffron' : 'text-earth/70 hover:text-saffron'
+                  isActive 
+                    ? 'text-saffron relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-saffron after:rounded-full' 
+                    : 'text-earth/70 hover:text-saffron'
                 } transition-colors duration-200 min-w-[48px] md:min-w-[60px]`}
               >
-                <item.icon size={isActive ? 22 : 20} />
+                <item.icon size={isActive ? 22 : 20} className="transition-all duration-300" />
                 <span className="text-[10px] md:text-xs mt-1 truncate w-full text-center">{item.label}</span>
               </Link>
             );

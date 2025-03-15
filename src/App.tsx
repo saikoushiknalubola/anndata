@@ -11,6 +11,7 @@ import WeatherDashboard from './pages/WeatherDashboard';
 import Helpline from './pages/Helpline';
 import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
+import VoiceAssistant from './components/VoiceAssistant';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/helpline" element={<Helpline />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <VoiceAssistant />
         <Toaster />
       </Router>
     </LanguageProvider>

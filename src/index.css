@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Shrikhand&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -35,7 +35,7 @@
     --input: 20 20% 85%;
     --ring: 14 100% 57%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   * {
@@ -49,8 +49,12 @@
     background-size: 300px;
   }
 
+  h1, h2, h3, .decorative-text {
+    font-family: 'Shrikhand', cursive;
+  }
+
   .glass-card {
-    @apply bg-white/40 backdrop-blur-sm border border-white/20 shadow-lg;
+    @apply bg-white/40 backdrop-blur-sm border border-white/20 shadow-lg rounded-xl;
   }
   
   .frosted-glass {
@@ -58,19 +62,19 @@
   }
   
   .btn-primary {
-    @apply bg-saffron hover:bg-saffron/90 text-white px-4 md:px-6 py-2 rounded-full 
+    @apply bg-saffron hover:bg-saffron/90 text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
   
   .btn-secondary {
-    @apply bg-earth/90 hover:bg-earth text-white px-4 md:px-6 py-2 rounded-full 
+    @apply bg-earth/90 hover:bg-earth text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
   
   .btn-accent {
-    @apply bg-leaf/90 hover:bg-leaf text-white px-4 md:px-6 py-2 rounded-full 
+    @apply bg-leaf/90 hover:bg-leaf text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
@@ -164,4 +168,63 @@
   .page-container {
     @apply px-3 pt-2;
   }
+}
+
+/* Voice Assistant Styles */
+.voice-assistant-btn {
+  @apply fixed right-4 bottom-20 bg-gradient-to-r from-saffron to-earth text-white p-3 rounded-full shadow-lg z-20 
+         hover:from-earth hover:to-saffron transition-colors duration-200 flex items-center justify-center;
+}
+
+.voice-animation {
+  @apply relative;
+}
+
+.voice-animation::after {
+  content: "";
+  @apply absolute inset-0 rounded-full;
+  box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+  animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 87, 34, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
+  }
+}
+
+/* Enhanced UI Elements */
+.gradient-card {
+  @apply relative overflow-hidden rounded-2xl;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.hover-lift {
+  @apply transition-all duration-300;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-light {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }

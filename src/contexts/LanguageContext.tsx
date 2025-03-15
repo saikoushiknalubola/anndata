@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 // List of supported Indian languages
@@ -95,7 +94,18 @@ const translations: Record<string, Record<string, string>> = {
     'organicFertilizers': 'Organic Fertilizers Guide',
     'waterConservation': 'Water Conservation Tips',
     'pestControl': 'Pest Control Methods',
-    'soilHealth': 'Soil Health 101'
+    'soilHealth': 'Soil Health 101',
+
+    // Voice Assistant
+    'voiceAssistant': 'Voice Assistant',
+    'tapToSpeak': 'Tap microphone to speak',
+    'listeningNow': 'Listening...',
+    'speakingNow': 'Speaking...',
+    'voiceError': 'Voice Recognition Error',
+    'tryAgain': 'Please try again',
+    'voiceUnderstood': 'I understood your request. How can I help you further?',
+    'goingToWeather': 'Showing you the weather information',
+    'goingToLearning': 'Taking you to farming lessons'
   },
   hi: {
     // Hindi translations
@@ -163,9 +173,19 @@ const translations: Record<string, Record<string, string>> = {
     'organicFertilizers': 'जैविक उर्वरक गाइड',
     'waterConservation': 'पानी संरक्षण युक्तियाँ',
     'pestControl': 'कीट नियंत्रण विधियाँ',
-    'soilHealth': 'मिट्टी स्वास्थ्य 101'
+    'soilHealth': 'मिट्टी स्वास्थ्य 101',
+    
+    // Voice Assistant Hindi
+    'voiceAssistant': 'आवाज़ सहायक',
+    'tapToSpeak': 'बोलने के लिए माइक्रोफोन पर टैप करें',
+    'listeningNow': 'सुन रहा हूँ...',
+    'speakingNow': 'बोल रहा हूँ...',
+    'voiceError': 'आवाज़ पहचान में त्रुटि',
+    'tryAgain': 'कृपया पुनः प्रयास करें',
+    'voiceUnderstood': 'मैंने आपका अनुरोध समझा। मैं आपकी और कैसे मदद कर सकता हूँ?',
+    'goingToWeather': 'आपको मौसम की जानकारी दिखा रहा हूँ',
+    'goingToLearning': 'आपको खेती के पाठों पर ले जा रहा हूँ'
   },
-  // We'll add minimal translations for other languages to allow them to work
   bn: {
     // Bengali translations
     'empowerFarm': 'AI দিয়ে আপনার খামারকে শক্তিশালী করুন',
@@ -185,10 +205,21 @@ const translations: Record<string, Record<string, string>> = {
     'yourFarmingPartner': 'আপনার কৃষি সহযোগী',
     'educationalResources': 'শিক্ষামূলক সম্পদ',
     'weatherDashboard': 'আবহাওয়া ড্যাশবোর্ড',
-    'readAloud': 'পড়ে শোনান'
+    'readAloud': 'পড়ে শোনান',
+    
+    // Voice Assistant Bengali
+    'voiceAssistant': 'ভয়েস সহকারী',
+    'tapToSpeak': 'কথা বলতে মাইক্রোফোনে আলতো চাপুন',
+    'listeningNow': 'শুনছি...',
+    'speakingNow': 'বলছি...',
+    'voiceError': 'ভয়েস স্বীকৃতি ত্রুটি',
+    'tryAgain': 'অনুগ্রহ করে আবার চেষ্টা করুন',
+    'voiceUnderstood': 'আমি আপনার অনুরোধ বুঝেছি। আমি আপনাকে আরও কীভাবে সাহায্য করতে পারি?',
+    'goingToWeather': 'আপনাকে আবহাওয়ার তথ্য দেখাচ্ছি',
+    'goingToLearning': 'আপনাকে কৃষি পাঠে নিয়ে যাচ্ছি'
   },
-  // Basic translations for Telugu
-  te: { 
+  te: {
+    // Telugu translations with voice assistant additions
     'empowerFarm': 'AI తో మీ వ్యవసాయాన్ని బలోపేతం చేయండి',
     'home': 'హోమ్',
     'cropAdvisor': 'పంట సలహాదారు',
@@ -202,10 +233,21 @@ const translations: Record<string, Record<string, string>> = {
     'resources': 'వనరులు',
     'selectLanguage': 'భాష ఎంచుకోండి',
     'yourFarmingPartner': 'మీ వ్యవసాయ భాగస్వామి',
-    'readAloud': 'బిగ్గరగా చదవండి'
+    'readAloud': 'బిగ్గరగా చదవండి',
+    
+    // Voice Assistant Telugu
+    'voiceAssistant': 'వాయిస్ అసిస్టెంట్',
+    'tapToSpeak': 'మాట్లాడటానికి మైక్రోఫోన్‌ను నొక్కండి',
+    'listeningNow': 'వింటున్నాను...',
+    'speakingNow': 'మాట్లాడుతున్నాను...',
+    'voiceError': 'వాయిస్ గుర్తింపు లోపం',
+    'tryAgain': 'దయచేసి మళ్లీ ప్రయత్నించండి',
+    'voiceUnderstood': 'మీ అభ్యర్థనను నేను అర్థం చేసుకున్నాను. నేను మీకు ఇంకా ఎలా సహాయపడగలను?',
+    'goingToWeather': 'మీకు వాతావరణ సమాచారాన్ని చూపిస్తున్నాను',
+    'goingToLearning': 'మిమ్మల్ని వ్యవసాయ పాఠాలకు తీసుకువెళ్తున్నాను'
   },
-  // Basic translations for Tamil
   ta: {
+    // Tamil translations with voice assistant additions
     'empowerFarm': 'AI உடன் உங்கள் விவசாயத்தை வலுப்படுத்துங்கள்',
     'home': 'முகப்பு',
     'cropAdvisor': 'பயிர் ஆலோசகர்',
@@ -219,11 +261,303 @@ const translations: Record<string, Record<string, string>> = {
     'resources': 'ஆதாரங்கள்',
     'selectLanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
     'yourFarmingPartner': 'உங்கள் விவசாய கூட்டாளி',
-    'readAloud': 'சத்தமாக படிக்கவும்'
+    'readAloud': 'சத்தமாக படிக்கவும்',
+    
+    // Voice Assistant Tamil
+    'voiceAssistant': 'குரல் உதவியாளர்',
+    'tapToSpeak': 'பேச மைக்ரோஃபோனைத் தட்டவும்',
+    'listeningNow': 'கேட்கிறேன்...',
+    'speakingNow': 'பேசுகிறேன்...',
+    'voiceError': 'குரல் அங்கீகார பிழை',
+    'tryAgain': 'தயவுசெய்து மீண்டும் முயற்சிக்கவும்',
+    'voiceUnderstood': 'உங்கள் கோரிக்கையை நான் புரிந்துகொண்டேன். நான் உங்களுக்கு மேலும் எவ்வாறு உதவ முடியும்?',
+    'goingToWeather': 'உங்களுக்கு வானிலை தகவலைக் காட்டுகிறேன்',
+    'goingToLearning': 'உங்களை விவசாய பாடங்களுக்கு அழைத்துச் செல்கிறேன்'
+  },
+  kn: {
+    // Kannada translations with voice assistant additions
+    'empowerFarm': 'AI ನೊಂದಿಗೆ ನಿಮ್ಮ ಕೃಷಿಯನ್ನು ಸಬಲಗೊಳಿಸಿ',
+    'home': 'ಮುಖಪುಟ',
+    'cropAdvisor': 'ಬೆಳೆ ಸಲಹೆಗಾರ',
+    'soilScanner': 'ಮಣ್ಣು ಸ್ಕ್ಯಾನರ್',
+    'alerts': 'ಎಚ್ಚರಿಕೆಗಳು',
+    'farmerTips': 'ರೈತರ ಸಲಹೆಗಳು',
+    'wasteIdeas': 'ತ್ಯಾಜ್ಯ ಆಲೋಚನೆಗಳು',
+    'learnFarming': 'ಕೃಷಿ ಕಲಿಯಿರಿ',
+    'weather': 'ಹವಾಮಾನ',
+    'helpline': 'ಸಹಾಯವಾಣಿ',
+    'resources': 'ಸಂಪನ್ಮೂಲಗಳು',
+    
+    // Voice Assistant Kannada
+    'voiceAssistant': 'ಧ್ವನಿ ಸಹಾಯಕ',
+    'tapToSpeak': 'ಮಾತನಾಡಲು ಮೈಕ್ರೋಫೋನ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ',
+    'listeningNow': 'ಕೇಳುತ್ತಿದ್ದೇನೆ...',
+    'speakingNow': 'ಮಾತನಾಡುತ್ತಿದ್ದೇನೆ...',
+    'voiceError': 'ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ದೋಷ',
+    'tryAgain': 'ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ',
+    'voiceUnderstood': 'ನಾನು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಂಡೆ. ನಾನು ನಿಮಗೆ ಇನ್ನೂ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?',
+    'goingToWeather': 'ನಿಮಗೆ ಹವಾಮಾನ ಮಾಹಿತಿಯನ್ನು ತೋರಿಸುತ್ತಿದ್ದೇನೆ',
+    'goingToLearning': 'ನಿಮ್ಮನ್ನು ಕೃಷಿ ಪಾಠಗಳಿಗೆ ಕರೆದುಕೊಂಡು ಹೋಗುತ್ತಿದ್ದೇನೆ'
   },
   // Minimal translations for remaining languages to make them functional
   // We'll just include basic navigation terms for other languages
-  // ... adding basic translations for all other languages  
+  // ... adding basic translations for all other languages
+  mr: {
+    'empowerFarm': 'AI सह आपल्या शेतीला सक्षम करा',
+    'home': 'मुख्यपृष्ठ',
+    'cropAdvisor': 'पीक सल्लागार',
+    'soilScanner': 'माती स्कॅनर',
+    'alerts': 'सूचना',
+    'farmerTips': 'शेतकरी टिप्स',
+    'wasteIdeas': 'कचरा कल्पना',
+    'learnFarming': 'शेती शिका',
+    'weather': 'हवामान',
+    'helpline': 'मदत क्रमांक',
+    'resources': 'संसाधने',
+    'selectLanguage': 'भाषा निवडा',
+    'yourFarmingPartner': 'तुमचा कृषी भागीदार',
+    'readAloud': 'मोठ्याने वाचा'
+  },
+  gu: {
+    'empowerFarm': 'AI સાથે તમારા ખેતરને સશક્ત બનાવો',
+    'home': 'ઘર',
+    'cropAdvisor': 'પાક સલાહકાર',
+    'soilScanner': 'માટી સ્કેનર',
+    'alerts': 'ચેતવણીઓ',
+    'farmerTips': 'ખેડૂત ટીપ્સ',
+    'wasteIdeas': 'કચરો વિચારો',
+    'learnFarming': 'ખેતી શીખો',
+    'weather': 'હવામાન',
+    'helpline': 'મદદરૂપ નંબર',
+    'resources': 'સંસાધનો',
+    'selectLanguage': 'ભાષા પસંદ કરો',
+    'yourFarmingPartner': 'તમારા ખેતી ભાગીદાર',
+    'readAloud': 'મોટેથી વાંચો'
+  },
+  ml: {
+    'empowerFarm': 'AI ഉപയോഗിച്ച് നിങ്ങളുടെ കൃഷിയിടം ശക്തിപ്പെടുത്തുക',
+    'home': 'ഹോം',
+    'cropAdvisor': 'വിള ഉപദേഷ്ടാവ്',
+    'soilScanner': 'മണ്ണ് സ്കാനർ',
+    'alerts': 'അറിയിപ്പുകൾ',
+    'farmerTips': 'കർഷക ടിപ്പുകൾ',
+    'wasteIdeas': 'മാലിന്യ ആശയങ്ങൾ',
+    'learnFarming': 'കൃഷി പഠിക്കുക',
+    'weather': 'കാലാവസ്ഥ',
+    'helpline': 'ഹെൽപ്പ്ലൈൻ',
+    'resources': 'വിഭവങ്ങൾ',
+    'selectLanguage': 'ഭാഷ തിരഞ്ഞെടുക്കുക',
+    'yourFarmingPartner': 'നിങ്ങളുടെ കൃഷി പങ്കാളി',
+    'readAloud': 'ഉറക്കെ വായിക്കുക'
+  },
+  pa: {
+    'empowerFarm': 'AI ਨਾਲ ਆਪਣੇ ਖੇਤ ਨੂੰ ਸ਼ਕਤੀਮਾਨ ਬਣਾਓ',
+    'home': 'ਘਰ',
+    'cropAdvisor': 'ਫ਼ਸਲ ਸਲਾਹਕਾਰ',
+    'soilScanner': 'ਮਿੱਟੀ ਸਕੈਨਰ',
+    'alerts': 'ਚੇਤਾਵਨੀਆਂ',
+    'farmerTips': 'ਕਿਸਾਨ ਸੁਝਾਅ',
+    'wasteIdeas': 'ਕੂੜਾ ਵਿਚਾਰ',
+    'learnFarming': 'ਖੇਤੀ ਸਿੱਖੋ',
+    'weather': 'ਮੌਸਮ',
+    'helpline': 'ਮਦਦ ਲਾਈਨ',
+    'resources': 'ਸਰੋਤ',
+    'selectLanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+    'yourFarmingPartner': 'ਤੁਹਾਡਾ ਖੇਤੀਬਾੜੀ ਭਾਈਵਾਲ',
+    'readAloud': 'ਉੱਚੀ ਆਵਾਜ਼ ਵਿੱਚ ਪੜ੍ਹੋ'
+  },
+  or: {
+    'empowerFarm': 'AI ସହିତ ଆପଣଙ୍କ କୃଷିକୁ ସଶକ୍ତ କରନ୍ତୁ',
+    'home': 'ଘର',
+    'cropAdvisor': 'ଫସଲ ପରାମର୍ଶଦାତା',
+    'soilScanner': 'ମୃତ୍ତିକା ସ୍କାନର୍',
+    'alerts': 'ସତର୍କତା',
+    'farmerTips': 'ଚାଷୀ ଟିପ୍ସ',
+    'wasteIdeas': 'ବର୍ଜ୍ୟବସ୍ତୁ ଚିନ୍ତାଧାରା',
+    'learnFarming': 'କୃଷି ଶିଖନ୍ତୁ',
+    'weather': 'ପାଣିପାଗ',
+    'helpline': 'ସହାୟତା ଲାଇନ୍',
+    'resources': 'ସମ୍ବଳ',
+    'selectLanguage': 'ଭାଷା ଚୟନ କରନ୍ତୁ',
+    'yourFarmingPartner': 'ଆପଣଙ୍କ କୃଷି ଭାଗୀଦାର',
+    'readAloud': 'ଉଚ୍ଚ ସ୍ୱରରେ ପଢନ୍ତୁ'
+  },
+  as: {
+    'empowerFarm': 'কৃত্রিম বুদ্ধিমত্তাৰে আপোনাৰ খেতিপথাৰ শক্তিশালী কৰক',
+    'home': 'গৃহ',
+    'cropAdvisor': 'শস্য উপদেষ্টা',
+    'soilScanner': 'মাটি স্কেনাৰ',
+    'alerts': 'সতৰ্কবাণী',
+    'farmerTips': 'কৃষকৰ টিপছ',
+    'wasteIdeas': 'আবৰ্জনা ধাৰণা',
+    'learnFarming': 'কৃষি শিকক',
+    'weather': 'বতৰ',
+    'helpline': 'সাহায্য লাইন',
+    'resources': 'সম্পদ',
+    'selectLanguage': 'ভাষা নিৰ্বাচন কৰক',
+    'yourFarmingPartner': 'আপোনাৰ কৃষি অংশীদাৰ',
+    'readAloud': 'ডাঙৰকৈ পঢ়ক'
+  },
+  mai: {
+    'empowerFarm': 'एआई के साथ अपने खेत को सशक्त बनाएं',
+    'home': 'घर',
+    'cropAdvisor': 'फसल सलाहकार',
+    'soilScanner': 'माटि स्कैनर',
+    'alerts': 'अलर्ट',
+    'farmerTips': 'किसान टिप्स',
+    'wasteIdeas': 'कचरा विचार',
+    'learnFarming': 'खेती सीखू',
+    'weather': 'मौसम',
+    'helpline': 'हेल्पलाइन',
+    'resources': 'संसाधन',
+    'selectLanguage': 'भाषा चुनु',
+    'yourFarmingPartner': 'अहाँक कृषि भागीदार',
+    'readAloud': 'जोर सँ पढ़ू'
+  },
+  sat: {
+    'empowerFarm': 'ᱮᱭᱟᱭ ᱥᱟᱶᱛᱮ ᱟᱢᱟᱜ ᱪᱟᱥ ᱠᱟᱹᱢᱤ ᱠᱮᱫ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ',
+    'home': 'ᱚᱲᱟᱜ',
+    'cropAdvisor': 'ᱪᱟᱥ ᱩᱫᱮᱥᱟᱹᱠ',
+    'soilScanner': 'ᱦᱟᱥᱟ ᱥᱠᱮᱱᱟᱨ',
+    'alerts': 'ᱮᱞᱟᱨᱴ',
+    'farmerTips': 'ᱪᱟᱥ ᱠᱟᱹᱢᱤ ᱠᱩᱢᱩᱴ',
+    'wasteIdeas': 'ᱵᱮᱜᱟᱨ ᱠᱩᱢᱩᱴ',
+    'learnFarming': 'ᱪᱟᱥ ᱥᱮᱪᱮᱫ',
+    'weather': 'ᱦᱚᱭ ᱦᱤᱥᱤᱫ',
+    'helpline': 'ᱜᱚᱲᱚ ᱞᱟᱭᱤᱱ',
+    'resources': 'ᱥᱟᱯᱲᱟᱣ',
+    'selectLanguage': 'ᱯᱟᱹᱨᱥᱤ ᱵᱟᱪᱷᱟᱣ ᱢᱮ',
+    'yourFarmingPartner': 'ᱟᱢᱟᱜ ᱪᱟᱥ ᱜᱚᱲᱚᱢ',
+    'readAloud': 'ᱡᱚᱨ ᱛᱮ ᱯᱟᱲᱦᱟᱣ ᱢᱮ'
+  },
+  ks: {
+    'empowerFarm': 'اے آی سٟتؠ پننہٕ کھیٖتھ با اختیار بناو',
+    'home': 'گھر',
+    'cropAdvisor': 'فصلہٕ صلاح کار',
+    'soilScanner': 'مٹی سکینر',
+    'alerts': 'الرٹ',
+    'farmerTips': 'کسان ٹپس',
+    'wasteIdeas': 'فضول خیالات',
+    'learnFarming': 'کاشتکاری سیکھو',
+    'weather': 'موسم',
+    'helpline': 'مدد گار لائن',
+    'resources': 'وسائل',
+    'selectLanguage': 'زبانہٕ چُنو',
+    'yourFarmingPartner': 'تُہندِ کاشتکاری پارٹنر',
+    'readAloud': 'زور سٟتؠ پرھو'
+  },
+  sd: {
+    'empowerFarm': 'اي آءِ سان پنھنجي زمين کي بااختيار بڻايو',
+    'home': 'گھر',
+    'cropAdvisor': 'فصل جو صلاحڪار',
+    'soilScanner': 'مٽي اسڪينر',
+    'alerts': 'الرٽ',
+    'farmerTips': 'هاريءَ جون صلاحون',
+    'wasteIdeas': 'ڪچري جا خيال',
+    'learnFarming': 'فارم ڪرڻ سکو',
+    'weather': 'موسم',
+    'helpline': 'مدد لاء لائن',
+    'resources': 'وسائل',
+    'selectLanguage': 'ٻولي چونڊيو',
+    'yourFarmingPartner': 'توهان جو فارمنگ پارٽنر',
+    'readAloud': 'زور سان پڙهو'
+  },
+  kok: {
+    'empowerFarm': 'एआय वापरून तुमच्या शेताक सक्षम करात',
+    'home': 'घर',
+    'cropAdvisor': 'पिकाचो सल्लागार',
+    'soilScanner': 'माती स्कॅनर',
+    'alerts': 'सर्तकता',
+    'farmerTips': 'शेतकारयांच्यो टिप्स',
+    'wasteIdeas': 'कचऱ्याच्यो कल्पना',
+    'learnFarming': 'शेती शिकून घ्या',
+    'weather': 'हवामान',
+    'helpline': 'मदत लाइन',
+    'resources': 'साधनां',
+    'selectLanguage': 'भास निवडात',
+    'yourFarmingPartner': 'तुमचो शेती भागीदार',
+    'readAloud': 'जोरान वाचयत'
+  },
+  doi: {
+    'empowerFarm': 'एआई दे नाल अपने खेत गी ताकतवर बनाओ',
+    'home': 'घर',
+    'cropAdvisor': 'फसल सलाहकार',
+    'soilScanner': 'मिट्टी स्कैनर',
+    'alerts': 'अलर्ट',
+    'farmerTips': 'किसान टिप्स',
+    'wasteIdeas': 'बेकार विचार',
+    'learnFarming': 'खेती सिखो',
+    'weather': 'मौसम',
+    'helpline': 'मदद लाइन',
+    'resources': 'संसाधन',
+    'selectLanguage': 'भाषा चुनो',
+    'yourFarmingPartner': 'तुहाड़ा खेती भागीदार',
+    'readAloud': 'उच्ची आवाज च पढ़ो'
+  },
+  mni: {
+    'empowerFarm': 'এ.আই.গী খুৎথাংদা নখোয়গী লৌমীশিংবু মপাঙ্গল কলহন্নবা',
+    'home': 'য়ুম',
+    'cropAdvisor': 'লোইনশিংগী মতাংদা শিংনবা পীরিবা',
+    'soilScanner': 'লেইমাই স্কেনর',
+    'alerts': 'খঙহনবা',
+    'farmerTips': 'লৌমীশিংগী ওইবা টিপ্স',
+    'wasteIdeas': 'অকানবশিংগী ৱাখল্লোন',
+    'learnFarming': 'লৌউ শিংউ তম্মু',
+    'weather': 'হৱাইগী ফিভম',
+    'helpline': 'হেল্পলাইন',
+    'resources': 'থৌরাং',
+    'selectLanguage': 'লোন খল্লু',
+    'yourFarmingPartner': 'নখোয়গী লৌমী পার্টনর',
+    'readAloud': 'ৱাংনা ৱাংনা পঢ়ো'
+  },
+  brx: {
+    'empowerFarm': 'ए आइ जों नोंथांनि फोर्मखौ गोहो हो',
+    'home': 'गेब',
+    'cropAdvisor': 'फसल सलहाकार',
+    'soilScanner': 'माटि स्केनर',
+    'alerts': 'एलर्ट',
+    'farmerTips': 'फार्मार टिप्स',
+    'wasteIdeas': 'बांङाइ आइडिया',
+    'learnFarming': 'खेथि सोलों',
+    'weather': 'मौसम',
+    'helpline': 'हेल्पलाइन',
+    'resources': 'सोर्स',
+    'selectLanguage': 'भाषा सायख',
+    'yourFarmingPartner': 'नोंथांनि खेथि पार्टनर',
+    'readAloud': 'जोरोङै पडो'
+  },
+  ur: {
+    'empowerFarm': 'اے آئی کے ساتھ اپنے کھیت کو بااختیار بنائیں',
+    'home': 'گھر',
+    'cropAdvisor': 'فصلوں کا مشیر',
+    'soilScanner': 'مٹی سکینر',
+    'alerts': 'انتباہ',
+    'farmerTips': 'کسان تجاویز',
+    'wasteIdeas': 'ضائع خیالات',
+    'learnFarming': 'کاشتکاری سیکھیں',
+    'weather': 'موسم',
+    'helpline': 'مدد لائن',
+    'resources': 'وسائل',
+    'selectLanguage': 'زبان منتخب کریں',
+    'yourFarmingPartner': 'آپ کا کاشتکاری پارٹنر',
+    'readAloud': 'اونچی آواز میں پڑھیں'
+  },
+  ne: {
+    'empowerFarm': 'एआई संग तपाईंको खेतलाई सशक्त बनाउनुहोस्',
+    'home': 'घर',
+    'cropAdvisor': 'बाली सल्लाहकार',
+    'soilScanner': 'माटो स्क्यानर',
+    'alerts': 'सतर्कता',
+    'farmerTips': 'किसान सुझावहरू',
+    'wasteIdeas': 'फोहोर विचारहरू',
+    'learnFarming': 'खेती सिक्नुहोस्',
+    'weather': 'मौसम',
+    'helpline': 'हेल्पलाइन',
+    'resources': 'स्रोतहरू',
+    'selectLanguage': 'भाषा चयन गर्नुहोस्',
+    'yourFarmingPartner': 'तपाईंको कृषि साझेदार',
+    'readAloud': 'ठूलो स्वरले पढ्नुहोस्'
+  },
 };
 
 // For other languages, we'll use English as fallback when specific translations aren't available
