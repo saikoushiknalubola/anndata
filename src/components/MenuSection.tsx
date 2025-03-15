@@ -45,17 +45,12 @@ const MenuSection = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
-        <SheetHeader className="p-4 border-b">
+        <SheetHeader className="p-4 border-b relative">
           <SheetTitle className="text-xl font-semibold text-earth">{t('menu')}</SheetTitle>
           <SheetDescription className="sr-only">
             Application navigation menu
           </SheetDescription>
-          <SheetClose asChild className="absolute right-4 top-4">
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <X size={24} />
-              <span className="sr-only">Close</span>
-            </Button>
-          </SheetClose>
+          {/* Remove the SheetClose button from here as it's already included in SheetContent */}
         </SheetHeader>
         <div className="flex-1 overflow-auto p-4">
           <nav className="flex flex-col space-y-1">

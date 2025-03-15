@@ -2,12 +2,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage, LANGUAGES } from '../contexts/LanguageContext';
 import { ChevronDown, Globe, Search } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const LanguageSelector = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   
@@ -46,12 +48,14 @@ const LanguageSelector = () => {
         aria-label="Select language"
       >
         <Globe size={14} />
-        <span className="max-w-[80px] truncate">{currentLanguage}</span>
+        <span className={`truncate ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
+          {isMobile ? '' : currentLanguage}
+        </span>
         <ChevronDown size={14} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 mt-1 py-1 w-60 max-h-[240px] overflow-y-auto bg-white rounded-md shadow-lg z-50 frosted-glass">
+        <div className={`absolute ${isMobile ? 'left-0' : 'right-0'} mt-1 py-1 w-60 max-h-[240px] overflow-y-auto bg-white rounded-md shadow-lg z-50 frosted-glass`}>
           <div className="px-2 py-1 text-xs text-earth/70 border-b border-cream/50">
             {t('selectLanguage')}
           </div>
