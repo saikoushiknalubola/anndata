@@ -2,7 +2,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Phone, Mail, MessageSquare, Clock } from 'lucide-react';
+import { Phone, Mail, MessageSquare, Clock, Cloud } from 'lucide-react';
 
 const Helpline = () => {
   const { t } = useLanguage();
