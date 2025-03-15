@@ -111,7 +111,7 @@ export default {
       },
       fontFamily: {
         'hindi': ['Poppins', 'sans-serif'],
-        'decorative': ['Shrikhand', 'cursive']
+        'decorative': ['Poppins', 'sans-serif']
       }
     }
   },
