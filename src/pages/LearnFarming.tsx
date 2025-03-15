@@ -1,169 +1,222 @@
 
-import { useState, useEffect } from 'react';
-import { BookOpen, Volume, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { BookOpen, Video, FileText, ArrowRight, Search } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Button from '../components/Button';
-import { toast } from '@/components/ui/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
-
-// Mock data for learning resources (will be replaced with Supabase data)
-const mockLearningResources = [
-  {
-    id: 1,
-    title: "Crop Rotation Basics",
-    content: "Rotate crops every season to prevent soil depletion and reduce pest buildup. Different crops use different nutrients and attract different pests, so rotation helps maintain soil health and breaks pest cycles.",
-    imageUrl: "https://images.unsplash.com/photo-1543699565-003b8adda5fc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y3JvcCUyMHJvdGF0aW9ufGVufDB8fDB8fHww"
-  },
-  {
-    id: 2,
-    title: "Organic Fertilizers Guide",
-    content: "Organic fertilizers like compost, manure, and green manure improve soil structure and fertility naturally. They release nutrients slowly, reduce runoff, and promote beneficial soil organisms.",
-    imageUrl: "https://images.unsplash.com/photo-1603811478698-0b1d6256f79a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29tcG9zdHxlbnwwfHwwfHx8MA%3D%3D"
-  },
-  {
-    id: 3,
-    title: "Water Conservation Tips",
-    content: "Conserve water by using drip irrigation, collecting rainwater, mulching, and watering during early morning or evening to reduce evaporation. Plant drought-resistant varieties when possible.",
-    imageUrl: "https://images.unsplash.com/photo-1468421870903-4df1664ac249?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0ZXIlMjBjb25zZXJ2YXRpb258ZW58MHx8MHx8fDA%3D"
-  },
-  {
-    id: 4,
-    title: "Pest Control Methods",
-    content: "Implement integrated pest management (IPM) by using natural predators, crop rotation, resistant varieties, and organic pesticides like neem oil. Monitor crops regularly to catch infestations early.",
-    imageUrl: "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVzdCUyMGNvbnRyb2x8ZW58MHx8MHx8fDA%3D"
-  },
-  {
-    id: 5,
-    title: "Soil Health 101",
-    content: "Healthy soil contains a balance of minerals, organic matter, air, water, and microorganisms. Test soil regularly, maintain organic matter levels, avoid compaction, and use cover crops to protect soil during off-seasons.",
-    imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29pbHxlbnwwfHwwfHx8MA%3D%3D"
-  }
-];
-
-// Simulate TTS for now
-const simulateTextToSpeech = (text: string, language: string) => {
-  // In a real app, this would use an actual TTS API
-  console.log(`Speaking in ${language}: ${text}`);
-  
-  toast({
-    title: "Reading aloud",
-    description: `"${text.substring(0, 50)}..." in ${language}`,
-    duration: 3000,
-  });
-  
-  return new Promise<void>(resolve => {
-    setTimeout(resolve, 2000);
-  });
-};
 
 interface LearningResource {
   id: number;
   title: string;
-  content: string;
-  imageUrl: string;
+  description: string;
+  type: 'video' | 'article' | 'guide';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
 }
 
 const LearnFarming = () => {
-  const [resources, setResources] = useState<LearningResource[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [speakingId, setSpeakingId] = useState<number | null>(null);
-  const { language, t } = useLanguage();
+  const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useLanguage();
   
-  useEffect(() => {
-    // Simulate fetching data from Supabase
-    const fetchResources = async () => {
-      try {
-        // In a real app, this would fetch from Supabase
-        setResources(mockLearningResources);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching learning resources:', error);
-        toast({
-          title: "Error",
-          description: "Failed to fetch learning resources. Please try again.",
-          variant: "destructive",
-        });
-        setLoading(false);
-      }
-    };
+  const resources: LearningResource[] = [
+    {
+      id: 1,
+      title: "Introduction to Organic Farming",
+      description: "Learn the basics of organic farming techniques and benefits.",
+      type: "video",
+      difficulty: "beginner"
+    },
+    {
+      id: 2,
+      title: "Soil Nutrition and Health",
+      description: "How to maintain and improve your soil quality naturally.",
+      type: "article",
+      difficulty: "beginner"
+    },
+    {
+      id: 3,
+      title: "Advanced Irrigation Techniques",
+      description: "Water conservation methods for sustainable farming.",
+      type: "guide",
+      difficulty: "intermediate"
+    },
+    {
+      id: 4,
+      title: "Seasonal Crop Rotation Planning",
+      description: "Maximize yield through strategic crop rotation.",
+      type: "article",
+      difficulty: "intermediate"
+    },
+    {
+      id: 5,
+      title: "Pest Management Without Chemicals",
+      description: "Natural ways to protect your crops from common pests.",
+      type: "video",
+      difficulty: "beginner"
+    },
+    {
+      id: 6,
+      title: "Climate-Resilient Farming Practices",
+      description: "Preparing your farm for changing weather patterns.",
+      type: "guide",
+      difficulty: "advanced"
+    },
+    {
+      id: 7,
+      title: "Farm Equipment Maintenance",
+      description: "Keep your tools and machinery in top condition.",
+      type: "video",
+      difficulty: "intermediate"
+    },
+    {
+      id: 8,
+      title: "Marketing Your Farm Products",
+      description: "Strategies to sell your produce at better prices.",
+      type: "guide",
+      difficulty: "advanced"
+    }
+  ];
 
-    fetchResources();
-  }, []);
+  const filteredResources = resources.filter(resource => 
+    resource.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    resource.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  const handleReadAloud = async (resource: LearningResource) => {
-    if (speakingId === resource.id) return;
-    
-    setSpeakingId(resource.id);
-    try {
-      await simulateTextToSpeech(resource.content, language);
-    } finally {
-      setSpeakingId(null);
+  const getIconForType = (type: string) => {
+    switch(type) {
+      case 'video': return <Video size={18} className="text-saffron" />;
+      case 'article': return <FileText size={18} className="text-leaf" />;
+      case 'guide': return <BookOpen size={18} className="text-earth" />;
+      default: return <FileText size={18} />;
+    }
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch(difficulty) {
+      case 'beginner': return 'bg-leaf/20 text-leaf';
+      case 'intermediate': return 'bg-saffron/20 text-saffron';
+      case 'advanced': return 'bg-earth/20 text-earth';
+      default: return 'bg-gray-200 text-gray-700';
     }
   };
 
   return (
-    <Layout title="Learn Farming" showBackButton>
+    <Layout title={t('learnFarming')} showBackButton>
       <div className="space-y-6">
         <Card>
-          <h2 className="text-lg font-semibold text-earth mb-4">Educational Resources</h2>
-          <p className="text-sm text-earth/80 mb-4">
-            Expand your farming knowledge with these educational resources. Tap on any card to read more, or use the read aloud feature to listen to the content.
-          </p>
-          
-          {loading ? (
-            <div className="py-8 flex justify-center">
-              <Loader2 className="animate-spin text-earth" size={30} />
+          <div className="flex items-center mb-4">
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-earth">{t('farmingEducation')}</h2>
+              <p className="text-sm text-earth/80">
+                Free resources to improve your farming knowledge and skills
+              </p>
             </div>
-          ) : resources.length > 0 ? (
-            <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-1">
-              {resources.map((resource) => (
-                <Card 
-                  key={resource.id} 
-                  className="bg-gradient-to-br from-leaf/10 to-white border border-leaf/20 overflow-hidden"
-                >
-                  <div className="relative h-40 mb-3 rounded-t-lg overflow-hidden">
-                    <img 
-                      src={resource.imageUrl} 
-                      alt={resource.title} 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-                      <h3 className="text-white font-semibold p-3">{resource.title}</h3>
-                    </div>
-                  </div>
-                  
-                  <div className="p-3">
-                    <p className="text-earth text-sm leading-relaxed mb-4">
-                      {resource.content}
-                    </p>
-                    
-                    <Button
-                      variant="accent"
-                      icon={<Volume size={18} />}
-                      onClick={() => handleReadAloud(resource)}
-                      loading={speakingId === resource.id}
-                      disabled={speakingId !== null}
-                      className="mt-2"
-                    >
-                      {speakingId === resource.id ? "Reading..." : "Read Aloud"}
-                    </Button>
-                  </div>
-                </Card>
+          </div>
+
+          <div className="relative mb-4">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-earth/50" />
+            <Input
+              placeholder="Search resources..."
+              className="pl-9 bg-white/80 border-earth/30"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
+          <Tabs defaultValue="all" className="w-full">
+            <TabsList className="grid grid-cols-4 mb-4">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="video">Videos</TabsTrigger>
+              <TabsTrigger value="article">Articles</TabsTrigger>
+              <TabsTrigger value="guide">Guides</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="all" className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {filteredResources.map(resource => (
+                <ResourceCard key={resource.id} resource={resource} />
               ))}
-            </div>
-          ) : (
-            <p className="text-center py-6 text-earth/70">No learning resources available at this time</p>
-          )}
+            </TabsContent>
+            
+            <TabsContent value="video" className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {filteredResources.filter(r => r.type === 'video').map(resource => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="article" className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {filteredResources.filter(r => r.type === 'article').map(resource => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+            </TabsContent>
+            
+            <TabsContent value="guide" className="space-y-4 max-h-[400px] overflow-y-auto pr-1">
+              {filteredResources.filter(r => r.type === 'guide').map(resource => (
+                <ResourceCard key={resource.id} resource={resource} />
+              ))}
+            </TabsContent>
+          </Tabs>
         </Card>
 
         <div className="text-center mt-4">
           <p className="text-xs text-earth/70">
-            These educational resources are designed to help you implement best practices in your farming. Check back regularly for new content.
+            These educational resources are curated from agricultural extension services, universities, and experienced farmers.
           </p>
         </div>
       </div>
     </Layout>
+  );
+};
+
+interface ResourceCardProps {
+  resource: LearningResource;
+}
+
+const ResourceCard = ({ resource }: ResourceCardProps) => {
+  const getDifficultyColor = (difficulty: string) => {
+    switch(difficulty) {
+      case 'beginner': return 'bg-leaf/20 text-leaf';
+      case 'intermediate': return 'bg-saffron/20 text-saffron';
+      case 'advanced': return 'bg-earth/20 text-earth';
+      default: return 'bg-gray-200 text-gray-700';
+    }
+  };
+
+  const getIconForType = (type: string) => {
+    switch(type) {
+      case 'video': return <Video size={18} className="text-saffron" />;
+      case 'article': return <FileText size={18} className="text-leaf" />;
+      case 'guide': return <BookOpen size={18} className="text-earth" />;
+      default: return <FileText size={18} />;
+    }
+  };
+
+  return (
+    <Card className="hover:shadow-md transition-shadow bg-white/90">
+      <div className="flex items-start">
+        <div className="bg-cream p-2 rounded-full mr-3">
+          {getIconForType(resource.type)}
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-earth">{resource.title}</h3>
+            <span className={`text-xs px-2 py-0.5 rounded-full ${getDifficultyColor(resource.difficulty)}`}>
+              {resource.difficulty}
+            </span>
+          </div>
+          <p className="text-sm text-earth/80 mt-1 mb-2">{resource.description}</p>
+          <Button 
+            variant="secondary" 
+            size="xs"
+            className="mt-1"
+            icon={<ArrowRight size={14} />}
+          >
+            View Resource
+          </Button>
+        </div>
+      </div>
+    </Card>
   );
 };
 
