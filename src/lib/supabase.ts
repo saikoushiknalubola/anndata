@@ -1,4 +1,3 @@
-
 import { createClient } from '@supabase/supabase-js';
 
 // Public Supabase URL and anon key are safe to expose in the client
@@ -35,13 +34,14 @@ export interface WasteIdea {
   idea: string;
 }
 
-// Mock data until Supabase is connected
+// Mock data with Warangal district locations
 export const mockLocations: Location[] = [
-  { id: 1, name: 'Siddharthnagar', crop_suggestion: 'Wheat', reason: 'Perfect soil conditions for winter crop' },
-  { id: 2, name: 'Balrampur', crop_suggestion: 'Rice', reason: 'High rainfall predicted in the coming months' },
-  { id: 3, name: 'Pune', crop_suggestion: 'Sugarcane', reason: 'Ideal temperature and water availability' },
-  { id: 4, name: 'Nashik', crop_suggestion: 'Grapes', reason: 'Optimal climate for vineyard development' },
-  { id: 5, name: 'Madurai', crop_suggestion: 'Cotton', reason: 'Soil quality and weather favor cotton growth' },
+  { id: 1, name: 'Ananthasagar', crop_suggestion: 'Paddy', reason: 'Ideal monsoon conditions and water availability' },
+  { id: 2, name: 'Hanamkonda', crop_suggestion: 'Cotton', reason: 'Perfect soil conditions for summer crop' },
+  { id: 3, name: 'Parkal', crop_suggestion: 'Chili Peppers', reason: 'Optimal temperature and dry climate for cultivation' },
+  { id: 4, name: 'Jammikunta', crop_suggestion: 'Turmeric', reason: 'Soil quality and moderate rainfall favor root crops' },
+  { id: 5, name: 'Huzurabad', crop_suggestion: 'Maize', reason: 'Good drainage and suitable for intercropping' },
+  { id: 6, name: 'Hasanparthy', crop_suggestion: 'Groundnut', reason: 'Sandy loam soil perfect for legume cultivation' },
 ];
 
 export const mockSoilTips: SoilTip[] = [
@@ -70,7 +70,7 @@ export const mockWasteIdeas: WasteIdea[] = [
   { id: 3, idea: 'Compost fruit and vegetable waste for nutrient-rich fertilizer' },
 ];
 
-// Functions to fetch data (will use mock data until Supabase is fully connected)
+// Functions to fetch data (will use mock data until Supabase is connected)
 export async function getLocations(): Promise<Location[]> {
   try {
     // Uncomment when Supabase is connected

@@ -7,8 +7,8 @@ const Logo = () => {
         alt="Andata Logo" 
         className="w-auto h-auto max-h-full max-w-full object-contain"
         style={{ 
-          minWidth: '50px', // Reduced from 62.5px
-          minHeight: '50px', // Reduced from 62.5px
+          minWidth: '45px', // Reduced for better UI fit
+          minHeight: '45px', // Reduced for better UI fit
           filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.15))'
         }}
       />
