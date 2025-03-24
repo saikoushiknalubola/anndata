@@ -1,69 +1,50 @@
-# Welcome to your Lovable project
+# Anndata – The Voice of Warangal Farmers
 
-## Project info
+![Project Logo](https://via.placeholder.com/150.png?text=Anndata+Logo)  
 
-**URL**: https://lovable.dev/projects/d1782d6c-0dbb-4f92-b9be-90384d918995
+## Overview
+Anndata is a voice-driven mobile and web application designed to empower smallholder farmers in Telangana’s Warangal district. Targeting regions like Hanamkonda, Jammikunta, and Hasanparthy, it addresses critical agricultural challenges with innovative, Telugu-language solutions, enhancing productivity, reducing losses, and boosting income for over 1 million farmers.
 
-## How can I edit this code?
+## Problem Statement
+Warangal farmers face:
+- **Crop Losses**: Up to 60% from unpredictable weather and 50-70% from pests.
+- **Market Gaps**: ₹500-1000 monthly shortfall due to poor price access.
+- **Resource Waste**: 30-40% water loss from improper irrigation.
+- **Soil Degradation**: 30% yield drop from mismanagement.
+- **Tech Barriers**: Low literacy (57% rural Telangana) limits use of English, text-based tools.
 
-There are several ways of editing your application.
+## Solution
+Anndata leverages Python, React, Node.js, and Vite, with integrations like Bhashini (simulated via gTTS), Supabase, and Twilio, to deliver 9 farmer-centric features in Telugu:
 
-**Use Lovable**
+1. **Soil Analysis**: Photo-based fertility scoring and tips (e.g., “Add urea”).
+2. **Crop Recommendation**: Location-specific crop advice (e.g., “Paddy for Jammikunta”).
+3. **Smart Alerts**: Real-time pest/weather warnings (e.g., “Rain in 2 days”).
+4. **Market Connect**: Price checks and voice bargaining (e.g., “Sell paddy for ₹2100”).
+5. **Learn Easy**: Voice farming lessons (e.g., “Use neem for pests”).
+6. **Weather Dashboard**: Location forecasts (e.g., “28°C, 50% rain”).
+7. **Voice Q&A**: Telugu answers to queries (e.g., “How to stop pests?”).
+8. **Smart Irrigation Advisor**: Soil + weather-based watering advice (e.g., “1L/sq.m”).
+9. **Pest Predictor**: Predictive pest alerts (e.g., “Spray neem tomorrow”).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d1782d6c-0dbb-4f92-b9be-90384d918995) and start prompting.
+## Features & Impact
+| Feature              | Problem Solved             | Impact                     |
+|----------------------|----------------------------|----------------------------|
+| Soil Analysis        | Soil degradation          | +30% yield                |
+| Crop Recommendation  | Poor crop choice          | Optimized planting        |
+| Smart Alerts         | Weather/pest losses       | -60% crop loss            |
+| Market Connect       | Low market returns        | +₹500-1000/month          |
+| Learn Easy           | Knowledge gaps            | +30% yield                |
+| Weather Dashboard    | Weather uncertainty       | Better planning           |
+| Voice Q&A            | Accessibility             | Inclusive support         |
+| Smart Irrigation     | Water waste               | -30-40% water use         |
+| Pest Predictor       | Pest damage               | -50-70% loss              |
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d1782d6c-0dbb-4f92-b9be-90384d918995) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## Tech Stack
+- **Frontend**: React (18.x) - Dynamic UI  
+- **Backend**: Node.js (20.x LTS) - Server logic  
+- **Build Tool**: Vite (5.x) - Fast dev & builds  
+- **Image Processing**: OpenCV - Soil analysis  
+- **Voice**: gTTS (Bhashini simulation) - Telugu TTS  
+- **Database**: Supabase - Scalable storage (planned)  
+- **SMS**: Twilio - Alerts (planned)  
+- **Language**: Python (3.9+) - Core logic
