@@ -46,3 +46,5 @@ Anndata leverages Python, React, Node.js, and Vite, with integrations like Bhash
 - **Database**: Supabase - Scalable storage (planned)  
 - **SMS**: Twilio - Alerts (planned)  
 - **Language**: Python (3.9+) - Core logic
+
+- Test It Out: https://saffron-farm-guardian.lovable.app/
