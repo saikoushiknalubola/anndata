@@ -1,7 +1,5 @@
 # Anndata – The Voice of Warangal Farmers
 
-![Project Logo](https://via.placeholder.com/150.png?text=Anndata+Logo)  
-
 ## Overview
 Anndata is a voice-driven mobile and web application designed to empower smallholder farmers in Telangana’s Warangal district. Targeting regions like Hanamkonda, Jammikunta, and Hasanparthy, it addresses critical agricultural challenges with innovative, Telugu-language solutions, enhancing productivity, reducing losses, and boosting income for over 1 million farmers.
 
