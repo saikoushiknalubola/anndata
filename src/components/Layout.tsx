@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { 
   Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft, 
-  BookOpen, Cloud, LifeBuoy, FileText, DollarSign
+  BookOpen, Cloud, LifeBuoy, FileText, DollarSign, 
+  ShoppingCart, Trophy, Sprout, Tractor
 } from 'lucide-react';
 import Logo from './Logo';
 import LanguageSelector from './LanguageSelector';
@@ -34,6 +35,10 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
     { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
     { path: '/crop-info', label: 'Crop Info', icon: FileText },
     { path: '/farm-subsidies', label: 'Subsidies', icon: DollarSign },
+    { path: '/market-prices', label: 'Market', icon: ShoppingCart },
+    { path: '/success-stories', label: 'Success', icon: Trophy },
+    { path: '/organic-farming', label: 'Organic', icon: Sprout },
+    { path: '/equipment-catalog', label: 'Equipment', icon: Tractor },
     { path: '/alerts', label: t('alerts'), icon: Bell },
     { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
     { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },
@@ -44,8 +49,8 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
 
   // Get visible nav items based on screen size
   const visibleNavItems = isMobile 
-    ? navItems.slice(0, 5) // Show more items on mobile
-    : navItems; // Show all items on desktop
+    ? navItems.slice(0, 5) // Show fewer items on mobile
+    : navItems.slice(0, 9); // Show more items on desktop
 
   return (
     <div className="page-container relative">
@@ -64,12 +69,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-32 h-32 flex items-center justify-center mb-3 mt-7 pulse-gentle rounded-full bg-white/40 p-3 shadow-md border border-cream/50">
+        <div className="logo-container w-32 h-32 flex items-center justify-center mb-3 mt-7 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/10 via-white/60 to-[#138808]/10 p-3 shadow-md border border-cream/50">
           <Logo />
         </div>
         {title && (
           <div className="mt-4 mb-2 w-full flex items-center justify-center">
-            <h1 className="text-2xl font-decorative text-earth text-glow bg-white/60 px-4 py-1 rounded-full shadow-sm border border-cream/50">{title}</h1>
+            <h1 className="text-2xl font-decorative text-earth text-glow bg-white/60 px-6 py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
           </div>
         )}
       </header>

@@ -30,6 +30,12 @@ const MenuSection = () => {
     { path: '/learn-farming', label: t('learnFarming') },
     { path: '/weather', label: t('weather') },
     { path: '/helpline', label: t('helpline') },
+    { path: '/crop-info', label: 'Crop Info' },
+    { path: '/farm-subsidies', label: 'Farm Subsidies' },
+    { path: '/market-prices', label: 'Market Prices' },
+    { path: '/success-stories', label: 'Success Stories' },
+    { path: '/organic-farming', label: 'Organic Farming' },
+    { path: '/equipment-catalog', label: 'Equipment Catalog' },
   ];
 
   return (
@@ -45,14 +51,17 @@ const MenuSection = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
-        <SheetHeader className="p-4 border-b relative">
+        <SheetHeader className="p-4 border-b relative bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10">
           <SheetTitle className="text-xl font-semibold text-earth">{t('menu')}</SheetTitle>
           <SheetDescription className="sr-only">
             Application navigation menu
           </SheetDescription>
-          {/* Remove the SheetClose button from here as it's already included in SheetContent */}
+          <div className="flex items-center space-x-2 absolute bottom-4 right-4">
+            <img src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" alt="Digital India" className="h-5 w-auto" />
+            <img src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" alt="G20" className="h-5 w-auto" />
+          </div>
         </SheetHeader>
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-auto p-4 bg-gradient-to-b from-white to-cream/20">
           <nav className="flex flex-col space-y-1">
             {menuItems.map((item) => (
               <SheetClose asChild key={item.path}>

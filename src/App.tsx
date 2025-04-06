@@ -17,6 +17,10 @@ import VoiceAssistant from './components/VoiceAssistant';
 import GovernmentBranding from './components/GovernmentBranding';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
+import MarketPrices from './pages/MarketPrices';
+import SuccessStories from './pages/SuccessStories';
+import OrganicFarming from './pages/OrganicFarming';
+import EquipmentCatalog from './pages/EquipmentCatalog';
 
 function App() {
   return (
@@ -36,6 +40,10 @@ function App() {
             <Route path="/helpline" element={<Helpline />} />
             <Route path="/crop-info" element={<CropInfo />} />
             <Route path="/farm-subsidies" element={<FarmSubsidies />} />
+            <Route path="/market-prices" element={<MarketPrices />} />
+            <Route path="/success-stories" element={<SuccessStories />} />
+            <Route path="/organic-farming" element={<OrganicFarming />} />
+            <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <VoiceAssistant />
