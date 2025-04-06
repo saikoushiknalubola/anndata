@@ -5,7 +5,7 @@ import { Loader2 } from 'lucide-react';
 interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'default' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'default' | 'ghost' | 'official';
   className?: string;
   disabled?: boolean;
   loading?: boolean;
@@ -33,7 +33,8 @@ const Button = ({
     accent: 'bg-gradient-to-r from-leaf to-leaf/80 hover:from-leaf/90 hover:to-leaf text-white',
     outline: 'border-2 border-muted-foreground bg-background hover:bg-accent/10 hover:text-accent-foreground text-foreground',
     default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    ghost: 'hover:bg-accent/10 hover:text-accent-foreground text-foreground'
+    ghost: 'hover:bg-accent/10 hover:text-accent-foreground text-foreground',
+    official: 'bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-soil border border-soil/20 hover:shadow-lg'
   };
 
   const sizeClasses = {

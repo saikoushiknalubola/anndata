@@ -12,6 +12,7 @@ import Helpline from './pages/Helpline';
 import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
 import VoiceAssistant from './components/VoiceAssistant';
+import GovernmentBranding from './components/GovernmentBranding';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
+        <GovernmentBranding />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/crop-advisor" element={<CropAdvisor />} />

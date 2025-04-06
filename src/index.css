@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -114,6 +115,23 @@
   .page-transition-exit-active {
     @apply opacity-0 transition-opacity duration-300;
   }
+
+  /* Government themed styles */
+  .govt-header {
+    @apply bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-soil font-medium p-2 rounded-t-lg border-b border-soil/20;
+  }
+  
+  .govt-card {
+    @apply bg-white/90 border-l-4 border-l-[#FF9933] shadow-md rounded-lg overflow-hidden;
+  }
+  
+  .tricolor-border {
+    @apply border-t-[3px] border-t-[#FF9933] border-b-[3px] border-b-[#138808];
+  }
+  
+  .official-text {
+    @apply text-soil font-medium;
+  }
 }
 
 /* Custom animations */
@@ -172,8 +190,8 @@
 
 /* Voice Assistant Styles */
 .voice-assistant-btn {
-  @apply fixed right-4 bottom-20 bg-gradient-to-r from-saffron to-earth text-white p-3 rounded-full shadow-lg z-20 
-         hover:from-earth hover:to-saffron transition-colors duration-200 flex items-center justify-center;
+  @apply fixed right-4 bottom-20 p-3 rounded-full shadow-lg z-20 
+         transition-colors duration-200 flex items-center justify-center;
 }
 
 .voice-animation {
@@ -227,4 +245,19 @@
 
 .text-shadow-light {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Indian flag colors */
+.indian-flag-orange {
+  color: #FF9933;
+}
+
+.indian-flag-green {
+  color: #138808;
+}
+
+.indian-flag-gradient {
+  background: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
