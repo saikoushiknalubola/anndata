@@ -13,23 +13,23 @@ const MarketPrices = () => {
   const [selectedState, setSelectedState] = useState('all');
   
   const cropPrices = [
-    { name: 'Rice (Common)', price: 2100, unit: 'per quintal', location: 'Punjab', change: '+120' },
-    { name: 'Wheat', price: 2200, unit: 'per quintal', location: 'Haryana', change: '+80' },
-    { name: 'Maize', price: 1850, unit: 'per quintal', location: 'Bihar', change: '-40' },
-    { name: 'Cotton', price: 6500, unit: 'per quintal', location: 'Gujarat', change: '+350' },
-    { name: 'Soybean', price: 4200, unit: 'per quintal', location: 'Madhya Pradesh', change: '+125' },
-    { name: 'Sugarcane', price: 350, unit: 'per quintal', location: 'Uttar Pradesh', change: '+15' },
-    { name: 'Onion', price: 2800, unit: 'per quintal', location: 'Maharashtra', change: '-200' },
-    { name: 'Potato', price: 1200, unit: 'per quintal', location: 'West Bengal', change: '+90' },
-    { name: 'Tomato', price: 1650, unit: 'per quintal', location: 'Karnataka', change: '+310' },
+    { name: 'Rice (Common)', price: 2100, unit: 'per quintal', location: 'Nizamabad, Telangana', change: '+120' },
+    { name: 'Wheat', price: 2200, unit: 'per quintal', location: 'Warangal, Telangana', change: '+80' },
+    { name: 'Maize', price: 1850, unit: 'per quintal', location: 'Karimnagar, Telangana', change: '-40' },
+    { name: 'Cotton', price: 6500, unit: 'per quintal', location: 'Adilabad, Telangana', change: '+350' },
+    { name: 'Soybean', price: 4200, unit: 'per quintal', location: 'Khammam, Telangana', change: '+125' },
+    { name: 'Sugarcane', price: 350, unit: 'per quintal', location: 'Medak, Telangana', change: '+15' },
+    { name: 'Onion', price: 2800, unit: 'per quintal', location: 'Hyderabad, Telangana', change: '-200' },
+    { name: 'Potato', price: 1200, unit: 'per quintal', location: 'Siddipet, Telangana', change: '+90' },
+    { name: 'Tomato', price: 1650, unit: 'per quintal', location: 'Nalgonda, Telangana', change: '+310' },
   ];
   
-  const states = ['Punjab', 'Haryana', 'Bihar', 'Gujarat', 'Madhya Pradesh', 'Uttar Pradesh', 'Maharashtra', 'West Bengal', 'Karnataka'];
+  const states = ['Nizamabad', 'Warangal', 'Karimnagar', 'Adilabad', 'Khammam', 'Medak', 'Hyderabad', 'Siddipet', 'Nalgonda'];
   
   const filteredPrices = cropPrices
     .filter(crop => 
       crop.name.toLowerCase().includes(search.toLowerCase()) &&
-      (selectedState === 'all' || crop.location === selectedState)
+      (selectedState === 'all' || crop.location.includes(selectedState))
     )
     .sort((a, b) => {
       if (sortOrder === 'asc') {
@@ -48,7 +48,7 @@ const MarketPrices = () => {
       <div className="space-y-4">
         <Card variant="tricolor" className="mb-6">
           <p className="text-earth text-sm">
-            Get the latest market prices of agricultural commodities across major markets in India.
+            Get the latest market prices of agricultural commodities across major markets in Telangana.
             Updated daily to help farmers make informed decisions.
           </p>
         </Card>
@@ -66,10 +66,10 @@ const MarketPrices = () => {
           
           <Select value={selectedState} onValueChange={setSelectedState}>
             <SelectTrigger className="w-full sm:w-[180px] bg-white/80">
-              <SelectValue placeholder="Select state" />
+              <SelectValue placeholder="Select location" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All States</SelectItem>
+              <SelectItem value="all">All Locations</SelectItem>
               {states.map(state => (
                 <SelectItem key={state} value={state}>{state}</SelectItem>
               ))}

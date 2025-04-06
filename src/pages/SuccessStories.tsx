@@ -9,40 +9,40 @@ const SuccessStories = () => {
     {
       id: 1,
       farmer: 'Rajesh Kumar',
-      location: 'Haryana',
+      location: 'Nizamabad, Telangana',
       title: 'From Traditional Farming to Smart Agriculture',
       snippet: 'How I increased my yield by 30% using modern farming techniques and digital agriculture tools.',
-      image: 'https://source.unsplash.com/random/300x200/?farmer,india',
+      image: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d',
       likes: 245,
       date: '2 weeks ago'
     },
     {
       id: 2,
       farmer: 'Lakshmi Devi',
-      location: 'Karnataka',
+      location: 'Warangal, Telangana',
       title: 'Organic Farming Success in Drought-Prone Area',
       snippet: 'My journey to converting 5 acres into a profitable organic farm despite water scarcity challenges.',
-      image: 'https://source.unsplash.com/random/300x200/?organic,farm',
+      image: 'https://images.unsplash.com/photo-1465379944081-7f47de8d74ac',
       likes: 189,
       date: '1 month ago'
     },
     {
       id: 3,
       farmer: 'Mohammed Ismail',
-      location: 'Gujarat',
+      location: 'Karimnagar, Telangana',
       title: 'Cotton Crop Innovation',
       snippet: 'How I tackled pest problems using integrated pest management and doubled my income.',
-      image: 'https://source.unsplash.com/random/300x200/?cotton,farm',
+      image: 'https://images.unsplash.com/photo-1439886183900-e79ec0057170',
       likes: 132,
       date: '3 months ago'
     },
     {
       id: 4,
       farmer: 'Anita Singh',
-      location: 'Madhya Pradesh',
+      location: 'Adilabad, Telangana',
       title: 'Women-Led Farming Cooperative',
       snippet: 'Building a successful women farmers group that transformed our village economy.',
-      image: 'https://source.unsplash.com/random/300x200/?women,farmer',
+      image: 'https://images.unsplash.com/photo-1498936178812-4b2e558d2937',
       likes: 298,
       date: '2 months ago'
     }
@@ -53,7 +53,7 @@ const SuccessStories = () => {
       <div className="space-y-4">
         <Card variant="tricolor" className="mb-6">
           <p className="text-earth text-sm">
-            Read inspiring stories from farmers across India who have transformed their lives through innovative farming practices.
+            Read inspiring stories from farmers across Telangana who have transformed their lives through innovative farming practices.
             Learn from their experiences and apply their techniques to your farm.
           </p>
         </Card>

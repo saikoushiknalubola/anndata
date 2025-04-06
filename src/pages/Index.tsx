@@ -137,6 +137,30 @@ const HomePage = () => {
           </div>
         </Card>
 
+        {/* Government Logos Section */}
+        <div className="flex items-center justify-center space-x-3 py-2 overflow-x-auto">
+          <img 
+            src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
+            alt="Azadi Ka Amrit Mahotsav" 
+            className="h-8 w-auto object-contain"
+          />
+          <img 
+            src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" 
+            alt="Digital India" 
+            className="h-7 w-auto object-contain"
+          />
+          <img 
+            src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" 
+            alt="G20 India" 
+            className="h-7 w-auto object-contain"
+          />
+          <img 
+            src="/lovable-uploads/6f8147b2-570c-4b9c-9982-c979295d71a3.png" 
+            alt="Make in India" 
+            className="h-7 w-auto object-contain"
+          />
+        </div>
+
         <div className="grid grid-cols-1 gap-3 animate-slide-up">
           {navButtons.map((button, index) => (
             <Button 

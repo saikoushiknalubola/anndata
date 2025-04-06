@@ -17,7 +17,7 @@ const EquipmentCatalog = () => {
       name: 'Advanced Tractor',
       category: 'tractor',
       price: '₹6,50,000 - ₹9,75,000',
-      image: 'https://source.unsplash.com/random/300x200/?tractor',
+      image: 'https://images.unsplash.com/photo-1493962853295-0fd70327578a',
       manufacturer: 'Mahindra & Mahindra',
       subsidyEligible: true,
       features: ['40-50 HP', 'Fuel Efficient', '4WD Option', 'Power Steering'],
@@ -28,7 +28,7 @@ const EquipmentCatalog = () => {
       name: 'Rotavator',
       category: 'tillage',
       price: '₹85,000 - ₹1,20,000',
-      image: 'https://source.unsplash.com/random/300x200/?rotavator',
+      image: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098',
       manufacturer: 'Sonalika',
       subsidyEligible: true,
       features: ['48-60 Blades', 'Heavy Duty', 'Adjustable Depth'],
@@ -39,7 +39,7 @@ const EquipmentCatalog = () => {
       name: 'Seed Drill',
       category: 'sowing',
       price: '₹65,000 - ₹95,000',
-      image: 'https://source.unsplash.com/random/300x200/?seed,drill',
+      image: 'https://images.unsplash.com/photo-1498936178812-4b2e558d2937',
       manufacturer: 'VST Tillers',
       subsidyEligible: true,
       features: ['9-11 Rows', 'Precise Seed Placement', 'Fertilizer Attachment'],
@@ -50,7 +50,7 @@ const EquipmentCatalog = () => {
       name: 'Combine Harvester',
       category: 'harvesting',
       price: '₹15,00,000 - ₹22,00,000',
-      image: 'https://source.unsplash.com/random/300x200/?harvester',
+      image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
       manufacturer: 'John Deere',
       subsidyEligible: false,
       features: ['100 HP Engine', 'Self-Propelled', 'Grain Tank', 'AC Cabin'],
@@ -61,7 +61,7 @@ const EquipmentCatalog = () => {
       name: 'Battery Sprayer',
       category: 'protection',
       price: '₹3,500 - ₹7,500',
-      image: 'https://source.unsplash.com/random/300x200/?sprayer',
+      image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
       manufacturer: 'Aspee',
       subsidyEligible: true,
       features: ['16L Capacity', 'Rechargeable Battery', 'Adjustable Nozzle'],
@@ -81,7 +81,7 @@ const EquipmentCatalog = () => {
         <Card variant="tricolor" className="mb-6">
           <p className="text-earth text-sm">
             Browse modern agricultural equipment to increase your farm productivity.
-            Many items are eligible for government subsidies under various schemes.
+            Many items are eligible for government subsidies under various schemes in Telangana.
           </p>
         </Card>
         

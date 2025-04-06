@@ -53,12 +53,15 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Custom colors
+        // Custom colors - enhanced with government portal style colors
         'saffron': '#FF5722',
-        'earth': '#8D5524',
-        'leaf': '#388E3C',
-        'cream': '#FFF3E0',
-        'soil': '#5D4037',
+        'earth': '#5D4037',  // Darker brown for better contrast
+        'leaf': '#2E7D32',   // Richer green similar to govt portal
+        'cream': '#FFF8E1',  // Lighter cream for background
+        'soil': '#3E2723',   // Deep brown
+        'govt-blue': '#0D47A1', // Government blue color
+        'govt-teal': '#00796B', // Government teal color
+        'govt-orange': '#E65100', // Government orange color
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
