@@ -1,7 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft, BookOpen, Cloud, LifeBuoy } from 'lucide-react';
+import { 
+  Wheat, Leaf, Bell, Users, Recycle, Home, ChevronLeft, 
+  BookOpen, Cloud, LifeBuoy, FileText, DollarSign
+} from 'lucide-react';
 import Logo from './Logo';
 import LanguageSelector from './LanguageSelector';
 import MenuSection from './MenuSection';
@@ -29,6 +32,8 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
     { path: '/', label: t('home'), icon: Home },
     { path: '/crop-advisor', label: t('cropAdvisor'), icon: Wheat },
     { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
+    { path: '/crop-info', label: 'Crop Info', icon: FileText },
+    { path: '/farm-subsidies', label: 'Subsidies', icon: DollarSign },
     { path: '/alerts', label: t('alerts'), icon: Bell },
     { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
     { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },
@@ -48,7 +53,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         <div className="w-full flex justify-between items-center absolute top-0 px-4 py-3">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
-              <Link to="/" className="text-earth hover:text-saffron transition-colors transform hover:scale-110">
+              <Link to="/" className="text-earth hover:text-leaf transition-colors transform hover:scale-110">
                 <ChevronLeft size={24} />
               </Link>
             ) : (
@@ -83,8 +88,8 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 to={item.path}
                 className={`flex flex-col items-center p-2 ${
                   isActive 
-                    ? 'text-saffron relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-saffron after:rounded-full transform scale-110' 
-                    : 'text-earth/70 hover:text-saffron'
+                    ? 'text-leaf relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-leaf after:rounded-full transform scale-110' 
+                    : 'text-earth/70 hover:text-leaf'
                 } transition-all duration-300 min-w-[48px] md:min-w-[60px] ${isActive ? 'bg-white/50 rounded-lg shadow-sm' : ''}`}
               >
                 <item.icon size={isActive ? 24 : 20} className="transition-all duration-300" />

@@ -9,6 +9,8 @@ import WasteIdeas from './pages/WasteIdeas';
 import LearnFarming from './pages/LearnFarming';
 import WeatherDashboard from './pages/WeatherDashboard';
 import Helpline from './pages/Helpline';
+import CropInfo from './pages/CropInfo';
+import FarmSubsidies from './pages/FarmSubsidies';
 import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
 import VoiceAssistant from './components/VoiceAssistant';
@@ -32,6 +34,8 @@ function App() {
             <Route path="/learn-farming" element={<LearnFarming />} />
             <Route path="/weather" element={<WeatherDashboard />} />
             <Route path="/helpline" element={<Helpline />} />
+            <Route path="/crop-info" element={<CropInfo />} />
+            <Route path="/farm-subsidies" element={<FarmSubsidies />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <VoiceAssistant />
