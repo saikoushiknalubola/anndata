@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
-import { Search, Filter, Tractor, Indian, ArrowRightCircle, PhoneCall, Tag } from 'lucide-react';
+import { Search, Filter, Tractor, ArrowRightCircle, PhoneCall, Tag } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
