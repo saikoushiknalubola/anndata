@@ -39,8 +39,8 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
 
   // Get visible nav items based on screen size
   const visibleNavItems = isMobile 
-    ? navItems.slice(0, 4) // Show fewer items on mobile
-    : navItems.slice(0, 6); // Show more items on desktop
+    ? navItems.slice(0, 5) // Show more items on mobile
+    : navItems; // Show all items on desktop
 
   return (
     <div className="page-container relative">
@@ -48,7 +48,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         <div className="w-full flex justify-between items-center absolute top-0 px-4 py-3">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
-              <Link to="/" className="text-earth hover:text-saffron transition-colors">
+              <Link to="/" className="text-earth hover:text-saffron transition-colors transform hover:scale-110">
                 <ChevronLeft size={24} />
               </Link>
             ) : (
@@ -83,9 +83,9 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 to={item.path}
                 className={`flex flex-col items-center p-1 ${
                   isActive 
-                    ? 'text-saffron relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-saffron after:rounded-full' 
+                    ? 'text-saffron relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-saffron after:rounded-full transform scale-110' 
                     : 'text-earth/70 hover:text-saffron'
-                } transition-colors duration-200 min-w-[48px] md:min-w-[60px]`}
+                } transition-all duration-300 min-w-[48px] md:min-w-[60px]`}
               >
                 <item.icon size={isActive ? 22 : 20} className="transition-all duration-300" />
                 <span className="text-[10px] md:text-xs mt-1 truncate w-full text-center">{item.label}</span>

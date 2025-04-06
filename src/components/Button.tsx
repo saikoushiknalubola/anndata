@@ -28,19 +28,19 @@ const Button = ({
   size = 'md'
 }: ButtonProps) => {
   const baseClasses = {
-    primary: 'btn-primary',
-    secondary: 'btn-secondary',
-    accent: 'btn-accent',
-    outline: 'border border-muted-foreground bg-background hover:bg-accent hover:text-accent-foreground text-foreground',
+    primary: 'bg-gradient-to-r from-saffron to-saffron/80 hover:from-saffron/90 hover:to-saffron text-white',
+    secondary: 'bg-gradient-to-r from-earth to-earth/80 hover:from-earth/90 hover:to-earth text-white',
+    accent: 'bg-gradient-to-r from-leaf to-leaf/80 hover:from-leaf/90 hover:to-leaf text-white',
+    outline: 'border-2 border-muted-foreground bg-background hover:bg-accent/10 hover:text-accent-foreground text-foreground',
     default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    ghost: 'hover:bg-accent hover:text-accent-foreground text-foreground'
+    ghost: 'hover:bg-accent/10 hover:text-accent-foreground text-foreground'
   };
 
   const sizeClasses = {
-    xs: 'px-2 py-1 text-xs',
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg'
+    xs: 'px-2 py-1 text-xs rounded-md',
+    sm: 'px-3 py-1.5 text-sm rounded-lg',
+    md: 'px-4 py-2 text-base rounded-xl',
+    lg: 'px-6 py-3 text-lg rounded-2xl'
   };
 
   return (
@@ -53,6 +53,11 @@ const Button = ({
         ${sizeClasses[size]}
         ${fullWidth ? 'w-full' : ''}
         ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
+        transition-all duration-300 ease-in-out
+        shadow-md hover:shadow-lg
+        font-medium
+        flex items-center justify-center gap-2
+        transform hover:scale-[1.02] active:scale-[0.98]
         ${className}
       `}
     >
