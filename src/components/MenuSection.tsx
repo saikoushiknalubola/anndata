@@ -44,24 +44,20 @@ const MenuSection = () => {
         <Button 
           variant="ghost" 
           size="icon"
-          className="p-1 rounded-full bg-earth/10 text-earth hover:bg-earth/20 transition-colors"
+          className="p-1.5 rounded-full bg-earth/5 text-earth hover:bg-earth/20 transition-colors"
         >
-          <Menu size={isMobile ? 20 : 24} />
+          <Menu size={isMobile ? 22 : 26} />
           <span className="sr-only">{t('menu')}</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
-        <SheetHeader className="p-4 border-b relative bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10">
+        <SheetHeader className="p-5 border-b relative bg-gradient-to-r from-[#FF9933]/5 via-white to-[#138808]/5">
           <SheetTitle className="text-xl font-semibold text-earth">{t('menu')}</SheetTitle>
-          <SheetDescription className="sr-only">
-            Application navigation menu
+          <SheetDescription className="text-sm text-earth/70">
+            Explore Andata Services
           </SheetDescription>
-          <div className="flex items-center space-x-2 absolute bottom-4 right-4">
-            <img src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" alt="Digital India" className="h-5 w-auto" />
-            <img src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" alt="G20" className="h-5 w-auto" />
-          </div>
         </SheetHeader>
-        <div className="flex-1 overflow-auto p-4 bg-gradient-to-b from-white to-cream/20">
+        <div className="flex-1 overflow-auto p-4 bg-gradient-to-b from-white to-cream/10">
           <nav className="flex flex-col space-y-1">
             {menuItems.map((item) => (
               <SheetClose asChild key={item.path}>

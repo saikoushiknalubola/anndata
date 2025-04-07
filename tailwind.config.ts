@@ -56,7 +56,7 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Enhanced government portal style colors
+        // Enhanced color palette
         'saffron': '#FF5722',
         'earth': '#5D4037',  // Rich brown
         'leaf': '#2E7D32',   // Richer green similar to govt portal
@@ -75,7 +75,15 @@ export default {
         'warning-amber': '#FFA000',
         'error-red': '#D32F2F',
         'info-teal': '#0097A7',
-        'neutral-gray': '#607D8B'
+        'neutral-gray': '#607D8B',
+        // Additional aesthetic colors
+        'pale-gold': '#F9A825',
+        'deep-orange': '#D84315',
+        'forest-green': '#2E7D32',
+        'soft-cream': '#FFECB3',
+        'rich-brown': '#4E342E',
+        'terracotta': '#BF360C',
+        'sage-green': '#7CB342'
       },
       borderRadius: {
         lg: 'var(--radius)',
