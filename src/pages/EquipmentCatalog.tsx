@@ -17,7 +17,6 @@ const EquipmentCatalog = () => {
       name: 'Advanced Tractor',
       category: 'tractor',
       price: '₹6,50,000 - ₹9,75,000',
-      image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Mahindra & Mahindra',
       subsidyEligible: true,
       features: ['40-50 HP', 'Fuel Efficient', '4WD Option', 'Power Steering'],
@@ -28,7 +27,6 @@ const EquipmentCatalog = () => {
       name: 'Rotavator',
       category: 'tillage',
       price: '₹85,000 - ₹1,20,000',
-      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Sonalika',
       subsidyEligible: true,
       features: ['48-60 Blades', 'Heavy Duty', 'Adjustable Depth'],
@@ -39,7 +37,6 @@ const EquipmentCatalog = () => {
       name: 'Seed Drill',
       category: 'sowing',
       price: '₹65,000 - ₹95,000',
-      image: 'https://images.unsplash.com/photo-1592991538534-000347f158b0?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'VST Tillers',
       subsidyEligible: true,
       features: ['9-11 Rows', 'Precise Seed Placement', 'Fertilizer Attachment'],
@@ -50,7 +47,6 @@ const EquipmentCatalog = () => {
       name: 'Combine Harvester',
       category: 'harvesting',
       price: '₹15,00,000 - ₹22,00,000',
-      image: 'https://images.unsplash.com/photo-1591086639897-a32b1fd12295?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'John Deere',
       subsidyEligible: false,
       features: ['100 HP Engine', 'Self-Propelled', 'Grain Tank', 'AC Cabin'],
@@ -61,7 +57,6 @@ const EquipmentCatalog = () => {
       name: 'Battery Sprayer',
       category: 'protection',
       price: '₹3,500 - ₹7,500',
-      image: 'https://images.unsplash.com/photo-1620230874645-0d85a0a7fb38?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Aspee',
       subsidyEligible: true,
       features: ['16L Capacity', 'Rechargeable Battery', 'Adjustable Nozzle'],
@@ -77,9 +72,9 @@ const EquipmentCatalog = () => {
   
   return (
     <Layout title="Equipment Catalog">
-      <div className="space-y-4">
+      <div className="space-y-4 max-w-4xl mx-auto">
         <Card variant="tricolor" className="mb-6">
-          <p className="text-earth text-sm">
+          <p className="text-earth text-sm md:text-base">
             Browse modern agricultural equipment to increase your farm productivity.
             Many items are eligible for government subsidies under various schemes in Telangana.
           </p>
@@ -147,7 +142,6 @@ interface EquipmentCardProps {
     name: string;
     category: string;
     price: string;
-    image: string;
     manufacturer: string;
     subsidyEligible: boolean;
     features: string[];
@@ -158,24 +152,12 @@ interface EquipmentCardProps {
 const EquipmentCard: React.FC<EquipmentCardProps> = ({ equipment }) => {
   return (
     <Card variant="gradient" className="overflow-hidden">
-      <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-1/3 h-48 md:h-auto relative">
-          <img 
-            src={equipment.image} 
-            alt={equipment.name} 
-            className="w-full h-full object-cover rounded-lg md:rounded-tr-none md:rounded-l-lg"
-            onError={(e) => {
-              e.currentTarget.src = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80';
-              e.currentTarget.onerror = null;
-            }}
-          />
-        </div>
-        
-        <div className="md:w-2/3 p-3 sm:p-4">
+      <div className="flex flex-col">
+        <div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="font-bold text-earth text-lg">{equipment.name}</h3>
-              <p className="text-xs text-earth/70">{equipment.manufacturer}</p>
+              <h3 className="font-bold text-earth text-lg md:text-xl">{equipment.name}</h3>
+              <p className="text-xs md:text-sm text-earth/70">{equipment.manufacturer}</p>
             </div>
             {equipment.subsidyEligible && (
               <Badge className="bg-leaf/20 text-leaf border border-leaf/30">
@@ -184,10 +166,10 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ equipment }) => {
             )}
           </div>
           
-          <p className="text-sm text-earth/80 mt-2">{equipment.description}</p>
+          <p className="text-sm md:text-base text-earth/80 mt-2">{equipment.description}</p>
           
           <div className="mt-3">
-            <h4 className="text-sm font-medium text-earth">Key Features:</h4>
+            <h4 className="text-sm md:text-base font-medium text-earth">Key Features:</h4>
             <div className="flex flex-wrap gap-2 mt-1">
               {equipment.features.map((feature, idx) => (
                 <Badge key={idx} variant="outline" className="bg-white/60">
@@ -198,7 +180,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ equipment }) => {
           </div>
           
           <div className="flex flex-wrap gap-2 justify-between items-center mt-4">
-            <div className="font-semibold text-earth">
+            <div className="font-semibold text-earth md:text-lg">
               {equipment.price}
             </div>
             

@@ -10,10 +10,10 @@ const Logo = () => {
           alt="Andata Logo" 
           className="w-auto h-auto max-h-full max-w-full object-contain rounded-full"
           style={{ 
-            minWidth: '80px', 
-            minHeight: '80px',
-            maxWidth: '100px',
-            maxHeight: '100px'
+            minWidth: '100px', 
+            minHeight: '100px',
+            maxWidth: '140px',
+            maxHeight: '140px'
           }}
         />
       </div>

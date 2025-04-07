@@ -53,9 +53,9 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
     : navItems.slice(0, 9); // Show more items on desktop
 
   return (
-    <div className="page-container relative">
-      <header className="page-header flex flex-col items-center justify-center mb-4 sm:mb-6 relative pt-12 sm:pt-14 bg-gradient-to-b from-white/80 to-transparent">
-        <div className="w-full flex justify-between items-center absolute top-0 px-4 py-2 z-10">
+    <div className="page-container relative max-w-6xl mx-auto">
+      <header className="page-header flex flex-col items-center justify-center mb-6 sm:mb-8 relative pt-12 sm:pt-16 md:pt-20 bg-gradient-to-b from-white/80 to-transparent">
+        <div className="w-full flex justify-between items-center absolute top-0 px-4 py-3 z-10">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
               <Link to="/" className="text-earth hover:text-leaf transition-colors transform hover:scale-110">
@@ -69,21 +69,56 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mb-3 mt-4 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/10 via-white/60 to-[#138808]/10 p-2 shadow-md border border-cream/50">
+        <div className="logo-container w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 flex items-center justify-center mb-5 mt-4 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/10 via-white/60 to-[#138808]/10 p-3 shadow-md border border-cream/50">
           <Logo />
         </div>
         {title && (
-          <div className="mt-2 mb-2 w-full flex items-center justify-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative text-earth text-glow bg-white/60 px-4 sm:px-6 py-1 sm:py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
+          <div className="mt-3 mb-4 w-full flex items-center justify-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-decorative text-earth text-glow bg-white/60 px-6 sm:px-8 py-2 sm:py-3 rounded-full shadow-sm border border-cream/50">{title}</h1>
           </div>
         )}
       </header>
       
-      <main className={`pb-20 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+      <main className={`pb-20 md:pb-8 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
         {children}
       </main>
       
-      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/95 to-cream/90">
+      {/* Desktop navigation */}
+      <div className="hidden md:block fixed top-0 left-0 w-full bg-white/90 shadow-sm z-20 border-b border-cream">
+        <div className="max-w-6xl mx-auto px-4">
+          <nav className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-1">
+              <Link to="/" className="flex items-center space-x-2 p-2">
+                <div className="w-10 h-10">
+                  <Logo />
+                </div>
+                <span className="font-bold text-earth text-lg">Andata</span>
+              </Link>
+              {navItems.slice(0, 7).map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link 
+                    key={item.path}
+                    to={item.path}
+                    className={`flex items-center px-3 py-2 rounded-md ${
+                      isActive 
+                        ? 'text-leaf bg-leaf/10' 
+                        : 'text-earth/70 hover:text-leaf hover:bg-leaf/5'
+                    } transition-all duration-300`}
+                  >
+                    <item.icon size={16} className="mr-1" />
+                    <span className="text-sm font-medium">{item.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+            <MenuSection />
+          </nav>
+        </div>
+      </div>
+      
+      {/* Mobile navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/95 to-cream/90">
         <div className="max-w-md mx-auto flex items-center justify-around">
           {visibleNavItems.map((item) => {
             const isActive = location.pathname === item.path;

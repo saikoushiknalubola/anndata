@@ -30,22 +30,9 @@ const Card = ({
   
   return (
     <div 
-      className={`p-3 sm:p-4 rounded-lg ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.01] transition-transform' : ''}`}
+      className={`p-4 sm:p-6 rounded-lg ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.01] transition-transform' : ''}`}
       onClick={onClick}
     >
-      {imageUrl && variant === 'image-card' && (
-        <div className="relative w-full h-40 sm:h-48 -mx-3 -mt-3 mb-3 sm:-mx-4 sm:-mt-4 sm:mb-4 overflow-hidden">
-          <img 
-            src={imageUrl} 
-            alt={imageAlt || 'Card image'} 
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.currentTarget.src = 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80';
-              e.currentTarget.onerror = null;
-            }}
-          />
-        </div>
-      )}
       {children}
     </div>
   );
