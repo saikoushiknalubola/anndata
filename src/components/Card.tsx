@@ -20,7 +20,7 @@ const Card = ({ children, className = '', onClick, variant = 'default' }: CardPr
   
   return (
     <div 
-      className={`p-4 rounded-lg ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.01] transition-transform' : ''}`}
+      className={`p-3 sm:p-4 rounded-lg ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.01] transition-transform' : ''}`}
       onClick={onClick}
     >
       {children}

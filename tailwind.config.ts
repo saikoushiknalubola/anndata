@@ -53,15 +53,19 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Custom colors - enhanced with government portal style colors
+        // Enhanced government portal style colors
         'saffron': '#FF5722',
-        'earth': '#5D4037',  // Darker brown for better contrast
+        'earth': '#5D4037',  // Rich brown
         'leaf': '#2E7D32',   // Richer green similar to govt portal
         'cream': '#FFF8E1',  // Lighter cream for background
         'soil': '#3E2723',   // Deep brown
-        'govt-blue': '#0D47A1', // Government blue color
+        'govt-blue': '#0D47A1', // Rich government blue color
         'govt-teal': '#00796B', // Government teal color
         'govt-orange': '#E65100', // Government orange color
+        'govt-brown': '#8D6E63', // Warm government brown
+        'govt-cream': '#FFF3E0', // Government portal cream
+        'govt-white': '#FFFFFF', // Pure white for contrast
+        'telangana-blue': '#1565C0', // Blue representing Telangana govt portals
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
@@ -102,6 +106,10 @@ export default {
         'slide-up': {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        'bounce-subtle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' }
         }
       },
       animation: {
@@ -110,7 +118,8 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
         'fade-in': 'fade-in 0.5s ease-out',
-        'slide-up': 'slide-up 0.5s ease-out'
+        'slide-up': 'slide-up 0.5s ease-out',
+        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite'
       },
       fontFamily: {
         'hindi': ['Poppins', 'sans-serif'],

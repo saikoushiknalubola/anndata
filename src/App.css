@@ -71,15 +71,17 @@
          flex items-center justify-center gap-2;
 }
 
-/* Mobile optimizations */
+/* Mobile optimizations - enhanced */
 @media (max-width: 480px) {
   .page-header {
-    padding-top: 12px;
-    margin-bottom: 16px;
+    padding-top: 8px;
+    margin-bottom: 12px;
   }
   
   .page-container {
-    padding-top: 12px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   
   /* Ensure logo is visible on mobile */
@@ -87,7 +89,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 5;
   }
@@ -104,22 +106,48 @@
   
   /* Make the navbar more compact on small screens */
   .fixed.bottom-0 .flex {
-    gap: 2px;
+    gap: 0;
+    padding: 0;
   }
   
   /* Fix text overlap in bottom nav */
-  .fixed.bottom-0 .flex .text-[10px] {
-    font-size: 9px;
+  .fixed.bottom-0 .flex .text-[10px], 
+  .fixed.bottom-0 .flex .text-[8px] {
+    font-size: 7px;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  /* Make cards more compact on mobile */
+  .card-container, [class*="Card"] {
+    padding: 12px !important;
+    margin-bottom: 10px;
+  }
+
+  /* Better touch targets on mobile */
+  button, a, [role="button"] {
+    min-height: 36px;
+    min-width: 36px;
+  }
+
+  /* Adjust spacing for better mobile experience */
+  .space-y-4 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* More compact headings on mobile */
+  h1, h2, h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
 }
 
-/* Voice Assistant Button */
+/* Voice Assistant Button - adjusted for mobile */
 .voice-assistant-btn {
-  @apply fixed right-4 bottom-20 bg-saffron text-white p-3 rounded-full shadow-lg z-20 
+  @apply fixed right-3 bottom-20 bg-saffron text-white p-2.5 rounded-full shadow-lg z-20 
          hover:bg-saffron/90 transition-colors duration-200 flex items-center justify-center;
 }
 
@@ -148,8 +176,8 @@
 
 /* Custom scrollbar for a more polished look */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -168,8 +196,8 @@
 
 /* Fix header spacing and padding */
 .page-header {
-  padding-top: 3rem;
-  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Fix navigation text overlap */
@@ -177,4 +205,34 @@
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Mobile optimizations for images */
+@media (max-width: 480px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Government logo section - optimized for mobile */
+  .flex.items-center.justify-center.space-x-3 {
+    padding: 4px 0;
+  }
+  
+  .flex.items-center.justify-center.space-x-3 img {
+    height: 24px !important;
+    width: auto;
+  }
+}
+
+/* Mobile card improvements */
+@media (max-width: 480px) {
+  .card, .Card {
+    border-radius: 12px;
+  }
+  
+  /* Better mobile form elements */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
 }

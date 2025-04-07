@@ -55,7 +55,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   return (
     <div className="page-container relative">
       <header className="page-header flex flex-col items-center justify-center mb-6 relative pt-14 bg-gradient-to-b from-white/80 to-transparent">
-        <div className="w-full flex justify-between items-center absolute top-0 px-4 py-3">
+        <div className="w-full flex justify-between items-center absolute top-0 px-4 py-2 z-10">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
               <Link to="/" className="text-earth hover:text-leaf transition-colors transform hover:scale-110">
@@ -69,12 +69,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-32 h-32 flex items-center justify-center mb-3 mt-7 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/10 via-white/60 to-[#138808]/10 p-3 shadow-md border border-cream/50">
+        <div className="logo-container w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mb-3 mt-4 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/10 via-white/60 to-[#138808]/10 p-2 shadow-md border border-cream/50">
           <Logo />
         </div>
         {title && (
-          <div className="mt-4 mb-2 w-full flex items-center justify-center">
-            <h1 className="text-2xl font-decorative text-earth text-glow bg-white/60 px-6 py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
+          <div className="mt-3 mb-2 w-full flex items-center justify-center">
+            <h1 className="text-xl sm:text-2xl font-decorative text-earth text-glow bg-white/60 px-4 sm:px-6 py-1 sm:py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
           </div>
         )}
       </header>
@@ -83,7 +83,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         {children}
       </main>
       
-      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/90 to-cream/80">
+      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-1 sm:p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/90 to-cream/80">
         <div className="max-w-md mx-auto flex items-center justify-around">
           {visibleNavItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -91,14 +91,14 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
               <Link 
                 key={item.path}
                 to={item.path}
-                className={`flex flex-col items-center p-2 ${
+                className={`flex flex-col items-center p-1 sm:p-2 ${
                   isActive 
-                    ? 'text-leaf relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-2 after:h-2 after:bg-leaf after:rounded-full transform scale-110' 
+                    ? 'text-leaf relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-leaf after:rounded-full transform scale-110' 
                     : 'text-earth/70 hover:text-leaf'
-                } transition-all duration-300 min-w-[48px] md:min-w-[60px] ${isActive ? 'bg-white/50 rounded-lg shadow-sm' : ''}`}
+                } transition-all duration-300 min-w-[40px] sm:min-w-[48px] md:min-w-[60px] ${isActive ? 'bg-white/50 rounded-lg shadow-sm' : ''}`}
               >
-                <item.icon size={isActive ? 24 : 20} className="transition-all duration-300" />
-                <span className="text-[10px] md:text-xs mt-1 truncate w-full text-center font-medium">{item.label}</span>
+                <item.icon size={isActive ? 20 : 18} className="transition-all duration-300" />
+                <span className="text-[8px] sm:text-[10px] md:text-xs mt-0.5 truncate w-full text-center font-medium">{item.label}</span>
               </Link>
             );
           })}

@@ -12,7 +12,7 @@ const SuccessStories = () => {
       location: 'Nizamabad, Telangana',
       title: 'From Traditional Farming to Smart Agriculture',
       snippet: 'How I increased my yield by 30% using modern farming techniques and digital agriculture tools.',
-      image: 'https://images.unsplash.com/photo-1466721591366-2d5fba72006d',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854',
       likes: 245,
       date: '2 weeks ago'
     },
@@ -22,7 +22,7 @@ const SuccessStories = () => {
       location: 'Warangal, Telangana',
       title: 'Organic Farming Success in Drought-Prone Area',
       snippet: 'My journey to converting 5 acres into a profitable organic farm despite water scarcity challenges.',
-      image: 'https://images.unsplash.com/photo-1465379944081-7f47de8d74ac',
+      image: 'https://images.unsplash.com/photo-1523741543316-beb7fc7023d8',
       likes: 189,
       date: '1 month ago'
     },
@@ -32,7 +32,7 @@ const SuccessStories = () => {
       location: 'Karimnagar, Telangana',
       title: 'Cotton Crop Innovation',
       snippet: 'How I tackled pest problems using integrated pest management and doubled my income.',
-      image: 'https://images.unsplash.com/photo-1439886183900-e79ec0057170',
+      image: 'https://images.unsplash.com/photo-1530267981375-f0de937f5f13',
       likes: 132,
       date: '3 months ago'
     },
@@ -42,7 +42,7 @@ const SuccessStories = () => {
       location: 'Adilabad, Telangana',
       title: 'Women-Led Farming Cooperative',
       snippet: 'Building a successful women farmers group that transformed our village economy.',
-      image: 'https://images.unsplash.com/photo-1498936178812-4b2e558d2937',
+      image: 'https://images.unsplash.com/photo-1595246332970-494957f7ec77',
       likes: 298,
       date: '2 months ago'
     }
