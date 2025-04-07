@@ -12,7 +12,7 @@ const SuccessStories = () => {
       location: 'Nizamabad, Telangana',
       title: 'From Traditional Farming to Smart Agriculture',
       snippet: 'How I increased my yield by 30% using modern farming techniques and digital agriculture tools.',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854',
+      image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80',
       likes: 245,
       date: '2 weeks ago'
     },
@@ -22,7 +22,7 @@ const SuccessStories = () => {
       location: 'Warangal, Telangana',
       title: 'Organic Farming Success in Drought-Prone Area',
       snippet: 'My journey to converting 5 acres into a profitable organic farm despite water scarcity challenges.',
-      image: 'https://images.unsplash.com/photo-1523741543316-beb7fc7023d8',
+      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80',
       likes: 189,
       date: '1 month ago'
     },
@@ -32,7 +32,7 @@ const SuccessStories = () => {
       location: 'Karimnagar, Telangana',
       title: 'Cotton Crop Innovation',
       snippet: 'How I tackled pest problems using integrated pest management and doubled my income.',
-      image: 'https://images.unsplash.com/photo-1530267981375-f0de937f5f13',
+      image: 'https://images.unsplash.com/photo-1530907487668-af02f65b4afe?auto=format&fit=crop&w=800&q=80',
       likes: 132,
       date: '3 months ago'
     },
@@ -42,7 +42,7 @@ const SuccessStories = () => {
       location: 'Adilabad, Telangana',
       title: 'Women-Led Farming Cooperative',
       snippet: 'Building a successful women farmers group that transformed our village economy.',
-      image: 'https://images.unsplash.com/photo-1595246332970-494957f7ec77',
+      image: 'https://images.unsplash.com/photo-1595376210281-956209f860f9?auto=format&fit=crop&w=800&q=80',
       likes: 298,
       date: '2 months ago'
     }
@@ -60,21 +60,16 @@ const SuccessStories = () => {
 
         <div className="grid grid-cols-1 gap-4">
           {stories.map((story) => (
-            <Card key={story.id} variant="gradient" className="overflow-hidden">
-              <div className="relative h-48 -mx-4 -mt-4 mb-4">
-                <img 
-                  src={story.image} 
-                  alt={story.title} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-                  <h2 className="text-white font-bold text-lg drop-shadow-md">{story.title}</h2>
-                </div>
-              </div>
-              
+            <Card 
+              key={story.id} 
+              variant="image-card" 
+              className="overflow-hidden animate-scale-in"
+              imageUrl={story.image}
+              imageAlt={story.title}
+            >
               <div className="flex items-center mb-3">
-                <div className="w-8 h-8 bg-leaf/20 flex items-center justify-center rounded-full mr-2">
-                  <User className="w-4 h-4 text-leaf" />
+                <div className="w-9 h-9 bg-leaf/20 flex items-center justify-center rounded-full mr-3">
+                  <User className="w-5 h-5 text-leaf" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold text-earth">{story.farmer}</div>
@@ -83,6 +78,7 @@ const SuccessStories = () => {
                 <div className="ml-auto text-xs text-earth/50">{story.date}</div>
               </div>
               
+              <h3 className="font-bold text-earth text-lg mb-2">{story.title}</h3>
               <p className="text-sm text-earth/90 mb-4">{story.snippet}</p>
               
               <div className="flex justify-between items-center border-t border-cream/50 pt-3 mt-3">
@@ -105,7 +101,7 @@ const SuccessStories = () => {
         </div>
         
         <div className="text-center pt-2 pb-4">
-          <button className="inline-flex items-center justify-center text-sm font-medium text-leaf hover:text-saffron transition-colors">
+          <button className="inline-flex items-center justify-center text-sm font-medium text-leaf hover:text-saffron transition-colors p-2">
             Load more stories
           </button>
         </div>

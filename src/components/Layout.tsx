@@ -54,7 +54,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
 
   return (
     <div className="page-container relative">
-      <header className="page-header flex flex-col items-center justify-center mb-6 relative pt-14 bg-gradient-to-b from-white/80 to-transparent">
+      <header className="page-header flex flex-col items-center justify-center mb-4 sm:mb-6 relative pt-12 sm:pt-14 bg-gradient-to-b from-white/80 to-transparent">
         <div className="w-full flex justify-between items-center absolute top-0 px-4 py-2 z-10">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
@@ -73,17 +73,17 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
           <Logo />
         </div>
         {title && (
-          <div className="mt-3 mb-2 w-full flex items-center justify-center">
-            <h1 className="text-xl sm:text-2xl font-decorative text-earth text-glow bg-white/60 px-4 sm:px-6 py-1 sm:py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
+          <div className="mt-2 mb-2 w-full flex items-center justify-center">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative text-earth text-glow bg-white/60 px-4 sm:px-6 py-1 sm:py-2 rounded-full shadow-sm border border-cream/50">{title}</h1>
           </div>
         )}
       </header>
       
-      <main className={`pb-24 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+      <main className={`pb-20 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
         {children}
       </main>
       
-      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-1 sm:p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/90 to-cream/80">
+      <nav className="fixed bottom-0 left-0 right-0 frosted-glass p-2 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/95 to-cream/90">
         <div className="max-w-md mx-auto flex items-center justify-around">
           {visibleNavItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -95,10 +95,10 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                   isActive 
                     ? 'text-leaf relative after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-leaf after:rounded-full transform scale-110' 
                     : 'text-earth/70 hover:text-leaf'
-                } transition-all duration-300 min-w-[40px] sm:min-w-[48px] md:min-w-[60px] ${isActive ? 'bg-white/50 rounded-lg shadow-sm' : ''}`}
+                } transition-all duration-300 min-w-[42px] sm:min-w-[48px] md:min-w-[60px] ${isActive ? 'bg-white/50 rounded-lg shadow-sm' : ''}`}
               >
-                <item.icon size={isActive ? 20 : 18} className="transition-all duration-300" />
-                <span className="text-[8px] sm:text-[10px] md:text-xs mt-0.5 truncate w-full text-center font-medium">{item.label}</span>
+                <item.icon size={isActive ? 22 : 20} className="transition-all duration-300" />
+                <span className="text-[9px] sm:text-[10px] md:text-xs mt-0.5 truncate w-full text-center font-medium">{item.label}</span>
               </Link>
             );
           })}

@@ -71,7 +71,7 @@
          flex items-center justify-center gap-2;
 }
 
-/* Mobile optimizations - enhanced */
+/* Enhanced mobile optimizations */
 @media (max-width: 480px) {
   .page-header {
     padding-top: 8px;
@@ -80,74 +80,156 @@
   
   .page-container {
     padding-top: 8px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 80px; /* Extra space for the bottom nav */
   }
   
-  /* Ensure logo is visible on mobile */
+  /* Improved logo styling on mobile */
   .page-header .logo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
+    margin: 12px auto;
     position: relative;
     z-index: 5;
+    width: 90px !important;
+    height: 90px !important;
   }
 
   /* Add a subtle highlight behind the logo */
   .logo-container::after {
     content: '';
     position: absolute;
-    width: 90%;
-    height: 90%;
-    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    width: 95%;
+    height: 95%;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
     z-index: -1;
   }
   
-  /* Make the navbar more compact on small screens */
-  .fixed.bottom-0 .flex {
-    gap: 0;
-    padding: 0;
+  /* Improved bottom navigation */
+  .fixed.bottom-0 {
+    height: auto;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   }
   
-  /* Fix text overlap in bottom nav */
+  .fixed.bottom-0 .flex {
+    gap: 4px;
+    padding: 8px 0 4px;
+  }
+  
+  /* Improved text legibility in bottom nav */
   .fixed.bottom-0 .flex .text-[10px], 
   .fixed.bottom-0 .flex .text-[8px] {
-    font-size: 7px;
+    font-size: 8px;
+    font-weight: 500;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  /* Make cards more compact on mobile */
+  /* More compact cards with better spacing on mobile */
   .card-container, [class*="Card"] {
-    padding: 12px !important;
-    margin-bottom: 10px;
+    padding: 14px !important;
+    margin-bottom: 12px;
+    border-radius: 12px !important;
   }
 
   /* Better touch targets on mobile */
   button, a, [role="button"] {
-    min-height: 36px;
-    min-width: 36px;
+    min-height: 40px;
+    min-width: 40px;
   }
 
   /* Adjust spacing for better mobile experience */
   .space-y-4 {
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .space-y-6 {
+    margin-top: 14px;
+    margin-bottom: 14px;
   }
 
-  /* More compact headings on mobile */
-  h1, h2, h3 {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+  /* More compact headings with better spacing on mobile */
+  h1 {
+    font-size: 1.5rem !important;
+    margin: 0.6em 0;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+    margin: 0.5em 0;
+    line-height: 1.2;
+  }
+  
+  h3 {
+    font-size: 1.125rem !important;
+    margin: 0.4em 0;
+    line-height: 1.2;
+  }
+
+  /* Improved image handling on mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Government logos section - optimized for mobile */
+  .flex.items-center.justify-center.space-x-3 {
+    padding: 8px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .flex.items-center.justify-center.space-x-3::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .flex.items-center.justify-center.space-x-3 img {
+    height: 28px !important;
+    width: auto;
+    margin: 0 6px;
+  }
+  
+  /* Better form elements on mobile */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+  
+  /* Fix overflow issues */
+  .overflow-hidden {
+    overflow: hidden !important;
+  }
+  
+  /* Better padding for content */
+  .p-3, .p-4 {
+    padding: 14px !important;
+  }
+  
+  .px-3, .px-4 {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  
+  .py-3, .py-4 {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
   }
 }
 
-/* Voice Assistant Button - adjusted for mobile */
+/* Voice Assistant Button - better positioned for mobile */
 .voice-assistant-btn {
-  @apply fixed right-3 bottom-20 bg-saffron text-white p-2.5 rounded-full shadow-lg z-20 
+  @apply fixed right-4 bottom-24 bg-saffron text-white p-3 rounded-full shadow-lg z-20 
          hover:bg-saffron/90 transition-colors duration-200 flex items-center justify-center;
 }
 
@@ -161,7 +243,7 @@
   animation: pulse-gentle 2s infinite ease-in-out;
 }
 
-/* Gradient backgrounds */
+/* Enhanced gradient backgrounds */
 .gradient-orange-brown {
   background: linear-gradient(135deg, #FF5722 0%, #8D5524 100%);
 }
@@ -194,45 +276,50 @@
   background: rgba(255, 82, 34, 0.6);
 }
 
-/* Fix header spacing and padding */
+/* Enhanced header spacing and padding */
 .page-header {
   padding-top: 2rem;
   margin-bottom: 1rem;
 }
 
-/* Fix navigation text overlap */
+/* Navigation improvements */
 .fixed.bottom-0 .flex a span {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Mobile optimizations for images */
-@media (max-width: 480px) {
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* Government logo section - optimized for mobile */
-  .flex.items-center.justify-center.space-x-3 {
-    padding: 4px 0;
-  }
-  
-  .flex.items-center.justify-center.space-x-3 img {
-    height: 24px !important;
-    width: auto;
-  }
+/* Improved image fallbacks */
+img {
+  object-fit: cover;
 }
 
-/* Mobile card improvements */
-@media (max-width: 480px) {
-  .card, .Card {
-    border-radius: 12px;
-  }
-  
-  /* Better mobile form elements */
-  input, select, textarea {
-    font-size: 16px !important; /* Prevents zoom on iOS */
-  }
+img.rounded-full {
+  aspect-ratio: 1/1;
+}
+
+/* Card hover effects */
+.card:hover, .Card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+/* Improved section spacing */
+section {
+  margin-bottom: 1.5rem;
+}
+
+/* Enhanced buttons for touch */
+button, .button, [type="button"] {
+  transition: all 0.2s ease;
+}
+
+button:active, .button:active, [type="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Image placeholder styles */
+.img-placeholder {
+  background: linear-gradient(45deg, #f3f3f3 25%, #e6e6e6 25%, #e6e6e6 50%, #f3f3f3 50%, #f3f3f3 75%, #e6e6e6 75%);
+  background-size: 10px 10px;
 }

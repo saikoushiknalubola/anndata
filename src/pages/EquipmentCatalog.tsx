@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
@@ -16,7 +17,7 @@ const EquipmentCatalog = () => {
       name: 'Advanced Tractor',
       category: 'tractor',
       price: '₹6,50,000 - ₹9,75,000',
-      image: 'https://images.unsplash.com/photo-1592805944339-bef7e18140e1',
+      image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Mahindra & Mahindra',
       subsidyEligible: true,
       features: ['40-50 HP', 'Fuel Efficient', '4WD Option', 'Power Steering'],
@@ -27,7 +28,7 @@ const EquipmentCatalog = () => {
       name: 'Rotavator',
       category: 'tillage',
       price: '₹85,000 - ₹1,20,000',
-      image: 'https://images.unsplash.com/photo-1589924769566-e63f93d30986',
+      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Sonalika',
       subsidyEligible: true,
       features: ['48-60 Blades', 'Heavy Duty', 'Adjustable Depth'],
@@ -38,7 +39,7 @@ const EquipmentCatalog = () => {
       name: 'Seed Drill',
       category: 'sowing',
       price: '₹65,000 - ₹95,000',
-      image: 'https://images.unsplash.com/photo-1485839242145-211390e9e097',
+      image: 'https://images.unsplash.com/photo-1592991538534-000347f158b0?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'VST Tillers',
       subsidyEligible: true,
       features: ['9-11 Rows', 'Precise Seed Placement', 'Fertilizer Attachment'],
@@ -49,7 +50,7 @@ const EquipmentCatalog = () => {
       name: 'Combine Harvester',
       category: 'harvesting',
       price: '₹15,00,000 - ₹22,00,000',
-      image: 'https://images.unsplash.com/photo-1567452839296-5ecb7a53c0ad',
+      image: 'https://images.unsplash.com/photo-1591086639897-a32b1fd12295?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'John Deere',
       subsidyEligible: false,
       features: ['100 HP Engine', 'Self-Propelled', 'Grain Tank', 'AC Cabin'],
@@ -60,7 +61,7 @@ const EquipmentCatalog = () => {
       name: 'Battery Sprayer',
       category: 'protection',
       price: '₹3,500 - ₹7,500',
-      image: 'https://images.unsplash.com/photo-1596827414894-4b76e7da2afc',
+      image: 'https://images.unsplash.com/photo-1620230874645-0d85a0a7fb38?auto=format&fit=crop&w=800&q=80',
       manufacturer: 'Aspee',
       subsidyEligible: true,
       features: ['16L Capacity', 'Rechargeable Battery', 'Adjustable Nozzle'],
@@ -158,15 +159,19 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ equipment }) => {
   return (
     <Card variant="gradient" className="overflow-hidden">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 h-48 md:h-auto">
+        <div className="w-full md:w-1/3 h-48 md:h-auto relative">
           <img 
             src={equipment.image} 
             alt={equipment.name} 
-            className="w-full h-full object-cover rounded-t-lg md:rounded-tr-none md:rounded-l-lg"
+            className="w-full h-full object-cover rounded-lg md:rounded-tr-none md:rounded-l-lg"
+            onError={(e) => {
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80';
+              e.currentTarget.onerror = null;
+            }}
           />
         </div>
         
-        <div className="md:w-2/3 p-4">
+        <div className="md:w-2/3 p-3 sm:p-4">
           <div className="flex justify-between items-start">
             <div>
               <h3 className="font-bold text-earth text-lg">{equipment.name}</h3>
@@ -192,14 +197,14 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({ equipment }) => {
             </div>
           </div>
           
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex flex-wrap gap-2 justify-between items-center mt-4">
             <div className="font-semibold text-earth">
               {equipment.price}
             </div>
             
-            <div className="flex space-x-2">
+            <div className="flex flex-wrap gap-2">
               <Button variant="outline" size="sm" className="text-earth border-earth hover:bg-earth/10">
-                <PhoneCall className="h-4 w-4 mr-1" /> Contact Dealer
+                <PhoneCall className="h-4 w-4 mr-1" /> Contact
               </Button>
               <Button size="sm" className="bg-leaf text-white hover:bg-leaf/90">
                 <ArrowRightCircle className="h-4 w-4 mr-1" /> Details

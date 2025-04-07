@@ -66,16 +66,13 @@ export default {
         'govt-cream': '#FFF3E0', // Government portal cream
         'govt-white': '#FFFFFF', // Pure white for contrast
         'telangana-blue': '#1565C0', // Blue representing Telangana govt portals
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))'
-        }
+        // New colors for improved UI
+        'primary-blue': '#1976D2',
+        'success-green': '#388E3C',
+        'warning-amber': '#FFA000',
+        'error-red': '#D32F2F',
+        'info-teal': '#0097A7',
+        'neutral-gray': '#607D8B'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -110,6 +107,10 @@ export default {
         'bounce-subtle': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5px)' }
+        },
+        'scale-in': {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' }
         }
       },
       animation: {
@@ -119,7 +120,8 @@ export default {
         'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
         'fade-in': 'fade-in 0.5s ease-out',
         'slide-up': 'slide-up 0.5s ease-out',
-        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite'
+        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+        'scale-in': 'scale-in 0.4s ease-out'
       },
       fontFamily: {
         'hindi': ['Poppins', 'sans-serif'],
