@@ -77,43 +77,6 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         )}
       </header>
       
-      {/* Desktop navigation (hidden on mobile) */}
-      {!isMobile && (
-        <div className="hidden md:block sticky top-0 z-10 mb-6">
-          <nav className="bg-white/90 backdrop-blur-sm shadow-sm rounded-lg border border-cream/50 overflow-hidden">
-            <div className="flex justify-between px-2 py-1">
-              {['main', 'resources', 'market', 'help'].map((category) => (
-                <div key={category} className="flex items-center space-x-1">
-                  {navItems
-                    .filter(item => item.category === category)
-                    .map((item) => {
-                      const isActive = location.pathname === item.path;
-                      return (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className={`flex items-center px-3 py-2 rounded-md text-sm transition-colors ${
-                            isActive
-                              ? 'bg-leaf/10 text-leaf font-medium'
-                              : 'text-earth/80 hover:text-leaf hover:bg-leaf/5'
-                          }`}
-                        >
-                          <item.icon size={16} className="mr-1" />
-                          <span>{item.label}</span>
-                        </Link>
-                      );
-                    })}
-                </div>
-              ))}
-            </div>
-          </nav>
-        </div>
-      )}
-      
-      <main className={`pb-20 md:pb-8 px-3 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
-        {children}
-      </main>
-      
       {/* Mobile navigation only */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 frosted-glass p-1 border-t border-cream/50 z-10 shadow-md bg-gradient-to-r from-white/95 to-cream/90">
         <div className="max-w-md mx-auto flex items-center justify-around">
@@ -136,6 +99,10 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
           })}
         </div>
       </nav>
+      
+      <main className={`pb-20 md:pb-8 px-3 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+        {children}
+      </main>
     </div>
   );
 };
