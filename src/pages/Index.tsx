@@ -61,14 +61,12 @@ const HomePage = () => {
     {
       title: t('aboutAndata'),
       icon: <Info size={20} className="text-saffron" />,
-      content: t('aboutDesc'),
-      imageUrl: '/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png'
+      content: t('aboutDesc')
     },
     {
       title: t('whyChooseUs'),
       icon: <HelpCircle size={20} className="text-leaf" />,
-      content: t('whyDesc'),
-      imageUrl: '/lovable-uploads/e17e17d5-c387-4c00-85cb-497be4a7a72c.png'
+      content: t('whyDesc')
     },
     {
       title: t('howItWorks'),
@@ -86,8 +84,7 @@ const HomePage = () => {
     {
       title: t('increaseYield'),
       icon: <BarChart size={20} className="text-leaf" />,
-      content: t('increaseYieldDesc'),
-      imageUrl: '/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png'
+      content: t('increaseYieldDesc')
     },
     {
       title: t('communitySupport'),
@@ -105,8 +102,7 @@ const HomePage = () => {
     {
       title: t('governmentResources'),
       icon: <FileText size={20} className="text-leaf" />,
-      content: t('resourcesDesc'),
-      imageUrl: '/lovable-uploads/e17e17d5-c387-4c00-85cb-497be4a7a72c.png'
+      content: t('resourcesDesc')
     },
     {
       title: t('weatherInsights'),
@@ -130,8 +126,7 @@ const HomePage = () => {
       <div className="space-y-6">
         <Card 
           className="text-center py-6 px-4 bg-gradient-to-br from-cream to-white"
-          imageUrl="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png"
-          variant="image-card"
+          variant="default"
         >
           <h1 className="text-2xl font-bold text-leaf mb-3 animate-pulse-gentle">
             {t('empowerFarm')}
@@ -194,8 +189,6 @@ const HomePage = () => {
             <Card 
               key={index} 
               className="bg-white/80"
-              imageUrl={section.imageUrl}
-              imagePosition={index % 2 === 0 ? "left" : "right"}
             >
               <div className="flex items-start">
                 <div className="mr-3 mt-1">{section.icon}</div>
@@ -217,8 +210,6 @@ const HomePage = () => {
             <Card 
               key={index} 
               className="bg-gradient-to-r from-white/80 to-cream/30"
-              imageUrl={section.imageUrl}
-              imagePosition={index % 2 === 0 ? "right" : "left"}
             >
               <div className="flex items-start">
                 <div className="mr-3 mt-1">{section.icon}</div>
@@ -239,8 +230,6 @@ const HomePage = () => {
             <Card 
               key={index} 
               className="bg-gradient-to-r from-white/80 to-cream/30 border border-earth/10"
-              imageUrl={section.imageUrl}
-              imagePosition={index % 2 === 0 ? "left" : "right"}
             >
               <div className="flex items-start">
                 <div className="bg-earth/10 p-2 rounded-full mr-3">{section.icon}</div>
@@ -277,3 +266,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
