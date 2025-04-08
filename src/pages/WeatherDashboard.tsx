@@ -101,14 +101,14 @@ const WeatherDashboard = () => {
 
   return (
     <Layout title="Weather Dashboard" showBackButton>
-      <div className="space-y-4 md:space-y-6 px-2 md:px-4">
+      <div className="space-y-4 md:space-y-5">
         <Card>
-          <h2 className="text-lg font-semibold text-earth mb-2 md:mb-4">Warangal District Weather</h2>
-          <p className="text-sm text-earth/80 mb-3 md:mb-4">
+          <h2 className="text-lg font-semibold text-earth mb-2 md:mb-3">Warangal District Weather</h2>
+          <p className="text-sm text-earth/80 mb-3">
             Check current weather conditions for farming areas in Warangal district. Plan your agricultural activities accordingly.
           </p>
           
-          <div className="mb-4">
+          <div className="mb-3">
             <label htmlFor="location-filter" className="block text-sm font-medium text-earth mb-1">
               Filter by Location
             </label>
@@ -126,11 +126,11 @@ const WeatherDashboard = () => {
           </div>
           
           {loading ? (
-            <div className="py-8 flex justify-center">
-              <Loader2 className="animate-spin text-earth" size={30} />
+            <div className="py-6 flex justify-center">
+              <Loader2 className="animate-spin text-earth" size={28} />
             </div>
           ) : getFilteredData().length > 0 ? (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 md:gap-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {getFilteredData().map((data) => (
                 <Card 
                   key={data.id} 
@@ -142,7 +142,7 @@ const WeatherDashboard = () => {
                         : 'from-yellow-50 to-white border-yellow-200'
                   } border overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300`}
                 >
-                  <div className="p-3 md:p-4">
+                  <div className="p-3">
                     <div className="flex items-center justify-between">
                       <h3 className="text-earth font-semibold">{data.location}</h3>
                       <div className="ml-2">
@@ -150,7 +150,7 @@ const WeatherDashboard = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-2 grid grid-cols-2 gap-2 md:gap-3">
+                    <div className="mt-2 grid grid-cols-2 gap-2">
                       <div className="flex items-center">
                         <Thermometer size={16} className="text-saffron mr-1" />
                         <span className="text-earth font-medium text-sm">{data.temp}°C</span>
@@ -169,7 +169,7 @@ const WeatherDashboard = () => {
                       </div>
                     </div>
                     
-                    <div className="mt-3 flex justify-end">
+                    <div className="mt-2 flex justify-end">
                       <Button
                         variant="secondary"
                         size="sm"
@@ -196,7 +196,7 @@ const WeatherDashboard = () => {
           <p className="text-sm text-earth/80 mb-2">
             Today's farming recommendation based on weather conditions:
           </p>
-          <p className="text-leaf font-medium p-3 bg-leaf/10 rounded-lg text-sm md:text-base">
+          <p className="text-leaf font-medium p-3 bg-leaf/10 rounded-lg text-sm">
             {getFilteredData().some(d => d.rainChance > 50) 
               ? "Consider postponing outdoor activities like spraying pesticides. Good time for rice planting preparation."
               : "Favorable conditions for crop spraying and harvesting. Consider irrigation for dry crops."
@@ -207,14 +207,14 @@ const WeatherDashboard = () => {
         <Card className="bg-gradient-to-r from-cream to-white border border-earth/10">
           <h3 className="text-md font-semibold text-earth mb-2">5-Day Forecast</h3>
           <div className="overflow-x-auto pb-2">
-            <div className="flex space-x-3 py-2 min-w-max">
+            <div className="flex space-x-2 py-2 min-w-max">
               {[1, 2, 3, 4, 5].map((day) => (
-                <div key={day} className="flex flex-col items-center p-2 bg-white/60 rounded-lg border border-earth/10 min-w-[80px]">
+                <div key={day} className="flex flex-col items-center p-2 bg-white/60 rounded-lg border border-earth/10 min-w-[70px]">
                   <span className="text-xs font-medium text-earth/80">{new Date(Date.now() + day * 86400000).toLocaleDateString('en-US', { weekday: 'short' })}</span>
                   <div className="my-2">
-                    {day % 3 === 0 ? <Umbrella size={20} className="text-blue-500" /> : 
-                     day % 2 === 0 ? <Cloud size={20} className="text-gray-500" /> : 
-                     <Sun size={20} className="text-yellow-500" />}
+                    {day % 3 === 0 ? <Umbrella size={18} className="text-blue-500" /> : 
+                     day % 2 === 0 ? <Cloud size={18} className="text-gray-500" /> : 
+                     <Sun size={18} className="text-yellow-500" />}
                   </div>
                   <span className="text-sm font-medium text-earth">{Math.floor(25 + Math.random() * 7)}°C</span>
                   <span className="text-xs text-earth/70">{Math.floor(20 + Math.random() * 60)}%</span>
@@ -224,7 +224,7 @@ const WeatherDashboard = () => {
           </div>
         </Card>
 
-        <div className="text-center mt-3 md:mt-4">
+        <div className="text-center mt-3">
           <p className="text-xs text-earth/70">
             Weather data is updated every 3 hours. Last updated: {new Date().toLocaleTimeString()}
           </p>

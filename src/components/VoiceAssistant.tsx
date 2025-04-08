@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Volume2, X, VolumeX, Flag, Info } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -157,31 +156,30 @@ const VoiceAssistant: React.FC = () => {
     return (
       <button 
         onClick={() => setIsOpen(true)} 
-        className="voice-assistant-btn bg-gradient-to-r from-saffron via-white to-leaf"
+        className="voice-assistant-btn bg-gradient-to-r from-saffron via-white to-leaf shadow-md"
         aria-label={t('voiceAssistant')}
       >
-        <Mic size={24} className="text-soil" />
+        <Mic size={22} className="text-soil" />
       </button>
     );
   }
 
   return (
-    <div ref={assistantRef} className="fixed bottom-20 right-4 w-80 sm:w-96 rounded-lg shadow-xl z-30 overflow-hidden">
-      <div className="bg-gradient-to-r from-[#FF9933] via-white to-[#138808] p-3 text-soil flex justify-between items-center">
+    <div ref={assistantRef} className="fixed bottom-16 right-3 w-72 sm:w-80 rounded-lg shadow-xl z-30 overflow-hidden">
+      <div className="bg-gradient-to-r from-[#FF9933] via-white to-[#138808] p-2 text-soil flex justify-between items-center">
         <div className="flex items-center">
-          <Flag size={16} className="mr-1" />
-          <span className="ml-2 font-medium">{t('voiceAssistant')}</span>
-          <Info size={14} className="ml-1 text-soil/60" />
+          <Flag size={14} className="mr-1" />
+          <span className="ml-1 font-medium text-sm">{t('voiceAssistant')}</span>
         </div>
         <button onClick={() => setIsOpen(false)} className="text-soil hover:text-soil/70">
-          <X size={20} />
+          <X size={18} />
         </button>
       </div>
       
-      <div className="p-4 bg-cream/30 border border-saffron/20">
-        <div className="h-60 overflow-y-auto mb-4 p-2 bg-white/80 rounded-md shadow-inner">
+      <div className="p-3 bg-cream/30 border border-saffron/20">
+        <div className="h-48 overflow-y-auto mb-3 p-2 bg-white/80 rounded-md shadow-inner">
           {history.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-2">
               {history.map((item, idx) => (
                 <div key={idx} className={`flex ${item.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] p-2 rounded-lg ${
@@ -189,21 +187,21 @@ const VoiceAssistant: React.FC = () => {
                       ? 'bg-leaf/20 text-earth ml-auto' 
                       : 'bg-saffron/20 text-soil'
                   }`}>
-                    <p className="text-sm">{item.text}</p>
+                    <p className="text-xs">{item.text}</p>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="h-full flex items-center justify-center text-soil/50 text-sm">
+            <div className="h-full flex items-center justify-center text-soil/50 text-xs">
               {t('startSpeaking')}
             </div>
           )}
         </div>
         
         {transcript && (
-          <div className="mb-4 p-3 bg-white rounded-md shadow-sm">
-            <p className="text-sm text-earth">{transcript}</p>
+          <div className="mb-3 p-2 bg-white rounded-md shadow-sm">
+            <p className="text-xs text-earth">{transcript}</p>
           </div>
         )}
         
@@ -211,13 +209,13 @@ const VoiceAssistant: React.FC = () => {
           <button
             onClick={toggleListening}
             disabled={isSpeaking}
-            className={`w-16 h-16 rounded-full flex items-center justify-center mb-3 ${
+            className={`w-14 h-14 rounded-full flex items-center justify-center mb-2 ${
               isListening 
                 ? 'bg-red-500 animate-pulse' 
                 : 'bg-gradient-to-r from-[#FF9933] via-white to-[#138808] hover:shadow-lg'
             } text-soil transition-all duration-300 shadow-lg`}
           >
-            <Mic size={28} />
+            <Mic size={24} />
           </button>
           
           <div className="flex justify-center space-x-3">
@@ -227,30 +225,17 @@ const VoiceAssistant: React.FC = () => {
                 muted ? 'bg-gray-300' : 'bg-saffron/80'
               } text-white`}
             >
-              {muted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
           </div>
           
-          <p className="text-xs text-earth mt-3 text-center">
+          <p className="text-xs text-earth mt-2 text-center">
             {isListening 
               ? t('listeningNow') 
               : isSpeaking 
                 ? t('speakingNow')
                 : t('tapToSpeak')}
           </p>
-          
-          <div className="mt-4 w-full flex justify-center">
-            <img 
-              src="/lovable-uploads/e17e17d5-c387-4c00-85cb-497be4a7a72c.png" 
-              alt="Digital India Logo" 
-              className="h-5 mx-1 opacity-80"
-            />
-            <img 
-              src="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png" 
-              alt="G20 Logo" 
-              className="h-5 mx-1 opacity-80"
-            />
-          </div>
         </div>
       </div>
     </div>

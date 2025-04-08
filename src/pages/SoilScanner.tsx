@@ -65,10 +65,10 @@ const SoilScanner = () => {
 
   return (
     <Layout title="Soil Scanner" showBackButton>
-      <div className="space-y-6">
+      <div className="space-y-5">
         <Card>
-          <h2 className="text-lg font-semibold text-earth mb-4">Upload Soil Photo</h2>
-          <p className="text-sm text-earth/80 mb-4">
+          <h2 className="text-lg font-semibold text-earth mb-3">Upload Soil Photo</h2>
+          <p className="text-sm text-earth/80 mb-3">
             Take a clear photo of your soil sample. Our AI will analyze its composition and provide recommendations.
           </p>
           
@@ -90,7 +90,7 @@ const SoilScanner = () => {
                 </div>
               ) : (
                 <>
-                  <Upload className="w-8 h-8 text-earth/50 mb-2" />
+                  <Upload className="w-7 h-7 text-earth/50 mb-2" />
                   <p className="text-sm text-earth/70">Click to upload soil photo</p>
                 </>
               )}
@@ -122,10 +122,10 @@ const SoilScanner = () => {
                 <CheckCircle2 size={20} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-leaf mb-2">
+                <h3 className="text-md font-semibold text-leaf mb-2">
                   AI Soil Analysis Result
                 </h3>
-                <p className="text-earth">
+                <p className="text-earth text-sm">
                   {soilTip.tip}
                 </p>
               </div>
@@ -133,7 +133,7 @@ const SoilScanner = () => {
           </Card>
         )}
 
-        <div className="text-center mt-4">
+        <div className="text-center mt-2">
           <p className="text-xs text-earth/70">
             Our AI analyzes soil texture, color, and visible organic matter to provide general recommendations. For precise soil testing, consider a laboratory analysis.
           </p>

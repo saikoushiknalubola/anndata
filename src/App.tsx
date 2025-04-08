@@ -28,24 +28,26 @@ function App() {
       <Router>
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/crop-advisor" element={<CropAdvisor />} />
-            <Route path="/soil-scanner" element={<SoilScanner />} />
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/farmer-tips" element={<FarmerTips />} />
-            <Route path="/waste-ideas" element={<WasteIdeas />} />
-            <Route path="/learn-farming" element={<LearnFarming />} />
-            <Route path="/weather" element={<WeatherDashboard />} />
-            <Route path="/helpline" element={<Helpline />} />
-            <Route path="/crop-info" element={<CropInfo />} />
-            <Route path="/farm-subsidies" element={<FarmSubsidies />} />
-            <Route path="/market-prices" element={<MarketPrices />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/organic-farming" element={<OrganicFarming />} />
-            <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div className="pt-1"> {/* Added small padding to fix top spacing */}
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/crop-advisor" element={<CropAdvisor />} />
+              <Route path="/soil-scanner" element={<SoilScanner />} />
+              <Route path="/alerts" element={<Alerts />} />
+              <Route path="/farmer-tips" element={<FarmerTips />} />
+              <Route path="/waste-ideas" element={<WasteIdeas />} />
+              <Route path="/learn-farming" element={<LearnFarming />} />
+              <Route path="/weather" element={<WeatherDashboard />} />
+              <Route path="/helpline" element={<Helpline />} />
+              <Route path="/crop-info" element={<CropInfo />} />
+              <Route path="/farm-subsidies" element={<FarmSubsidies />} />
+              <Route path="/market-prices" element={<MarketPrices />} />
+              <Route path="/success-stories" element={<SuccessStories />} />
+              <Route path="/organic-farming" element={<OrganicFarming />} />
+              <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
           <VoiceAssistant />
           <Toaster />
         </div>
