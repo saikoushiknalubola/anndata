@@ -72,12 +72,9 @@ const MenuSection = () => {
           <SheetDescription className="text-sm text-earth/70">
             Explore Andata Services
           </SheetDescription>
-          <button 
-            onClick={() => setIsOpen(false)} 
-            className="absolute top-3 right-3 text-earth hover:text-saffron p-1 rounded-full bg-white/50 hover:bg-white/80 transition-colors"
-          >
+          <SheetClose className="absolute top-3 right-3 text-earth hover:text-saffron p-1 rounded-full bg-white/50 hover:bg-white/80 transition-colors">
             <X size={20} />
-          </button>
+          </SheetClose>
         </SheetHeader>
         <div className="flex-1 overflow-auto py-2 bg-gradient-to-b from-white to-cream/20">
           <nav className="flex flex-col">
@@ -96,7 +93,6 @@ const MenuSection = () => {
                               ? 'bg-gradient-to-r from-saffron/20 to-leaf/20 text-earth font-medium shadow-sm' 
                               : 'hover:bg-cream/50 text-earth/90 hover:text-saffron hover:translate-x-1'
                           }`}
-                          onClick={() => setIsOpen(false)}
                         >
                           <div className={`p-1.5 rounded-full ${isActive ? 'bg-white/80' : 'bg-transparent'}`}>
                             <item.icon size={18} className={isActive ? 'text-saffron' : 'text-earth/70'} />

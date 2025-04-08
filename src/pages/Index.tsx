@@ -61,12 +61,14 @@ const HomePage = () => {
     {
       title: t('aboutAndata'),
       icon: <Info size={20} className="text-saffron" />,
-      content: t('aboutDesc')
+      content: t('aboutDesc'),
+      imageUrl: '/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png'
     },
     {
       title: t('whyChooseUs'),
       icon: <HelpCircle size={20} className="text-leaf" />,
-      content: t('whyDesc')
+      content: t('whyDesc'),
+      imageUrl: '/lovable-uploads/e17e17d5-c387-4c00-85cb-497be4a7a72c.png'
     },
     {
       title: t('howItWorks'),
@@ -84,7 +86,8 @@ const HomePage = () => {
     {
       title: t('increaseYield'),
       icon: <BarChart size={20} className="text-leaf" />,
-      content: t('increaseYieldDesc')
+      content: t('increaseYieldDesc'),
+      imageUrl: '/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png'
     },
     {
       title: t('communitySupport'),
@@ -93,7 +96,6 @@ const HomePage = () => {
     }
   ];
   
-  // New resource sections for farmers
   const resourceSections = [
     {
       title: t('digitalInitiative'),
@@ -103,7 +105,8 @@ const HomePage = () => {
     {
       title: t('governmentResources'),
       icon: <FileText size={20} className="text-leaf" />,
-      content: t('resourcesDesc')
+      content: t('resourcesDesc'),
+      imageUrl: '/lovable-uploads/e17e17d5-c387-4c00-85cb-497be4a7a72c.png'
     },
     {
       title: t('weatherInsights'),
@@ -125,7 +128,11 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="space-y-6">
-        <Card className="text-center py-6 px-4 bg-gradient-to-br from-cream to-white">
+        <Card 
+          className="text-center py-6 px-4 bg-gradient-to-br from-cream to-white"
+          imageUrl="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png"
+          variant="image-card"
+        >
           <h1 className="text-2xl font-bold text-leaf mb-3 animate-pulse-gentle">
             {t('empowerFarm')}
           </h1>
@@ -138,26 +145,30 @@ const HomePage = () => {
         </Card>
 
         {/* Government Logos Section */}
-        <div className="flex items-center justify-center space-x-3 py-2 overflow-x-auto">
+        <div className="flex items-center justify-center space-x-3 py-2 overflow-x-auto scrollbar-hide">
           <img 
             src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
             alt="Azadi Ka Amrit Mahotsav" 
-            className="h-8 w-auto object-contain"
+            className="h-8 md:h-10 w-auto object-contain"
+            loading="lazy"
           />
           <img 
             src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" 
             alt="Digital India" 
-            className="h-7 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain"
+            loading="lazy"
           />
           <img 
             src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" 
             alt="G20 India" 
-            className="h-7 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain"
+            loading="lazy"
           />
           <img 
             src="/lovable-uploads/6f8147b2-570c-4b9c-9982-c979295d71a3.png" 
             alt="Make in India" 
-            className="h-7 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain"
+            loading="lazy"
           />
         </div>
 
@@ -180,7 +191,12 @@ const HomePage = () => {
           <h2 className="text-xl font-semibold text-earth text-center">{t('farmingSmarter')}</h2>
           
           {infoSections.map((section, index) => (
-            <Card key={index} className="bg-white/80">
+            <Card 
+              key={index} 
+              className="bg-white/80"
+              imageUrl={section.imageUrl}
+              imagePosition={index % 2 === 0 ? "left" : "right"}
+            >
               <div className="flex items-start">
                 <div className="mr-3 mt-1">{section.icon}</div>
                 <div>
@@ -198,7 +214,12 @@ const HomePage = () => {
           <p className="text-center text-sm text-earth/80 mb-4">{t('impactDesc')}</p>
           
           {impactSections.map((section, index) => (
-            <Card key={index} className="bg-gradient-to-r from-white/80 to-cream/30">
+            <Card 
+              key={index} 
+              className="bg-gradient-to-r from-white/80 to-cream/30"
+              imageUrl={section.imageUrl}
+              imagePosition={index % 2 === 0 ? "right" : "left"}
+            >
               <div className="flex items-start">
                 <div className="mr-3 mt-1">{section.icon}</div>
                 <div>
@@ -215,7 +236,12 @@ const HomePage = () => {
           <h2 className="text-xl font-semibold text-earth text-center">{t('governmentResources')}</h2>
           
           {resourceSections.map((section, index) => (
-            <Card key={index} className="bg-gradient-to-r from-white/80 to-cream/30 border border-earth/10">
+            <Card 
+              key={index} 
+              className="bg-gradient-to-r from-white/80 to-cream/30 border border-earth/10"
+              imageUrl={section.imageUrl}
+              imagePosition={index % 2 === 0 ? "left" : "right"}
+            >
               <div className="flex items-start">
                 <div className="bg-earth/10 p-2 rounded-full mr-3">{section.icon}</div>
                 <div>

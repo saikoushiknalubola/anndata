@@ -8,6 +8,7 @@ interface CardProps {
   variant?: 'default' | 'bordered' | 'highlighted' | 'farm' | 'tricolor' | 'gradient' | 'image-card' | 'rich';
   imageUrl?: string;
   imageAlt?: string;
+  imagePosition?: 'top' | 'left' | 'right' | 'bottom';
 }
 
 const Card = ({ 
@@ -16,7 +17,8 @@ const Card = ({
   onClick, 
   variant = 'default',
   imageUrl,
-  imageAlt
+  imageAlt,
+  imagePosition = 'top'
 }: CardProps) => {
   const variantClasses = {
     default: 'bg-white/98 shadow-md hover:shadow-lg transition-shadow duration-300 backdrop-blur-sm',
@@ -29,21 +31,59 @@ const Card = ({
     rich: 'bg-gradient-to-br from-white via-cream/30 to-white shadow-lg hover:shadow-xl transition-all duration-300 border border-saffron/20'
   };
   
-  return (
-    <div 
-      className={`p-5 sm:p-6 rounded-xl ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
-      onClick={onClick}
-    >
-      {variant === 'image-card' && imageUrl && (
-        <div className="h-48 -mx-5 -mt-5 mb-4 overflow-hidden rounded-t-xl">
+  const hasImage = !!imageUrl;
+  
+  if (variant === 'image-card' && hasImage) {
+    return (
+      <div 
+        className={`rounded-xl ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
+        onClick={onClick}
+      >
+        <div className="h-48 overflow-hidden rounded-t-xl">
           <img 
             src={imageUrl} 
             alt={imageAlt || 'Card image'} 
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/placeholder.svg';
+            }}
+          />
+        </div>
+        <div className="p-5 sm:p-6">
+          {children}
+        </div>
+      </div>
+    );
+  }
+  
+  const flexClasses = hasImage && (imagePosition === 'left' || imagePosition === 'right') 
+    ? 'flex flex-col sm:flex-row gap-4 items-center' 
+    : '';
+  
+  const imageOrder = imagePosition === 'right' ? 'sm:order-last' : '';
+  
+  return (
+    <div 
+      className={`p-5 sm:p-6 rounded-xl ${variantClasses[variant]} ${className} ${flexClasses} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
+      onClick={onClick}
+    >
+      {hasImage && imagePosition !== 'top' && (
+        <div className={`w-full sm:w-1/3 rounded-lg overflow-hidden ${imageOrder}`}>
+          <img 
+            src={imageUrl} 
+            alt={imageAlt || 'Card image'} 
+            className="w-full h-40 sm:h-full object-cover hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = '/placeholder.svg';
+            }}
           />
         </div>
       )}
-      {children}
+      <div className={hasImage && imagePosition !== 'top' ? 'w-full sm:w-2/3' : 'w-full'}>
+        {children}
+      </div>
     </div>
   );
 };

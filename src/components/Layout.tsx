@@ -27,7 +27,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
 
   return (
     <div className="page-container relative max-w-6xl mx-auto">
-      <header className="page-header flex flex-col items-center justify-center mb-6 sm:mb-8 relative pt-14 sm:pt-16 md:pt-20">
+      <header className="page-header flex flex-col items-center justify-center mb-4 sm:mb-6 md:mb-8 relative pt-12 sm:pt-14 md:pt-16">
         <div className="w-full flex justify-between items-center absolute top-0 px-3 py-2 z-10">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
@@ -42,17 +42,17 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center mb-4 mt-6 pulse-gentle rounded-full bg-gradient-to-br from-[#FF9933]/20 via-white/70 to-[#138808]/20 p-3 shadow-lg border border-cream/50">
+        <div className="logo-container w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mb-3 mt-4 rounded-full bg-gradient-to-br from-[#FF9933]/20 via-white/70 to-[#138808]/20 p-2 shadow-lg border border-cream/50">
           <Logo />
         </div>
         {title && (
-          <div className="mt-2 mb-4 w-full flex items-center justify-center">
-            <h1 className="text-xl sm:text-2xl md:text-2xl font-decorative font-bold text-earth bg-gradient-to-r from-saffron/20 via-white/90 to-leaf/20 px-8 py-3 rounded-full shadow-md border border-cream/70">{title}</h1>
+          <div className="mt-1 mb-3 w-full flex items-center justify-center">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative font-bold text-earth bg-gradient-to-r from-saffron/20 via-white/90 to-leaf/20 px-6 py-2 rounded-full shadow-md border border-cream/70">{title}</h1>
           </div>
         )}
       </header>
       
-      <main className={`pb-20 md:pb-8 px-3 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+      <main className={`pb-16 md:pb-8 px-3 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
         {children}
       </main>
     </div>
