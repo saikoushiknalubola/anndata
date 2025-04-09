@@ -60,19 +60,19 @@ const MenuSection = () => {
         <Button 
           variant="ghost" 
           size="icon"
-          className="p-1.5 rounded-full bg-gradient-to-r from-saffron/10 to-leaf/10 text-earth hover:bg-earth/20 transition-colors shadow-sm"
+          className="p-1.5 rounded-full bg-white/80 backdrop-blur-sm text-earth hover:bg-cream transition-colors shadow-sm border border-cream/50"
         >
           <Menu size={isMobile ? 22 : 26} />
           <span className="sr-only">{t('menu')}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0 border-l-2 border-l-[#FF9933]/30">
+      <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0 border-l-2 border-l-[#FF9933]/40">
         <SheetHeader className="p-5 border-b relative bg-gradient-to-r from-[#FF9933]/20 via-white to-[#138808]/20">
           <SheetTitle className="text-xl font-bold text-earth">{t('menu')}</SheetTitle>
-          <SheetDescription className="text-sm text-earth/70">
+          <SheetDescription className="text-sm text-earth/80">
             Explore Andata Services
           </SheetDescription>
-          <SheetClose className="absolute top-3 right-3 text-earth hover:text-saffron p-1 rounded-full bg-white/50 hover:bg-white/80 transition-colors">
+          <SheetClose className="absolute top-3 right-3 text-earth hover:text-saffron p-1.5 rounded-full bg-white/70 hover:bg-white/90 transition-colors">
             <X size={20} />
           </SheetClose>
         </SheetHeader>
@@ -80,7 +80,7 @@ const MenuSection = () => {
           <nav className="flex flex-col">
             {menuCategories.map((category, catIndex) => (
               <div key={catIndex} className="mb-3">
-                <h3 className="px-5 py-2 text-sm font-bold text-saffron uppercase tracking-wider bg-cream/50">{category.title}</h3>
+                <h3 className="px-5 py-2 text-sm font-bold text-white uppercase tracking-wider bg-gradient-to-r from-saffron/90 to-saffron/70 shadow-sm">{category.title}</h3>
                 <div className="flex flex-col space-y-1 p-2">
                   {category.items.map((item) => {
                     const isActive = location.pathname === item.path;
@@ -90,8 +90,8 @@ const MenuSection = () => {
                           to={item.path}
                           className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
                             isActive 
-                              ? 'bg-gradient-to-r from-saffron/20 to-leaf/20 text-earth font-medium shadow-sm' 
-                              : 'hover:bg-cream/50 text-earth/90 hover:text-saffron hover:translate-x-1'
+                              ? 'bg-gradient-to-r from-earth/20 to-leaf/20 text-earth font-medium shadow-sm' 
+                              : 'hover:bg-cream/70 text-earth/90 hover:text-saffron hover:translate-x-1'
                           }`}
                         >
                           <div className={`p-1.5 rounded-full ${isActive ? 'bg-white/80' : 'bg-transparent'}`}>

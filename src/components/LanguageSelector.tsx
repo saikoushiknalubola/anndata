@@ -44,31 +44,31 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="flex items-center gap-1 text-xs md:text-sm text-earth hover:text-saffron transition-colors px-2 py-1 rounded-full bg-white/70 backdrop-blur-sm border border-cream/50"
+        className="flex items-center gap-1 text-xs md:text-sm text-earth hover:text-saffron transition-colors px-2.5 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-cream/70 shadow-sm"
         aria-label="Select language"
       >
-        <Globe size={14} />
-        <span className={`truncate ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
+        <Globe size={isMobile ? 16 : 18} className="text-saffron" />
+        <span className={`truncate font-medium ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
           {isMobile ? '' : currentLanguage}
         </span>
-        <ChevronDown size={14} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`transition-transform text-earth ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
         <div className={`absolute ${isMobile ? 'left-0' : 'right-0'} mt-1 py-1 w-60 max-h-[240px] overflow-y-auto bg-white rounded-md shadow-lg z-50 frosted-glass`}>
-          <div className="px-2 py-1 text-xs text-earth/70 border-b border-cream/50">
+          <div className="px-3 py-1.5 text-sm font-medium text-saffron border-b border-cream/70">
             {t('selectLanguage')}
           </div>
           
-          <div className="px-2 py-1 border-b border-cream/50">
-            <div className="flex items-center bg-cream/30 rounded-md px-2">
-              <Search size={14} className="text-earth/50" />
+          <div className="px-2 py-1 border-b border-cream/70">
+            <div className="flex items-center bg-cream/50 rounded-md px-2">
+              <Search size={14} className="text-earth/70" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search languages..."
-                className="w-full p-1 text-sm bg-transparent focus:outline-none"
+                className="w-full p-1.5 text-sm bg-transparent focus:outline-none"
               />
             </div>
           </div>
@@ -79,8 +79,8 @@ const LanguageSelector = () => {
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
-                  className={`w-full text-left px-3 py-1.5 text-sm hover:bg-cream/30 transition-colors ${
-                    language === lang.code ? 'text-saffron font-medium' : 'text-earth'
+                  className={`w-full text-left px-3 py-2 text-sm hover:bg-cream/50 transition-colors ${
+                    language === lang.code ? 'text-saffron font-medium bg-cream/30' : 'text-earth'
                   }`}
                 >
                   {lang.name}
