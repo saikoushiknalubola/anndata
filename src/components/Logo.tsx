@@ -13,7 +13,7 @@ const Logo = () => {
             width: '100%',
             height: 'auto',
             aspectRatio: '1/1',
-            maxWidth: '120px'
+            maxWidth: '100%'
           }}
           loading="lazy"
           onError={(e) => {

@@ -42,7 +42,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center mb-3 mt-2 rounded-full bg-gradient-to-br from-[#FF9933]/20 via-white/70 to-[#138808]/20 p-2 shadow-lg border border-cream/50">
+        <div className="logo-container w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2 rounded-full bg-gradient-to-br from-[#FF9933]/20 via-white/70 to-[#138808]/20 p-1.5 shadow-lg border border-cream/50">
           <Logo />
         </div>
         {title && (

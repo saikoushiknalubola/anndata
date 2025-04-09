@@ -30,26 +30,25 @@ const MenuSection = () => {
         { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
         { path: '/alerts', label: t('alerts'), icon: Bell },
         { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
+        { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },
         { path: '/farm-subsidies', label: 'Farm Subsidies', icon: DollarSign },
       ]
     },
     {
       title: t('resources'),
       items: [
-        { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },
         { path: '/learn-farming', label: t('learnFarming'), icon: BookOpen },
         { path: '/weather', label: t('weather'), icon: Cloud },
         { path: '/crop-info', label: 'Crop Info', icon: FileText },
         { path: '/success-stories', label: 'Success Stories', icon: Trophy },
         { path: '/organic-farming', label: 'Organic Farming', icon: Sprout },
+        { path: '/equipment-catalog', label: 'Equipment Catalog', icon: Tractor },
       ]
     },
     {
       title: t('marketSupport'),
       items: [
         { path: '/market-prices', label: 'Market Prices', icon: ShoppingCart },
-        { path: '/farm-subsidies', label: 'Farm Subsidies', icon: DollarSign },
-        { path: '/equipment-catalog', label: 'Equipment Catalog', icon: Tractor },
         { path: '/helpline', label: t('helpline'), icon: LifeBuoy },
       ]
     }
