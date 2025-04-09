@@ -1,11 +1,10 @@
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Wheat, Leaf, Bell, Users, Recycle, FileText, Info, 
   HelpCircle, BarChart, RefreshCw, Users2, Phone, 
   BookOpen, Cloud, DollarSign, GraduationCap, Smartphone, 
-  Headphones, Volume2, Mic, Sparkles, Translate, Globe
+  Headphones, Volume2, Mic, Sparkles, Globe, Languages
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -146,7 +145,6 @@ const HomePage = () => {
           </div>
         </Card>
 
-        {/* Government Logos Section */}
         <div className="flex items-center justify-center space-x-3 py-2 overflow-x-auto scrollbar-hide">
           <img 
             src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
@@ -174,7 +172,6 @@ const HomePage = () => {
           />
         </div>
 
-        {/* Enhanced Bhashini Section with the new logo */}
         <Card className="bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 border border-[#FF9933]/30">
           <div className="flex items-center justify-between">
             <div className="flex-1">
@@ -206,10 +203,9 @@ const HomePage = () => {
           </div>
         </Card>
         
-        {/* How Bhashini Helps Andata */}
         <Card className="bg-white/90 border border-blue-500/20 shadow-md">
           <h3 className="font-bold text-blue-600 mb-2 flex items-center">
-            <Translate size={18} className="mr-2" /> 
+            <Languages size={18} className="mr-2" /> 
             How Bhashini Empowers Andata
           </h3>
           <div className="space-y-2 text-sm">
@@ -243,7 +239,6 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* Importance of Andata Section - Enhanced */}
         <Card variant="rich" className="border-2 border-saffron/20 mt-6">
           <h2 className="text-xl font-semibold text-earth mb-3">Why Andata Matters</h2>
           <div className="space-y-3 text-sm text-earth/90">
@@ -293,7 +288,6 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* Impact Section */}
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-earth text-center">{t('howWeImpact')}</h2>
           <p className="text-center text-sm text-earth/80 mb-4">{t('impactDesc')}</p>
@@ -314,7 +308,6 @@ const HomePage = () => {
           ))}
         </div>
         
-        {/* Resources Section */}
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-earth text-center">{t('governmentResources')}</h2>
           
@@ -334,7 +327,6 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* Helpline Section */}
         <Card className="mt-6 bg-saffron/10 border border-saffron/30">
           <div className="flex items-center">
             <div className="bg-saffron text-white p-2 rounded-full mr-3">
