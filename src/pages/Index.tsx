@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Wheat, Leaf, Bell, Users, Recycle, FileText, Info, 
   HelpCircle, BarChart, RefreshCw, Users2, Phone, 
-  BookOpen, Cloud, DollarSign, GraduationCap, Smartphone 
+  BookOpen, Cloud, DollarSign, GraduationCap, Smartphone, 
+  Headphones, Volume2, Mic
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -167,6 +168,38 @@ const HomePage = () => {
           />
         </div>
 
+        {/* Bhashini Section */}
+        <Card className="bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 border border-[#FF9933]/30">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h3 className="font-bold text-earth mb-2">Powered by Bhashini</h3>
+              <p className="text-sm text-earth/80">
+                Breaking language barriers with AI voice technology in 22+ Indian languages
+              </p>
+              <div className="flex items-center mt-3 space-x-2">
+                <div className="bg-leaf/10 p-1.5 rounded-full">
+                  <Mic size={16} className="text-leaf" />
+                </div>
+                <div className="bg-saffron/10 p-1.5 rounded-full">
+                  <Volume2 size={16} className="text-saffron" />
+                </div>
+                <div className="bg-earth/10 p-1.5 rounded-full">
+                  <Headphones size={16} className="text-earth" />
+                </div>
+                <span className="text-xs font-medium text-earth/70">Voice-first technology</span>
+              </div>
+            </div>
+            <div className="ml-2 bg-white/80 p-2 rounded-full shadow-sm">
+              <img 
+                src="/lovable-uploads/992d0dd2-6727-405a-98df-8665671e81a3.png" 
+                alt="Bhashini Logo" 
+                className="w-16 h-16 object-contain"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </Card>
+
         <div className="grid grid-cols-1 gap-3 animate-slide-up">
           {navButtons.map((button, index) => (
             <Button 
@@ -181,6 +214,31 @@ const HomePage = () => {
             </Button>
           ))}
         </div>
+
+        {/* Importance of Andata Section */}
+        <Card variant="rich" className="border-2 border-saffron/20 mt-6">
+          <h2 className="text-xl font-semibold text-earth mb-3">Why Andata Matters</h2>
+          <div className="space-y-3 text-sm text-earth/90">
+            <div className="flex items-start">
+              <div className="bg-saffron/10 p-1.5 rounded-full mr-2 mt-0.5">
+                <Users2 size={16} className="text-saffron" />
+              </div>
+              <p>Empowers over 1 million farmers in Telangana's Warangal district</p>
+            </div>
+            <div className="flex items-start">
+              <div className="bg-leaf/10 p-1.5 rounded-full mr-2 mt-0.5">
+                <Smartphone size={16} className="text-leaf" />
+              </div>
+              <p>Voice-first technology overcomes literacy barriers (57% rural literacy)</p>
+            </div>
+            <div className="flex items-start">
+              <div className="bg-earth/10 p-1.5 rounded-full mr-2 mt-0.5">
+                <RefreshCw size={16} className="text-earth" />
+              </div>
+              <p>Reduces crop losses by 60% and increases income by ₹500-1000/month</p>
+            </div>
+          </div>
+        </Card>
 
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-earth text-center">{t('farmingSmarter')}</h2>
@@ -222,7 +280,7 @@ const HomePage = () => {
           ))}
         </div>
         
-        {/* New Resources Section */}
+        {/* Resources Section */}
         <div className="mt-8 space-y-4">
           <h2 className="text-xl font-semibold text-earth text-center">{t('governmentResources')}</h2>
           
@@ -266,4 +324,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

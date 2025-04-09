@@ -11,10 +11,16 @@ const Logo = () => {
           className="w-full h-full object-contain rounded-full"
           style={{ 
             width: '100%',
-            height: '100%',
+            height: 'auto',
             aspectRatio: '1/1',
-            maxWidth: '120px', 
-            maxHeight: '120px'
+            maxWidth: '120px'
+          }}
+          loading="lazy"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            console.log("Logo failed to load");
+            target.onerror = null;
+            target.src = '/placeholder.svg';
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-saffron/10 via-transparent to-leaf/10 rounded-full"></div>

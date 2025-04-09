@@ -30,6 +30,7 @@ const MenuSection = () => {
         { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
         { path: '/alerts', label: t('alerts'), icon: Bell },
         { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
+        { path: '/farm-subsidies', label: 'Farm Subsidies', icon: DollarSign },
       ]
     },
     {
