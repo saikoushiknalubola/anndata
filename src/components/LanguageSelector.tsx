@@ -44,19 +44,19 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="flex items-center gap-1 text-xs md:text-sm text-earth hover:text-saffron transition-colors px-2.5 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-cream/70 shadow-sm"
+        className="language-selector-button"
         aria-label="Select language"
       >
         <Globe size={isMobile ? 16 : 18} className="text-saffron" />
         <span className={`truncate font-medium ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
           {isMobile ? '' : currentLanguage}
         </span>
-        <ChevronDown size={14} className={`transition-transform text-earth ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
-        <div className={`absolute ${isMobile ? 'left-0' : 'right-0'} mt-1 py-1 w-60 max-h-[240px] overflow-y-auto bg-white rounded-md shadow-lg z-50 frosted-glass`}>
-          <div className="px-3 py-1.5 text-sm font-medium text-saffron border-b border-cream/70">
+        <div className="language-dropdown">
+          <div className="language-selector-title">
             {t('selectLanguage')}
           </div>
           
@@ -79,8 +79,8 @@ const LanguageSelector = () => {
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
-                  className={`w-full text-left px-3 py-2 text-sm hover:bg-cream/50 transition-colors ${
-                    language === lang.code ? 'text-saffron font-medium bg-cream/30' : 'text-earth'
+                  className={`language-selector-item ${
+                    language === lang.code ? 'language-selector-item-active' : 'text-earth'
                   }`}
                 >
                   {lang.name}

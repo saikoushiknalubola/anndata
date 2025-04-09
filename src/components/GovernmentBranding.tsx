@@ -10,7 +10,7 @@ const GovernmentBranding: React.FC = () => {
       <div className="flex items-center">
         <div className="flex flex-col">
           <span className="text-base sm:text-lg font-semibold text-earth">Andata</span>
-          <span className="text-xs sm:text-sm text-soil/70 uppercase tracking-wider">Agriculture Portal</span>
+          <span className="text-xs sm:text-sm text-soil/70 uppercase tracking-wider">The Voice of Farmers</span>
         </div>
       </div>
     </div>

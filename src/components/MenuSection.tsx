@@ -80,7 +80,7 @@ const MenuSection = () => {
           <nav className="flex flex-col">
             {menuCategories.map((category, catIndex) => (
               <div key={catIndex} className="mb-3">
-                <h3 className="px-5 py-2 text-sm font-bold text-white uppercase tracking-wider bg-gradient-to-r from-saffron/90 to-saffron/70 shadow-sm">{category.title}</h3>
+                <h3 className="menu-category-title">{category.title}</h3>
                 <div className="flex flex-col space-y-1 p-2">
                   {category.items.map((item) => {
                     const isActive = location.pathname === item.path;
@@ -88,13 +88,9 @@ const MenuSection = () => {
                       <SheetClose asChild key={item.path}>
                         <Link
                           to={item.path}
-                          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
-                            isActive 
-                              ? 'bg-gradient-to-r from-earth/20 to-leaf/20 text-earth font-medium shadow-sm' 
-                              : 'hover:bg-cream/70 text-earth/90 hover:text-saffron hover:translate-x-1'
-                          }`}
+                          className={`menu-item ${isActive ? 'menu-item-active' : 'hover:bg-cream/70 text-earth/90 hover:text-saffron hover:translate-x-1'}`}
                         >
-                          <div className={`p-1.5 rounded-full ${isActive ? 'bg-white/80' : 'bg-transparent'}`}>
+                          <div className={`menu-item-icon ${isActive ? 'menu-item-icon-active' : ''}`}>
                             <item.icon size={18} className={isActive ? 'text-saffron' : 'text-earth/70'} />
                           </div>
                           <span className="font-medium">{item.label}</span>

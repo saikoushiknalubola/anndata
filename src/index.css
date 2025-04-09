@@ -99,18 +99,18 @@
     @apply text-leaf font-medium;
   }
 
-  /* Enhanced section titles */
+  /* Enhanced section titles with better visibility */
   .section-title {
-    @apply font-bold text-xl sm:text-2xl text-earth bg-gradient-to-r from-saffron/20 to-leaf/20 px-4 py-2 rounded-lg 
+    @apply font-bold text-xl sm:text-2xl text-white bg-gradient-to-r from-saffron to-earth px-4 py-2 rounded-lg 
     text-center my-4 shadow-sm border border-cream/50;
   }
   
   .section-subtitle {
-    @apply font-semibold text-lg text-earth/90 bg-white/70 px-3 py-1.5 rounded-md shadow-sm my-3;
+    @apply font-semibold text-lg text-white bg-gradient-to-r from-earth/90 to-earth px-3 py-1.5 rounded-md shadow-sm my-3;
   }
   
   .category-title {
-    @apply font-bold text-base uppercase tracking-wide text-white bg-gradient-to-r from-saffron to-earth/90 px-3 py-1.5 
+    @apply font-bold text-base uppercase tracking-wide text-white bg-gradient-to-r from-saffron to-earth px-3 py-1.5 
     rounded-md shadow-sm mb-3;
   }
   
@@ -147,19 +147,19 @@
   }
   
   .title-text {
-    @apply font-bold text-xl sm:text-2xl text-earth bg-gradient-to-r from-saffron/20 to-leaf/20 px-4 py-2 rounded-lg shadow-sm;
+    @apply font-bold text-xl sm:text-2xl text-white bg-gradient-to-r from-saffron to-earth px-4 py-2 rounded-lg shadow-sm;
   }
   
   .subtitle-text {
-    @apply font-semibold text-lg text-earth/90 bg-white/50 px-3 py-1 rounded-md;
+    @apply font-semibold text-lg text-white bg-earth px-3 py-1 rounded-md;
   }
   
   .accent-text {
-    @apply text-saffron font-medium;
+    @apply text-white bg-saffron px-2 py-0.5 rounded font-medium;
   }
   
   .highlight-text {
-    @apply bg-leaf/20 text-earth px-2 py-0.5 rounded font-medium;
+    @apply bg-leaf text-white px-2 py-0.5 rounded font-medium;
   }
   
   .rich-card {
@@ -276,11 +276,13 @@
   }
   
   .section-title {
-    @apply text-lg px-3 py-1.5 my-3;
+    @apply text-lg px-3 py-1.5 my-3 text-white font-bold;
+    background: linear-gradient(90deg, #FF5722 0%, #8D5524 100%);
   }
   
   .section-subtitle {
-    @apply text-base px-2 py-1 my-2;
+    @apply text-base px-2 py-1 my-2 text-white font-semibold;
+    background: linear-gradient(90deg, #8D5524 0%, #6D4520 100%);
   }
   
   .government-logos {
@@ -637,4 +639,48 @@
 
 .responsive-grid-4 {
   @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4;
+}
+
+/* Enhanced language selector styles for better visibility */
+.language-selector-button {
+  @apply flex items-center gap-1 text-xs md:text-sm text-white hover:text-saffron transition-colors 
+  px-2.5 py-1.5 rounded-full bg-earth/90 backdrop-blur-sm border border-cream/70 shadow-sm;
+}
+
+.language-selector-title {
+  @apply px-3 py-1.5 text-sm font-medium text-white bg-saffron/90 border-b border-cream/70;
+}
+
+.language-selector-item {
+  @apply w-full text-left px-3 py-2 text-sm hover:bg-cream/50 transition-colors;
+}
+
+.language-selector-item-active {
+  @apply text-white font-medium bg-saffron;
+}
+
+/* Enhanced menu section styles */
+.menu-category-title {
+  @apply px-5 py-2 text-sm font-bold text-white uppercase tracking-wider bg-gradient-to-r from-saffron to-earth/90 shadow-sm;
+}
+
+.menu-item {
+  @apply flex items-center gap-3 p-3 rounded-lg transition-all duration-200;
+}
+
+.menu-item-active {
+  @apply bg-gradient-to-r from-saffron/20 to-leaf/20 text-earth font-medium shadow-sm;
+}
+
+.menu-item-icon {
+  @apply p-1.5 rounded-full;
+}
+
+.menu-item-icon-active {
+  @apply bg-white/80 text-saffron;
+}
+
+/* Language selector dropdown with better visibility */
+.language-dropdown {
+  @apply absolute mt-1 py-1 w-60 max-h-[240px] overflow-y-auto bg-white rounded-md shadow-lg z-50 frosted-glass;
 }
