@@ -1,7 +1,10 @@
 
 import React from 'react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Logo = () => {
+  const isMobile = useIsMobile();
+  
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="relative rounded-full border-2 border-leaf/50 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -10,7 +13,7 @@ const Logo = () => {
           alt="Andata Logo" 
           className="w-full h-full object-contain rounded-full"
           style={{ 
-            width: '100%',
+            width: isMobile ? '100%' : '100%',
             height: 'auto',
             aspectRatio: '1/1',
             maxWidth: '100%'

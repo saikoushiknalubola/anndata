@@ -47,7 +47,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         </div>
         {title && (
           <div className="mt-1 mb-3 w-full flex items-center justify-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative font-bold text-earth bg-gradient-to-r from-saffron/20 via-white/90 to-leaf/20 px-6 py-2 rounded-full shadow-md border border-cream/70">{title}</h1>
+            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative font-bold text-earth bg-gradient-to-r from-saffron/20 via-white/90 to-leaf/20 px-6 py-2 rounded-full shadow-md border border-cream/70 text-center">{title}</h1>
           </div>
         )}
       </header>
