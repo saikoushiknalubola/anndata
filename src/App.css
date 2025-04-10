@@ -73,26 +73,57 @@
 
 /* Enhanced Voice Assistant Styles */
 .voice-assistant-btn {
-  @apply fixed right-4 bottom-24 text-white p-3 rounded-full shadow-lg z-20 
-         hover:opacity-90 transition-colors duration-200 flex items-center justify-center;
+  @apply fixed right-4 bottom-24 md:bottom-8 text-white p-3 rounded-full shadow-lg z-20 
+         hover:opacity-90 transition-colors duration-200 flex items-center justify-center
+         bg-gradient-to-r from-indigo-600 to-indigo-700;
 }
 
-/* Language dropdown styling */
+/* Updated Language dropdown styling */
 .language-dropdown {
   @apply absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden z-50
          border border-gray-200 animate-fade-in;
 }
 
 .language-selector-title {
-  @apply px-3 py-2 bg-purple-100 text-sm font-medium text-indigo-800 border-b border-gray-200;
+  @apply px-3 py-2 bg-indigo-50 text-sm font-medium text-indigo-800 border-b border-gray-200;
 }
 
 .language-selector-item {
-  @apply w-full text-left px-3 py-2 text-sm hover:bg-purple-50 transition-colors border-b border-gray-100 last:border-0 flex items-center;
+  @apply w-full text-left px-3 py-2 text-sm hover:bg-indigo-50 transition-colors border-b border-gray-100 last:border-0;
 }
 
 .language-selector-item-active {
-  @apply bg-purple-100 text-indigo-800 font-medium;
+  @apply bg-indigo-100 text-indigo-800 font-medium;
+}
+
+/* Voice Assistant enhanced styles */
+.voice-assistant-settings-slider {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #6366F1 0%, #4F46E5 100%);
+  outline: none;
+}
+
+.voice-assistant-settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4F46E5;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.voice-assistant-settings-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4F46E5;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
 }
 
 /* Animated elements */
@@ -123,12 +154,12 @@
 /* Enhanced mobile optimizations */
 @media (max-width: 480px) {
   .page-header {
-    padding-top: 8px;
+    padding-top: 3.5rem;
     margin-bottom: 12px;
   }
   
   .page-container {
-    padding-top: 8px;
+    padding-top: 3.5rem;
     padding-left: 12px;
     padding-right: 12px;
     padding-bottom: 80px; /* Extra space for the bottom nav */
@@ -139,11 +170,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 12px auto;
+    margin: 0 auto;
     position: relative;
     z-index: 5;
-    width: 90px !important;
-    height: 90px !important;
+    width: 70px !important;
+    height: 70px !important;
   }
 
   /* Add a subtle highlight behind the logo */
@@ -195,8 +226,8 @@
 
   /* Better touch targets on mobile */
   button, a, [role="button"] {
-    min-height: 36px;
-    min-width: 36px;
+    min-height: 32px;
+    min-width: 32px;
   }
 
   /* Adjust spacing for better mobile experience */
@@ -228,60 +259,6 @@
     margin: 0.4em 0;
     line-height: 1.2;
   }
-
-  /* Improved image handling on mobile */
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  /* Government logos section - optimized for mobile */
-  .flex.items-center.justify-center.space-x-3 {
-    padding: 8px 0;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  
-  .flex.items-center.justify-center.space-x-3::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .flex.items-center.justify-center.space-x-3 img {
-    height: 28px !important;
-    width: auto;
-    margin: 0 6px;
-  }
-  
-  /* Better form elements on mobile */
-  input, select, textarea {
-    font-size: 16px !important; /* Prevents zoom on iOS */
-    padding: 12px !important;
-    border-radius: 10px !important;
-  }
-  
-  /* Fix overflow issues */
-  .overflow-hidden {
-    overflow: hidden !important;
-  }
-  
-  /* Better padding for content */
-  .p-3, .p-4 {
-    padding: 14px !important;
-  }
-  
-  .px-3, .px-4 {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-  }
-  
-  .py-3, .py-4 {
-    padding-top: 14px !important;
-    padding-bottom: 14px !important;
-  }
 }
 
 /* Enhanced Scrollable Menu */
@@ -289,7 +266,7 @@
   max-height: 70vh;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(137, 83, 218, 0.5) rgba(241, 240, 251, 0.7);
+  scrollbar-color: rgba(79, 70, 229, 0.5) rgba(241, 240, 251, 0.7);
 }
 
 .menu-scrollable::-webkit-scrollbar {
@@ -302,12 +279,12 @@
 }
 
 .menu-scrollable::-webkit-scrollbar-thumb {
-  background: rgba(137, 83, 218, 0.5);
+  background: rgba(79, 70, 229, 0.5);
   border-radius: 10px;
 }
 
 .menu-scrollable::-webkit-scrollbar-thumb:hover {
-  background: rgba(137, 83, 218, 0.8);
+  background: rgba(79, 70, 229, 0.8);
 }
 
 /* Custom scrollbar for a more polished look */
@@ -322,17 +299,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(137, 83, 218, 0.4);
+  background: rgba(79, 70, 229, 0.4);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(137, 83, 218, 0.6);
+  background: rgba(79, 70, 229, 0.6);
 }
 
 /* Enhanced header spacing and padding */
 .page-header {
-  padding-top: 2rem;
+  padding-top: 3.5rem;
   margin-bottom: 1rem;
 }
 
@@ -392,34 +369,4 @@ button:active, .button:active, [type="button"]:active {
 
 .animate-slide-up {
   animation: slideUp 0.5s ease-out forwards;
-}
-
-/* Voice Assistant enhanced styles */
-.voice-assistant-settings-slider {
-  -webkit-appearance: none;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #8B5CF6 0%, #6366F1 100%);
-  outline: none;
-}
-
-.voice-assistant-settings-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #8B5CF6;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.voice-assistant-settings-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #8B5CF6;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border: none;
 }

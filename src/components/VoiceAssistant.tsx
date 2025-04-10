@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Volume2, X, VolumeX, Flag, Info, Settings, Star, MessageSquare, HistoryIcon, Loader } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -245,218 +244,213 @@ const VoiceAssistant: React.FC = () => {
     };
   }, [isOpen, isMinimized]);
 
-  if (!isOpen) {
-    return (
-      <button 
-        onClick={() => setIsOpen(true)} 
-        className="voice-assistant-btn bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 shadow-md"
-        aria-label={t('voiceAssistant')}
-      >
-        <Mic size={22} className="text-white" />
-      </button>
-    );
-  }
-
-  // Minimized view
-  if (isMinimized) {
-    return (
-      <div ref={assistantRef} className="fixed bottom-16 right-3 rounded-lg shadow-xl z-30 overflow-hidden">
-        <div 
-          onClick={() => setIsMinimized(false)}
-          className="bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 p-3 text-white flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
-        >
-          {isSpeaking ? (
-            <Volume2 size={18} className="animate-pulse" />
-          ) : (
-            <Mic size={18} />
-          )}
-          <span className="text-sm font-medium">
-            {isSpeaking ? t('speaking') : t('voiceAssistant')}
-          </span>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div ref={assistantRef} className="fixed bottom-16 right-3 w-[90vw] max-w-80 rounded-lg shadow-xl z-30 overflow-hidden">
-      <div className="bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 p-2 text-white flex justify-between items-center">
-        <div className="flex items-center">
-          <Star size={14} className="mr-1 text-yellow-300" />
-          <span className="ml-1 font-medium text-sm">{t('voiceAssistant')}</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <button onClick={toggleMinimize} className="text-white hover:text-white/70 p-1">
-            <span className="block h-0.5 w-4 bg-white"></span>
-          </button>
-          <button onClick={() => setIsOpen(false)} className="text-white hover:text-white/70 p-1">
-            <X size={18} />
-          </button>
-        </div>
-      </div>
-      
-      <div className="p-3 bg-white border border-purple-200">
-        {/* Tabs */}
-        <div className="flex border-b border-gray-200 mb-3">
-          <button 
-            className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
-              activeTab === 'chat' 
-                ? 'text-purple-600 border-b-2 border-purple-500' 
-                : 'text-gray-500 hover:text-purple-500'
-            }`}
-            onClick={() => setActiveTab('chat')}
+    <>
+      {!isOpen ? (
+        <button 
+          onClick={() => setIsOpen(true)} 
+          className="fixed right-4 bottom-20 md:bottom-8 text-white p-3 rounded-full shadow-lg z-20 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300"
+          aria-label={t('voiceAssistant')}
+        >
+          <Mic size={22} className="text-white" />
+        </button>
+      ) : isMinimized ? (
+        <div ref={assistantRef} className="fixed bottom-16 md:bottom-8 right-4 rounded-lg shadow-xl z-30 overflow-hidden">
+          <div 
+            onClick={() => setIsMinimized(false)}
+            className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 text-white flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
           >
-            <MessageSquare size={14} />
-            {t('chat')}
-          </button>
-          <button 
-            className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
-              activeTab === 'settings' 
-                ? 'text-purple-600 border-b-2 border-purple-500' 
-                : 'text-gray-500 hover:text-purple-500'
-            }`}
-            onClick={() => setActiveTab('settings')}
-          >
-            <Settings size={14} />
-            {t('settings')}
-          </button>
+            {isSpeaking ? (
+              <Volume2 size={18} className="animate-pulse" />
+            ) : (
+              <Mic size={18} />
+            )}
+            <span className="text-sm font-medium">
+              {isSpeaking ? t('speaking') : t('voiceAssistant')}
+            </span>
+          </div>
         </div>
-        
-        {activeTab === 'chat' ? (
-          <>
-            <div 
-              ref={chatContainerRef}
-              className="h-48 overflow-y-auto mb-3 p-2 bg-gray-50 rounded-md shadow-inner"
-            >
-              {history.length > 0 ? (
-                <div className="space-y-2">
-                  {history.map((item, idx) => (
-                    <div key={idx} className={`flex ${item.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[85%] p-2 rounded-lg ${
-                        item.type === 'user' 
-                          ? 'bg-indigo-100 text-indigo-900 ml-auto' 
-                          : 'bg-purple-100 text-purple-900'
-                      }`}>
-                        <p className="text-xs">{item.text}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="h-full flex flex-col items-center justify-center text-gray-500 text-xs space-y-2">
-                  <Info size={20} className="text-purple-400 mb-1" />
-                  <p>{t('startSpeaking')}</p>
-                  <p className="text-xs text-purple-400">{t('tryVoiceCommands')}</p>
-                </div>
-              )}
+      ) : (
+        <div ref={assistantRef} className="fixed bottom-16 md:bottom-8 right-4 w-[90vw] max-w-80 rounded-lg shadow-xl z-30 overflow-hidden">
+          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-2 text-white flex justify-between items-center">
+            <div className="flex items-center">
+              <Star size={14} className="mr-1 text-yellow-300" />
+              <span className="ml-1 font-medium text-sm">{t('voiceAssistant')}</span>
             </div>
-            
-            {transcript && (
-              <div className="mb-3 p-2 bg-indigo-50 rounded-md shadow-sm border border-indigo-100">
-                <p className="text-xs text-indigo-700 font-medium">{transcript}</p>
-              </div>
-            )}
-            
-            {/* Quick commands */}
-            {quickCommandVisible && (
-              <div className="mb-3 p-2 bg-white rounded-md shadow-sm border border-gray-200">
-                <p className="text-xs text-gray-500 mb-2 font-medium">{t('quickCommands')}</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {quickCommands.map((cmd, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => executeQuickCommand(cmd.command)}
-                      className="text-xs bg-purple-50 hover:bg-purple-100 text-purple-700 p-2 rounded-md flex items-center space-x-1 transition-colors"
-                    >
-                      <span>{cmd.icon}</span>
-                      <span>{cmd.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            <div className="flex flex-col items-center">
-              <div className="flex justify-center space-x-3 mb-3">
-                <button
-                  onClick={() => setQuickCommandVisible(!quickCommandVisible)}
-                  className={`p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors`}
-                >
-                  <HistoryIcon size={16} />
-                </button>
-                <button
-                  onClick={toggleListening}
-                  disabled={isSpeaking}
-                  className={`w-14 h-14 rounded-full flex items-center justify-center ${
-                    isListening 
-                      ? 'bg-red-500 animate-pulse' 
-                      : 'bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 hover:shadow-lg'
-                  } text-white transition-all duration-300 shadow-lg`}
-                >
-                  {isListening ? (
-                    <Loader size={24} className="animate-spin" />
-                  ) : (
-                    <Mic size={24} />
-                  )}
-                </button>
-                <button
-                  onClick={toggleMute}
-                  className={`p-2 rounded-full ${
-                    muted ? 'bg-gray-300' : 'bg-indigo-500'
-                  } text-white hover:opacity-90 transition-opacity`}
-                >
-                  {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                </button>
-              </div>
-              
-              <p className="text-xs text-gray-600 text-center max-w-[80%]">
-                {isListening 
-                  ? t('listeningNow') 
-                  : isSpeaking 
-                    ? t('speakingNow')
-                    : t('tapToSpeak')}
-              </p>
-            </div>
-          </>
-        ) : (
-          // Settings tab
-          <div className="space-y-4 p-1">
-            <div>
-              <label className="text-xs font-medium text-gray-700 block mb-1">{t('voiceVolume')}</label>
-              <input 
-                type="range" 
-                min="0" 
-                max="1" 
-                step="0.1"
-                value={voiceVolume}
-                onChange={(e) => setVoiceVolume(parseFloat(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-500"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-gray-700 block mb-1">{t('voiceSpeed')}</label>
-              <input 
-                type="range" 
-                min="0.5" 
-                max="2" 
-                step="0.1"
-                value={voiceSpeed}
-                onChange={(e) => setVoiceSpeed(parseFloat(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-500"
-              />
-            </div>
-            <div className="pt-2">
-              <button
-                onClick={clearHistory}
-                className="w-full py-2 text-xs text-white bg-purple-500 rounded-md hover:bg-purple-600 transition-colors"
-              >
-                {t('clearHistory')}
+            <div className="flex items-center space-x-2">
+              <button onClick={toggleMinimize} className="text-white hover:text-white/70 p-1">
+                <span className="block h-0.5 w-4 bg-white"></span>
+              </button>
+              <button onClick={() => setIsOpen(false)} className="text-white hover:text-white/70 p-1">
+                <X size={18} />
               </button>
             </div>
           </div>
-        )}
-      </div>
-    </div>
+          
+          <div className="p-3 bg-white border border-indigo-100">
+            {/* Tabs */}
+            <div className="flex border-b border-gray-200 mb-3">
+              <button 
+                className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
+                  activeTab === 'chat' 
+                    ? 'text-indigo-600 border-b-2 border-indigo-500' 
+                    : 'text-gray-500 hover:text-indigo-500'
+                }`}
+                onClick={() => setActiveTab('chat')}
+              >
+                <MessageSquare size={14} />
+                {t('chat')}
+              </button>
+              <button 
+                className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
+                  activeTab === 'settings' 
+                    ? 'text-indigo-600 border-b-2 border-indigo-500' 
+                    : 'text-gray-500 hover:text-indigo-500'
+                }`}
+                onClick={() => setActiveTab('settings')}
+              >
+                <Settings size={14} />
+                {t('settings')}
+              </button>
+            </div>
+            
+            {activeTab === 'chat' ? (
+              <>
+                <div 
+                  ref={chatContainerRef}
+                  className="h-48 overflow-y-auto mb-3 p-2 bg-gray-50 rounded-md shadow-inner"
+                >
+                  {history.length > 0 ? (
+                    <div className="space-y-2">
+                      {history.map((item, idx) => (
+                        <div key={idx} className={`flex ${item.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                          <div className={`max-w-[85%] p-2 rounded-lg ${
+                            item.type === 'user' 
+                              ? 'bg-indigo-100 text-indigo-900 ml-auto' 
+                              : 'bg-purple-100 text-purple-900'
+                          }`}>
+                            <p className="text-xs">{item.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="h-full flex flex-col items-center justify-center text-gray-500 text-xs space-y-2">
+                      <Info size={20} className="text-purple-400 mb-1" />
+                      <p>{t('startSpeaking')}</p>
+                      <p className="text-xs text-purple-400">{t('tryVoiceCommands')}</p>
+                    </div>
+                  )}
+                </div>
+                
+                {transcript && (
+                  <div className="mb-3 p-2 bg-indigo-50 rounded-md shadow-sm border border-indigo-100">
+                    <p className="text-xs text-indigo-700 font-medium">{transcript}</p>
+                  </div>
+                )}
+                
+                {/* Quick commands */}
+                {quickCommandVisible && (
+                  <div className="mb-3 p-2 bg-white rounded-md shadow-sm border border-gray-200">
+                    <p className="text-xs text-gray-500 mb-2 font-medium">{t('quickCommands')}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {quickCommands.map((cmd, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => executeQuickCommand(cmd.command)}
+                          className="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-md flex items-center space-x-1 transition-colors"
+                        >
+                          <span>{cmd.icon}</span>
+                          <span>{cmd.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <div className="flex flex-col items-center">
+                  <div className="flex justify-center space-x-3 mb-3">
+                    <button
+                      onClick={() => setQuickCommandVisible(!quickCommandVisible)}
+                      className={`p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors`}
+                    >
+                      <HistoryIcon size={16} />
+                    </button>
+                    <button
+                      onClick={toggleListening}
+                      disabled={isSpeaking}
+                      className={`w-14 h-14 rounded-full flex items-center justify-center ${
+                        isListening 
+                          ? 'bg-red-500 animate-pulse' 
+                          : 'bg-gradient-to-r from-indigo-600 to-indigo-700 hover:shadow-lg'
+                      } text-white transition-all duration-300 shadow-lg`}
+                    >
+                      {isListening ? (
+                        <Loader size={24} className="animate-spin" />
+                      ) : (
+                        <Mic size={24} />
+                      )}
+                    </button>
+                    <button
+                      onClick={toggleMute}
+                      className={`p-2 rounded-full ${
+                        muted ? 'bg-gray-300' : 'bg-indigo-500'
+                      } text-white hover:opacity-90 transition-opacity`}
+                    >
+                      {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                    </button>
+                  </div>
+                  
+                  <p className="text-xs text-gray-600 text-center max-w-[80%]">
+                    {isListening 
+                      ? t('listeningNow') 
+                      : isSpeaking 
+                        ? t('speakingNow')
+                        : t('tapToSpeak')}
+                  </p>
+                </div>
+              </>
+            ) : (
+              // Settings tab
+              <div className="space-y-4 p-1">
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">{t('voiceVolume')}</label>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="1" 
+                    step="0.1"
+                    value={voiceVolume}
+                    onChange={(e) => setVoiceVolume(parseFloat(e.target.value))}
+                    className="voice-assistant-settings-slider w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-gray-700 block mb-1">{t('voiceSpeed')}</label>
+                  <input 
+                    type="range" 
+                    min="0.5" 
+                    max="2" 
+                    step="0.1"
+                    value={voiceSpeed}
+                    onChange={(e) => setVoiceSpeed(parseFloat(e.target.value))}
+                    className="voice-assistant-settings-slider w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer"
+                  />
+                </div>
+                <div className="pt-2">
+                  <button
+                    onClick={clearHistory}
+                    className="w-full py-2 text-xs text-white bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors"
+                  >
+                    {t('clearHistory')}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

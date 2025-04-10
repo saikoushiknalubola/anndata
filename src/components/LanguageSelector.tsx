@@ -44,24 +44,24 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="bg-indigo-600 hover:bg-indigo-700 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
+        className="bg-indigo-500 hover:bg-indigo-600 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
         aria-label="Select language"
       >
         <Globe size={isMobile ? 16 : 18} className="text-white" />
-        <span className={`truncate font-medium ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
+        <span className={`truncate font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>
           {isMobile ? '' : currentLanguage}
         </span>
         <ChevronDown size={14} className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
-        <div className="language-dropdown">
-          <div className="language-selector-title">
+        <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200">
+          <div className="px-3 py-2 bg-indigo-50 text-sm font-medium text-indigo-800 border-b border-gray-200">
             {t('selectLanguage')}
           </div>
           
-          <div className="px-2 py-1 border-b border-purple-100">
-            <div className="flex items-center bg-purple-50 rounded-md px-2">
+          <div className="px-2 py-1 border-b border-indigo-100">
+            <div className="flex items-center bg-indigo-50 rounded-md px-2">
               <Search size={14} className="text-indigo-500" />
               <input
                 type="text"
@@ -79,8 +79,8 @@ const LanguageSelector = () => {
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
-                  className={`language-selector-item ${
-                    language === lang.code ? 'language-selector-item-active' : 'text-indigo-700'
+                  className={`w-full text-left px-3 py-2 text-sm hover:bg-indigo-50 transition-colors border-b border-gray-100 last:border-0 ${
+                    language === lang.code ? 'bg-indigo-100 text-indigo-800 font-medium' : 'text-indigo-700'
                   }`}
                 >
                   {lang.name}

@@ -7,9 +7,9 @@ const GovernmentBranding: React.FC = () => {
   const { t } = useLanguage();
   
   return (
-    <div className="w-full bg-gradient-to-r from-[#FF9933]/20 via-white to-[#138808]/20 border-b border-purple-300 py-3 px-4 flex items-center justify-between overflow-hidden shadow-md fixed top-0 z-50 backdrop-blur-sm">
+    <div className="w-full bg-white border-b border-[#138808]/20 py-3 px-4 flex items-center justify-between overflow-hidden shadow-sm fixed top-0 z-50">
       <div className="flex items-center">
-        <div className="bg-white/80 p-1.5 rounded-full shadow-sm mr-2">
+        <div className="bg-[#FF9933]/10 p-1.5 rounded-full shadow-sm mr-2">
           <Wheat size={20} className="text-[#FF9933]" />
         </div>
         <div className="flex flex-col">
