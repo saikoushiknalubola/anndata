@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -270,64 +271,96 @@ const HomePage = () => {
         </Card>
 
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-earth text-center">{t('farmingSmarter')}</h2>
+          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-saffron/90 to-leaf/90 text-white shadow-md">
+            {t('farmingSmarter')}
+          </h2>
           
-          {infoSections.map((section, index) => (
-            <Card 
-              key={index} 
-              className="bg-white/80"
-            >
-              <div className="flex items-start">
-                <div className="mr-3 mt-1">{section.icon}</div>
-                <div>
-                  <h3 className="font-semibold text-earth">{section.title}</h3>
-                  <p className="text-sm text-earth/80 mt-1">{section.content}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {infoSections.map((section, index) => (
+              <Card 
+                key={index} 
+                className="bg-white/80 hover:shadow-lg transition-all duration-300 h-full"
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="bg-gradient-to-r from-saffron/10 to-leaf/10 p-3 rounded-full mb-3">
+                    {section.icon}
+                  </div>
+                  <h3 className="font-semibold text-earth mb-2">{section.title}</h3>
+                  <p className="text-sm text-earth/80">{section.content}</p>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-earth text-center">{t('howWeImpact')}</h2>
-          <p className="text-center text-sm text-earth/80 mb-4">{t('impactDesc')}</p>
+          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-leaf/90 to-earth/90 text-white shadow-md">
+            {t('howWeImpact')}
+          </h2>
+          <p className="text-center text-sm text-earth/80 mb-4 px-4 py-2 bg-white/70 rounded-lg shadow-sm">
+            {t('impactDesc')}
+          </p>
           
-          {impactSections.map((section, index) => (
-            <Card 
-              key={index} 
-              className="bg-gradient-to-r from-white/80 to-cream/30"
-            >
-              <div className="flex items-start">
-                <div className="mr-3 mt-1">{section.icon}</div>
-                <div>
-                  <h3 className="font-semibold text-earth">{section.title}</h3>
-                  <p className="text-sm text-earth/80 mt-1">{section.content}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {impactSections.map((section, index) => (
+              <Card 
+                key={index} 
+                className="bg-gradient-to-br from-white/90 via-cream/30 to-white/90 border border-earth/10 h-full hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className={`bg-gradient-to-br ${
+                    index === 0 ? "from-saffron/20 to-saffron/5" : 
+                    index === 1 ? "from-leaf/20 to-leaf/5" : 
+                    "from-earth/20 to-earth/5"
+                  } p-3 rounded-full mb-3`}>
+                    {section.icon}
+                  </div>
+                  <h3 className={`font-semibold mb-2 ${
+                    index === 0 ? "text-saffron" : 
+                    index === 1 ? "text-leaf" : 
+                    "text-earth"
+                  }`}>{section.title}</h3>
+                  <p className="text-sm text-earth/90">{section.content}</p>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
         
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-earth text-center">{t('governmentResources')}</h2>
+          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-earth/90 to-saffron/90 text-white shadow-md">
+            {t('governmentResources')}
+          </h2>
           
-          {resourceSections.map((section, index) => (
-            <Card 
-              key={index} 
-              className="bg-gradient-to-r from-white/80 to-cream/30 border border-earth/10"
-            >
-              <div className="flex items-start">
-                <div className="bg-earth/10 p-2 rounded-full mr-3">{section.icon}</div>
-                <div>
-                  <h3 className="font-semibold text-earth">{section.title}</h3>
-                  <p className="text-sm text-earth/80 mt-1">{section.content}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {resourceSections.map((section, index) => (
+              <Card 
+                key={index} 
+                className={`bg-gradient-to-br from-white/90 to-cream/30 border border-earth/10 hover:shadow-lg transition-all duration-300 ${index % 2 === 0 ? 'animate-delay-100' : ''}`}
+              >
+                <div className="flex items-center">
+                  <div className={`rounded-full p-3 mr-4 ${
+                    index % 3 === 0 ? "bg-saffron/10" : 
+                    index % 3 === 1 ? "bg-leaf/10" : 
+                    "bg-earth/10"
+                  }`}>
+                    {section.icon}
+                  </div>
+                  <div>
+                    <h3 className={`font-semibold mb-1 ${
+                      index % 3 === 0 ? "text-saffron" : 
+                      index % 3 === 1 ? "text-leaf" : 
+                      "text-earth"
+                    }`}>{section.title}</h3>
+                    <p className="text-sm text-earth/80">{section.content}</p>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
+          </div>
         </div>
 
-        <Card className="mt-6 bg-saffron/10 border border-saffron/30">
+        <Card className="mt-6 bg-gradient-to-r from-saffron/20 to-saffron/5 border border-saffron/30 hover:shadow-lg transition-all duration-300">
           <div className="flex items-center">
             <div className="bg-saffron text-white p-2 rounded-full mr-3">
               <Phone size={20} />
