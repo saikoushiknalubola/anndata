@@ -71,6 +71,55 @@
          flex items-center justify-center gap-2;
 }
 
+/* Enhanced Voice Assistant Styles */
+.voice-assistant-btn {
+  @apply fixed right-4 bottom-24 text-white p-3 rounded-full shadow-lg z-20 
+         hover:opacity-90 transition-colors duration-200 flex items-center justify-center;
+}
+
+/* Language dropdown styling */
+.language-dropdown {
+  @apply absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden z-50
+         border border-gray-200 animate-fade-in;
+}
+
+.language-selector-title {
+  @apply px-3 py-2 bg-purple-100 text-sm font-medium text-indigo-800 border-b border-gray-200;
+}
+
+.language-selector-item {
+  @apply w-full text-left px-3 py-2 text-sm hover:bg-purple-50 transition-colors border-b border-gray-100 last:border-0 flex items-center;
+}
+
+.language-selector-item-active {
+  @apply bg-purple-100 text-indigo-800 font-medium;
+}
+
+/* Animated elements */
+.animate-grow-fade {
+  animation: growFade 0.5s ease-out forwards;
+}
+
+@keyframes growFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-gentle {
+  animation: pulseGentle 2s infinite ease-in-out;
+}
+
+@keyframes pulseGentle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 /* Enhanced mobile optimizations */
 @media (max-width: 480px) {
   .page-header {
@@ -116,6 +165,14 @@
   .fixed.bottom-0 .flex {
     gap: 4px;
     padding: 8px 0 4px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .fixed.bottom-0 .flex::-webkit-scrollbar {
+    display: none;
   }
   
   /* Improved text legibility in bottom nav */
@@ -138,8 +195,8 @@
 
   /* Better touch targets on mobile */
   button, a, [role="button"] {
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 36px;
+    min-width: 36px;
   }
 
   /* Adjust spacing for better mobile experience */
@@ -227,33 +284,30 @@
   }
 }
 
-/* Voice Assistant Button - better positioned for mobile */
-.voice-assistant-btn {
-  @apply fixed right-4 bottom-24 bg-saffron text-white p-3 rounded-full shadow-lg z-20 
-         hover:bg-saffron/90 transition-colors duration-200 flex items-center justify-center;
+/* Enhanced Scrollable Menu */
+.menu-scrollable {
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(137, 83, 218, 0.5) rgba(241, 240, 251, 0.7);
 }
 
-/* Custom Animations */
-@keyframes pulse-gentle {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.menu-scrollable::-webkit-scrollbar {
+  width: 4px;
 }
 
-.pulse-gentle {
-  animation: pulse-gentle 2s infinite ease-in-out;
+.menu-scrollable::-webkit-scrollbar-track {
+  background: rgba(241, 240, 251, 0.7);
+  border-radius: 10px;
 }
 
-/* Enhanced gradient backgrounds */
-.gradient-orange-brown {
-  background: linear-gradient(135deg, #FF5722 0%, #8D5524 100%);
+.menu-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(137, 83, 218, 0.5);
+  border-radius: 10px;
 }
 
-.gradient-green-cream {
-  background: linear-gradient(135deg, #388E3C 0%, #FFF3E0 100%);
-}
-
-.gradient-earth-saffron {
-  background: linear-gradient(135deg, #8D5524 0%, #FF5722 100%);
+.menu-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(137, 83, 218, 0.8);
 }
 
 /* Custom scrollbar for a more polished look */
@@ -268,12 +322,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 82, 34, 0.4);
+  background: rgba(137, 83, 218, 0.4);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 82, 34, 0.6);
+  background: rgba(137, 83, 218, 0.6);
 }
 
 /* Enhanced header spacing and padding */
@@ -322,4 +376,50 @@ button:active, .button:active, [type="button"]:active {
 .img-placeholder {
   background: linear-gradient(45deg, #f3f3f3 25%, #e6e6e6 25%, #e6e6e6 50%, #f3f3f3 50%, #f3f3f3 75%, #e6e6e6 75%);
   background-size: 10px 10px;
+}
+
+/* Additional animations for the developer page */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+/* Voice Assistant enhanced styles */
+.voice-assistant-settings-slider {
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #8B5CF6 0%, #6366F1 100%);
+  outline: none;
+}
+
+.voice-assistant-settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #8B5CF6;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.voice-assistant-settings-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #8B5CF6;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
 }

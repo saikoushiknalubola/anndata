@@ -1,141 +1,169 @@
 
-import React, { useEffect } from 'react';
-import { Github, Linkedin, Globe, Code, Award, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import { Button } from '@/components/ui/button';
-import { toast } from '@/components/ui/use-toast';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Github, Linkedin, Globe, Code, Laptop, Rocket, Star, Award, BookOpen } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Developer = () => {
+  const { t } = useLanguage();
+  const isMobile = useIsMobile();
+  const [mounted, setMounted] = useState(false);
+  
   useEffect(() => {
-    toast({
-      title: "Developer Page",
-      description: "Learn about the creator behind Andata",
-      duration: 3000,
-    });
+    setMounted(true);
   }, []);
-
-  const skills = [
-    'Python', 'JavaScript', 'C++', 'Java', 'HTML/CSS',
-    'TensorFlow', 'PyTorch', 'Scikit-Learn', 'React.js', 'Node.js',
-    'Bootstrap', 'Express.js', 'Firebase', 'MongoDB', 'Docker',
-    'Git & GitHub', 'Google Cloud', 'IBM Watson'
-  ];
-
-  const keyProjects = [
-    {
-      title: "Garuda OS",
-      description: "A Privacy-First Android-Based Operating System",
-      tags: ["AOSP", "Security", "Privacy", "Open-Source"]
-    },
-    {
-      title: "Solar-Powered Autonomous Water Purification Drone",
-      description: "Solar-powered drone with AI for clean water access",
-      tags: ["AI", "Robotics", "Sustainability", "Water"]
-    },
-    {
-      title: "Adaptive Traffic Signal Control System",
-      description: "AI-driven traffic light control for smart cities",
-      tags: ["AI", "Computer Vision", "OpenCV", "Smart City"]
-    },
-    {
-      title: "AI Farming Assistant",
-      description: "Voice-based chatbot for crop suggestions & pest warnings",
-      tags: ["Voice", "AI", "Agriculture", "Regional"]
-    }
-  ];
 
   return (
     <Layout title="Developer" showBackButton>
-      <div className="space-y-6 pb-6">
-        <div className="developer-card">
-          <div className="developer-header">
+      <div className="max-w-2xl mx-auto">
+        <div className="mb-8 text-center">
+          <div className="animate-grow-fade relative mx-auto mb-4 w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-r from-purple-500 via-indigo-400 to-blue-500 p-1 shadow-xl">
+            <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
+              <Code size={isMobile ? 40 : 60} className="text-indigo-600" />
+            </div>
+          </div>
+          
+          <h2 className="text-xl sm:text-2xl font-bold text-indigo-900 mb-1">
+            <span className="inline-block">
+              <span className={`bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 ${mounted ? 'animate-pulse' : ''}`}>
+                Saikoushik Nalubola
+              </span>
+            </span>
+          </h2>
+          
+          <p className="text-sm sm:text-base text-indigo-800 mb-4">🚀 Developer | AI & Robotics Enthusiast | Open-Source Contributor</p>
+          
+          <div className="flex justify-center space-x-3 mb-4">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" 
+              className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full transition-colors">
+              <Github size={isMobile ? 16 : 18} />
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer"
+              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors">
+              <Linkedin size={isMobile ? 16 : 18} />
+            </a>
+            <a href="https://portfolio.com/" target="_blank" rel="noopener noreferrer"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full transition-colors">
+              <Globe size={isMobile ? 16 : 18} />
+            </a>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6 animate-fade-in">
+          <h3 className="flex items-center text-lg font-semibold text-indigo-800 mb-3">
+            <Laptop size={20} className="mr-2 text-indigo-600" />
+            Skills & Expertise
+          </h3>
+          
+          <div className="space-y-4">
             <div>
-              <h1 className="text-xl font-bold text-earth typewriter mb-1">Saikoushik Nalubola</h1>
-              <p className="text-sm text-earth/80">
-                Developer | AI & Robotics Enthusiast | Open-Source Contributor
-              </p>
+              <h4 className="text-sm font-medium text-indigo-700 mb-2">Programming Languages</h4>
+              <div className="flex flex-wrap gap-2">
+                {['Python', 'JavaScript', 'C++', 'Java', 'HTML/CSS'].map((skill, index) => (
+                  <span key={index} className="px-2 py-1 bg-indigo-50 text-indigo-700 rounded-md text-xs">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="floating-animation">
-              <Sparkles size={32} className="text-saffron" />
+            
+            <div>
+              <h4 className="text-sm font-medium text-indigo-700 mb-2">AI/ML & Data Science</h4>
+              <div className="flex flex-wrap gap-2">
+                {['TensorFlow', 'PyTorch', 'Scikit-Learn', 'Pandas', 'NumPy', 'OpenCV'].map((skill, index) => (
+                  <span key={index} className="px-2 py-1 bg-purple-50 text-purple-700 rounded-md text-xs">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-sm font-medium text-indigo-700 mb-2">Web Development</h4>
+              <div className="flex flex-wrap gap-2">
+                {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Firebase'].map((skill, index) => (
+                  <span key={index} className="px-2 py-1 bg-blue-50 text-blue-700 rounded-md text-xs">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
+        
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6 animate-fade-in" style={{animationDelay: "0.2s"}}>
+          <h3 className="flex items-center text-lg font-semibold text-indigo-800 mb-3">
+            <Rocket size={20} className="mr-2 text-indigo-600" />
+            Key Projects
+          </h3>
           
-          <p className="text-earth/90 text-sm">
-            A Computer Science & Engineering student (B.Tech) specializing in AI, Robotics, 
-            and Sustainable Tech, on a mission to build systems that are ethical, scalable, and meaningful.
+          <div className="space-y-4">
+            <div className="p-3 border border-indigo-100 rounded-lg bg-gradient-to-r from-indigo-50 to-purple-50">
+              <h4 className="text-sm font-bold text-indigo-800 mb-1">🔐 Garuda OS</h4>
+              <p className="text-xs text-indigo-700 mb-2">A Privacy-First Android-Based Operating System</p>
+              <ul className="text-xs text-indigo-600 list-disc list-inside">
+                <li>Hardened security configurations, no Google dependencies</li>
+                <li>Focused on data freedom and device-level encryption</li>
+              </ul>
+            </div>
+            
+            <div className="p-3 border border-blue-100 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50">
+              <h4 className="text-sm font-bold text-indigo-800 mb-1">💧 Solar-Powered Autonomous Water Purification Drone</h4>
+              <p className="text-xs text-indigo-700 mb-2">Because water doesn't clean itself — but AI can help</p>
+              <ul className="text-xs text-indigo-600 list-disc list-inside">
+                <li>Solar-powered drone with object-detection & water-quality sensors</li>
+                <li>Autonomous navigation using AI pathfinding & obstacle avoidance</li>
+              </ul>
+            </div>
+            
+            <div className="p-3 border border-purple-100 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50">
+              <h4 className="text-sm font-bold text-indigo-800 mb-1">🤖 AI Farming Assistant</h4>
+              <p className="text-xs text-indigo-700 mb-2">Helping farmers with precision, not just predictions</p>
+              <ul className="text-xs text-indigo-600 list-disc list-inside">
+                <li>Built a voice-based chatbot to give crop suggestions & pest warnings</li>
+                <li>Integrated soil-quality mapping & weather forecasting APIs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6 animate-fade-in" style={{animationDelay: "0.4s"}}>
+          <h3 className="flex items-center text-lg font-semibold text-indigo-800 mb-3">
+            <Star size={20} className="mr-2 text-indigo-600" />
+            Currently Exploring
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 border border-purple-200">
+              <h4 className="text-sm font-medium text-purple-800">Generative AI</h4>
+              <p className="text-xs text-purple-700">Using LLMs for multilingual education & voice assistants</p>
+            </div>
+            
+            <div className="p-3 rounded-lg bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-200">
+              <h4 className="text-sm font-medium text-blue-800">Drone Swarming</h4>
+              <p className="text-xs text-blue-700">Algorithms for coordinated disaster management</p>
+            </div>
+            
+            <div className="p-3 rounded-lg bg-gradient-to-br from-indigo-100 to-indigo-50 border border-indigo-200">
+              <h4 className="text-sm font-medium text-indigo-800">Secure Mobile OS</h4>
+              <p className="text-xs text-indigo-700">Making Garuda OS scalable for mass use</p>
+            </div>
+            
+            <div className="p-3 rounded-lg bg-gradient-to-br from-pink-100 to-pink-50 border border-pink-200">
+              <h4 className="text-sm font-medium text-pink-800">FOSS</h4>
+              <p className="text-xs text-pink-700">Contributing to open-source projects in AI & privacy</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-md p-4 sm:p-6 text-white text-center animate-fade-in" style={{animationDelay: "0.6s"}}>
+          <BookOpen size={24} className="inline-block mb-2" />
+          <p className="text-sm mb-2 font-medium">⚡ Fun Fact</p>
+          <p className="text-xs sm:text-sm">
+            I turned an old bike into an electric one with reverse gear. Why?<br />
+            Because even innovation sometimes needs to back up before launching forward.
           </p>
-          
-          <div className="mt-4">
-            <h2 className="font-semibold text-earth mb-2">🛠️ Skills & Expertise</h2>
-            <div className="developer-skills">
-              {skills.map((skill, index) => (
-                <span key={index} className="skill-tag">{skill}</span>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mt-6">
-            <h2 className="font-semibold text-earth mb-3">🚀 Key Projects</h2>
-            <div className="space-y-3">
-              {keyProjects.map((project, index) => (
-                <div key={index} className="bg-white/50 p-3 rounded-lg shadow-sm border border-earth/10">
-                  <h3 className="font-medium text-saffron">{project.title}</h3>
-                  <p className="text-xs text-earth/80 mt-1">{project.description}</p>
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {project.tags.map((tag, idx) => (
-                      <span key={idx} className="bg-leaf/10 text-leaf text-xs px-2 py-0.5 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mt-6 flex flex-wrap gap-2 justify-center">
-            <Button className="bg-gradient-to-r from-saffron to-earth text-white">
-              <Github size={16} className="mr-2" /> GitHub
-            </Button>
-            <Button className="bg-gradient-to-r from-earth to-leaf text-white">
-              <Linkedin size={16} className="mr-2" /> LinkedIn
-            </Button>
-            <Button className="bg-gradient-to-r from-leaf to-saffron text-white">
-              <Globe size={16} className="mr-2" /> Portfolio
-            </Button>
-          </div>
-          
-          <div className="mt-6 text-center">
-            <p className="text-xs text-earth/60 italic">
-              "I turned an old bike into an electric one with reverse gear. Why? Because even innovation sometimes needs to back up before launching forward."
-            </p>
-          </div>
-        </div>
-        
-        <div className="developer-card">
-          <div className="flex items-center gap-2 mb-3">
-            <Code size={20} className="text-saffron" />
-            <h2 className="font-semibold text-earth">Currently Exploring</h2>
-          </div>
-          <ul className="space-y-2 text-sm text-earth/80 pl-6 list-disc">
-            <li>Generative AI: Using LLMs for multilingual education & voice assistants</li>
-            <li>Drone Swarming Algorithms: For coordinated disaster management</li>
-            <li>Secure Mobile OS Dev: Making Garuda OS scalable for mass use</li>
-            <li>FOSS: Actively contributing to open-source projects in AI & privacy</li>
-          </ul>
-        </div>
-        
-        <div className="developer-card">
-          <div className="flex items-center gap-2 mb-3">
-            <Award size={20} className="text-leaf" />
-            <h2 className="font-semibold text-earth">Open to Collaborate On</h2>
-          </div>
-          <ul className="space-y-2 text-sm text-earth/80 pl-6 list-disc">
-            <li>AI/ML research or open-source tools</li>
-            <li>Robotics automation and embedded systems</li>
-            <li>Green tech, smart mobility, and IoT projects</li>
-            <li>Privacy-first software & ethical tech tools</li>
-          </ul>
         </div>
       </div>
     </Layout>

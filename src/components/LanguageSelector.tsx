@@ -44,10 +44,10 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="bg-earth hover:bg-earth/90 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
+        className="bg-indigo-600 hover:bg-indigo-700 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
         aria-label="Select language"
       >
-        <Globe size={isMobile ? 16 : 18} className="text-saffron" />
+        <Globe size={isMobile ? 16 : 18} className="text-white" />
         <span className={`truncate font-medium ${isMobile ? 'w-6' : 'max-w-[80px]'}`}>
           {isMobile ? '' : currentLanguage}
         </span>
@@ -60,34 +60,34 @@ const LanguageSelector = () => {
             {t('selectLanguage')}
           </div>
           
-          <div className="px-2 py-1 border-b border-cream/70">
-            <div className="flex items-center bg-cream/50 rounded-md px-2">
-              <Search size={14} className="text-earth/70" />
+          <div className="px-2 py-1 border-b border-purple-100">
+            <div className="flex items-center bg-purple-50 rounded-md px-2">
+              <Search size={14} className="text-indigo-500" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search languages..."
-                className="w-full p-1.5 text-sm bg-transparent focus:outline-none"
+                className="w-full p-1.5 text-sm bg-transparent focus:outline-none text-indigo-800"
               />
             </div>
           </div>
           
-          <div className="max-h-[180px] overflow-y-auto scrollbar-custom">
+          <div className="max-h-[180px] overflow-y-auto menu-scrollable">
             {filteredLanguages.length > 0 ? (
               filteredLanguages.map((lang) => (
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
                   className={`language-selector-item ${
-                    language === lang.code ? 'language-selector-item-active' : 'text-earth'
+                    language === lang.code ? 'language-selector-item-active' : 'text-indigo-700'
                   }`}
                 >
                   {lang.name}
                 </button>
               ))
             ) : (
-              <div className="px-3 py-2 text-sm text-earth/50 text-center">
+              <div className="px-3 py-2 text-sm text-indigo-400 text-center">
                 No languages found
               </div>
             )}
