@@ -270,76 +270,60 @@ const HomePage = () => {
           </div>
         </Card>
 
+        {/* Enhanced How We Impact Farming Section with better alignment and visual appeal */}
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-saffron/90 to-leaf/90 text-white shadow-md">
-            {t('farmingSmarter')}
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {infoSections.map((section, index) => (
-              <Card 
-                key={index} 
-                className="bg-white/80 hover:shadow-lg transition-all duration-300 h-full"
-              >
-                <div className="flex flex-col items-center text-center h-full">
-                  <div className="bg-gradient-to-r from-saffron/10 to-leaf/10 p-3 rounded-full mb-3">
-                    {section.icon}
-                  </div>
-                  <h3 className="font-semibold text-earth mb-2">{section.title}</h3>
-                  <p className="text-sm text-earth/80">{section.content}</p>
-                </div>
-              </Card>
-            ))}
+          <div className="text-center">
+            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-saffron to-leaf text-white shadow-md mb-3">
+              {t('howWeImpact')}
+            </h2>
+            <p className="text-sm text-earth/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm">
+              {t('impactDesc')}
+            </p>
           </div>
-        </div>
-
-        <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-leaf/90 to-earth/90 text-white shadow-md">
-            {t('howWeImpact')}
-          </h2>
-          <p className="text-center text-sm text-earth/80 mb-4 px-4 py-2 bg-white/70 rounded-lg shadow-sm">
-            {t('impactDesc')}
-          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {impactSections.map((section, index) => (
               <Card 
                 key={index} 
-                className="bg-gradient-to-br from-white/90 via-cream/30 to-white/90 border border-earth/10 h-full hover:shadow-lg transition-all duration-300"
+                className="bg-gradient-to-br from-white to-cream/20 border border-earth/10 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-1"
               >
                 <div className="flex flex-col items-center text-center h-full">
                   <div className={`bg-gradient-to-br ${
                     index === 0 ? "from-saffron/20 to-saffron/5" : 
                     index === 1 ? "from-leaf/20 to-leaf/5" : 
                     "from-earth/20 to-earth/5"
-                  } p-3 rounded-full mb-3`}>
+                  } p-3 rounded-full mb-4 shadow-sm`}>
                     {section.icon}
                   </div>
-                  <h3 className={`font-semibold mb-2 ${
+                  <h3 className={`font-bold mb-3 text-lg ${
                     index === 0 ? "text-saffron" : 
                     index === 1 ? "text-leaf" : 
                     "text-earth"
                   }`}>{section.title}</h3>
-                  <p className="text-sm text-earth/90">{section.content}</p>
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-3"></div>
+                  <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
                 </div>
               </Card>
             ))}
           </div>
         </div>
-        
+
+        {/* Enhanced Government Resources Section with better alignment */}
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-center py-2 px-4 rounded-lg bg-gradient-to-r from-earth/90 to-saffron/90 text-white shadow-md">
-            {t('governmentResources')}
-          </h2>
+          <div className="text-center">
+            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-earth to-saffron text-white shadow-md mb-3">
+              {t('governmentResources')}
+            </h2>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {resourceSections.map((section, index) => (
               <Card 
                 key={index} 
-                className={`bg-gradient-to-br from-white/90 to-cream/30 border border-earth/10 hover:shadow-lg transition-all duration-300 ${index % 2 === 0 ? 'animate-delay-100' : ''}`}
+                className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-earth/10 bg-white/90"
               >
-                <div className="flex items-center">
-                  <div className={`rounded-full p-3 mr-4 ${
+                <div className="flex items-start">
+                  <div className={`rounded-full p-3 mr-4 flex-shrink-0 ${
                     index % 3 === 0 ? "bg-saffron/10" : 
                     index % 3 === 1 ? "bg-leaf/10" : 
                     "bg-earth/10"
@@ -347,12 +331,13 @@ const HomePage = () => {
                     {section.icon}
                   </div>
                   <div>
-                    <h3 className={`font-semibold mb-1 ${
+                    <h3 className={`font-bold mb-2 ${
                       index % 3 === 0 ? "text-saffron" : 
                       index % 3 === 1 ? "text-leaf" : 
                       "text-earth"
                     }`}>{section.title}</h3>
-                    <p className="text-sm text-earth/80">{section.content}</p>
+                    <div className="h-px w-12 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-2"></div>
+                    <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
                   </div>
                 </div>
               </Card>
@@ -360,13 +345,40 @@ const HomePage = () => {
           </div>
         </div>
 
-        <Card className="mt-6 bg-gradient-to-r from-saffron/20 to-saffron/5 border border-saffron/30 hover:shadow-lg transition-all duration-300">
+        {/* Enhanced Farming Smarter Section with better alignment */}
+        <div className="mt-8 space-y-4">
+          <div className="text-center">
+            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-saffron/90 to-leaf/90 text-white shadow-md mb-3">
+              {t('farmingSmarter')}
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {infoSections.map((section, index) => (
+              <Card 
+                key={index} 
+                className="bg-white/90 hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-1 border border-earth/10"
+              >
+                <div className="flex flex-col items-center text-center h-full">
+                  <div className="bg-gradient-to-r from-saffron/10 to-leaf/10 p-3 rounded-full mb-4 shadow-sm">
+                    {section.icon}
+                  </div>
+                  <h3 className="font-bold text-earth mb-3">{section.title}</h3>
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-3"></div>
+                  <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <Card className="mt-6 bg-gradient-to-r from-saffron/20 to-saffron/5 border border-saffron/30 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
           <div className="flex items-center">
-            <div className="bg-saffron text-white p-2 rounded-full mr-3">
+            <div className="bg-saffron text-white p-2 rounded-full mr-3 shadow-sm">
               <Phone size={20} />
             </div>
             <div className="text-left">
-              <h3 className="font-semibold text-earth">{t('helplineText')}</h3>
+              <h3 className="font-bold text-earth">{t('helplineText')}</h3>
               <p className="text-saffron font-bold">{t('helplineNumber')}</p>
             </div>
           </div>
