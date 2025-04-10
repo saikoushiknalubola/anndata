@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Index';
 import CropAdvisor from './pages/CropAdvisor';
@@ -21,6 +20,7 @@ import MarketPrices from './pages/MarketPrices';
 import SuccessStories from './pages/SuccessStories';
 import OrganicFarming from './pages/OrganicFarming';
 import EquipmentCatalog from './pages/EquipmentCatalog';
+import Developer from './pages/Developer';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
       <Router>
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
-          <div className="pt-1"> {/* Added small padding to fix top spacing */}
+          <div className="pt-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/crop-advisor" element={<CropAdvisor />} />
@@ -45,6 +45,7 @@ function App() {
               <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/organic-farming" element={<OrganicFarming />} />
               <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
+              <Route path="/developer" element={<Developer />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

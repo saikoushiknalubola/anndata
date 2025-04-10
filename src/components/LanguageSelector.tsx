@@ -44,7 +44,7 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="language-selector-button"
+        className="bg-earth hover:bg-earth/90 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
         aria-label="Select language"
       >
         <Globe size={isMobile ? 16 : 18} className="text-saffron" />
@@ -73,7 +73,7 @@ const LanguageSelector = () => {
             </div>
           </div>
           
-          <div className="max-h-[180px] overflow-y-auto">
+          <div className="max-h-[180px] overflow-y-auto scrollbar-custom">
             {filteredLanguages.length > 0 ? (
               filteredLanguages.map((lang) => (
                 <button
