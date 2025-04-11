@@ -1,7 +1,10 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Wheat, Leaf, Bell, Users, Recycle, BookOpen, Cloud, LifeBuoy, FileText, DollarSign, ShoppingCart, Trophy, Sprout, Tractor } from 'lucide-react';
+import { 
+  Menu, X, Home, Wheat, Leaf, Bell, Users, Recycle, BookOpen, Cloud, LifeBuoy, FileText, 
+  DollarSign, ShoppingCart, Trophy, Sprout, Tractor, Droplet, Bug, Calendar, Mountain 
+} from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from './ui/button';
 import { 
@@ -9,9 +12,7 @@ import {
   SheetContent, 
   SheetTrigger,
   SheetClose,
-  SheetTitle,
-  SheetHeader,
-  SheetDescription
+  SheetHeader
 } from './ui/sheet';
 import { useIsMobile } from '../hooks/use-mobile';
 
@@ -28,6 +29,10 @@ const MenuSection = () => {
         { path: '/', label: t('home'), icon: Home },
         { path: '/crop-advisor', label: t('cropAdvisor'), icon: Wheat },
         { path: '/soil-scanner', label: t('soilScanner'), icon: Leaf },
+        { path: '/water-management', label: 'Water Management', icon: Droplet },
+        { path: '/pest-control', label: 'Pest Control', icon: Bug },
+        { path: '/crop-planning', label: 'Crop Planning', icon: Calendar },
+        { path: '/soil-health', label: 'Soil Health', icon: Mountain },
         { path: '/alerts', label: t('alerts'), icon: Bell },
         { path: '/farmer-tips', label: t('farmerTips'), icon: Users },
         { path: '/waste-ideas', label: t('wasteIdeas'), icon: Recycle },

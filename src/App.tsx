@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Index';
 import CropAdvisor from './pages/CropAdvisor';
@@ -21,6 +22,10 @@ import SuccessStories from './pages/SuccessStories';
 import OrganicFarming from './pages/OrganicFarming';
 import EquipmentCatalog from './pages/EquipmentCatalog';
 import Developer from './pages/Developer';
+import WaterManagement from './pages/WaterManagement';
+import PestControl from './pages/PestControl';
+import CropPlanning from './pages/CropPlanning';
+import SoilHealth from './pages/SoilHealth';
 
 function App() {
   return (
@@ -46,6 +51,11 @@ function App() {
               <Route path="/organic-farming" element={<OrganicFarming />} />
               <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
               <Route path="/developer" element={<Developer />} />
+              {/* New routes for additional pages */}
+              <Route path="/water-management" element={<WaterManagement />} />
+              <Route path="/pest-control" element={<PestControl />} />
+              <Route path="/crop-planning" element={<CropPlanning />} />
+              <Route path="/soil-health" element={<SoilHealth />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

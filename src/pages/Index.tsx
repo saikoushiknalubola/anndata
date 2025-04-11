@@ -5,7 +5,8 @@ import {
   Wheat, Leaf, Bell, Users, Recycle, FileText, Info, 
   HelpCircle, BarChart, RefreshCw, Users2, Phone, 
   BookOpen, Cloud, DollarSign, GraduationCap, Smartphone, 
-  Headphones, Volume2, Mic, Sparkles, Globe, Languages
+  Headphones, Volume2, Mic, Sparkles, Globe, Languages,
+  Droplet, Bug, Calendar, Mountain
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -37,6 +38,30 @@ const HomePage = () => {
       icon: <Leaf size={18} />, 
       path: "/soil-scanner",
       color: "bg-gradient-to-br from-earth to-earth/80" 
+    },
+    { 
+      title: "Water Management", 
+      icon: <Droplet size={18} />, 
+      path: "/water-management",
+      color: "bg-gradient-to-br from-blue-500 to-blue-600/80" 
+    },
+    { 
+      title: "Pest Control", 
+      icon: <Bug size={18} />, 
+      path: "/pest-control",
+      color: "bg-gradient-to-br from-green-500 to-green-600/80" 
+    },
+    { 
+      title: "Crop Planning", 
+      icon: <Calendar size={18} />, 
+      path: "/crop-planning",
+      color: "bg-gradient-to-br from-purple-500 to-purple-600/80" 
+    },
+    { 
+      title: "Soil Health", 
+      icon: <Mountain size={18} />, 
+      path: "/soil-health",
+      color: "bg-gradient-to-br from-amber-500 to-amber-600/80" 
     },
     { 
       title: t('alerts'), 
