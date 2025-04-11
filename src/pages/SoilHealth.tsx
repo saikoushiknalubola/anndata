@@ -4,30 +4,32 @@ import Layout from '../components/Layout';
 import Card from '../components/Card';
 import { Sprout, Thermometer, Droplets, Mountain } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const SoilHealth = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   
   const soilStrategies = [
     {
       title: "Soil Testing & Analysis",
       description: "Regular soil testing provides crucial insights into nutrient levels, pH, and organic matter content.",
-      icon: <Thermometer className="text-brown-600" />
+      icon: <Thermometer className="text-brown-600" size={isMobile ? 16 : 20} />
     },
     {
       title: "Cover Cropping Benefits",
       description: "Protect soil from erosion, add organic matter, and suppress weeds with strategic cover crops.",
-      icon: <Sprout className="text-green-600" />
+      icon: <Sprout className="text-green-600" size={isMobile ? 16 : 20} />
     },
     {
       title: "Soil Moisture Management",
       description: "Optimize irrigation schedules and techniques to maintain ideal soil moisture levels for crop health.",
-      icon: <Droplets className="text-blue-600" />
+      icon: <Droplets className="text-blue-600" size={isMobile ? 16 : 20} />
     },
     {
       title: "Erosion Control Methods",
       description: "Implement contour farming, terracing, and windbreaks to protect your valuable topsoil.",
-      icon: <Mountain className="text-amber-700" />
+      icon: <Mountain className="text-amber-700" size={isMobile ? 16 : 20} />
     }
   ];
 

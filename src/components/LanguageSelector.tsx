@@ -27,11 +27,21 @@ const LanguageSelector = () => {
       }
     };
 
+    // Close on scroll to make it more app-like
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isOpen]);
 
   const currentLanguage = LANGUAGES.find(l => l.code === language)?.name || 'English';
 
@@ -44,18 +54,20 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="bg-indigo-500 hover:bg-indigo-600 text-white flex items-center gap-1 px-3 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
+        className="bg-indigo-500 hover:bg-indigo-600 text-white flex items-center gap-1 px-2 py-1 rounded-full shadow-md border border-white/20 transition-all"
         aria-label="Select language"
       >
-        <Globe size={isMobile ? 16 : 18} className="text-white" />
-        <span className={`truncate font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>
-          {isMobile ? '' : currentLanguage}
-        </span>
-        <ChevronDown size={14} className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} />
+        <Globe size={isMobile ? 14 : 18} className="text-white" />
+        {!isMobile && (
+          <span className="truncate font-medium text-sm max-w-[80px]">
+            {currentLanguage}
+          </span>
+        )}
+        <ChevronDown size={isMobile ? 12 : 14} className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200">
+        <div className={`absolute ${isMobile ? 'right-0 w-[250px]' : 'right-0 w-56'} top-full mt-2 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200`}>
           <div className="px-3 py-2 bg-indigo-50 text-sm font-medium text-indigo-800 border-b border-gray-200">
             {t('selectLanguage')}
           </div>
@@ -67,13 +79,13 @@ const LanguageSelector = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search languages..."
+                placeholder={isMobile ? "Search..." : "Search languages..."}
                 className="w-full p-1.5 text-sm bg-transparent focus:outline-none text-indigo-800"
               />
             </div>
           </div>
           
-          <div className="max-h-[180px] overflow-y-auto menu-scrollable">
+          <div className={`${isMobile ? 'max-h-[35vh]' : 'max-h-[180px]'} overflow-y-auto menu-scrollable`}>
             {filteredLanguages.length > 0 ? (
               filteredLanguages.map((lang) => (
                 <button
