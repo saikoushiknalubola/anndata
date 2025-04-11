@@ -35,7 +35,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 <ChevronLeft size={24} />
               </Link>
             ) : (
-              <div className="ml-auto">
+              <div className="flex items-center">
                 <LanguageSelector />
               </div>
             )}

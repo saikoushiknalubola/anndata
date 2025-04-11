@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Home, Wheat, Leaf, Bell, Users, Recycle, BookOpen, Cloud, LifeBuoy, FileText, DollarSign, ShoppingCart, Trophy, Sprout, Tractor } from 'lucide-react';
@@ -68,13 +69,11 @@ const MenuSection = () => {
       </SheetTrigger>
       <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0 border-l-2 border-l-[#FF9933]/40 overflow-hidden flex flex-col">
         <SheetHeader className="p-5 border-b relative bg-gradient-to-r from-[#FF9933]/30 via-white to-[#138808]/30 flex-shrink-0">
-          <SheetTitle className="text-xl font-bold text-earth">{t('menu')}</SheetTitle>
-          <SheetDescription className="text-sm text-earth/80">
-            Explore Andata Services
-          </SheetDescription>
-          <SheetClose className="absolute top-3 right-3 text-earth hover:text-saffron p-1.5 rounded-full bg-white/70 hover:bg-white/90 transition-colors">
-            <X size={20} />
-          </SheetClose>
+          <div className="absolute top-3 right-3">
+            <SheetClose className="text-earth hover:text-saffron p-1.5 rounded-full bg-white/70 hover:bg-white/90 transition-colors">
+              <X size={20} />
+            </SheetClose>
+          </div>
         </SheetHeader>
         <div className="flex-1 overflow-y-auto py-2 bg-gradient-to-b from-white to-cream/20 scrollbar-custom">
           <nav className="flex flex-col">
@@ -103,8 +102,7 @@ const MenuSection = () => {
             ))}
           </nav>
         </div>
-        <div className="p-4 border-t border-cream bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 text-center flex-shrink-0">
-          <p className="text-xs text-earth/70">Andata - The Voice of Farmers</p>
+        <div className="p-4 border-t border-cream bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 flex-shrink-0">
         </div>
       </SheetContent>
     </Sheet>
