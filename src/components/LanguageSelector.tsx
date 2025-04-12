@@ -67,8 +67,7 @@ const LanguageSelector = () => {
       </button>
       
       {isOpen && (
-        <div className={`absolute z-50 left-0 ${isMobile ? 'w-[200px]' : 'w-56'} max-h-[70vh] top-full mt-2 bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200`}
-             style={{ transform: isMobile ? 'translateX(-10%)' : '' }}>
+        <div className={`absolute ${isMobile ? 'right-0 w-[250px]' : 'right-0 w-56'} top-full mt-2 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200`}>
           <div className="px-3 py-2 bg-indigo-50 text-sm font-medium text-indigo-800 border-b border-gray-200">
             {t('selectLanguage')}
           </div>
@@ -86,7 +85,7 @@ const LanguageSelector = () => {
             </div>
           </div>
           
-          <div className="max-h-[35vh] overflow-y-auto menu-scrollable bg-white">
+          <div className={`${isMobile ? 'max-h-[35vh]' : 'max-h-[180px]'} overflow-y-auto menu-scrollable`}>
             {filteredLanguages.length > 0 ? (
               filteredLanguages.map((lang) => (
                 <button

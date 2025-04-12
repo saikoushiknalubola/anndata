@@ -35,7 +35,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
                 <ChevronLeft size={24} />
               </Link>
             ) : (
-              <div className="flex-shrink-0 absolute left-3 top-2 z-20">
+              <div className="flex-shrink-0">
                 <LanguageSelector />
               </div>
             )}
