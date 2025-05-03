@@ -26,7 +26,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   }, [location.pathname]);
 
   return (
-    <div className="page-container relative max-w-6xl mx-auto">
+    <div className="page-container relative max-w-6xl mx-auto bg-gradient-to-b from-cream/30 to-white/60">
       <header className="page-header flex flex-col items-center justify-center mb-4 sm:mb-6 md:mb-8 relative pt-14 sm:pt-16 md:pt-16">
         <div className="w-full flex justify-between items-center absolute top-0 right-0 px-3 py-2 z-10">
           <div className="flex-1 flex items-center">
@@ -44,12 +44,31 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2 rounded-full bg-gradient-to-br from-saffron/30 via-white/80 to-leaf/30 p-1.5 shadow-lg border border-cream/70">
-          <Logo />
+        
+        {/* Enhanced logo container with traditional Indian design elements */}
+        <div className="logo-container relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2">
+          {/* Thali-inspired circular border */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-saffron/20 via-white/90 to-leaf/20 p-1.5 shadow-lg border border-terracotta/30"></div>
+          <div className="absolute inset-[3px] rounded-full border-[1px] border-jute/20"></div>
+          {/* Inner content with logo */}
+          <div className="relative z-10 w-full h-full">
+            <Logo />
+          </div>
+          {/* Decorative kolam-inspired dots */}
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-saffron rounded-full"></div>
+          <div className="absolute -top-1 -left-1 w-2 h-2 bg-terracotta rounded-full"></div>
+          <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-leaf rounded-full"></div>
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-jute rounded-full"></div>
         </div>
+        
         {title && (
           <div className="mt-1 mb-3 w-full flex items-center justify-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative text-soil bg-gradient-to-r from-saffron/20 via-cream to-leaf/20 px-6 py-2 rounded-full shadow-md border border-cream/70 text-center">{title}</h1>
+            <h1 className="font-decorative text-lg sm:text-xl md:text-2xl text-soil bg-gradient-to-r from-saffron/20 via-cream to-leaf/20 px-6 py-2 rounded-full shadow-md border border-terracotta/30 text-center relative overflow-hidden">
+              {/* Traditional border pattern - inspired by Indian textile patterns */}
+              <span className="absolute inset-x-0 top-0 h-[2px] bg-saffron/30"></span>
+              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-leaf/30"></span>
+              <span className="relative z-10">{title}</span>
+            </h1>
           </div>
         )}
       </header>
