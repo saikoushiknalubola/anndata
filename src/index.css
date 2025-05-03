@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,7 @@
     --popover: 35 100% 97%;
     --popover-foreground: 20 30% 20%;
 
-    --primary: 14 100% 57%;
+    --primary: 16 85% 55%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 35 33% 35%;
@@ -32,7 +32,7 @@
 
     --border: 20 20% 85%;
     --input: 20 20% 85%;
-    --ring: 14 100% 57%;
+    --ring: 16 85% 55%;
 
     --radius: 1rem;
   }
@@ -49,8 +49,8 @@
   }
 
   h1, h2, h3, .decorative-text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-family: 'Yatra One', cursive;
+    letter-spacing: 0.02em;
   }
 
   .glass-card {
@@ -62,19 +62,19 @@
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-saffron to-saffron/80 hover:from-saffron hover:to-saffron/90 text-white px-4 md:px-6 py-2 rounded-2xl 
+    @apply bg-gradient-to-r from-saffron to-terracotta hover:from-terracotta hover:to-saffron text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-earth to-earth/80 hover:from-earth/90 hover:to-earth text-white px-4 md:px-6 py-2 rounded-2xl 
+    @apply bg-gradient-to-r from-earth to-jute hover:from-jute hover:to-earth text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
   
   .btn-accent {
-    @apply bg-gradient-to-r from-leaf to-leaf/80 hover:from-leaf/90 hover:to-leaf text-white px-4 md:px-6 py-2 rounded-2xl 
+    @apply bg-gradient-to-r from-leaf to-monsoon hover:from-monsoon hover:to-leaf text-white px-4 md:px-6 py-2 rounded-2xl 
            font-medium shadow-md hover:shadow-lg transition-all duration-300 
            flex items-center justify-center gap-2;
   }
@@ -101,19 +101,19 @@
 
   /* Enhanced section titles with better visibility */
   .section-title {
-    @apply font-bold text-xl sm:text-2xl text-white bg-gradient-to-r from-saffron to-earth px-4 py-2 rounded-lg 
+    @apply font-decorative text-xl sm:text-2xl text-white bg-gradient-to-r from-saffron to-terracotta px-4 py-2 rounded-lg 
     text-center my-4 shadow-sm border border-cream/50;
   }
   
   .section-subtitle {
-    @apply font-semibold text-lg text-white bg-gradient-to-r from-earth/90 to-earth px-3 py-1.5 rounded-md shadow-sm my-3;
+    @apply font-decorative text-lg text-white bg-gradient-to-r from-earth/90 to-jute px-3 py-1.5 rounded-md shadow-sm my-3;
   }
   
   .category-title {
-    @apply font-bold text-base uppercase tracking-wide text-white bg-gradient-to-r from-saffron to-earth px-3 py-1.5 
+    @apply font-decorative text-base uppercase tracking-wide text-white bg-gradient-to-r from-saffron to-earth px-3 py-1.5 
     rounded-md shadow-sm mb-3;
   }
-  
+
   .page-transition-enter {
     @apply opacity-0;
   }
@@ -888,4 +888,148 @@
 
 .menu-item-icon-active {
   @apply bg-white/80 text-saffron;
+}
+
+/* Custom Button Styles with Indian inspiration */
+.indian-btn {
+  @apply relative overflow-hidden;
+}
+
+.indian-btn::before {
+  @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full;
+  content: '';
+  transition: transform 0.6s ease;
+}
+
+.indian-btn:hover::before {
+  @apply translate-x-full;
+}
+
+/* Enhanced language selector styling */
+.language-dropdown-container {
+  @apply border border-terracotta/20 shadow-lg;
+  animation: growIn 0.2s ease-out forwards;
+}
+
+@keyframes growIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Menu scrollable enhancements */
+.menu-scrollable {
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(195, 106, 45, 0.5) rgba(241, 240, 251, 0.7);
+}
+
+.menu-scrollable::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-scrollable::-webkit-scrollbar-track {
+  background: rgba(241, 240, 251, 0.7);
+  border-radius: 10px;
+}
+
+.menu-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(195, 106, 45, 0.5);
+  border-radius: 10px;
+}
+
+.menu-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(195, 106, 45, 0.8);
+}
+
+/* Indian-inspired decorative elements */
+.kolam-pattern {
+  background-image: url('/lovable-uploads/kolam-pattern.png');
+  background-size: 100px;
+  opacity: 0.1;
+}
+
+.warli-border {
+  @apply relative;
+}
+
+.warli-border::after {
+  content: '';
+  @apply absolute left-0 right-0 bottom-0 h-1 bg-repeat-x;
+  background-image: url('/lovable-uploads/warli-border.png');
+  background-size: 20px 1px;
+}
+
+/* Enhanced touch targets for farmer-friendly mobile use */
+@media (max-width: 640px) {
+  button, 
+  a, 
+  [role="button"], 
+  input, 
+  select, 
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .card-container, 
+  .card, 
+  [class*="Card"] {
+    @apply p-4 rounded-xl;
+  }
+}
+
+/* Voice-first technology styles for farmers */
+.voice-button {
+  @apply fixed bottom-20 right-4 md:right-6 md:bottom-6 w-14 h-14 md:w-16 md:h-16
+         rounded-full bg-gradient-to-r from-saffron to-terracotta text-white
+         shadow-lg flex items-center justify-center z-30
+         transform transition-transform duration-300 hover:scale-110;
+}
+
+.voice-button::before {
+  content: '';
+  @apply absolute inset-0 rounded-full bg-saffron opacity-30;
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  80%, 100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* Village-style card design */
+.village-card {
+  @apply relative border-2 border-jute/30 bg-cream/90 rounded-xl p-4 shadow-md;
+}
+
+.village-card::before {
+  content: '';
+  @apply absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-saffron via-wheat to-terracotta;
+}
+
+/* Clay pottery inspired elements */
+.clay-container {
+  @apply bg-gradient-to-br from-terracotta/10 to-clay/20 border border-terracotta/30 rounded-xl p-4 shadow-md relative overflow-hidden;
+}
+
+.clay-container::after {
+  content: '';
+  @apply absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.1)_10%,_transparent_70%)] pointer-events-none;
+}
+
+/* Harvest festival inspired elements */
+.festival-banner {
+  @apply bg-gradient-to-r from-marigold to-turmeric text-soil px-4 py-2 rounded-lg text-center font-decorative shadow-md;
 }

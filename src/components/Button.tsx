@@ -28,20 +28,20 @@ const Button = ({
   size = 'md'
 }: ButtonProps) => {
   const baseClasses = {
-    primary: 'bg-gradient-to-r from-saffron to-saffron/80 hover:from-saffron/90 hover:to-saffron text-white',
-    secondary: 'bg-gradient-to-r from-earth to-earth/80 hover:from-earth/90 hover:to-earth text-white',
-    accent: 'bg-gradient-to-r from-leaf to-leaf/80 hover:from-leaf/90 hover:to-leaf text-white',
-    outline: 'border-2 border-muted-foreground bg-background hover:bg-accent/10 hover:text-accent-foreground text-foreground',
-    default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    ghost: 'hover:bg-accent/10 hover:text-accent-foreground text-foreground',
+    primary: 'bg-gradient-to-r from-saffron to-terracotta hover:from-terracotta hover:to-saffron text-white',
+    secondary: 'bg-gradient-to-r from-earth to-jute hover:from-jute hover:to-earth text-white',
+    accent: 'bg-gradient-to-r from-leaf to-monsoon hover:from-monsoon hover:to-leaf text-white',
+    outline: 'border-2 border-terracotta/60 bg-white/80 hover:bg-cream/80 hover:border-saffron text-soil',
+    default: 'bg-gradient-to-r from-turmeric to-wheat hover:from-wheat hover:to-turmeric text-white',
+    ghost: 'hover:bg-cream text-soil hover:text-terracotta',
     official: 'bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-soil border border-soil/20 hover:shadow-lg'
   };
 
   const sizeClasses = {
     xs: 'px-2 py-1 text-xs rounded-md',
     sm: 'px-3 py-1.5 text-sm rounded-lg',
-    md: 'px-4 py-2 text-base rounded-xl',
-    lg: 'px-6 py-3 text-lg rounded-2xl'
+    md: 'px-4 py-2.5 text-base rounded-xl',
+    lg: 'px-6 py-3.5 text-lg rounded-2xl'
   };
 
   return (
@@ -59,6 +59,8 @@ const Button = ({
         font-medium
         flex items-center justify-center gap-2
         transform hover:scale-[1.02] active:scale-[0.98]
+        relative overflow-hidden
+        before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-in-out
         ${className}
       `}
     >

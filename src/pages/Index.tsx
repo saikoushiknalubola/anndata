@@ -11,6 +11,7 @@ import {
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Card from '../components/Card';
+import SeasonalCalendar from '../components/SeasonalCalendar';
 import { toast } from '@/components/ui/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -29,145 +30,83 @@ const HomePage = () => {
   const navButtons = [
     { 
       title: t('cropAdvisor'), 
-      icon: <Wheat size={18} />, 
+      icon: <Wheat size={20} className="text-white" />, 
       path: "/crop-advisor",
-      color: "bg-gradient-to-br from-saffron to-saffron/80" 
+      color: "bg-gradient-to-br from-saffron to-terracotta" 
     },
     { 
       title: t('soilScanner'), 
-      icon: <Leaf size={18} />, 
+      icon: <Leaf size={20} className="text-white" />, 
       path: "/soil-scanner",
-      color: "bg-gradient-to-br from-earth to-earth/80" 
+      color: "bg-gradient-to-br from-earth to-jute" 
     },
     { 
       title: "Water Management", 
-      icon: <Droplet size={18} />, 
+      icon: <Droplet size={20} className="text-white" />, 
       path: "/water-management",
-      color: "bg-gradient-to-br from-blue-500 to-blue-600/80" 
+      color: "bg-gradient-to-br from-blue-500 to-blue-600" 
     },
     { 
       title: "Pest Control", 
-      icon: <Bug size={18} />, 
+      icon: <Bug size={20} className="text-white" />, 
       path: "/pest-control",
-      color: "bg-gradient-to-br from-green-500 to-green-600/80" 
+      color: "bg-gradient-to-br from-green-500 to-green-600" 
     },
     { 
       title: "Crop Planning", 
-      icon: <Calendar size={18} />, 
+      icon: <Calendar size={20} className="text-white" />, 
       path: "/crop-planning",
-      color: "bg-gradient-to-br from-purple-500 to-purple-600/80" 
+      color: "bg-gradient-to-br from-purple-500 to-purple-600" 
     },
     { 
       title: "Soil Health", 
-      icon: <Mountain size={18} />, 
+      icon: <Mountain size={20} className="text-white" />, 
       path: "/soil-health",
-      color: "bg-gradient-to-br from-amber-500 to-amber-600/80" 
+      color: "bg-gradient-to-br from-amber-500 to-amber-600" 
     },
     { 
       title: t('alerts'), 
-      icon: <Bell size={18} />, 
+      icon: <Bell size={20} className="text-white" />, 
       path: "/alerts",
-      color: "bg-gradient-to-br from-saffron to-earth/90" 
+      color: "bg-gradient-to-br from-saffron to-earth" 
     },
     { 
       title: t('farmerTips'), 
-      icon: <Users size={18} />, 
+      icon: <Users size={20} className="text-white" />, 
       path: "/farmer-tips",
-      color: "bg-gradient-to-br from-leaf to-leaf/80" 
+      color: "bg-gradient-to-br from-leaf to-monsoon" 
     },
     { 
       title: t('wasteIdeas'), 
-      icon: <Recycle size={18} />, 
+      icon: <Recycle size={20} className="text-white" />, 
       path: "/waste-ideas",
-      color: "bg-gradient-to-br from-earth to-earth/80" 
+      color: "bg-gradient-to-br from-earth to-jute" 
     },
     { 
       title: 'Farm Subsidies', 
-      icon: <DollarSign size={18} />, 
+      icon: <DollarSign size={20} className="text-white" />, 
       path: "/farm-subsidies",
-      color: "bg-gradient-to-br from-saffron to-saffron/80" 
+      color: "bg-gradient-to-br from-saffron to-terracotta" 
     },
-  ];
-
-  const infoSections = [
-    {
-      title: t('aboutAndata'),
-      icon: <Info size={20} className="text-saffron" />,
-      content: t('aboutDesc')
-    },
-    {
-      title: t('whyChooseUs'),
-      icon: <HelpCircle size={20} className="text-leaf" />,
-      content: t('whyDesc')
-    },
-    {
-      title: t('howItWorks'),
-      icon: <FileText size={20} className="text-earth" />,
-      content: t('howDesc')
-    }
-  ];
-
-  const impactSections = [
-    {
-      title: t('reduceWaste'),
-      icon: <RefreshCw size={20} className="text-saffron" />,
-      content: t('reduceWasteDesc')
-    },
-    {
-      title: t('increaseYield'),
-      icon: <BarChart size={20} className="text-leaf" />,
-      content: t('increaseYieldDesc')
-    },
-    {
-      title: t('communitySupport'),
-      icon: <Users2 size={20} className="text-earth" />,
-      content: t('communitySupportDesc')
-    }
-  ];
-  
-  const resourceSections = [
-    {
-      title: t('digitalInitiative'),
-      icon: <Smartphone size={20} className="text-saffron" />,
-      content: t('digitalDesc')
-    },
-    {
-      title: t('governmentResources'),
-      icon: <FileText size={20} className="text-leaf" />,
-      content: t('resourcesDesc')
-    },
-    {
-      title: t('weatherInsights'),
-      icon: <Cloud size={20} className="text-earth" />,
-      content: t('weatherDesc')
-    },
-    {
-      title: t('marketPrices'),
-      icon: <DollarSign size={20} className="text-saffron" />,
-      content: t('pricesDesc')
-    },
-    {
-      title: t('learningResources'),
-      icon: <GraduationCap size={20} className="text-leaf" />,
-      content: t('learningDesc')
-    }
   ];
 
   return (
     <Layout>
       <div className="space-y-6">
         <Card 
-          className="text-center py-6 px-4 bg-gradient-to-br from-cream to-white"
-          variant="default"
+          variant="village"
+          className="text-center py-6 px-4"
         >
-          <h1 className="text-2xl font-bold text-leaf mb-3 animate-pulse-gentle">
-            {t('empowerFarm')}
-          </h1>
-          <p className="text-earth text-sm max-w-xs mx-auto">
-            {t('modernSolutions')}
-          </p>
-          <div className="mt-2 text-xs text-saffron font-medium">
-            {t('digitalIndia')}
+          <div className="relative z-10">
+            <h1 className="text-2xl font-decorative text-soil mb-3 animate-pulse-gentle">
+              {t('empowerFarm')}
+            </h1>
+            <p className="text-earth text-sm max-w-xs mx-auto">
+              {t('modernSolutions')}
+            </p>
+            <div className="mt-2 text-xs text-terracotta font-medium">
+              {t('digitalIndia')}
+            </div>
           </div>
         </Card>
 
@@ -175,34 +114,34 @@ const HomePage = () => {
           <img 
             src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
             alt="Azadi Ka Amrit Mahotsav" 
-            className="h-8 md:h-10 w-auto object-contain"
+            className="h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform"
             loading="lazy"
           />
           <img 
             src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" 
             alt="Digital India" 
-            className="h-7 md:h-9 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
             loading="lazy"
           />
           <img 
             src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" 
             alt="G20 India" 
-            className="h-7 md:h-9 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
             loading="lazy"
           />
           <img 
             src="/lovable-uploads/6f8147b2-570c-4b9c-9982-c979295d71a3.png" 
             alt="Make in India" 
-            className="h-7 md:h-9 w-auto object-contain"
+            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
             loading="lazy"
           />
         </div>
 
-        <Card className="bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 border border-[#FF9933]/30">
+        <Card variant="clay" className="border border-terracotta/30">
           <div className="flex items-center justify-between">
             <div className="flex-1">
-              <h3 className="font-bold text-earth mb-2">Powered by Bhashini</h3>
-              <p className="text-sm text-earth/80">
+              <h3 className="font-decorative text-terracotta mb-2">Powered by Bhashini</h3>
+              <p className="text-sm text-soil/80">
                 India's national language translation mission breaking barriers with AI voice technology in 22+ Indian languages
               </p>
               <div className="flex items-center mt-3 space-x-2">
@@ -229,45 +168,48 @@ const HomePage = () => {
           </div>
         </Card>
         
-        <Card className="bg-white/90 border border-blue-500/20 shadow-md">
-          <h3 className="font-bold text-blue-600 mb-2 flex items-center">
+        <Card variant="bordered" className="bg-white/90 border border-blue-500/20 shadow-md">
+          <h3 className="font-decorative text-blue-600 mb-2 flex items-center">
             <Languages size={18} className="mr-2" /> 
             How Bhashini Empowers Andata
           </h3>
           <div className="space-y-2 text-sm">
             <div className="flex items-start">
               <Globe size={16} className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-              <p className="text-earth/80">Enables farmers to use Andata in their native language, removing literacy barriers</p>
+              <p className="text-soil/80">Enables farmers to use Andata in their native language, removing literacy barriers</p>
             </div>
             <div className="flex items-start">
               <Mic size={16} className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-              <p className="text-earth/80">Voice input & output in 22+ Indian languages makes farming advice accessible to all</p>
+              <p className="text-soil/80">Voice input & output in 22+ Indian languages makes farming advice accessible to all</p>
             </div>
             <div className="flex items-start">
               <Sparkles size={16} className="text-blue-500 mt-1 mr-2 flex-shrink-0" />
-              <p className="text-earth/80">AI-powered real-time translations increase reach to 500+ million rural Indians</p>
+              <p className="text-soil/80">AI-powered real-time translations increase reach to 500+ million rural Indians</p>
             </div>
           </div>
         </Card>
+
+        <SeasonalCalendar />
 
         <div className="grid grid-cols-1 gap-3 animate-slide-up">
           {navButtons.map((button, index) => (
             <Button 
               key={button.title}
-              variant={index % 2 === 0 ? "primary" : index % 3 === 0 ? "accent" : "secondary"}
+              variant={index % 3 === 0 ? "primary" : index % 3 === 1 ? "secondary" : "accent"}
               icon={button.icon}
               fullWidth
-              className={`py-3 justify-start px-5 ${index % 2 === 0 ? "animate-delay-100" : ""}`}
+              className={`py-3 justify-start px-5 indian-btn ${index % 2 === 0 ? "animate-delay-100" : ""}`}
               onClick={() => navigate(button.path)}
+              size="md"
             >
-              <span className="font-semibold">{button.title}</span>
+              <span className="font-decorative">{button.title}</span>
             </Button>
           ))}
         </div>
 
-        <Card variant="rich" className="border-2 border-saffron/20 mt-6">
-          <h2 className="text-xl font-semibold text-earth mb-3">Why Andata Matters</h2>
-          <div className="space-y-3 text-sm text-earth/90">
+        <Card variant="rich" className="border-2 border-terracotta/20 mt-6">
+          <h2 className="text-xl font-decorative text-soil mb-3">Why Andata Matters</h2>
+          <div className="space-y-3 text-sm text-soil/90">
             <div className="flex items-start">
               <div className="bg-saffron/10 p-1.5 rounded-full mr-2 mt-0.5">
                 <Users2 size={16} className="text-saffron" />
@@ -298,119 +240,29 @@ const HomePage = () => {
         {/* Enhanced How We Impact Farming Section with better alignment and visual appeal */}
         <div className="mt-8 space-y-4">
           <div className="text-center">
-            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-saffron to-leaf text-white shadow-md mb-3">
+            <h2 className="inline-block text-xl font-decorative py-2 px-6 rounded-lg bg-gradient-to-r from-saffron to-terracotta text-white shadow-md mb-3">
               {t('howWeImpact')}
             </h2>
-            <p className="text-sm text-earth/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm">
+            <p className="text-sm text-soil/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm">
               {t('impactDesc')}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {impactSections.map((section, index) => (
-              <Card 
-                key={index} 
-                className="bg-gradient-to-br from-white to-cream/20 border border-earth/10 shadow-md hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-1"
-              >
-                <div className="flex flex-col items-center text-center h-full">
-                  <div className={`bg-gradient-to-br ${
-                    index === 0 ? "from-saffron/20 to-saffron/5" : 
-                    index === 1 ? "from-leaf/20 to-leaf/5" : 
-                    "from-earth/20 to-earth/5"
-                  } p-3 rounded-full mb-4 shadow-sm`}>
-                    {section.icon}
-                  </div>
-                  <h3 className={`font-bold mb-3 text-lg ${
-                    index === 0 ? "text-saffron" : 
-                    index === 1 ? "text-leaf" : 
-                    "text-earth"
-                  }`}>{section.title}</h3>
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-3"></div>
-                  <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Enhanced Government Resources Section with better alignment */}
-        <div className="mt-8 space-y-4">
-          <div className="text-center">
-            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-earth to-saffron text-white shadow-md mb-3">
-              {t('governmentResources')}
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {resourceSections.map((section, index) => (
-              <Card 
-                key={index} 
-                className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-earth/10 bg-white/90"
-              >
-                <div className="flex items-start">
-                  <div className={`rounded-full p-3 mr-4 flex-shrink-0 ${
-                    index % 3 === 0 ? "bg-saffron/10" : 
-                    index % 3 === 1 ? "bg-leaf/10" : 
-                    "bg-earth/10"
-                  }`}>
-                    {section.icon}
-                  </div>
-                  <div>
-                    <h3 className={`font-bold mb-2 ${
-                      index % 3 === 0 ? "text-saffron" : 
-                      index % 3 === 1 ? "text-leaf" : 
-                      "text-earth"
-                    }`}>{section.title}</h3>
-                    <div className="h-px w-12 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-2"></div>
-                    <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Enhanced Farming Smarter Section with better alignment */}
-        <div className="mt-8 space-y-4">
-          <div className="text-center">
-            <h2 className="inline-block text-xl font-bold py-2 px-6 rounded-lg bg-gradient-to-r from-saffron/90 to-leaf/90 text-white shadow-md mb-3">
-              {t('farmingSmarter')}
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {infoSections.map((section, index) => (
-              <Card 
-                key={index} 
-                className="bg-white/90 hover:shadow-lg transition-all duration-300 h-full transform hover:-translate-y-1 border border-earth/10"
-              >
-                <div className="flex flex-col items-center text-center h-full">
-                  <div className="bg-gradient-to-r from-saffron/10 to-leaf/10 p-3 rounded-full mb-4 shadow-sm">
-                    {section.icon}
-                  </div>
-                  <h3 className="font-bold text-earth mb-3">{section.title}</h3>
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-earth/30 to-transparent mb-3"></div>
-                  <p className="text-sm text-earth/90 leading-relaxed">{section.content}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        <Card className="mt-6 bg-gradient-to-r from-saffron/20 to-saffron/5 border border-saffron/30 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-          <div className="flex items-center">
-            <div className="bg-saffron text-white p-2 rounded-full mr-3 shadow-sm">
-              <Phone size={20} />
+          <Card className="mt-6 bg-gradient-to-r from-terracotta/20 to-terracotta/5 border border-terracotta/30 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            <div className="flex items-center">
+              <div className="bg-terracotta text-white p-2 rounded-full mr-3 shadow-sm">
+                <Phone size={20} />
+              </div>
+              <div className="text-left">
+                <h3 className="font-decorative text-soil">{t('helplineText')}</h3>
+                <p className="text-terracotta font-bold">{t('helplineNumber')}</p>
+              </div>
             </div>
-            <div className="text-left">
-              <h3 className="font-bold text-earth">{t('helplineText')}</h3>
-              <p className="text-saffron font-bold">{t('helplineNumber')}</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
 
         <div className="text-center mt-6 mb-2">
-          <p className="text-xs text-earth/70">
+          <p className="text-xs text-soil/70">
             {t('version')}
           </p>
         </div>

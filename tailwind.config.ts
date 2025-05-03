@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -56,34 +57,22 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Enhanced color palette
-        'saffron': '#FF5722',
-        'earth': '#5D4037',  // Rich brown
-        'leaf': '#2E7D32',   // Richer green similar to govt portal
-        'cream': '#FFF8E1',  // Lighter cream for background
-        'soil': '#3E2723',   // Deep brown
-        'govt-blue': '#0D47A1', // Rich government blue color
-        'govt-teal': '#00796B', // Government teal color
-        'govt-orange': '#E65100', // Government orange color
-        'govt-brown': '#8D6E63', // Warm government brown
-        'govt-cream': '#FFF3E0', // Government portal cream
-        'govt-white': '#FFFFFF', // Pure white for contrast
-        'telangana-blue': '#1565C0', // Blue representing Telangana govt portals
-        // New colors for improved UI
-        'primary-blue': '#1976D2',
-        'success-green': '#388E3C',
-        'warning-amber': '#FFA000',
-        'error-red': '#D32F2F',
-        'info-teal': '#0097A7',
-        'neutral-gray': '#607D8B',
-        // Additional aesthetic colors
-        'pale-gold': '#F9A825',
-        'deep-orange': '#D84315',
-        'forest-green': '#2E7D32',
-        'soft-cream': '#FFECB3',
-        'rich-brown': '#4E342E',
-        'terracotta': '#BF360C',
-        'sage-green': '#7CB342'
+        // Enhanced rural Indian-inspired color palette
+        'saffron': '#FF5722',      // Vibrant saffron
+        'terracotta': '#C36A2D',   // Clay terracotta
+        'marigold': '#F2B825',     // Marigold yellow
+        'jute': '#8B6F47',         // Jute brown
+        'monsoon': '#6FAA9C',      // Monsoon green
+        'turmeric': '#E3B505',     // Turmeric gold
+        'earth': '#5D4037',        // Rich soil brown
+        'leaf': '#2E7D32',         // Fresh leaf green
+        'cream': '#FFF8E1',        // Light cream background
+        'soil': '#3E2723',         // Deep soil
+        'clay': '#D7CCC8',         // Clay pottery
+        'spice': '#FF7043',        // Warm spice red
+        'wheat': '#F9A825',        // Wheat gold
+        'millet': '#FFE0B2',       // Millet grain color
+        'water': '#4FC3F7',        // Water blue
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -122,6 +111,14 @@ export default {
         'scale-in': {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' }
+        },
+        'ripple': {
+          '0%': { transform: 'scale(0.8)', opacity: '1' },
+          '100%': { transform: 'scale(2)', opacity: '0' }
+        },
+        'swing': {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' }
         }
       },
       animation: {
@@ -132,11 +129,19 @@ export default {
         'fade-in': 'fade-in 0.5s ease-out',
         'slide-up': 'slide-up 0.5s ease-out',
         'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
-        'scale-in': 'scale-in 0.4s ease-out'
+        'scale-in': 'scale-in 0.4s ease-out',
+        'ripple': 'ripple 1.5s ease-out infinite',
+        'swing': 'swing 3s ease-in-out infinite'
       },
       fontFamily: {
-        'hindi': ['Poppins', 'sans-serif'],
-        'decorative': ['Poppins', 'sans-serif']
+        'hindi': ['Tiro Devanagari Hindi', 'serif'],
+        'decorative': ['Yatra One', 'cursive'],
+        'sans': ['Poppins', 'sans-serif']
+      },
+      backgroundImage: {
+        'paisley-pattern': "url('/lovable-uploads/paisley-pattern.png')",
+        'warli-art': "url('/lovable-uploads/warli-art.png')",
+        'village-texture': "url('/lovable-uploads/village-texture.png')",
       }
     }
   },

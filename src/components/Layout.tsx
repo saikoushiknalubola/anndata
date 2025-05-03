@@ -31,7 +31,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         <div className="w-full flex justify-between items-center absolute top-0 right-0 px-3 py-2 z-10">
           <div className="flex-1 flex items-center">
             {showBackButton ? (
-              <Link to="/" className="text-earth hover:text-saffron transition-colors transform hover:scale-110">
+              <Link to="/" className="text-terracotta hover:text-saffron transition-colors transform hover:scale-110 p-2">
                 <ChevronLeft size={24} />
               </Link>
             ) : (
@@ -44,12 +44,12 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
             <MenuSection />
           </div>
         </div>
-        <div className="logo-container w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2 rounded-full bg-gradient-to-br from-[#FF9933]/30 via-white/80 to-[#138808]/30 p-1.5 shadow-lg border border-cream/70">
+        <div className="logo-container w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2 rounded-full bg-gradient-to-br from-saffron/30 via-white/80 to-leaf/30 p-1.5 shadow-lg border border-cream/70">
           <Logo />
         </div>
         {title && (
           <div className="mt-1 mb-3 w-full flex items-center justify-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative font-bold text-earth bg-gradient-to-r from-saffron/30 via-white to-leaf/30 px-6 py-2 rounded-full shadow-md border border-cream/70 text-center">{title}</h1>
+            <h1 className="text-lg sm:text-xl md:text-2xl font-decorative text-soil bg-gradient-to-r from-saffron/20 via-cream to-leaf/20 px-6 py-2 rounded-full shadow-md border border-cream/70 text-center">{title}</h1>
           </div>
         )}
       </header>

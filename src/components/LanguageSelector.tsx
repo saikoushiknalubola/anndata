@@ -54,52 +54,59 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="bg-indigo-500 hover:bg-indigo-600 text-white flex items-center gap-1 px-2 py-1 rounded-full shadow-md border border-white/20 transition-all"
+        className="bg-gradient-to-r from-saffron to-terracotta hover:from-terracotta hover:to-saffron text-white flex items-center gap-1 px-2.5 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
         aria-label="Select language"
       >
-        <Globe size={isMobile ? 14 : 18} className="text-white" />
+        <Globe size={isMobile ? 16 : 18} className="text-white" />
         {!isMobile && (
           <span className="truncate font-medium text-sm max-w-[80px]">
             {currentLanguage}
           </span>
         )}
-        <ChevronDown size={isMobile ? 12 : 14} className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown 
+          size={isMobile ? 12 : 14} 
+          className={`transition-transform text-white ${isOpen ? 'rotate-180' : ''}`} 
+        />
       </button>
       
       {isOpen && (
-        <div className={`absolute ${isMobile ? 'right-0 w-[250px]' : 'right-0 w-56'} top-full mt-2 bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200`}>
-          <div className="px-3 py-2 bg-indigo-50 text-sm font-medium text-indigo-800 border-b border-gray-200">
+        <div 
+          className={`fixed ${isMobile ? 'left-0 right-0 mx-3 top-16' : 'absolute right-0 w-60 top-full mt-2'} 
+            bg-white rounded-lg shadow-xl overflow-hidden z-50 border border-clay language-dropdown-container`}
+          style={{maxWidth: isMobile ? 'calc(100vw - 24px)' : '320px'}}
+        >
+          <div className="px-3 py-2 bg-gradient-to-r from-terracotta to-saffron text-sm font-decorative text-white border-b border-white/20">
             {t('selectLanguage')}
           </div>
           
-          <div className="px-2 py-1 border-b border-indigo-100">
-            <div className="flex items-center bg-indigo-50 rounded-md px-2">
-              <Search size={14} className="text-indigo-500" />
+          <div className="px-2 py-1 border-b border-clay">
+            <div className="flex items-center bg-cream/80 rounded-md px-2">
+              <Search size={14} className="text-jute" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={isMobile ? "Search..." : "Search languages..."}
-                className="w-full p-1.5 text-sm bg-transparent focus:outline-none text-indigo-800"
+                className="w-full p-2 text-sm bg-transparent focus:outline-none text-soil"
               />
             </div>
           </div>
           
-          <div className={`${isMobile ? 'max-h-[35vh]' : 'max-h-[180px]'} overflow-y-auto menu-scrollable`}>
+          <div className={`${isMobile ? 'max-h-[40vh]' : 'max-h-[220px]'} overflow-y-auto menu-scrollable`}>
             {filteredLanguages.length > 0 ? (
               filteredLanguages.map((lang) => (
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
-                  className={`w-full text-left px-3 py-2 text-sm hover:bg-indigo-50 transition-colors border-b border-gray-100 last:border-0 ${
-                    language === lang.code ? 'bg-indigo-100 text-indigo-800 font-medium' : 'text-indigo-700'
+                  className={`w-full text-left px-3 py-3 text-sm hover:bg-cream transition-colors border-b border-clay/30 last:border-0 ${
+                    language === lang.code ? 'bg-cream text-terracotta font-medium' : 'text-soil'
                   }`}
                 >
                   {lang.name}
                 </button>
               ))
             ) : (
-              <div className="px-3 py-2 text-sm text-indigo-400 text-center">
+              <div className="px-3 py-2 text-sm text-terracotta/70 text-center">
                 No languages found
               </div>
             )}
