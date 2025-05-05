@@ -40,26 +40,20 @@ const SeasonalCalendar = () => {
   ];
 
   return (
-    <Card className="bg-cream/80 border-2 border-terracotta/20 village-card">
+    <Card className="bg-cream/80 border border-terracotta/20 shadow-sm hover:shadow-md transition-all duration-300" variant="warli">
       <h3 className="font-decorative text-lg text-soil mb-4 flex items-center gap-2 pb-2 border-b border-terracotta/20">
         <div className="p-1.5 bg-terracotta/10 rounded-full">
           <Wheat className="text-terracotta" size={22} />
         </div>
-        <span className="text-shadow-light">Traditional Farming Calendar</span>
+        <span>Traditional Farming Calendar</span>
       </h3>
       
       <div className="space-y-3 pb-1">
         {seasons.map((season, index) => (
           <div 
             key={index}
-            className={`rounded-lg p-3 border ${season.color} relative overflow-hidden transform transition-transform hover:translate-y-[-2px] hover:shadow-md`}
+            className={`rounded-lg p-3 border ${season.color} relative overflow-hidden transform transition-transform hover:-translate-y-1 hover:shadow-md`}
           >
-            {/* Decorative corner pattern inspired by Indian textile designs */}
-            <div className="absolute top-0 right-0 w-12 h-12 opacity-10" 
-                 style={{backgroundImage: "url('/lovable-uploads/paisley-pattern.png')", 
-                         backgroundSize: "contain", 
-                         backgroundRepeat: "no-repeat"}}></div>
-            
             <div className="flex items-start">
               <div className="p-2 bg-white/70 rounded-full mr-3 shadow-sm border border-white/50">
                 {season.icon}
@@ -82,9 +76,9 @@ const SeasonalCalendar = () => {
         ))}
       </div>
       
-      {/* Visual decorative element - stylized leaf motif */}
-      <div className="w-full flex justify-center mt-2">
-        <div className="h-px w-1/2 bg-gradient-to-r from-transparent via-terracotta/30 to-transparent"></div>
+      {/* Visual decorative element inspired by traditional patterns */}
+      <div className="w-full flex justify-center mt-3">
+        <div className="h-0.5 w-1/3 bg-gradient-to-r from-transparent via-terracotta/40 to-transparent"></div>
       </div>
     </Card>
   );

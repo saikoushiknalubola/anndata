@@ -45,29 +45,15 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
           </div>
         </div>
         
-        {/* Enhanced logo container with traditional Indian design elements */}
+        {/* Simplified logo container */}
         <div className="logo-container relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2">
-          {/* Thali-inspired circular border */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-saffron/20 via-white/90 to-leaf/20 p-1.5 shadow-lg border border-terracotta/30"></div>
-          <div className="absolute inset-[3px] rounded-full border-[1px] border-jute/20"></div>
-          {/* Inner content with logo */}
-          <div className="relative z-10 w-full h-full">
-            <Logo />
-          </div>
-          {/* Decorative kolam-inspired dots */}
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-saffron rounded-full"></div>
-          <div className="absolute -top-1 -left-1 w-2 h-2 bg-terracotta rounded-full"></div>
-          <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-leaf rounded-full"></div>
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-jute rounded-full"></div>
+          <Logo />
         </div>
         
         {title && (
           <div className="mt-1 mb-3 w-full flex items-center justify-center">
-            <h1 className="font-decorative text-lg sm:text-xl md:text-2xl text-soil bg-gradient-to-r from-saffron/20 via-cream to-leaf/20 px-6 py-2 rounded-full shadow-md border border-terracotta/30 text-center relative overflow-hidden">
-              {/* Traditional border pattern - inspired by Indian textile patterns */}
-              <span className="absolute inset-x-0 top-0 h-[2px] bg-saffron/30"></span>
-              <span className="absolute inset-x-0 bottom-0 h-[2px] bg-leaf/30"></span>
-              <span className="relative z-10">{title}</span>
+            <h1 className="font-decorative text-lg sm:text-xl md:text-2xl text-soil bg-cream/70 px-6 py-2 rounded-full shadow-sm border border-terracotta/20 text-center">
+              {title}
             </h1>
           </div>
         )}

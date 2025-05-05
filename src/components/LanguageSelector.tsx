@@ -54,7 +54,7 @@ const LanguageSelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={toggleDropdown}
-        className="bg-gradient-to-r from-terracotta to-saffron hover:from-saffron hover:to-terracotta text-white flex items-center gap-1 px-2.5 py-1.5 rounded-full shadow-md border border-white/20 transition-all"
+        className="bg-gradient-to-r from-terracotta to-saffron hover:from-saffron hover:to-terracotta text-white flex items-center gap-1 px-2.5 py-1.5 rounded-full shadow-md border border-white/20 transition-all active:scale-95"
         aria-label="Select language"
       >
         <Globe size={isMobile ? 16 : 18} className="text-white" />
@@ -72,7 +72,7 @@ const LanguageSelector = () => {
       {isOpen && (
         <div 
           className={`fixed ${isMobile ? 'left-0 right-0 mx-3 top-16' : 'absolute right-0 w-60 top-full mt-2'} 
-            bg-white rounded-lg shadow-xl overflow-hidden z-50 border-2 border-saffron/30 language-dropdown-container`}
+            bg-white rounded-lg shadow-xl overflow-hidden z-50 border-2 border-saffron/30 language-dropdown-container animate-fade-in`}
           style={{maxWidth: isMobile ? 'calc(100vw - 24px)' : '320px'}}
         >
           <div className="px-3 py-2 bg-gradient-to-r from-saffron to-terracotta text-sm font-decorative text-white border-b border-white/20">
@@ -100,7 +100,7 @@ const LanguageSelector = () => {
                 <button
                   key={lang.code}
                   onClick={() => handleSelect(lang.code)}
-                  className={`w-full text-left px-3 py-3 text-sm hover:bg-cream transition-colors border-b border-clay/30 last:border-0 ${
+                  className={`w-full text-left px-3 py-3 text-sm hover:bg-cream transition-colors border-b border-clay/30 last:border-0 active:bg-saffron/20 ${
                     language === lang.code 
                       ? 'bg-gradient-to-r from-saffron/20 to-transparent text-terracotta font-medium' 
                       : 'text-soil'
@@ -120,9 +120,6 @@ const LanguageSelector = () => {
               </div>
             )}
           </div>
-          
-          {/* Visual decoration for the dropdown - inspired by Indian rangoli patterns */}
-          <div className="h-1 w-full bg-gradient-to-r from-saffron via-white to-leaf"></div>
         </div>
       )}
     </div>

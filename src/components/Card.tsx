@@ -99,7 +99,7 @@ const Card = ({
   
   return (
     <div 
-      className={`p-5 sm:p-6 rounded-xl ${variantClasses[variant]} ${className} ${flexClasses} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
+      className={`p-4 sm:p-5 rounded-xl ${variantClasses[variant]} ${className} ${flexClasses} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
       onClick={onClick}
     >
       {renderDecorations()}

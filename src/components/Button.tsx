@@ -44,8 +44,8 @@ const Button = ({
   const sizeClasses = {
     xs: 'px-2 py-1 text-xs rounded-md',
     sm: 'px-3 py-1.5 text-sm rounded-lg',
-    md: 'px-4 py-2.5 text-base rounded-xl',
-    lg: 'px-6 py-3.5 text-lg rounded-2xl'
+    md: 'px-4 py-3 text-base rounded-xl',
+    lg: 'px-6 py-4 text-lg rounded-2xl'
   };
 
   // Indian-inspired border decoration for special variants
@@ -54,6 +54,12 @@ const Button = ({
       return `
         after:content-[''] after:absolute after:inset-0 after:rounded-[inherit] 
         after:border-2 after:border-dashed after:border-white/30 after:pointer-events-none
+      `;
+    }
+    if (variant === 'primary' || variant === 'secondary' || variant === 'accent') {
+      return `
+        after:content-[''] after:absolute after:inset-0 after:rounded-[inherit] 
+        after:border after:border-white/20 after:pointer-events-none
       `;
     }
     return '';
@@ -82,17 +88,17 @@ const Button = ({
       `}
     >
       {loading ? (
-        <Loader2 className="animate-spin mr-2" size={size === 'xs' ? 14 : size === 'sm' ? 16 : size === 'lg' ? 22 : 20} />
+        <Loader2 className="animate-spin mr-2" size={size === 'xs' ? 14 : size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />
       ) : icon ? (
         <span className="mr-2">{icon}</span>
       ) : null}
       <span className="relative z-10">{children}</span>
       
-      {/* Circle decoration for festive button */}
-      {variant === 'festive' && (
+      {/* Circle decoration for special buttons */}
+      {(variant === 'festive' || variant === 'primary') && (
         <>
-          <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-saffron/80"></span>
-          <span className="absolute bottom-0 left-0 w-2 h-2 rounded-full bg-leaf/80"></span>
+          <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-white/80"></span>
+          <span className="absolute bottom-0 left-0 w-2 h-2 rounded-full bg-white/80"></span>
         </>
       )}
     </button>
