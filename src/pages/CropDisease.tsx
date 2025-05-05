@@ -103,7 +103,6 @@ const CropDisease = () => {
               
               <label className="cursor-pointer">
                 <Button 
-                  as="div"
                   variant="outline"
                   icon={<Upload size={20} />}
                   fullWidth
