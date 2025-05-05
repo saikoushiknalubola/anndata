@@ -6,12 +6,13 @@ import {
   HelpCircle, BarChart, RefreshCw, Users2, Phone, 
   BookOpen, Cloud, DollarSign, GraduationCap, Smartphone, 
   Headphones, Volume2, Mic, Sparkles, Globe, Languages,
-  Droplet, Bug, Calendar, Mountain
+  Droplet, Bug, Calendar, Mountain, Camera, ShoppingCart, Database
 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import SeasonalCalendar from '../components/SeasonalCalendar';
+import Disclaimer from '../components/Disclaimer';
 import { toast } from '@/components/ui/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -45,6 +46,24 @@ const HomePage = () => {
       icon: <Droplet size={20} className="text-white" />, 
       path: "/water-management",
       color: "bg-gradient-to-br from-blue-500 to-blue-600" 
+    },
+    { 
+      title: "Crop Disease Identifier", 
+      icon: <Camera size={20} className="text-white" />, 
+      path: "/crop-disease",
+      color: "bg-gradient-to-br from-red-500 to-red-600" 
+    },
+    { 
+      title: "Marketplace", 
+      icon: <ShoppingCart size={20} className="text-white" />, 
+      path: "/marketplace",
+      color: "bg-gradient-to-br from-yellow-500 to-amber-600" 
+    },
+    { 
+      title: "Knowledge Base", 
+      icon: <Database size={20} className="text-white" />, 
+      path: "/knowledge-base",
+      color: "bg-gradient-to-br from-indigo-500 to-indigo-600" 
     },
     { 
       title: "Pest Control", 
@@ -109,33 +128,6 @@ const HomePage = () => {
             </div>
           </div>
         </Card>
-
-        <div className="flex items-center justify-center space-x-3 py-2 overflow-x-auto scrollbar-hide">
-          <img 
-            src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
-            alt="Azadi Ka Amrit Mahotsav" 
-            className="h-8 md:h-10 w-auto object-contain hover:scale-105 transition-transform"
-            loading="lazy"
-          />
-          <img 
-            src="/lovable-uploads/96c8d011-6254-4a2d-8619-8e491a0622ec.png" 
-            alt="Digital India" 
-            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
-            loading="lazy"
-          />
-          <img 
-            src="/lovable-uploads/d9ca9bcc-256a-4565-b55a-751b3db158bd.png" 
-            alt="G20 India" 
-            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
-            loading="lazy"
-          />
-          <img 
-            src="/lovable-uploads/6f8147b2-570c-4b9c-9982-c979295d71a3.png" 
-            alt="Make in India" 
-            className="h-7 md:h-9 w-auto object-contain hover:scale-105 transition-transform"
-            loading="lazy"
-          />
-        </div>
 
         <Card variant="clay" className="border border-terracotta/30">
           <div className="flex items-center justify-between">
@@ -237,7 +229,7 @@ const HomePage = () => {
           </div>
         </Card>
 
-        {/* Enhanced How We Impact Farming Section with better alignment and visual appeal */}
+        {/* Enhanced How We Impact Farming Section */}
         <div className="mt-8 space-y-4">
           <div className="text-center">
             <h2 className="inline-block text-xl font-decorative py-2 px-6 rounded-lg bg-gradient-to-r from-saffron to-terracotta text-white shadow-md mb-3">
@@ -260,6 +252,9 @@ const HomePage = () => {
             </div>
           </Card>
         </div>
+
+        {/* Add the disclaimer component */}
+        <Disclaimer />
 
         <div className="text-center mt-6 mb-2">
           <p className="text-xs text-soil/70">

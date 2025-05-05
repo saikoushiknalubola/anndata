@@ -26,7 +26,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
   }, [location.pathname]);
 
   return (
-    <div className="page-container relative max-w-6xl mx-auto bg-gradient-to-b from-cream/30 to-white/60">
+    <div className="page-container relative max-w-6xl mx-auto bg-gradient-to-b from-cream/30 to-white/60 min-h-screen">
       <header className="page-header flex flex-col items-center justify-center mb-4 sm:mb-6 md:mb-8 relative pt-14 sm:pt-16 md:pt-16">
         <div className="w-full flex justify-between items-center absolute top-0 right-0 px-3 py-2 z-10">
           <div className="flex-1 flex items-center">

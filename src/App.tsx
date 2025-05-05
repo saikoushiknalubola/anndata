@@ -26,6 +26,10 @@ import WaterManagement from './pages/WaterManagement';
 import PestControl from './pages/PestControl';
 import CropPlanning from './pages/CropPlanning';
 import SoilHealth from './pages/SoilHealth';
+// Import new pages
+import CropDisease from './pages/CropDisease';
+import Marketplace from './pages/Marketplace';
+import KnowledgeBase from './pages/KnowledgeBase';
 
 function App() {
   return (
@@ -51,11 +55,14 @@ function App() {
               <Route path="/organic-farming" element={<OrganicFarming />} />
               <Route path="/equipment-catalog" element={<EquipmentCatalog />} />
               <Route path="/developer" element={<Developer />} />
-              {/* New routes for additional pages */}
               <Route path="/water-management" element={<WaterManagement />} />
               <Route path="/pest-control" element={<PestControl />} />
               <Route path="/crop-planning" element={<CropPlanning />} />
               <Route path="/soil-health" element={<SoilHealth />} />
+              {/* New routes */}
+              <Route path="/crop-disease" element={<CropDisease />} />
+              <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/knowledge-base" element={<KnowledgeBase />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
