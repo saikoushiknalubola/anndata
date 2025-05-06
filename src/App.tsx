@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
 import VoiceAssistant from './components/VoiceAssistant';
 import GovernmentBranding from './components/GovernmentBranding';
+import WelcomeAudio from './components/WelcomeAudio';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
 import MarketPrices from './pages/MarketPrices';
@@ -37,6 +38,7 @@ function App() {
       <Router>
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
+          <WelcomeAudio />
           <div className="pt-1">
             <Routes>
               <Route path="/" element={<HomePage />} />

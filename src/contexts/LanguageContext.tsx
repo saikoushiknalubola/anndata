@@ -105,7 +105,34 @@ const translations: Record<string, Record<string, string>> = {
     'tryAgain': 'Please try again',
     'voiceUnderstood': 'I understood your request. How can I help you further?',
     'goingToWeather': 'Showing you the weather information',
-    'goingToLearning': 'Taking you to farming lessons'
+    'goingToLearning': 'Taking you to farming lessons',
+    
+    // New Welcome Audio Translations
+    'welcomeToAndata': 'Welcome to Andata',
+    'welcomeAnnouncement': 'Welcome to Andata, your intelligent farming companion. How can we help you today?',
+    'mute': 'Mute Audio',
+    'unmute': 'Unmute Audio',
+    'startSpeaking': 'Start speaking to interact with your voice assistant',
+    'tryVoiceCommands': 'Try asking for weather, crop advice, or market prices',
+    'quickCommands': 'Quick Commands',
+    'voiceVolume': 'Voice Volume',
+    'voiceSpeed': 'Voice Speed',
+    'clearHistory': 'Clear History',
+    'historyClear': 'History Cleared',
+    'historyClearDesc': 'Your conversation history has been cleared',
+    'settings': 'Settings',
+    'chat': 'Chat',
+    'speaking': 'Speaking...',
+    'voiceMuted': 'Voice Muted',
+    'voiceMutedDesc': 'Assistant voice is now muted',
+    'voiceUnmuted': 'Voice Unmuted',
+    'voiceUnmutedDesc': 'Assistant voice is now unmuted',
+    'goingToMarket': 'Showing you the market prices',
+    'goingToOrganic': 'Taking you to organic farming page',
+    'goingToTips': 'Showing you farming tips',
+    'goingToSubsidies': 'Taking you to farm subsidies information',
+    'goingToEquipment': 'Showing you farming equipment catalog',
+    'goingToDeveloper': 'Taking you to developer page',
   },
   hi: {
     // Hindi translations
@@ -184,7 +211,34 @@ const translations: Record<string, Record<string, string>> = {
     'tryAgain': 'कृपया पुनः प्रयास करें',
     'voiceUnderstood': 'मैंने आपका अनुरोध समझा। मैं आपकी और कैसे मदद कर सकता हूँ?',
     'goingToWeather': 'आपको मौसम की जानकारी दिखा रहा हूँ',
-    'goingToLearning': 'आपको खेती के पाठों पर ले जा रहा हूँ'
+    'goingToLearning': 'आपको खेती के पाठों पर ले जा रहा हूँ',
+    
+    // New Welcome Audio Translations
+    'welcomeToAndata': 'अनदाता में आपका स्वागत है',
+    'welcomeAnnouncement': 'अनदाता में आपका स्वागत है, आपका बुद्धिमान कृषि साथी। आज हम आपकी कैसे मदद कर सकते हैं?',
+    'mute': 'ऑडियो म्यूट करें',
+    'unmute': 'ऑडियो अनम्यूट करें',
+    'startSpeaking': 'अपने वॉइस असिस्टेंट से बातचीत करने के लिए बोलना शुरू करें',
+    'tryVoiceCommands': 'मौसम, फसल सलाह या बाजार मूल्य पूछने का प्रयास करें',
+    'quickCommands': 'त्वरित आदेश',
+    'voiceVolume': 'आवाज़ की मात्रा',
+    'voiceSpeed': 'आवाज़ की गति',
+    'clearHistory': 'इतिहास मिटाएं',
+    'historyClear': 'इतिहास मिटा दिया गया',
+    'historyClearDesc': 'आपका वार्तालाप इतिहास मिटा दिया गया है',
+    'settings': 'सेटिंग्स',
+    'chat': 'चैट',
+    'speaking': 'बोल रहा है...',
+    'voiceMuted': 'आवाज़ म्यूट की गई',
+    'voiceMutedDesc': 'सहायक आवाज अब म्यूट है',
+    'voiceUnmuted': 'आवाज़ अनम्यूट की गई',
+    'voiceUnmutedDesc': 'सहायक आवाज अब अनम्यूट है',
+    'goingToMarket': 'आपको बाजार भाव दिखा रहा हूँ',
+    'goingToOrganic': 'आपको जैविक खेती पृष्ठ पर ले जा रहा हूँ',
+    'goingToTips': 'आपको खेती के टिप्स दिखा रहा हूँ',
+    'goingToSubsidies': 'आपको कृषि सब्सिडी की जानकारी पर ले जा रहा हूँ',
+    'goingToEquipment': 'आपको कृषि उपकरण कैटलॉग दिखा रहा हूँ',
+    'goingToDeveloper': 'आपको डेवलपर पृष्ठ पर ले जा रहा हूँ',
   },
   bn: {
     // Bengali translations
@@ -216,7 +270,17 @@ const translations: Record<string, Record<string, string>> = {
     'tryAgain': 'অনুগ্রহ করে আবার চেষ্টা করুন',
     'voiceUnderstood': 'আমি আপনার অনুরোধ বুঝেছি। আমি আপনাকে আরও কীভাবে সাহায্য করতে পারি?',
     'goingToWeather': 'আপনাকে আবহাওয়ার তথ্য দেখাচ্ছি',
-    'goingToLearning': 'আপনাকে কৃষি পাঠে নিয়ে যাচ্ছি'
+    'goingToLearning': 'আপনাকে কৃষি পাঠে নিয়ে যাচ্ছি',
+    
+    // New Welcome Audio Translations
+    'welcomeToAndata': 'অনদাতা আপনাকে স্বাগত',
+    'welcomeAnnouncement': 'অনদাতা আপনাকে স্বাগতম, আপনার বুদ্ধিমান কৃষি সঙ্গী। আজ আমরা আপনাকে কীভাবে সাহায্য করতে পারি?',
+    'mute': 'অডিও নিঃশব্দ করুন',
+    'unmute': 'অডিও সশব্দ করুন',
+    'voiceMuted': 'ভয়েস নিঃশব্দ করা হয়েছে',
+    'voiceMutedDesc': 'সহকারী ভয়েস এখন নিঃশব্দ করা হয়েছে',
+    'voiceUnmuted': 'ভয়েস নিঃশব্দ করা হয়নি',
+    'voiceUnmutedDesc': 'সহকারী ভয়েস এখন নিঃশব্দ করা হয়নি',
   },
   te: {
     // Telugu translations with voice assistant additions
@@ -244,7 +308,28 @@ const translations: Record<string, Record<string, string>> = {
     'tryAgain': 'దయచేసి మళ్లీ ప్రయత్నించండి',
     'voiceUnderstood': 'మీ అభ్యర్థనను నేను అర్థం చేసుకున్నాను. నేను మీకు ఇంకా ఎలా సహాయపడగలను?',
     'goingToWeather': 'మీకు వాతావరణ సమాచారాన్ని చూపిస్తున్నాను',
-    'goingToLearning': 'మిమ్మల్ని వ్యవసాయ పాఠాలకు తీసుకువెళ్తున్నాను'
+    'goingToLearning': 'మిమ్మల్ని వ్యవసాయ పాఠాలకు తీసుకువెళ్తున్నాను',
+    
+    // New Welcome Audio Translations
+    'welcomeToAndata': 'అందాతకు స్వాగతం',
+    'welcomeAnnouncement': 'మీ తెలివైన వ్యవసాయ సహచరుడు అందాతకు స్వాగతం. ఈరోజు మేము మీకు ఎలా సహాయం చేయగలము?',
+    'mute': 'శబ్దాన్ని మ్యూట్ చేయండి',
+    'unmute': 'శబ్దాన్ని అన్మ్యూట్ చేయండి',
+    'startSpeaking': 'మీ వాయిస్ అసిస్టెంట్‌తో ఇంటరాక్ట్ చేయడానికి మాట్లాడటం ప్రారంభించండి',
+    'tryVoiceCommands': 'వాతావరణం, పంట సలహా లేదా మార్కెట్ ధరలను అడిగి చూడండి',
+    'quickCommands': 'త్వరిత ఆదేశాలు',
+    'voiceVolume': 'వాయిస్ వాల్యూమ్',
+    'voiceSpeed': 'వాయిస్ వేగం',
+    'clearHistory': 'చరిత్రను తొలగించండి',
+    'historyClear': 'చరిత్ర క్లియర్ చేయబడింది',
+    'historyClearDesc': 'మీ సంభాషణ చరిత్ర క్లియర్ చేయబడింది',
+    'settings': 'సెట్టింగులు',
+    'chat': 'చాట్',
+    'speaking': 'మాట్లాడుతున్నాను...',
+    'voiceMuted': 'వాయిస్ మ్యూట్ చేయబడింది',
+    'voiceMutedDesc': 'సహాయకుడి వాయిస్ ఇప్పుడు మ్యూట్ చేయబడింది',
+    'voiceUnmuted': 'వాయిస్ అన్మ్యూట్ చేయబడింది',
+    'voiceUnmutedDesc': 'సహాయకుడి వాయిస్ ఇప్పుడు అన్మ్యూట్ చేయబడింది',
   },
   ta: {
     // Tamil translations with voice assistant additions
@@ -272,7 +357,17 @@ const translations: Record<string, Record<string, string>> = {
     'tryAgain': 'தயவுசெய்து மீண்டும் முயற்சிக்கவும்',
     'voiceUnderstood': 'உங்கள் கோரிக்கையை நான் புரிந்துகொண்டேன். நான் உங்களுக்கு மேலும் எவ்வாறு உதவ முடியும்?',
     'goingToWeather': 'உங்களுக்கு வானிலை தகவலைக் காட்டுகிறேன்',
-    'goingToLearning': 'உங்களை விவசாய பாடங்களுக்கு அழைத்துச் செல்கிறேன்'
+    'goingToLearning': 'உங்களை விவசாய பாடங்களுக்கு அழைத்துச் செல்கிறேன்',
+    
+    // New Welcome Audio Translations
+    'welcomeToAndata': 'அந்தாதாவிற்கு வரவேற்கிறோம்',
+    'welcomeAnnouncement': 'உங்கள் அறிவார்ந்த விவசாய துணையான அந்தாதாவிற்கு வரவேற்கிறோம். இன்று உங்களுக்கு எவ்வாறு உதவ முடியும்?',
+    'mute': 'ஒலி அடக்கு',
+    'unmute': 'ஒலி இயக்கு',
+    'voiceMuted': 'குரல் முடக்கப்பட்டது',
+    'voiceMutedDesc': 'உதவியாளர் குரல் இப்போது முடக்கப்பட்டுள்ளது',
+    'voiceUnmuted': 'குரல் இயக்கப்பட்டது',
+    'voiceUnmutedDesc': 'உதவியாளர் குரல் இப்போது இயக்கப்பட்டுள்ளது',
   },
   kn: {
     // Kannada translations with voice assistant additions
@@ -498,102 +593,4 @@ const translations: Record<string, Record<string, string>> = {
     'empowerFarm': 'এ.আই.গী খুৎথাংদা নখোয়গী লৌমীশিংবু মপাঙ্গল কলহন্নবা',
     'home': 'য়ুম',
     'cropAdvisor': 'লোইনশিংগী মতাংদা শিংনবা পীরিবা',
-    'soilScanner': 'লেইমাই স্কেনর',
-    'alerts': 'খঙহনবা',
-    'farmerTips': 'লৌমীশিংগী ওইবা টিপ্স',
-    'wasteIdeas': 'অকানবশিংগী ৱাখল্লোন',
-    'learnFarming': 'লৌউ শিংউ তম্মু',
-    'weather': 'হৱাইগী ফিভম',
-    'helpline': 'হেল্পলাইন',
-    'resources': 'থৌরাং',
-    'selectLanguage': 'লোন খল্লু',
-    'yourFarmingPartner': 'নখোয়গী লৌমী পার্টনর',
-    'readAloud': 'ৱাংনা ৱাংনা পঢ়ো'
-  },
-  brx: {
-    'empowerFarm': 'ए आइ जों नोंथांनि फोर्मखौ गोहो हो',
-    'home': 'गेब',
-    'cropAdvisor': 'फसल सलहाकार',
-    'soilScanner': 'माटि स्केनर',
-    'alerts': 'एलर्ट',
-    'farmerTips': 'फार्मार टिप्स',
-    'wasteIdeas': 'बांङाइ आइडिया',
-    'learnFarming': 'खेथि सोलों',
-    'weather': 'मौसम',
-    'helpline': 'हेल्पलाइन',
-    'resources': 'सोर्स',
-    'selectLanguage': 'भाषा सायख',
-    'yourFarmingPartner': 'नोंथांनि खेथि पार्टनर',
-    'readAloud': 'जोरोङै पडो'
-  },
-  ur: {
-    'empowerFarm': 'اے آئی کے ساتھ اپنے کھیت کو بااختیار بنائیں',
-    'home': 'گھر',
-    'cropAdvisor': 'فصلوں کا مشیر',
-    'soilScanner': 'مٹی سکینر',
-    'alerts': 'انتباہ',
-    'farmerTips': 'کسان تجاویز',
-    'wasteIdeas': 'ضائع خیالات',
-    'learnFarming': 'کاشتکاری سیکھیں',
-    'weather': 'موسم',
-    'helpline': 'مدد لائن',
-    'resources': 'وسائل',
-    'selectLanguage': 'زبان منتخب کریں',
-    'yourFarmingPartner': 'آپ کا کاشتکاری پارٹنر',
-    'readAloud': 'اونچی آواز میں پڑھیں'
-  },
-  ne: {
-    'empowerFarm': 'एआई संग तपाईंको खेतलाई सशक्त बनाउनुहोस्',
-    'home': 'घर',
-    'cropAdvisor': 'बाली सल्लाहकार',
-    'soilScanner': 'माटो स्क्यानर',
-    'alerts': 'सतर्कता',
-    'farmerTips': 'किसान सुझावहरू',
-    'wasteIdeas': 'फोहोर विचारहरू',
-    'learnFarming': 'खेती सिक्नुहोस्',
-    'weather': 'मौसम',
-    'helpline': 'हेल्पलाइन',
-    'resources': 'स्रोतहरू',
-    'selectLanguage': 'भाषा चयन गर्नुहोस्',
-    'yourFarmingPartner': 'तपाईंको कृषि साझेदार',
-    'readAloud': 'ठूलो स्वरले पढ्नुहोस्'
-  },
-};
-
-// For other languages, we'll use English as fallback when specific translations aren't available
-
-interface LanguageContextType {
-  language: string;
-  setLanguage: (language: string) => void;
-  t: (key: string) => string;
-  languages: typeof LANGUAGES;
-}
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState('en');
-
-  const t = (key: string): string => {
-    // First try to get translation in selected language
-    if (translations[language]?.[key]) {
-      return translations[language][key];
-    }
-    // Fall back to English if translation doesn't exist in selected language
-    return translations['en'][key] || key;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, languages: LANGUAGES }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-};
-
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
-};
+    'soilScanner':

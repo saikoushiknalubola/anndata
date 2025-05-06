@@ -13,9 +13,6 @@ const GovernmentBranding: React.FC = () => {
           <Wheat size={18} className="text-terracotta mr-2" />
           <span className="text-sm font-medium text-soil">Andata</span>
         </div>
-        <div className="text-xs text-soil/70 font-medium">
-          {t('digitalIndia')}
-        </div>
       </div>
     </div>
   );
