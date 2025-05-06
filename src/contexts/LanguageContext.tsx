@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 // List of supported Indian languages
@@ -395,7 +396,6 @@ const translations: Record<string, Record<string, string>> = {
     'goingToLearning': 'ನಿಮ್ಮನ್ನು ಕೃಷಿ ಪಾಠಗಳಿಗೆ ಕರೆದುಕೊಂಡು ಹೋಗುತ್ತಿದ್ದೇನೆ'
   },
   // Minimal translations for remaining languages to make them functional
-  // We'll just include basic navigation terms for other languages
   mr: {
     'empowerFarm': 'AI सह आपल्या शेतीला सक्षम करा',
     'home': 'मुख्यपृष्ठ',
@@ -593,3 +593,78 @@ const translations: Record<string, Record<string, string>> = {
     'home': 'য়ুম',
     'cropAdvisor': 'লোইনশিংগী মতাংদা শিংনবা পীরিবা',
     'soilScanner': 'লৈবাক শকশিনবা',
+    'alerts': 'এলার্ট',
+    'weather': 'ৱেদর',
+    'helpline': 'হেল্পলাইন',
+    'resources': 'রিসোর্স',
+  },
+  brx: {
+    'home': 'नोगोर',
+    'cropAdvisor': 'अन्थाय सुबुंगिरि',
+    'soilScanner': 'हा मोनिटर',
+    'weather': 'मोसौ',
+  },
+  ur: {
+    'home': 'ہوم',
+    'cropAdvisor': 'فصل کا مشیر',
+    'soilScanner': 'مٹی سکینر',
+    'weather': 'موسم',
+  },
+  ne: {
+    'home': 'होम',
+    'cropAdvisor': 'बाली सल्लाहकार',
+    'soilScanner': 'माटो स्क्यानर',
+    'weather': 'मौसम',
+  }
+};
+
+interface LanguageContextType {
+  language: string;
+  setLanguage: (lang: string) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguage] = useState<string>(() => {
+    // Try to get the language from localStorage first
+    const savedLanguage = localStorage.getItem('language');
+    // Check if it's a valid supported language
+    if (savedLanguage && LANGUAGES.some(lang => lang.code === savedLanguage)) {
+      return savedLanguage;
+    }
+    // Default to English
+    return 'en';
+  });
+
+  // Save language preference to localStorage when it changes
+  React.useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
+
+  // Translation function
+  const t = (key: string): string => {
+    if (!translations[language]) {
+      return translations.en[key] || key;
+    }
+    
+    return translations[language][key] || translations.en[key] || key;
+  };
+
+  const value = { language, setLanguage, t };
+
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
