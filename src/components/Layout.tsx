@@ -45,13 +45,13 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
           </div>
         </div>
         
-        {/* Simplified logo container */}
-        <div className="logo-container relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-3 mt-2">
+        {/* Improved logo container with better spacing and responsiveness */}
+        <div className="logo-container relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-4 mt-3">
           <Logo />
         </div>
         
         {title && (
-          <div className="mt-1 mb-3 w-full flex items-center justify-center">
+          <div className="mt-2 mb-4 w-full flex items-center justify-center">
             <h1 className="font-decorative text-lg sm:text-xl md:text-2xl text-soil bg-cream/70 px-6 py-2 rounded-full shadow-sm border border-terracotta/20 text-center">
               {title}
             </h1>
@@ -59,7 +59,7 @@ const Layout = ({ children, title, showBackButton = false }: LayoutProps) => {
         )}
       </header>
       
-      <main className={`pb-16 md:pb-8 px-3 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
+      <main className={`pb-16 md:pb-8 px-4 ${mounted ? 'animate-grow-fade' : 'opacity-0'}`}>
         {children}
       </main>
     </div>

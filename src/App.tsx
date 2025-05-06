@@ -27,7 +27,6 @@ import WaterManagement from './pages/WaterManagement';
 import PestControl from './pages/PestControl';
 import CropPlanning from './pages/CropPlanning';
 import SoilHealth from './pages/SoilHealth';
-// Import new pages
 import CropDisease from './pages/CropDisease';
 import Marketplace from './pages/Marketplace';
 import KnowledgeBase from './pages/KnowledgeBase';
@@ -39,7 +38,7 @@ function App() {
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
           <WelcomeAudio />
-          <div className="pt-1">
+          <div className="pt-12"> {/* Increased padding to accommodate the header */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/crop-advisor" element={<CropAdvisor />} />
@@ -61,7 +60,6 @@ function App() {
               <Route path="/pest-control" element={<PestControl />} />
               <Route path="/crop-planning" element={<CropPlanning />} />
               <Route path="/soil-health" element={<SoilHealth />} />
-              {/* New routes */}
               <Route path="/crop-disease" element={<CropDisease />} />
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/knowledge-base" element={<KnowledgeBase />} />
