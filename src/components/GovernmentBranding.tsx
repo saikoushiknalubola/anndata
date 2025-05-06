@@ -11,7 +11,6 @@ const GovernmentBranding: React.FC = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <Wheat size={18} className="text-terracotta mr-2" />
-          <span className="text-sm font-medium text-soil">Andata</span>
         </div>
       </div>
     </div>

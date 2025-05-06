@@ -11,9 +11,12 @@ const WelcomeAudio: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [hasWelcomedUser, setHasWelcomedUser] = useState(false);
+  const [hasWelcomedUser, setHasWelcomedUser] = useState(true); // Set to true to disable welcome message
 
   useEffect(() => {
+    // Welcome message functionality is now disabled by default
+    // by setting hasWelcomedUser to true initially
+    
     // Check if we've already welcomed this user in this session
     const hasBeenWelcomed = localStorage.getItem('andata_welcomed');
     
