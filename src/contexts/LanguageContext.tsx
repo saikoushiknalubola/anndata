@@ -396,7 +396,6 @@ const translations: Record<string, Record<string, string>> = {
   },
   // Minimal translations for remaining languages to make them functional
   // We'll just include basic navigation terms for other languages
-  // ... adding basic translations for all other languages
   mr: {
     'empowerFarm': 'AI सह आपल्या शेतीला सक्षम करा',
     'home': 'मुख्यपृष्ठ',
@@ -593,4 +592,4 @@ const translations: Record<string, Record<string, string>> = {
     'empowerFarm': 'এ.আই.গী খুৎথাংদা নখোয়গী লৌমীশিংবু মপাঙ্গল কলহন্নবা',
     'home': 'য়ুম',
     'cropAdvisor': 'লোইনশিংগী মতাংদা শিংনবা পীরিবা',
-    'soilScanner':
+    'soilScanner': 'লৈবাক শকশিনবা',
