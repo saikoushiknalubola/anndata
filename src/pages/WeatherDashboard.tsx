@@ -227,21 +227,6 @@ const WeatherDashboard = () => {
       </div>
     </Layout>
   );
-
-  function getWeatherIcon(rainChance: number) {
-    if (rainChance > 50) {
-      return <Umbrella className="text-blue-500" size={isMobile ? 24 : 32} />;
-    } else if (rainChance > 30) {
-      return <Cloud className="text-gray-500" size={isMobile ? 24 : 32} />;
-    } else {
-      return <Sun className="text-yellow-500" size={isMobile ? 24 : 32} />;
-    }
-  }
-
-  function getFilteredData() {
-    if (!selectedLocation) return weatherData;
-    return weatherData.filter(data => data.location === selectedLocation);
-  }
 };
 
 export default WeatherDashboard;
