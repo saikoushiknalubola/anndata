@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { toast } from '@/components/ui/use-toast';
 import Card from './Card';
 import { useIsMobile } from '../hooks/use-mobile';
+import { generateSpeech, playAudio } from '../utils/audioUtils';
 
 // This is a placeholder for integration with a proper TTS API
 // In a production app, this would connect to Google TTS, ElevenLabs, etc.
@@ -118,7 +119,9 @@ const VoiceAssistant: React.FC = () => {
     
     setIsSpeaking(true);
     try {
-      await mockTextToSpeech(text, getLanguageForTTS());
+      // Use the ElevenLabs TTS API through our util function
+      const audioUrl = await generateSpeech(text, getLanguageForTTS());
+      await playAudio(audioUrl, voiceVolume);
       setHistory(prev => [...prev, {type: 'assistant', text}]);
     } catch (error) {
       console.error('Text-to-speech error:', error);
@@ -159,7 +162,7 @@ const VoiceAssistant: React.FC = () => {
     
     // Example command handling with expanded functionality
     if (lowerCommand.includes('weather') || lowerCommand.includes('मौसम') || 
-        lowerCommand.includes('వాతావరణ') || lowerCommand.includes('வானிலை') || 
+        lowerCommand.includes('వాతావరణ') || lowerCommand.includes('వானிலை') || 
         lowerCommand.includes('আবহাওয়া') || lowerCommand.includes('ಹವಾಮಾನ')) {
       
       window.location.href = '/weather';
@@ -203,8 +206,8 @@ const VoiceAssistant: React.FC = () => {
       speak(t('goingToSubsidies'));
     }
     else if (lowerCommand.includes('equipment') || lowerCommand.includes('उपकरण') || 
-             lowerCommand.includes('పరికరాలు') || lowerCommand.includes('உபகரணம்') || 
-             lowerCommand.includes('যন্ত্রপাতি') || lowerCommand.includes('ಉಪಕರಣಗಳು')) {
+             lowerCommand.includes('పరికరాలు') || lowerCommand.includes('உपகரணம்') || 
+             lowerCommand.includes('যন্ত্রপাতি') || lowerCommand.includes('ಉपಕరಣಗಳು')) {
       
       window.location.href = '/equipment-catalog';
       speak(t('goingToEquipment'));

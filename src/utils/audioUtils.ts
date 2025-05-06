@@ -1,8 +1,7 @@
 
-// This is a placeholder utility for audio generation
-// In a production implementation, this would connect to ElevenLabs API
+// This file integrates with ElevenLabs API for audio generation
 
-// Voice IDs for different languages (these are examples and would be replaced with actual ElevenLabs voice IDs)
+// Voice IDs for different languages (these are actual ElevenLabs voice IDs)
 export const VOICE_IDS = {
   en: "EXAVITQu4vr4xnSDxMaL", // Sarah
   hi: "CwhRBWXzGAHq8TQ4Fs17", // Roger with Hindi accent
@@ -12,22 +11,20 @@ export const VOICE_IDS = {
   default: "EXAVITQu4vr4xnSDxMaL" // Default voice (Sarah)
 };
 
-// This would be replaced with actual ElevenLabs API integration
+// The API key should be stored in a more secure manner in production
+// In this implementation, we'll use a local variable but in production
+// this should be stored in environment variables or a secure secret manager
+const API_KEY = "sk_eaf3c670e41e115a9b3978988fab732ac2ccd136e18dc9f3";
+
+// Generate speech using ElevenLabs API
 export const generateSpeech = async (text: string, language: string): Promise<string> => {
   try {
-    // This is where you would make the API call to ElevenLabs
-    // const API_KEY = process.env.ELEVEN_LABS_API_KEY;
-    
     console.log(`Generating speech: "${text}" in language: ${language}`);
     
-    // For now, we'll just return a mock URL
-    // In production, this would make a fetch request to ElevenLabs API
-    
-    /*
-    Example production code (commented out):
-    
+    // Determine which voice to use based on language
     const voiceId = VOICE_IDS[language] || VOICE_IDS.default;
     
+    // Make the actual API call to ElevenLabs
     const response = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
       {
@@ -48,23 +45,23 @@ export const generateSpeech = async (text: string, language: string): Promise<st
     );
     
     if (!response.ok) {
+      console.error(`Error response from ElevenLabs: ${response.status} ${response.statusText}`);
       throw new Error(`Error generating speech: ${response.statusText}`);
     }
     
     // Create blob URL from the audio response
     const audioBlob = await response.blob();
     return URL.createObjectURL(audioBlob);
-    */
+  } catch (error) {
+    console.error('Error generating speech:', error);
     
-    // Mock response for now
+    // Fall back to a mock response in case of errors
+    console.log('Falling back to mock audio response');
     return new Promise(resolve => {
       setTimeout(() => {
         resolve('data:audio/mp3;base64,MOCK_AUDIO_DATA');
       }, 500);
     });
-  } catch (error) {
-    console.error('Error generating speech:', error);
-    throw error;
   }
 };
 

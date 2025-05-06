@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import { toast } from '@/components/ui/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useIsMobile } from '../hooks/use-mobile';
+import { generateSpeech, playAudio } from '../utils/audioUtils';
 
 // Mock weather data (will be replaced with Supabase data)
 const mockWeatherData = [
@@ -17,22 +18,6 @@ const mockWeatherData = [
   { id: 5, location: "Huzurabad", temp: 29, rainChance: 40, humidity: 75, windSpeed: 9 },
   { id: 6, location: "Hasanparthy", temp: 30, rainChance: 25, humidity: 68, windSpeed: 7 }
 ];
-
-// Simulate TTS for now
-const simulateTextToSpeech = (text: string, language: string) => {
-  // In a real app, this would use an actual TTS API
-  console.log(`Speaking in ${language}: ${text}`);
-  
-  toast({
-    title: "Reading weather aloud",
-    description: `"${text}" in ${language}`,
-    duration: 3000,
-  });
-  
-  return new Promise<void>(resolve => {
-    setTimeout(resolve, 2000);
-  });
-};
 
 interface WeatherData {
   id: number;
@@ -78,7 +63,17 @@ const WeatherDashboard = () => {
     setSpeakingId(data.id);
     try {
       const weatherText = `${data.location}: ${data.temp}°C with ${data.rainChance}% chance of rain, humidity ${data.humidity}%, wind speed ${data.windSpeed} km/h`;
-      await simulateTextToSpeech(weatherText, language);
+      
+      // Use the ElevenLabs TTS API through our util function
+      const audioUrl = await generateSpeech(weatherText, language);
+      await playAudio(audioUrl);
+    } catch (error) {
+      console.error('Error reading weather aloud:', error);
+      toast({
+        title: "Error",
+        description: "Failed to read weather data. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setSpeakingId(null);
     }
@@ -232,6 +227,21 @@ const WeatherDashboard = () => {
       </div>
     </Layout>
   );
+
+  function getWeatherIcon(rainChance: number) {
+    if (rainChance > 50) {
+      return <Umbrella className="text-blue-500" size={isMobile ? 24 : 32} />;
+    } else if (rainChance > 30) {
+      return <Cloud className="text-gray-500" size={isMobile ? 24 : 32} />;
+    } else {
+      return <Sun className="text-yellow-500" size={isMobile ? 24 : 32} />;
+    }
+  }
+
+  function getFilteredData() {
+    if (!selectedLocation) return weatherData;
+    return weatherData.filter(data => data.location === selectedLocation);
+  }
 };
 
 export default WeatherDashboard;

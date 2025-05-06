@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { toast } from '@/components/ui/use-toast';
+import { generateSpeech, playAudio } from '../utils/audioUtils';
 
 const WelcomeAudio: React.FC = () => {
   const { language, t } = useLanguage();
@@ -11,21 +12,6 @@ const WelcomeAudio: React.FC = () => {
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasWelcomedUser, setHasWelcomedUser] = useState(false);
-
-  // This would be replaced with actual API call to ElevenLabs in a full implementation
-  const generateWelcomeAudio = async (welcomeMessage: string, lang: string) => {
-    // Mock function - in a real implementation, this would call ElevenLabs API
-    console.log(`Generating welcome audio for message: "${welcomeMessage}" in language: ${lang}`);
-    
-    // For now, we'll simulate the API response with a setTimeout
-    return new Promise<string>((resolve) => {
-      // In a real implementation, this would be the URL returned from the TTS API
-      setTimeout(() => {
-        // This would be replaced with actual audio URL from ElevenLabs
-        resolve('https://example.com/welcome-audio.mp3');
-      }, 1000);
-    });
-  };
 
   useEffect(() => {
     // Check if we've already welcomed this user in this session
@@ -37,12 +23,16 @@ const WelcomeAudio: React.FC = () => {
       // Generate and play welcome audio
       const playWelcomeAudio = async () => {
         try {
-          const url = await generateWelcomeAudio(welcomeMessage, language);
+          const url = await generateSpeech(welcomeMessage, language);
           setAudioUrl(url);
+          
+          if (!isMuted) {
+            await playAudio(url);
+          }
+          
           setIsPlaying(true);
           setHasWelcomedUser(true);
           
-          // In a real implementation, this would play the actual audio
           toast({
             title: t('welcomeToAndata'),
             description: welcomeMessage,
@@ -63,26 +53,22 @@ const WelcomeAudio: React.FC = () => {
       
       return () => clearTimeout(timer);
     }
-  }, [language, t, hasWelcomedUser]);
+  }, [language, t, hasWelcomedUser, isMuted]);
 
+  // Update audio when mute status changes
   useEffect(() => {
-    // This would handle the audio playing in a real implementation
-    if (audioRef.current && audioUrl && isPlaying && !isMuted) {
-      audioRef.current.src = audioUrl;
-      audioRef.current.play().catch(e => console.error('Audio playback failed:', e));
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
     }
-  }, [audioUrl, isPlaying, isMuted]);
+  }, [isMuted]);
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-    }
   };
 
   return (
     <>
-      <audio ref={audioRef} className="hidden" />
+      {audioUrl && <audio ref={audioRef} src={audioUrl} className="hidden" />}
       {isPlaying && (
         <button 
           onClick={toggleMute}
