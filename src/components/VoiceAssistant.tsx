@@ -1,8 +1,10 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Mic, Volume2, X, VolumeX, Flag, Info, Settings, Star, MessageSquare, HistoryIcon, Loader } from 'lucide-react';
+import { Mic, Volume2, X, VolumeX, Flag, Info, Settings, Star, MessageSquare, HistoryIcon, Loader, User, Bot } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { toast } from '@/components/ui/use-toast';
 import Card from './Card';
+import Button from './Button';
 import { useIsMobile } from '../hooks/use-mobile';
 import { generateSpeech, playAudio } from '../utils/audioUtils';
 
@@ -43,18 +45,20 @@ const mockSpeechToText = (language: string): Promise<string> => {
   });
 };
 
-// Quick commands for the voice assistant
+// Quick commands for the voice assistant with icons
 const quickCommands = [
   { label: 'Weather', command: 'Show me weather information', icon: '🌤️' },
   { label: 'Market', command: 'What are today\'s market prices?', icon: '📊' },
   { label: 'Crops', command: 'How to grow rice?', icon: '🌾' },
   { label: 'Tips', command: 'Show me farming tips', icon: '💡' },
+  { label: 'Water', command: 'How to save water?', icon: '💧' },
+  { label: 'Pests', command: 'How to control pests?', icon: '🐞' },
 ];
 
-const VoiceAssistant: React.FC = () => {
+const VoiceAssistant: React.FC<{homeMode?: boolean}> = ({ homeMode = false }) => {
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(homeMode);
   const [transcript, setTranscript] = useState('');
   const [muted, setMuted] = useState(false);
   const [history, setHistory] = useState<{type: 'user' | 'assistant', text: string}[]>([]);
@@ -62,11 +66,16 @@ const VoiceAssistant: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'chat' | 'settings'>('chat');
   const [voiceSpeed, setVoiceSpeed] = useState(1);
   const [voiceVolume, setVoiceVolume] = useState(0.8);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(!homeMode);
+  const [speechRecognition, setSpeechRecognition] = useState<any>(null);
   const assistantRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const { language, t } = useLanguage();
   const isMobile = useIsMobile();
+
+  // New animation states
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [rippleActive, setRippleActive] = useState(false);
 
   // Map to language codes supported by TTS (in a real implementation)
   const getLanguageForTTS = () => {
@@ -89,6 +98,7 @@ const VoiceAssistant: React.FC = () => {
 
     setIsListening(true);
     setTranscript('');
+    setRippleActive(true);
     
     try {
       // In a real app, this would use the Web Speech API or a similar service
@@ -107,17 +117,23 @@ const VoiceAssistant: React.FC = () => {
       });
     } finally {
       setIsListening(false);
+      setRippleActive(false);
     }
   };
 
   const stopListening = () => {
     setIsListening(false);
+    setRippleActive(false);
+    if (speechRecognition) {
+      speechRecognition.stop();
+    }
   };
 
   const speak = async (text: string) => {
     if (muted) return;
     
     setIsSpeaking(true);
+    setIsAnimating(true);
     try {
       // Use the ElevenLabs TTS API through our util function
       const audioUrl = await generateSpeech(text, getLanguageForTTS());
@@ -127,6 +143,7 @@ const VoiceAssistant: React.FC = () => {
       console.error('Text-to-speech error:', error);
     } finally {
       setIsSpeaking(false);
+      setIsAnimating(false);
     }
   };
 
@@ -162,7 +179,7 @@ const VoiceAssistant: React.FC = () => {
     
     // Example command handling with expanded functionality
     if (lowerCommand.includes('weather') || lowerCommand.includes('मौसम') || 
-        lowerCommand.includes('వాతావరణ') || lowerCommand.includes('వானிலை') || 
+        lowerCommand.includes('వాతావరణ') || lowerCommand.includes('வானிலை') || 
         lowerCommand.includes('আবহাওয়া') || lowerCommand.includes('ಹವಾಮಾನ')) {
       
       window.location.href = '/weather';
@@ -170,7 +187,7 @@ const VoiceAssistant: React.FC = () => {
     } 
     else if (lowerCommand.includes('market') || lowerCommand.includes('price') || 
              lowerCommand.includes('बाजार') || lowerCommand.includes('మార్కెట్') || 
-             lowerCommand.includes('சந்தை') || lowerCommand.includes('बाजार') || 
+             lowerCommand.includes('சந்தை') || lowerCommand.includes('বাজার') || 
              lowerCommand.includes('ಮಾರುಕಟ್ಟೆ')) {
       
       window.location.href = '/market-prices';
@@ -206,17 +223,32 @@ const VoiceAssistant: React.FC = () => {
       speak(t('goingToSubsidies'));
     }
     else if (lowerCommand.includes('equipment') || lowerCommand.includes('उपकरण') || 
-             lowerCommand.includes('పరికరాలు') || lowerCommand.includes('உपகரணம்') || 
-             lowerCommand.includes('যন্ত্রপাতি') || lowerCommand.includes('ಉपಕరಣಗಳು')) {
+             lowerCommand.includes('పరికరాలు') || lowerCommand.includes('உபகரணம்') || 
+             lowerCommand.includes('যন্ত্রপাতি') || lowerCommand.includes('ಉಪಕರಣಗಳು')) {
       
       window.location.href = '/equipment-catalog';
       speak(t('goingToEquipment'));
     }
-    else if (lowerCommand.includes('developer') || lowerCommand.includes('कोडर') || 
-             lowerCommand.includes('డెవలపర్') || lowerCommand.includes('டெவலப்பர்')) {
+    else if (lowerCommand.includes('soil') || lowerCommand.includes('मिट्टी') ||
+             lowerCommand.includes('నేల') || lowerCommand.includes('மண்') ||
+             lowerCommand.includes('মাটি') || lowerCommand.includes('ಮಣ್ಣು')) {
       
-      window.location.href = '/developer';
-      speak(t('goingToDeveloper'));
+      window.location.href = '/soil-scanner';
+      speak(t('goingToSoil'));
+    }
+    else if (lowerCommand.includes('water') || lowerCommand.includes('पानी') ||
+             lowerCommand.includes('నీరు') || lowerCommand.includes('நீர்') ||
+             lowerCommand.includes('জল') || lowerCommand.includes('ನೀರು')) {
+      
+      window.location.href = '/water-management';
+      speak(t('goingToWater'));
+    }
+    else if (lowerCommand.includes('pest') || lowerCommand.includes('कीट') ||
+             lowerCommand.includes('పురుగు') || lowerCommand.includes('பூச்சி') ||
+             lowerCommand.includes('কীটপতঙ্গ') || lowerCommand.includes('ಕೀಟ')) {
+      
+      window.location.href = '/pest-control';
+      speak(t('goingToPests'));
     }
     else {
       // Generic response for unrecognized commands
@@ -233,7 +265,7 @@ const VoiceAssistant: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (assistantRef.current && !assistantRef.current.contains(event.target as Node)) {
+      if (assistantRef.current && !assistantRef.current.contains(event.target as Node) && !homeMode) {
         // Don't close, just minimize when clicking outside
         if (isOpen && !isMinimized) {
           setIsMinimized(true);
@@ -245,23 +277,92 @@ const VoiceAssistant: React.FC = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, isMinimized]);
+  }, [isOpen, isMinimized, homeMode]);
 
+  // Home mode large Mic Button rendering
+  if (homeMode) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-4 mb-8">
+        <div className="text-center mb-4">
+          <p className="text-sm sm:text-base text-soil/80">{t('tapToSpeak')}</p>
+        </div>
+        
+        <div 
+          className={`relative ${isListening ? 'scale-110' : ''} transition-all duration-300`}
+          onClick={toggleListening}
+        >
+          <button 
+            disabled={isSpeaking}
+            className={`w-28 h-28 md:w-32 md:h-32 rounded-full flex items-center justify-center 
+            ${isListening 
+              ? 'bg-red-500 animate-pulse' 
+              : 'bg-gradient-to-r from-[#34C759] to-[#138808]'} 
+            text-white shadow-xl hover:shadow-2xl transition-all duration-300 relative z-10`}
+          >
+            {isListening ? (
+              <Loader size={36} className="animate-spin text-white" />
+            ) : isSpeaking ? (
+              <Volume2 size={36} className={`${isAnimating ? 'animate-pulse' : ''}`} />
+            ) : (
+              <Mic size={36} />
+            )}
+          </button>
+          
+          {/* Voice ripple animation */}
+          {rippleActive && (
+            <>
+              <span className="absolute inset-0 rounded-full bg-[#34C759]/30 animate-[ripple_2s_ease-out_infinite]"></span>
+              <span className="absolute inset-0 rounded-full bg-[#34C759]/20 animate-[ripple_2s_ease-out_0.5s_infinite]"></span>
+              <span className="absolute inset-0 rounded-full bg-[#34C759]/10 animate-[ripple_2s_ease-out_1s_infinite]"></span>
+            </>
+          )}
+        </div>
+        
+        <div className="mt-4">
+          {transcript && (
+            <Card variant="govt" className="animate-fade-in max-w-md mx-auto">
+              <p className="text-center text-soil">{transcript}</p>
+            </Card>
+          )}
+        </div>
+        
+        {/* Quick command chips */}
+        <div className="flex flex-wrap justify-center gap-2 mt-5 max-w-md mx-auto">
+          {quickCommands.map((cmd, idx) => (
+            <button
+              key={idx}
+              onClick={() => executeQuickCommand(cmd.command)}
+              className="text-xs bg-gradient-to-r from-[#FF9933]/10 to-[#4285F4]/10 hover:from-[#FF9933]/20 hover:to-[#4285F4]/20 
+                       text-soil p-2 rounded-full flex items-center space-x-1 transition-colors border border-[#FF9933]/30"
+            >
+              <span>{cmd.icon}</span>
+              <span className="ml-1">{cmd.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Standard floating voice assistant
   return (
     <>
       {!isOpen ? (
         <button 
           onClick={() => setIsOpen(true)} 
-          className="fixed right-4 bottom-20 md:bottom-8 text-white p-3 rounded-full shadow-lg z-20 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300"
+          className="fixed right-4 bottom-20 md:bottom-8 text-white p-4 rounded-full shadow-lg z-20 
+                   bg-gradient-to-r from-[#34C759] to-[#138808] hover:shadow-xl transition-all duration-300"
           aria-label={t('voiceAssistant')}
         >
-          <Mic size={22} className="text-white" />
+          <Mic size={24} className="text-white" />
+          <span className="sr-only">{t('voiceAssistant')}</span>
+          <span className="absolute inset-0 rounded-full bg-[#34C759]/30 animate-[ripple_3s_ease-out_infinite]"></span>
         </button>
       ) : isMinimized ? (
         <div ref={assistantRef} className="fixed bottom-16 md:bottom-8 right-4 rounded-lg shadow-xl z-30 overflow-hidden">
           <div 
             onClick={() => setIsMinimized(false)}
-            className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 text-white flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
+            className="bg-gradient-to-r from-[#34C759] to-[#138808] p-3 text-white flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity"
           >
             {isSpeaking ? (
               <Volume2 size={18} className="animate-pulse" />
@@ -275,9 +376,9 @@ const VoiceAssistant: React.FC = () => {
         </div>
       ) : (
         <div ref={assistantRef} className="fixed bottom-16 md:bottom-8 right-4 w-[90vw] max-w-80 rounded-lg shadow-xl z-30 overflow-hidden">
-          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-2 text-white flex justify-between items-center">
+          <div className="bg-gradient-to-r from-[#34C759] to-[#138808] p-3 text-white flex justify-between items-center">
             <div className="flex items-center">
-              <Star size={14} className="mr-1 text-yellow-300" />
+              <Flag size={14} className="mr-1" />
               <span className="ml-1 font-medium text-sm">{t('voiceAssistant')}</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -290,14 +391,14 @@ const VoiceAssistant: React.FC = () => {
             </div>
           </div>
           
-          <div className="p-3 bg-white border border-indigo-100">
+          <div className="p-3 bg-white border border-[#4285F4]/10">
             {/* Tabs */}
             <div className="flex border-b border-gray-200 mb-3">
               <button 
                 className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
                   activeTab === 'chat' 
-                    ? 'text-indigo-600 border-b-2 border-indigo-500' 
-                    : 'text-gray-500 hover:text-indigo-500'
+                    ? 'text-[#34C759] border-b-2 border-[#34C759]' 
+                    : 'text-gray-500 hover:text-[#34C759]'
                 }`}
                 onClick={() => setActiveTab('chat')}
               >
@@ -307,8 +408,8 @@ const VoiceAssistant: React.FC = () => {
               <button 
                 className={`px-3 py-2 text-xs font-medium flex items-center gap-1 ${
                   activeTab === 'settings' 
-                    ? 'text-indigo-600 border-b-2 border-indigo-500' 
-                    : 'text-gray-500 hover:text-indigo-500'
+                    ? 'text-[#34C759] border-b-2 border-[#34C759]' 
+                    : 'text-gray-500 hover:text-[#34C759]'
                 }`}
                 onClick={() => setActiveTab('settings')}
               >
@@ -321,34 +422,44 @@ const VoiceAssistant: React.FC = () => {
               <>
                 <div 
                   ref={chatContainerRef}
-                  className="h-48 overflow-y-auto mb-3 p-2 bg-gray-50 rounded-md shadow-inner"
+                  className="h-48 overflow-y-auto mb-3 p-2 bg-gray-50 rounded-md shadow-inner scrollbar-custom"
                 >
                   {history.length > 0 ? (
                     <div className="space-y-2">
                       {history.map((item, idx) => (
                         <div key={idx} className={`flex ${item.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                          <div className={`max-w-[85%] p-2 rounded-lg ${
+                          <div className={`max-w-[85%] p-2 rounded-lg flex items-start gap-2 ${
                             item.type === 'user' 
-                              ? 'bg-indigo-100 text-indigo-900 ml-auto' 
-                              : 'bg-purple-100 text-purple-900'
+                              ? 'bg-[#4285F4]/10 text-soil ml-auto' 
+                              : 'bg-[#34C759]/10 text-soil'
                           }`}>
-                            <p className="text-xs">{item.text}</p>
+                            {item.type === 'assistant' && (
+                              <div className="rounded-full bg-[#34C759]/20 p-1 mt-0.5">
+                                <Bot size={12} className="text-[#34C759]" />
+                              </div>
+                            )}
+                            <p className="text-xs flex-1">{item.text}</p>
+                            {item.type === 'user' && (
+                              <div className="rounded-full bg-[#4285F4]/20 p-1 mt-0.5">
+                                <User size={12} className="text-[#4285F4]" />
+                              </div>
+                            )}
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
                     <div className="h-full flex flex-col items-center justify-center text-gray-500 text-xs space-y-2">
-                      <Info size={20} className="text-purple-400 mb-1" />
+                      <Info size={20} className="text-[#34C759] mb-1" />
                       <p>{t('startSpeaking')}</p>
-                      <p className="text-xs text-purple-400">{t('tryVoiceCommands')}</p>
+                      <p className="text-xs text-[#34C759]">{t('tryVoiceCommands')}</p>
                     </div>
                   )}
                 </div>
                 
                 {transcript && (
-                  <div className="mb-3 p-2 bg-indigo-50 rounded-md shadow-sm border border-indigo-100">
-                    <p className="text-xs text-indigo-700 font-medium">{transcript}</p>
+                  <div className="mb-3 p-2 bg-[#34C759]/5 rounded-md shadow-sm border border-[#34C759]/10">
+                    <p className="text-xs text-soil font-medium">{transcript}</p>
                   </div>
                 )}
                 
@@ -361,7 +472,8 @@ const VoiceAssistant: React.FC = () => {
                         <button
                           key={idx}
                           onClick={() => executeQuickCommand(cmd.command)}
-                          className="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-md flex items-center space-x-1 transition-colors"
+                          className="text-xs bg-[#34C759]/10 hover:bg-[#34C759]/20 text-soil p-2 
+                                   rounded-md flex items-center space-x-1 transition-colors"
                         >
                           <span>{cmd.icon}</span>
                           <span>{cmd.label}</span>
@@ -382,10 +494,10 @@ const VoiceAssistant: React.FC = () => {
                     <button
                       onClick={toggleListening}
                       disabled={isSpeaking}
-                      className={`w-14 h-14 rounded-full flex items-center justify-center ${
+                      className={`w-14 h-14 rounded-full flex items-center justify-center relative ${
                         isListening 
                           ? 'bg-red-500 animate-pulse' 
-                          : 'bg-gradient-to-r from-indigo-600 to-indigo-700 hover:shadow-lg'
+                          : 'bg-gradient-to-r from-[#34C759] to-[#138808] hover:shadow-lg'
                       } text-white transition-all duration-300 shadow-lg`}
                     >
                       {isListening ? (
@@ -393,11 +505,20 @@ const VoiceAssistant: React.FC = () => {
                       ) : (
                         <Mic size={24} />
                       )}
+                      
+                      {/* Voice ripple animation */}
+                      {rippleActive && (
+                        <>
+                          <span className="absolute inset-0 rounded-full bg-[#34C759]/30 animate-[ripple_2s_ease-out_infinite]"></span>
+                          <span className="absolute inset-0 rounded-full bg-[#34C759]/20 animate-[ripple_2s_ease-out_0.5s_infinite]"></span>
+                          <span className="absolute inset-0 rounded-full bg-[#34C759]/10 animate-[ripple_2s_ease-out_1s_infinite]"></span>
+                        </>
+                      )}
                     </button>
                     <button
                       onClick={toggleMute}
                       className={`p-2 rounded-full ${
-                        muted ? 'bg-gray-300' : 'bg-indigo-500'
+                        muted ? 'bg-gray-300' : 'bg-[#34C759]'
                       } text-white hover:opacity-90 transition-opacity`}
                     >
                       {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -425,7 +546,7 @@ const VoiceAssistant: React.FC = () => {
                     step="0.1"
                     value={voiceVolume}
                     onChange={(e) => setVoiceVolume(parseFloat(e.target.value))}
-                    className="voice-assistant-settings-slider w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer"
+                    className="voice-assistant-settings-slider w-full h-2 bg-[#34C759]/20 rounded-lg appearance-none cursor-pointer"
                   />
                 </div>
                 <div>
@@ -437,16 +558,18 @@ const VoiceAssistant: React.FC = () => {
                     step="0.1"
                     value={voiceSpeed}
                     onChange={(e) => setVoiceSpeed(parseFloat(e.target.value))}
-                    className="voice-assistant-settings-slider w-full h-2 bg-indigo-100 rounded-lg appearance-none cursor-pointer"
+                    className="voice-assistant-settings-slider w-full h-2 bg-[#34C759]/20 rounded-lg appearance-none cursor-pointer"
                   />
                 </div>
                 <div className="pt-2">
-                  <button
+                  <Button
+                    variant="primary"
+                    fullWidth
+                    size="sm"
                     onClick={clearHistory}
-                    className="w-full py-2 text-xs text-white bg-indigo-500 rounded-md hover:bg-indigo-600 transition-colors"
                   >
                     {t('clearHistory')}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -458,3 +581,4 @@ const VoiceAssistant: React.FC = () => {
 };
 
 export default VoiceAssistant;
+

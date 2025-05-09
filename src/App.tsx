@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Index';
 import CropAdvisor from './pages/CropAdvisor';
@@ -38,7 +37,7 @@ function App() {
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
           <WelcomeAudio />
-          <div className="pt-12"> {/* Increased padding to accommodate the header */}
+          <div className="pt-14 sm:pt-16 md:pt-16"> {/* Increased padding to accommodate the header */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/crop-advisor" element={<CropAdvisor />} />
@@ -66,7 +65,12 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
-          <VoiceAssistant />
+          {/* VoiceAssistant is no longer needed here as it's included in the HomePage */}
+          {/* We still keep it for other pages */}
+          <Routes>
+            <Route path="/" element={null} />
+            <Route path="*" element={<VoiceAssistant />} />
+          </Routes>
           <Toaster />
         </div>
       </Router>

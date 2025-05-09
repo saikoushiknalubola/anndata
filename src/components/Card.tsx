@@ -5,10 +5,11 @@ interface CardProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-  variant?: 'default' | 'bordered' | 'highlighted' | 'farm' | 'tricolor' | 'gradient' | 'image-card' | 'rich' | 'clay' | 'village' | 'jute' | 'kolam' | 'warli' | 'bandhani';
+  variant?: 'default' | 'bordered' | 'highlighted' | 'farm' | 'tricolor' | 'gradient' | 'image-card' | 'rich' | 'clay' | 'village' | 'jute' | 'kolam' | 'warli' | 'bandhani' | 'official' | 'govt';
   imageUrl?: string;
   imageAlt?: string;
   imagePosition?: 'top' | 'left' | 'right' | 'bottom';
+  hoverEffect?: boolean;
 }
 
 const Card = ({ 
@@ -18,23 +19,26 @@ const Card = ({
   variant = 'default',
   imageUrl,
   imageAlt,
-  imagePosition = 'top'
+  imagePosition = 'top',
+  hoverEffect = true
 }: CardProps) => {
   const variantClasses = {
-    default: 'bg-white/98 shadow-md hover:shadow-lg transition-shadow duration-300 backdrop-blur-sm',
-    bordered: 'border border-terracotta/20 bg-white/98 shadow-sm hover:shadow-md transition-shadow duration-300',
-    highlighted: 'border-2 border-terracotta bg-white/98 shadow-lg hover:shadow-xl transition-shadow duration-300',
-    farm: 'bg-gradient-to-r from-leaf/5 to-white/98 border-l-4 border-l-leaf shadow-md hover:shadow-lg transition-shadow duration-300',
-    tricolor: 'bg-white/98 shadow-md hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-[#FF9933] border-b-4 border-b-[#138808]',
-    gradient: 'bg-gradient-to-br from-clay via-white to-leaf/5 shadow-md hover:shadow-lg transition-shadow duration-300',
-    'image-card': 'bg-white/98 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden',
-    rich: 'bg-gradient-to-br from-white via-cream/30 to-white shadow-lg hover:shadow-xl transition-all duration-300 border border-terracotta/20',
-    clay: 'bg-gradient-to-br from-terracotta/10 to-clay/30 shadow-md border border-terracotta/30 hover:shadow-lg transition-all',
-    village: 'bg-gradient-to-br from-jute/10 to-white shadow-md border-2 border-jute/20 hover:shadow-lg transition-all',
-    jute: 'bg-gradient-to-r from-wheat/20 to-cream/50 shadow-md border border-jute/30 hover:shadow-lg transition-all',
-    kolam: 'bg-white/95 shadow-md border border-saffron/30 hover:shadow-lg transition-all relative overflow-hidden',
-    warli: 'bg-cream/80 shadow-md border border-earth/30 hover:shadow-lg transition-all relative overflow-hidden',
-    bandhani: 'bg-gradient-to-br from-white via-cream/50 to-white shadow-md border border-saffron/30 hover:shadow-lg transition-all relative overflow-hidden'
+    default: 'bg-white/98 shadow-md backdrop-blur-sm',
+    bordered: 'border border-terracotta/20 bg-white/98 shadow-sm',
+    highlighted: 'border-2 border-terracotta bg-white/98 shadow-lg',
+    farm: 'bg-gradient-to-r from-[#34C759]/5 to-white/98 border-l-4 border-l-[#34C759] shadow-md',
+    tricolor: 'bg-white/98 shadow-md border-t-4 border-t-[#FF9933] border-b-4 border-b-[#138808]',
+    gradient: 'bg-gradient-to-br from-clay via-white to-[#34C759]/5 shadow-md',
+    'image-card': 'bg-white/98 shadow-md overflow-hidden',
+    rich: 'bg-gradient-to-br from-white via-cream/30 to-white shadow-lg border border-[#FF9933]/20',
+    clay: 'bg-gradient-to-br from-terracotta/10 to-clay/30 shadow-md border border-terracotta/30',
+    village: 'bg-gradient-to-br from-jute/10 to-white shadow-md border-2 border-jute/20',
+    jute: 'bg-gradient-to-r from-wheat/20 to-cream/50 shadow-md border border-jute/30',
+    kolam: 'bg-white/95 shadow-md border border-saffron/30 relative overflow-hidden',
+    warli: 'bg-cream/80 shadow-md border border-earth/30 relative overflow-hidden',
+    bandhani: 'bg-gradient-to-br from-white via-cream/50 to-white shadow-md border border-saffron/30 relative overflow-hidden',
+    official: 'bg-white shadow-md border-l-4 border-l-[#FF9933] border-r-4 border-r-[#138808] relative overflow-hidden',
+    govt: 'bg-gradient-to-br from-white/90 to-[#F8F8F8]/90 shadow-md border border-[#4285F4]/20 relative overflow-hidden'
   };
   
   const hasImage = !!imageUrl;
@@ -42,7 +46,7 @@ const Card = ({
   if (variant === 'image-card' && hasImage) {
     return (
       <div 
-        className={`rounded-xl ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
+        className={`rounded-xl ${variantClasses[variant]} ${className} ${onClick ? 'cursor-pointer' : ''} ${hoverEffect ? 'hover:shadow-lg transition-all duration-300 hover:-translate-y-1' : ''}`}
         onClick={onClick}
       >
         <div className="h-48 overflow-hidden rounded-t-xl relative">
@@ -94,12 +98,18 @@ const Card = ({
              style={{backgroundImage: "url('/lovable-uploads/bandhani-pattern.png')", backgroundSize: "100px", backgroundRepeat: "repeat"}}></div>
       );
     }
+    if (variant === 'official' || variant === 'govt') {
+      return (
+        <div className="absolute top-2 right-2 w-8 h-8 opacity-10" 
+             style={{backgroundImage: "url('/lovable-uploads/india-emblem.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat"}}></div>
+      );
+    }
     return null;
   };
   
   return (
     <div 
-      className={`p-4 sm:p-5 rounded-xl ${variantClasses[variant]} ${className} ${flexClasses} ${onClick ? 'cursor-pointer hover:scale-[1.02] transition-transform' : ''}`}
+      className={`p-4 sm:p-5 rounded-xl ${variantClasses[variant]} ${className} ${flexClasses} ${onClick ? 'cursor-pointer' : ''} ${hoverEffect ? 'hover:shadow-lg transition-all duration-300 hover:-translate-y-1' : ''}`}
       onClick={onClick}
     >
       {renderDecorations()}
