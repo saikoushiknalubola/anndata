@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Index';
 import CropAdvisor from './pages/CropAdvisor';
@@ -37,7 +38,7 @@ function App() {
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
           <GovernmentBranding />
           <WelcomeAudio />
-          <div className="pt-14 sm:pt-16 md:pt-16"> {/* Increased padding to accommodate the header */}
+          <div className="pt-16 sm:pt-16 md:pt-16"> {/* Adjusted padding to accommodate the new header */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/crop-advisor" element={<CropAdvisor />} />
