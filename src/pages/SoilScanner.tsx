@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { Upload, Loader2, CheckCircle2, Camera, X, AlertCircle, Leaf, Info } from 'lucide-react';
+import { Upload, Loader2, CheckCircle2, Camera, X, AlertCircle, Leaf, Info, Volume2 } from 'lucide-react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
