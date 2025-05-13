@@ -1,11 +1,12 @@
 
 import { ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ButtonProps {
   children: ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'default' | 'ghost' | 'official' | 'marigold' | 'clay' | 'jute' | 'festive';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'default' | 'ghost' | 'official' | 'marigold' | 'clay' | 'jute' | 'festive' | 'glass' | 'gradient' | '3d';
   className?: string;
   disabled?: boolean;
   loading?: boolean;
@@ -14,6 +15,8 @@ interface ButtonProps {
   icon?: ReactNode;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   ripple?: boolean;
+  withShine?: boolean;
+  withGlow?: boolean;
 }
 
 const Button = ({
@@ -27,20 +30,25 @@ const Button = ({
   type = 'button',
   icon,
   size = 'md',
-  ripple = true
+  ripple = true,
+  withShine = false,
+  withGlow = false,
 }: ButtonProps) => {
   const baseClasses = {
-    primary: 'bg-gradient-to-r from-[#34C759] to-[#34C759]/80 hover:from-[#34C759]/80 hover:to-[#34C759] text-white',
-    secondary: 'bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80 hover:from-[#4285F4]/80 hover:to-[#4285F4] text-white',
-    accent: 'bg-gradient-to-r from-leaf to-monsoon hover:from-monsoon hover:to-leaf text-white',
-    outline: 'border-2 border-[#FF9933]/60 bg-white/80 hover:bg-cream/80 hover:border-[#FF9933] text-soil',
-    default: 'bg-gradient-to-r from-turmeric to-wheat hover:from-wheat hover:to-turmeric text-white',
-    ghost: 'hover:bg-cream text-soil hover:text-terracotta',
+    primary: 'bg-gradient-to-r from-[#FF5722] to-[#FF7043] hover:from-[#FF7043] hover:to-[#FF5722] text-white',
+    secondary: 'bg-gradient-to-r from-[#03A9F4] to-[#4FC3F7] hover:from-[#4FC3F7] hover:to-[#03A9F4] text-white',
+    accent: 'bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] hover:from-[#8BC34A] hover:to-[#4CAF50] text-white',
+    outline: 'border-2 border-[#FF5722]/60 bg-white/80 hover:bg-cream/80 hover:border-[#FF5722] text-soil',
+    default: 'bg-gradient-to-r from-[#FFC107] to-[#FFD54F] hover:from-[#FFD54F] hover:to-[#FFC107] text-soil',
+    ghost: 'hover:bg-cream text-soil hover:text-[#FF5722]',
     official: 'bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-soil border border-soil/20 hover:shadow-lg',
     marigold: 'bg-gradient-to-r from-[#FF9933] to-[#FFD700] hover:from-[#FFD700] hover:to-[#FF9933] text-soil',
     clay: 'bg-gradient-to-r from-terracotta/90 to-jute/90 hover:from-jute/90 hover:to-terracotta/90 text-white',
     jute: 'bg-gradient-to-r from-jute to-earth/90 hover:from-earth/90 hover:to-jute text-white',
-    festive: 'bg-gradient-to-r from-[#FF9933] via-millet to-[#138808]/90 text-white border border-white/20 shadow-md hover:shadow-lg'
+    festive: 'bg-gradient-to-r from-[#FF9933] via-millet to-[#138808]/90 text-white border border-white/20 shadow-md hover:shadow-lg',
+    glass: 'bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-md hover:bg-white/30',
+    gradient: 'bg-gradient-to-r from-[#FF5722] via-[#FF9800] to-[#FFC107] text-white hover:from-[#FFC107] hover:via-[#FF9800] hover:to-[#FF5722]',
+    '3d': 'bg-[#FF5722] text-white border-b-4 border-[#E64A19] hover:border-b-2 hover:mb-[2px] active:border-b-0 active:mb-1 btn-3d'
   };
 
   const sizeClasses = {
@@ -50,7 +58,7 @@ const Button = ({
     lg: 'px-6 py-4 text-lg rounded-2xl'
   };
 
-  // Indian-inspired border decoration for special variants
+  // Enhanced border decoration
   const getBorderDecoration = () => {
     if (variant === 'festive' || variant === 'official') {
       return `
@@ -99,22 +107,29 @@ const Button = ({
       type={type}
       onClick={handleClick}
       disabled={disabled || loading}
-      className={`
-        ${baseClasses[variant]} 
-        ${sizeClasses[size]}
-        ${fullWidth ? 'w-full' : ''}
-        ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
-        transition-all duration-300 ease-in-out
-        shadow-md hover:shadow-lg
-        font-medium
-        flex items-center justify-center gap-2
-        transform hover:scale-[1.02] active:scale-[0.98]
-        relative overflow-hidden
-        before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0 
-        before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 
-        ${getBorderDecoration()}
-        ${className}
-      `}
+      className={cn(
+        baseClasses[variant],
+        sizeClasses[size],
+        fullWidth ? 'w-full' : '',
+        disabled ? 'opacity-70 cursor-not-allowed' : '',
+        'transition-all duration-300 ease-in-out',
+        'shadow-md hover:shadow-lg',
+        'font-medium',
+        'flex items-center justify-center gap-2',
+        'transform hover:scale-[1.02] active:scale-[0.98]',
+        'relative overflow-hidden',
+        'before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0', 
+        'before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700',
+        withShine ? 'btn-shine' : '',
+        withGlow ? 'hover-glow' : '',
+        getBorderDecoration(),
+        className
+      )}
+      style={{
+        '--glow-color': variant === 'primary' ? 'rgba(255, 87, 34, 0.5)' : 
+                        variant === 'secondary' ? 'rgba(3, 169, 244, 0.5)' : 
+                        'rgba(255, 152, 0, 0.5)'
+      } as React.CSSProperties}
     >
       {loading ? (
         <Loader2 className="animate-spin mr-2" size={size === 'xs' ? 14 : size === 'sm' ? 16 : size === 'lg' ? 24 : 20} />

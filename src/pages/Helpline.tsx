@@ -3,6 +3,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Phone, Mail, MessageSquare, Clock, Cloud } from 'lucide-react';
+import Card from '../components/Card';
+import { GradientText, IconBadge, EnhancedSection } from '@/components/ui/enhanced-ui';
 
 const Helpline = () => {
   const { t } = useLanguage();
@@ -13,78 +15,100 @@ const Helpline = () => {
       number: '1800-180-1551',
       hours: '6:00 AM - 10:00 PM',
       icon: Phone,
+      variant: 'primary',
     },
     {
       title: t('cropDiseasesSupport'),
       number: '1800-425-3738',
       hours: '9:00 AM - 6:00 PM',
       icon: MessageSquare,
+      variant: 'accent',
     },
     {
       title: t('weatherAdvisory'),
       number: '1800-220-8290',
       hours: '24/7',
       icon: Cloud,
+      variant: 'secondary',
     },
     {
       title: t('agriculturalMarketing'),
       number: '1800-270-0323',
       hours: '8:00 AM - 8:00 PM',
       icon: Mail,
+      variant: 'warning',
     }
   ];
 
   return (
-    <Layout title={t('helpline')} showBackButton>
+    <Layout title={t('helpline')} showBackButton variant="glass">
       <div className="px-4">
-        <p className="text-earth text-sm mb-6 text-center">
-          {t('helplineDesc')}
-        </p>
+        <EnhancedSection variant="glass" className="mb-6">
+          <p className="text-earth text-sm mb-0 text-center">
+            {t('helplineDesc')}
+          </p>
+        </EnhancedSection>
 
         <div className="space-y-4">
           {helplineContacts.map((contact, index) => (
-            <div 
+            <Card 
               key={index}
-              className="bg-white rounded-lg shadow-md p-4 border border-cream"
+              variant={index % 2 === 0 ? "glass" : "bordered-gradient"}
+              className="hover-lift"
+              withGlow
             >
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-cream/50 rounded-full text-earth">
-                  <contact.icon size={20} />
-                </div>
+                <IconBadge 
+                  icon={contact.icon} 
+                  variant={contact.variant as any} 
+                  size="lg"
+                  withGlow
+                />
                 <div className="flex-1">
-                  <h3 className="font-medium text-earth">{contact.title}</h3>
+                  <h3 className="font-medium mb-1">
+                    <GradientText variant={
+                      contact.variant === 'primary' ? 'primary' : 
+                      contact.variant === 'accent' ? 'earth' : 
+                      contact.variant === 'secondary' ? 'ocean' : 'sunset'
+                    }>
+                      {contact.title}
+                    </GradientText>
+                  </h3>
                   <a 
                     href={`tel:${contact.number.replace(/-/g, '')}`}
-                    className="text-saffron font-semibold block mt-1"
+                    className="text-[#FF5722] font-semibold block mt-1"
                   >
                     {contact.number}
                   </a>
-                  <div className="flex items-center text-xs text-earth/70 mt-2">
+                  <div className="flex items-center text-xs text-earth/70 mt-2 bg-white/40 p-1.5 rounded-lg inline-flex">
                     <Clock size={12} className="mr-1" />
                     <span>{contact.hours}</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 
-        <div className="mt-8 p-4 bg-cream/30 rounded-lg border border-cream">
-          <h3 className="font-medium text-center text-earth mb-2">
+        <Card 
+          variant="mesh" 
+          className="mt-8 p-5 shadow-lg"
+        >
+          <h3 className="font-medium text-center mb-2 text-white">
             {t('emergencySupport')}
           </h3>
-          <p className="text-sm text-center text-earth/80">
+          <p className="text-sm text-center text-white/90 mb-3">
             {t('emergencySupportDesc')}
           </p>
           <div className="mt-3 text-center">
             <a 
               href="tel:112"
-              className="inline-block bg-saffron text-white px-6 py-2 rounded-full font-medium"
+              className="inline-block bg-white text-[#FF5722] px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-lg"
             >
               112
             </a>
           </div>
-        </div>
+        </Card>
       </div>
     </Layout>
   );
