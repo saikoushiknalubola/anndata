@@ -7,1085 +7,940 @@ import { CardVariant } from '@/components/Card';
 
 // Define a type for custom CSS properties
 interface CustomCSSProperties extends React.CSSProperties {
-  '--glow-color'?: string;
   '--animation-delay'?: string;
-  '--bg-opacity'?: string;
-  '--border-glow'?: string;
+  '--glow-color'?: string;
 }
 
-// Enhanced Card Component with multiple variants and effects
-export const EnhancedCard = ({
-  children,
-  className,
-  variant = 'default',
-  hoverEffect = true,
-  glowEffect = false,
-  withBadge = false,
-  badgeText = '',
-  animation = '',
-  onClick,
-}: {
+// Animation variants for consistent animations
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.5,
+      ease: 'easeOut'
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    y: -10,
+    transition: { 
+      duration: 0.3,
+      ease: 'easeIn'
+    }
+  }
+};
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.4,
+      ease: [0.175, 0.885, 0.32, 1.275]
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.95,
+    transition: { 
+      duration: 0.3,
+      ease: 'easeIn'
+    }
+  }
+};
+
+const slideInVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.4,
+      ease: 'easeOut'
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    x: 20,
+    transition: { 
+      duration: 0.3,
+      ease: 'easeIn'
+    }
+  }
+};
+
+// Enhanced UI Provider to manage global UI state
+export const EnhancedUIContext = React.createContext<{
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+  animations: 'full' | 'reduced' | 'none';
+  setAnimations: (value: 'full' | 'reduced' | 'none') => void;
+}>({
+  isDarkMode: false,
+  toggleDarkMode: () => {},
+  animations: 'full',
+  setAnimations: () => {},
+});
+
+export const EnhancedUIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [animations, setAnimations] = useState<'full' | 'reduced' | 'none'>('full');
+  
+  const toggleDarkMode = () => {
+    setIsDarkMode(prev => !prev);
+  };
+  
+  return (
+    <EnhancedUIContext.Provider value={{ isDarkMode, toggleDarkMode, animations, setAnimations }}>
+      {children}
+      <EnhancedStyles />
+    </EnhancedUIContext.Provider>
+  );
+};
+
+export default EnhancedUIProvider;
+
+// Enhanced Card Component
+interface EnhancedCardProps {
   children: React.ReactNode;
   className?: string;
-  variant?: 'default' | 'glass' | 'gradient' | 'bordered' | 'elevated' | 'farmStyle' | 'minimal';
-  hoverEffect?: boolean;
+  variant?: CardVariant;
   glowEffect?: boolean;
-  withBadge?: boolean;
-  badgeText?: string;
-  animation?: '' | 'fadeIn' | 'scaleIn' | 'slideUp' | 'pulse';
+  hoverEffect?: boolean;
+  withAnimation?: string;
   onClick?: () => void;
-}) => {
-  // Generate variant specific classes
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'glass':
-        return 'bg-white/20 backdrop-blur-md border border-white/30';
-      case 'gradient':
-        return 'bg-gradient-to-br from-white/80 via-white/60 to-white/80 border border-white/50';
-      case 'bordered':
-        return 'bg-white border-2 border-soil/20 hover:border-soil/30';
-      case 'elevated':
-        return 'bg-white shadow-lg';
-      case 'farmStyle':
-        return 'bg-gradient-to-r from-saffron/10 to-transparent border-l-4 border-l-saffron';
-      case 'minimal':
-        return 'bg-transparent';
-      default:
-        return 'bg-white';
-    }
-  };
+}
 
-  // Animation configuration
-  const getAnimationProps = () => {
-    switch (animation) {
+export const EnhancedCard: React.FC<EnhancedCardProps> = ({ 
+  children, 
+  className = '', 
+  variant = 'default',
+  glowEffect = false,
+  hoverEffect = false,
+  withAnimation,
+  onClick
+}) => {
+  const getMotionProps = () => {
+    if (!withAnimation) return {};
+    
+    switch (withAnimation) {
       case 'fadeIn':
-        return {
-          initial: { opacity: 0 },
-          animate: { opacity: 1 },
-          transition: { duration: 0.5 }
+        return { 
+          variants: fadeInVariants,
+          initial: 'hidden',
+          animate: 'visible',
+          exit: 'exit'
         };
       case 'scaleIn':
-        return {
-          initial: { scale: 0.9, opacity: 0 },
-          animate: { scale: 1, opacity: 1 },
-          transition: { duration: 0.4 }
+        return { 
+          variants: scaleInVariants,
+          initial: 'hidden',
+          animate: 'visible',
+          exit: 'exit'
         };
-      case 'slideUp':
-        return {
-          initial: { y: 20, opacity: 0 },
-          animate: { y: 0, opacity: 1 },
-          transition: { duration: 0.5 }
-        };
-      case 'pulse':
-        return {
-          animate: { 
-            scale: [1, 1.02, 1],
-            transition: { 
-              repeat: Infinity, 
-              duration: 2,
-              ease: "easeInOut" 
-            }
-          }
+      case 'slideIn':
+        return { 
+          variants: slideInVariants,
+          initial: 'hidden',
+          animate: 'visible',
+          exit: 'exit'
         };
       default:
         return {};
     }
   };
-
-  const CardComponent = animation ? motion.div : 'div';
   
-  const animationProps = animation ? getAnimationProps() : {};
-
-  return (
-    <CardComponent
-      className={cn(
-        'rounded-xl p-4 transition-all duration-300',
-        getVariantClasses(),
-        hoverEffect && 'hover:-translate-y-1 hover:shadow-md',
-        glowEffect && 'hover:shadow-[0_0_15px_rgba(255,152,0,0.3)]',
-        onClick && 'cursor-pointer',
-        className
-      )}
-      onClick={onClick}
-      style={
-        {
-          '--glow-color': 'rgba(255, 152, 0, 0.3)',
-        } as CustomCSSProperties
-      }
-      {...animationProps}
-    >
-      {withBadge && badgeText && (
-        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-saffron to-soil text-white text-xs font-medium px-2 py-0.5 rounded-full shadow-sm">
-          {badgeText}
-        </div>
-      )}
-      <div className="relative">{children}</div>
-    </CardComponent>
-  );
-};
-
-// Motion Button with animations and effects
-export const MotionButton = ({
-  children,
-  className,
-  variant = 'primary',
-  size = 'md',
-  fullWidth = false,
-  icon,
-  iconPosition = 'left',
-  disabled = false,
-  loading = false,
-  withShine = false,
-  withRipple = true,
-  onClick,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: 'primary' | 'secondary' | 'leaf' | 'glass' | 'outline' | 'text' | 'saffron' | 'soil' | '3d';
-  size?: 'sm' | 'md' | 'lg';
-  fullWidth?: boolean;
-  icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
-  disabled?: boolean;
-  loading?: boolean;
-  withShine?: boolean;
-  withRipple?: boolean;
-  onClick?: () => void;
-}) => {
-  const getVariantClasses = () => {
+  const getCardClasses = () => {
+    let classes = 'rounded-xl overflow-hidden transition-all duration-300 ';
+    
+    // Base variant classes
     switch (variant) {
-      case 'primary':
-        return 'bg-gradient-to-r from-saffron to-soil text-white';
-      case 'secondary':
-        return 'bg-gradient-to-r from-sky-500 to-sky-700 text-white';
-      case 'leaf':
-        return 'bg-gradient-to-r from-leaf-500 to-leaf-700 text-white';
       case 'glass':
-        return 'bg-white/20 backdrop-blur-md border border-white/30 text-soil';
-      case 'outline':
-        return 'bg-transparent border-2 border-soil text-soil hover:bg-soil/5';
-      case 'text':
-        return 'bg-transparent text-soil hover:bg-soil/5';
-      case 'saffron':
-        return 'bg-gradient-to-r from-saffron to-saffron/80 text-white';
-      case 'soil':
-        return 'bg-gradient-to-r from-soil to-soil/80 text-white';
-      case '3d':
-        return 'bg-saffron text-white border-b-4 border-b-saffron/70 hover:border-b-2 hover:translate-y-[2px] active:border-b-0 active:translate-y-1';
-      default:
-        return 'bg-saffron text-white';
-    }
-  };
-
-  const getSizeClasses = () => {
-    switch (size) {
-      case 'sm':
-        return 'text-sm px-3 py-1 rounded-md';
-      case 'lg':
-        return 'text-lg px-6 py-3 rounded-xl';
-      default:
-        return 'text-base px-4 py-2 rounded-lg';
-    }
-  };
-
-  // Handle ripple effect
-  const handleRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!withRipple || disabled) return;
-    
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height) * 2;
-    
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-    
-    const ripple = document.createElement('span');
-    ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    ripple.className = 'absolute rounded-full bg-white/30 pointer-events-none';
-    ripple.style.transform = 'scale(0)';
-    ripple.style.animation = 'ripple 600ms linear';
-    
-    button.appendChild(ripple);
-    
-    setTimeout(() => {
-      ripple.remove();
-    }, 700);
-  };
-
-  return (
-    <motion.button
-      whileTap={{ scale: 0.98 }}
-      whileHover={!disabled ? { scale: 1.02 } : {}}
-      disabled={disabled || loading}
-      onClick={(e) => {
-        handleRipple(e);
-        onClick?.();
-      }}
-      className={cn(
-        'relative overflow-hidden font-medium shadow-md transition-all flex items-center justify-center',
-        getVariantClasses(),
-        getSizeClasses(),
-        fullWidth ? 'w-full' : '',
-        disabled ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-lg',
-        withShine && 'shine-effect',
-        className
-      )}
-    >
-      {withShine && (
-        <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shine" />
-      )}
-      
-      {loading ? (
-        <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      ) : (
-        iconPosition === 'left' && icon && <span className="mr-2">{icon}</span>
-      )}
-      
-      <span className="relative z-10">{children}</span>
-      
-      {iconPosition === 'right' && icon && !loading && (
-        <span className="ml-2">{icon}</span>
-      )}
-    </motion.button>
-  );
-};
-
-// Glass Container with configurable blur and opacity
-export const GlassContainer = ({
-  children,
-  className,
-  intensity = 'medium',
-  withBorder = true,
-  withShadow = true,
-  hoverEffect = false,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  intensity?: 'light' | 'medium' | 'heavy';
-  withBorder?: boolean;
-  withShadow?: boolean;
-  hoverEffect?: boolean;
-}) => {
-  const getIntensityClasses = () => {
-    switch (intensity) {
-      case 'light':
-        return 'bg-white/10 backdrop-blur-sm';
-      case 'heavy':
-        return 'bg-white/30 backdrop-blur-xl';
-      default:
-        return 'bg-white/20 backdrop-blur-md';
-    }
-  };
-
-  return (
-    <div
-      className={cn(
-        'rounded-xl',
-        getIntensityClasses(),
-        withBorder && 'border border-white/30',
-        withShadow && 'shadow-lg',
-        hoverEffect && 'transition-all duration-300 hover:-translate-y-1 hover:shadow-xl',
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
-// Gradient Text with multiple color options
-export const GradientText = ({
-  children,
-  className,
-  variant = 'primary',
-  withAnimation = false,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: 'primary' | 'earth' | 'leaf' | 'sky' | 'harvest' | 'soil' | 'saffron';
-  withAnimation?: boolean;
-}) => {
-  const getGradientClasses = () => {
-    switch (variant) {
-      case 'earth':
-        return 'from-earth-500 to-earth-700';
-      case 'leaf':
-        return 'from-leaf-500 to-leaf-700';
-      case 'sky':
-        return 'from-sky-500 to-sky-700';
-      case 'harvest':
-        return 'from-harvest-500 to-harvest-700';
-      case 'soil':
-        return 'from-soil-400 to-soil-600';
-      case 'saffron':
-        return 'from-saffron to-[#FF5722]';
-      default:
-        return 'from-saffron to-soil-500';
-    }
-  };
-
-  return (
-    <span
-      className={cn(
-        'bg-gradient-to-r bg-clip-text text-transparent inline-block',
-        getGradientClasses(),
-        withAnimation && 'animate-text-shimmer bg-[length:200%_auto]',
-        className
-      )}
-    >
-      {children}
-    </span>
-  );
-};
-
-// Badge component with multiple variants and animation
-export const EnhancedBadge = ({
-  children,
-  className,
-  variant = 'primary',
-  size = 'md',
-  withAnimation = false,
-  withDot = false,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
-  size?: 'sm' | 'md' | 'lg';
-  withAnimation?: boolean;
-  withDot?: boolean;
-}) => {
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'secondary':
-        return 'bg-sky-100 text-sky-700';
-      case 'success':
-        return 'bg-leaf-100 text-leaf-700';
-      case 'warning':
-        return 'bg-harvest-100 text-harvest-700';
-      case 'danger':
-        return 'bg-red-100 text-red-700';
-      case 'info':
-        return 'bg-blue-100 text-blue-700';
-      case 'neutral':
-        return 'bg-gray-100 text-gray-700';
-      default:
-        return 'bg-soil-100 text-soil-700';
-    }
-  };
-
-  const getSizeClasses = () => {
-    switch (size) {
-      case 'sm':
-        return 'text-xs py-0.5 px-2';
-      case 'lg':
-        return 'text-sm py-1 px-3';
-      default:
-        return 'text-xs py-0.5 px-2.5';
-    }
-  };
-
-  return (
-    <span
-      className={cn(
-        'font-medium rounded-full inline-flex items-center',
-        getVariantClasses(),
-        getSizeClasses(),
-        withAnimation && 'animate-pulse',
-        className
-      )}
-    >
-      {withDot && (
-        <span className="w-2 h-2 rounded-full bg-current mr-1.5 inline-block"></span>
-      )}
-      {children}
-    </span>
-  );
-};
-
-// Image component with lazy loading, hover effects, and loading states
-export const EnhancedImage = ({
-  src,
-  alt,
-  className,
-  aspectRatio = '16/9',
-  hoverEffect = false,
-  rounded = 'lg',
-  overlay = false,
-  overlayColor = 'rgba(0, 0, 0, 0.3)',
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  aspectRatio?: string | number;
-  hoverEffect?: boolean | 'zoom' | 'shine' | 'overlay';
-  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-  overlay?: boolean;
-  overlayColor?: string;
-}) => {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  const getRoundedClasses = () => {
-    switch (rounded) {
-      case 'none':
-        return '';
-      case 'sm':
-        return 'rounded-sm';
-      case 'md':
-        return 'rounded-md';
-      case 'lg':
-        return 'rounded-lg';
-      case 'xl':
-        return 'rounded-xl';
-      case 'full':
-        return 'rounded-full';
-      default:
-        return 'rounded-lg';
-    }
-  };
-
-  const getHoverClasses = () => {
-    if (!hoverEffect) return '';
-    if (hoverEffect === 'zoom') return 'group-hover:scale-110 transition-transform duration-700';
-    if (hoverEffect === 'shine') return 'hover-shine';
-    if (hoverEffect === 'overlay') return 'group-hover:opacity-80';
-    return 'hover:opacity-90 transition-opacity';
-  };
-
-  return (
-    <div 
-      className={cn(
-        'overflow-hidden relative',
-        getRoundedClasses(),
-        hoverEffect && 'group',
-        className
-      )}
-      style={{ aspectRatio }}
-    >
-      {!loaded && !error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse">
-          <svg className="w-10 h-10 text-gray-400" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M19.5 12c0-1.1-.9-2-2-2H10l4.5-4.5c.29-.29.29-.77 0-1.06s-.77-.29-1.06 0l-6 6c-.29.29-.29.77 0 1.06l6 6c.29.29.77.29 1.06 0s.29-.77 0-1.06L10 14h7.5c.28 0 .5.22.5.5v5c0 .55.45 1 1 1s1-.45 1-1v-5c0-1.1-.9-2-2-2z"
-            />
-          </svg>
-        </div>
-      )}
-      
-      {error ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <svg className="w-10 h-10 text-gray-400" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="M21 17v2H3v-2h18zM6.5 14l4-8 4 8h-8z"
-            />
-          </svg>
-        </div>
-      ) : (
-        <>
-          <img
-            src={src}
-            alt={alt}
-            className={cn(
-              'w-full h-full object-cover transition-all duration-500',
-              !loaded ? 'opacity-0' : 'opacity-100',
-              getHoverClasses()
-            )}
-            onLoad={() => setLoaded(true)}
-            onError={() => setError(true)}
-            loading="lazy"
-          />
-          
-          {overlay && (
-            <div 
-              className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-60"
-              style={{ backgroundColor: overlayColor }}
-            />
-          )}
-        </>
-      )}
-    </div>
-  );
-};
-
-// Feature Card with image, title, description and action
-export const FeatureCard = ({
-  title,
-  description,
-  icon,
-  className,
-  variant = 'default',
-  onClick,
-}: {
-  title: string;
-  description: string;
-  icon?: React.ReactNode;
-  className?: string;
-  variant?: 'default' | 'bordered' | 'glass' | 'gradient';
-  onClick?: () => void;
-}) => {
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'bordered':
-        return 'bg-white border-2 border-soil/20';
-      case 'glass':
-        return 'bg-white/20 backdrop-blur-md border border-white/30';
+        classes += 'bg-white/70 backdrop-blur-md border border-white/30 ';
+        break;
       case 'gradient':
-        return 'bg-gradient-to-br from-white/80 via-white/60 to-white/80';
+        classes += 'bg-gradient-to-br from-white/90 to-cream/70 border border-white/30 ';
+        break;
+      case 'bordered':
+        classes += 'bg-white border border-soil/20 ';
+        break;
+      case 'elevated':
+        classes += 'bg-white shadow-lg ';
+        break;
+      case 'mesh':
+        classes += 'mesh-gradient ';
+        break;
+      case 'tricolor':
+        classes += 'bg-gradient-to-r from-[#FF9933]/10 via-white/80 to-[#138808]/10 border border-[#000080]/10 ';
+        break;
+      case 'farm':
+        classes += 'bg-gradient-to-r from-soil-50 to-white border-l-4 border-l-leaf shadow-md ';
+        break;
+      case 'minimal':
+        classes += 'bg-transparent border border-soil/10 ';
+        break;
+      case 'bordered-gradient':
+        classes += 'relative p-[1px] bg-gradient-to-r from-saffron to-soil before:content-[""] before:absolute before:inset-[1px] before:bg-white before:rounded-[inherit] before:-z-10 ';
+        break;
+      case 'rich':
+        classes += 'bg-gradient-to-r from-soil-50 to-saffron-50 border-l-4 border-l-saffron shadow-md ';
+        break;
+      case 'image-card':
+        classes += 'bg-white/90 shadow-lg overflow-hidden ';
+        break;
+      case 'warli':
+        classes += 'bg-gradient-to-r from-soil-100 to-white border-2 border-soil/20 bg-[url("/subtle-pattern.png")] bg-repeat bg-blend-overlay ';
+        break;
+      case 'highlighted':
+        classes += 'bg-gradient-to-r from-saffron/10 to-white border-l-4 border-l-saffron shadow-md ';
+        break;
+      case 'clay':
+        classes += 'bg-white border border-soil/10 shadow-inner ';
+        break;
+      case 'govt':
+        classes += 'bg-gradient-to-r from-[#FF9933]/10 via-white/80 to-[#138808]/10 border border-[#000080]/10 ';
+        break;
       default:
-        return 'bg-white';
+        classes += 'bg-white ';
     }
+    
+    // Add effect classes
+    if (glowEffect) {
+      classes += 'glow-effect --glow-color: rgba(255, 153, 51, 0.4) ';
+    }
+    
+    if (hoverEffect) {
+      classes += 'hover-lift ';
+    }
+    
+    return classes + className;
   };
-
+  
   return (
-    <motion.div
-      whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)" }}
-      transition={{ duration: 0.2 }}
-      className={cn(
-        'rounded-xl p-5 shadow-md',
-        getVariantClasses(),
-        onClick && 'cursor-pointer',
-        className
-      )}
+    <motion.div 
+      className={getCardClasses()} 
       onClick={onClick}
+      {...getMotionProps()}
     >
-      {icon && (
-        <div className="mb-4 p-3 rounded-lg inline-flex bg-soil/5 text-soil/90">
-          {icon}
-        </div>
-      )}
-      
-      <h3 className="text-lg font-semibold text-soil mb-2">{title}</h3>
-      
-      <p className="text-sm text-soil/70">{description}</p>
-      
-      {onClick && (
-        <div className="mt-4 flex items-center text-sm font-medium text-saffron">
-          Learn more <ArrowRight size={16} className="ml-1" />
-        </div>
-      )}
+      <div className="relative z-10">
+        {children}
+      </div>
     </motion.div>
   );
 };
 
-// Section Divider with multiple styles
-export const SectionDivider = ({
-  className,
-  variant = 'gradient',
-}: {
+// Enhanced Button Component
+type ButtonVariant = 
+  | 'primary' 
+  | 'secondary' 
+  | 'leaf' 
+  | 'soil' 
+  | 'saffron' 
+  | 'outline' 
+  | 'glass' 
+  | 'govt'
+  | 'voice';
+
+interface MotionButtonProps {
+  children: React.ReactNode;
   className?: string;
-  variant?: 'gradient' | 'dots' | 'wavy' | 'dashed';
-}) => {
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'dots':
-        return 'border-dotted border-t-2 border-soil/30';
-      case 'wavy':
-        return 'bg-[url("data:image/svg+xml,%3Csvg width=\'100\' height=\'12\' viewBox=\'0 0 100 12\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 6C8.33333 6 8.33333 0 16.6667 0C25 0 25 6 33.3333 6C41.6667 6 41.6667 0 50 0C58.3333 0 58.3333 6 66.6667 6C75 6 75 0 83.3333 0C91.6667 0 91.6667 6 100 6V12H0V6Z\' fill=\'rgba(255, 87, 34, 0.2)\'/%3E%3C/svg%3E")] bg-repeat-x h-3';
-      case 'dashed':
-        return 'border-dashed border-t-2 border-soil/30';
-      default:
-        return 'bg-gradient-to-r from-transparent via-soil/30 to-transparent h-px';
-    }
-  };
+  variant?: ButtonVariant;
+  size?: 'sm' | 'md' | 'lg';
+  icon?: React.ReactNode;
+  withShine?: boolean;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+}
 
-  return (
-    <div className={cn('w-full my-6', getVariantClasses(), className)} />
-  );
-};
-
-// Icon Badge with different variants
-export const IconBadge = ({
-  icon: Icon,
-  className,
+export const MotionButton: React.FC<MotionButtonProps> = ({
+  children,
+  className = '',
   variant = 'primary',
   size = 'md',
-  withGlow = false,
-}: {
-  icon: React.ElementType;
-  className?: string;
-  variant?: 'primary' | 'secondary' | 'leaf' | 'earth' | 'soil' | 'harvest' | 'sky' | 'saffron';
-  size?: 'sm' | 'md' | 'lg';
-  withGlow?: boolean;
+  icon,
+  withShine = false,
+  fullWidth = false,
+  disabled = false,
+  onClick,
 }) => {
-  const getVariantClasses = () => {
+  const getButtonClasses = () => {
+    let classes = 'relative flex items-center justify-center gap-2 rounded-full font-medium transition-all ';
+    
+    // Size classes
+    switch (size) {
+      case 'sm':
+        classes += 'text-xs px-3 py-1.5 ';
+        break;
+      case 'lg':
+        classes += 'text-base px-6 py-3 ';
+        break;
+      default: // md
+        classes += 'text-sm px-4 py-2 ';
+    }
+    
+    // Variant classes
     switch (variant) {
+      case 'primary':
+        classes += 'bg-gradient-to-r from-[#34C759] to-[#34C759]/90 text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-[#34C759]/90 hover:to-[#34C759] ';
+        break;
       case 'secondary':
-        return 'bg-sky-100 text-sky-600';
+        classes += 'bg-gradient-to-r from-[#4285F4]/90 to-[#4285F4] text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-[#4285F4] hover:to-[#4285F4]/90 ';
+        break;
       case 'leaf':
-        return 'bg-green-100 text-green-600';
-      case 'earth':
-        return 'bg-amber-100 text-amber-600';
+        classes += 'bg-gradient-to-r from-leaf/90 to-leaf text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-leaf hover:to-leaf/90 ';
+        break;
       case 'soil':
-        return 'bg-soil-50 text-soil-500';
-      case 'harvest':
-        return 'bg-harvest-100 text-harvest-600';
-      case 'sky':
-        return 'bg-blue-100 text-blue-600';
+        classes += 'bg-gradient-to-r from-soil/90 to-soil text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-soil hover:to-soil/90 ';
+        break;
       case 'saffron':
-        return 'bg-orange-100 text-orange-600';
+        classes += 'bg-gradient-to-r from-saffron/90 to-saffron text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-saffron hover:to-saffron/90 ';
+        break;
+      case 'outline':
+        classes += 'bg-transparent border-2 border-soil/70 text-soil hover:bg-soil/5 ';
+        break;
+      case 'glass':
+        classes += 'bg-white/30 backdrop-blur-md border border-white/50 text-soil shadow-sm hover:bg-white/40 ';
+        break;
+      case 'govt':
+        classes += 'bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-soil font-bold shadow-md hover:opacity-90 ';
+        break;
+      case 'voice':
+        classes += 'bg-gradient-to-r from-saffron via-leaf to-saffron text-white shadow-lg hover:shadow-xl transition-all duration-200 ';
+        break;
       default:
-        return 'bg-soil-100 text-soil-600';
+        classes += 'bg-gradient-to-r from-[#34C759] to-[#34C759]/90 text-white shadow-md hover:shadow-lg ';
     }
-  };
-
-  const getSizeClasses = () => {
-    switch (size) {
-      case 'sm':
-        return 'p-1.5 rounded-md';
-      case 'lg':
-        return 'p-3 rounded-xl';
-      default:
-        return 'p-2 rounded-lg';
+    
+    // Other classes
+    if (fullWidth) {
+      classes += 'w-full ';
     }
-  };
-
-  const getIconSize = () => {
-    switch (size) {
-      case 'sm':
-        return 16;
-      case 'lg':
-        return 24;
-      default:
-        return 20;
+    
+    if (disabled) {
+      classes += 'opacity-50 pointer-events-none ';
     }
+    
+    if (withShine) {
+      classes += 'btn-shine overflow-hidden ';
+    }
+    
+    return classes + className;
   };
-
+  
   return (
-    <div
-      className={cn(
-        'flex items-center justify-center',
-        getVariantClasses(),
-        getSizeClasses(),
-        withGlow && 'shadow-md',
-        className
-      )}
+    <motion.button
+      className={getButtonClasses()}
+      onClick={onClick}
+      disabled={disabled}
+      whileTap={{ scale: 0.98 }}
+      whileHover={{ scale: 1.02 }}
     >
-      <Icon size={getIconSize()} />
+      {icon && <span className="flex-shrink-0">{icon}</span>}
+      {children}
+    </motion.button>
+  );
+};
+
+// Enhanced Text Component with Gradient
+interface GradientTextProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'sky' | 'tricolor';
+  className?: string;
+  withAnimation?: boolean;
+}
+
+export const GradientText: React.FC<GradientTextProps> = ({
+  children,
+  variant = 'primary',
+  className = '',
+  withAnimation = false,
+}) => {
+  const getGradientClasses = () => {
+    let classes = 'bg-clip-text text-transparent bg-gradient-to-r ';
+    
+    switch (variant) {
+      case 'primary':
+        classes += 'from-[#34C759] to-[#138808] ';
+        break;
+      case 'secondary':
+        classes += 'from-[#4285F4] to-[#0288D1] ';
+        break;
+      case 'soil':
+        classes += 'from-[#FF5722] to-[#E64A19] ';
+        break;
+      case 'leaf':
+        classes += 'from-[#4CAF50] to-[#2E7D32] ';
+        break;
+      case 'saffron':
+        classes += 'from-[#FF9933] to-[#FF8F00] ';
+        break;
+      case 'sky':
+        classes += 'from-[#03A9F4] to-[#01579B] ';
+        break;
+      case 'tricolor':
+        classes += 'from-[#FF9933] via-white to-[#138808] ';
+        break;
+      default:
+        classes += 'from-[#34C759] to-[#138808] ';
+    }
+    
+    if (withAnimation) {
+      classes += 'animate-shimmer bg-size-200 ';
+    }
+    
+    return classes + className;
+  };
+  
+  return (
+    <span className={getGradientClasses()}>
+      {children}
+    </span>
+  );
+};
+
+// Badge Component
+interface IconBadgeProps {
+  icon: React.ElementType;
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'earth' | 'saffron' | 'sky' | 'harvest';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  withGlow?: boolean;
+}
+
+export const IconBadge: React.FC<IconBadgeProps> = ({
+  icon: Icon,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  withGlow = false,
+}) => {
+  const getBadgeClasses = () => {
+    let classes = 'flex items-center justify-center rounded-full ';
+    
+    // Size classes
+    switch (size) {
+      case 'sm':
+        classes += 'w-6 h-6 text-xs ';
+        break;
+      case 'lg':
+        classes += 'w-10 h-10 text-lg ';
+        break;
+      default: // md
+        classes += 'w-8 h-8 text-sm ';
+    }
+    
+    // Variant classes
+    switch (variant) {
+      case 'primary':
+        classes += 'bg-gradient-to-br from-[#34C759]/20 to-[#34C759]/10 text-[#34C759] ';
+        break;
+      case 'secondary':
+        classes += 'bg-gradient-to-br from-[#4285F4]/20 to-[#4285F4]/10 text-[#4285F4] ';
+        break;
+      case 'soil':
+        classes += 'bg-gradient-to-br from-[#FF5722]/20 to-[#FF5722]/10 text-[#FF5722] ';
+        break;
+      case 'leaf':
+        classes += 'bg-gradient-to-br from-[#4CAF50]/20 to-[#4CAF50]/10 text-[#4CAF50] ';
+        break;
+      case 'earth':
+        classes += 'bg-gradient-to-br from-[#795548]/20 to-[#795548]/10 text-[#795548] ';
+        break;
+      case 'saffron':
+        classes += 'bg-gradient-to-br from-[#FF9933]/20 to-[#FF9933]/10 text-[#FF9933] ';
+        break;
+      case 'sky':
+        classes += 'bg-gradient-to-br from-[#03A9F4]/20 to-[#03A9F4]/10 text-[#03A9F4] ';
+        break;
+      case 'harvest':
+        classes += 'bg-gradient-to-br from-[#FFC107]/20 to-[#FFC107]/10 text-[#FFC107] ';
+        break;
+      default:
+        classes += 'bg-gradient-to-br from-[#34C759]/20 to-[#34C759]/10 text-[#34C759] ';
+    }
+    
+    if (withGlow) {
+      classes += 'glow-effect ';
+    }
+    
+    return classes + className;
+  };
+  
+  return (
+    <div className={getBadgeClasses()}>
+      <Icon className="w-4 h-4" />
     </div>
   );
 };
 
-// Accordion with smooth animations
-export const EnhancedAccordion = ({
-  items,
-  className,
-  variant = 'default',
-}: {
-  items: { title: string; content: React.ReactNode }[];
+// Enhanced Badge Component
+interface EnhancedBadgeProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'info' | 'success' | 'warning' | 'error';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
-  variant?: 'default' | 'bordered' | 'filled';
+  withAnimation?: boolean;
+}
+
+export const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
+  children,
+  variant = 'primary',
+  size = 'sm',
+  className = '',
+  withAnimation = false,
 }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const getVariantClasses = () => {
+  const getBadgeClasses = () => {
+    let classes = 'inline-flex items-center justify-center rounded-full font-medium ';
+    
+    // Size classes
+    switch (size) {
+      case 'sm':
+        classes += 'text-xs px-2 py-0.5 ';
+        break;
+      case 'lg':
+        classes += 'text-sm px-3 py-1 ';
+        break;
+      default: // md
+        classes += 'text-xs px-2.5 py-0.75 ';
+    }
+    
+    // Variant classes
     switch (variant) {
-      case 'bordered':
-        return 'divide-y divide-soil/10 border border-soil/10 rounded-xl overflow-hidden';
-      case 'filled':
-        return 'divide-y divide-soil/10 bg-soil/5 rounded-xl overflow-hidden';
+      case 'primary':
+        classes += 'bg-[#34C759]/10 text-[#34C759] border border-[#34C759]/20 ';
+        break;
+      case 'secondary':
+        classes += 'bg-[#4285F4]/10 text-[#4285F4] border border-[#4285F4]/20 ';
+        break;
+      case 'soil':
+        classes += 'bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/20 ';
+        break;
+      case 'leaf':
+        classes += 'bg-[#4CAF50]/10 text-[#4CAF50] border border-[#4CAF50]/20 ';
+        break;
+      case 'saffron':
+        classes += 'bg-[#FF9933]/10 text-[#FF9933] border border-[#FF9933]/20 ';
+        break;
+      case 'info':
+        classes += 'bg-[#03A9F4]/10 text-[#03A9F4] border border-[#03A9F4]/20 ';
+        break;
+      case 'success':
+        classes += 'bg-[#4CAF50]/10 text-[#4CAF50] border border-[#4CAF50]/20 ';
+        break;
+      case 'warning':
+        classes += 'bg-[#FFC107]/10 text-[#FFC107] border border-[#FFC107]/20 ';
+        break;
+      case 'error':
+        classes += 'bg-[#F44336]/10 text-[#F44336] border border-[#F44336]/20 ';
+        break;
       default:
-        return 'divide-y divide-soil/10';
+        classes += 'bg-[#34C759]/10 text-[#34C759] border border-[#34C759]/20 ';
+    }
+    
+    if (withAnimation) {
+      classes += 'animate-pulse-gentle ';
+    }
+    
+    return classes + className;
+  };
+  
+  return (
+    <span className={getBadgeClasses()}>
+      {children}
+    </span>
+  );
+};
+
+// Section Divider
+interface SectionDividerProps {
+  variant?: 'default' | 'gradient' | 'dotted' | 'wavy';
+  className?: string;
+}
+
+export const SectionDivider: React.FC<SectionDividerProps> = ({
+  variant = 'default',
+  className = '',
+}) => {
+  const getDividerClasses = () => {
+    let classes = 'w-full my-4 ';
+    
+    switch (variant) {
+      case 'gradient':
+        classes += 'h-px bg-gradient-to-r from-transparent via-soil/30 to-transparent ';
+        break;
+      case 'dotted':
+        classes += 'h-px border-t-2 border-dotted border-soil/20 ';
+        break;
+      case 'wavy':
+        classes += 'h-3 wavy-divider ';
+        break;
+      default:
+        classes += 'h-px bg-soil/10 ';
+    }
+    
+    return classes + className;
+  };
+  
+  return <div className={getDividerClasses()} />;
+};
+
+// Glass Container
+interface GlassContainerProps {
+  children: React.ReactNode;
+  intensity?: 'light' | 'medium' | 'heavy';
+  className?: string;
+}
+
+export const GlassContainer: React.FC<GlassContainerProps> = ({
+  children,
+  intensity = 'medium',
+  className = '',
+}) => {
+  const getGlassClasses = () => {
+    let classes = 'rounded-xl overflow-hidden ';
+    
+    switch (intensity) {
+      case 'light':
+        classes += 'bg-white/20 backdrop-blur-sm ';
+        break;
+      case 'heavy':
+        classes += 'bg-white/50 backdrop-blur-xl ';
+        break;
+      default: // medium
+        classes += 'bg-white/30 backdrop-blur-md ';
+    }
+    
+    return classes + className;
+  };
+  
+  return (
+    <div className={getGlassClasses()}>
+      {children}
+    </div>
+  );
+};
+
+// Enhanced Image
+interface EnhancedImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  aspectRatio?: string;
+  rounded?: string;
+  overlay?: boolean;
+  overlayColor?: string;
+  hoverEffect?: 'zoom' | 'blur' | 'fade' | 'none';
+}
+
+export const EnhancedImage: React.FC<EnhancedImageProps> = ({
+  src,
+  alt,
+  className = '',
+  aspectRatio = 'auto',
+  rounded = 'lg',
+  overlay = false,
+  overlayColor = 'rgba(0, 0, 0, 0.3)',
+  hoverEffect = 'none',
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  
+  const getAspectRatioClass = () => {
+    switch (aspectRatio) {
+      case '1/1': 
+        return 'aspect-square';
+      case '16/9': 
+        return 'aspect-video';
+      case '4/3': 
+        return 'aspect-4/3';
+      case '3/2': 
+        return 'aspect-3/2';
+      default: 
+        return '';
     }
   };
-
+  
+  const getRoundedClass = () => {
+    switch (rounded) {
+      case 'none': 
+        return '';
+      case 'sm': 
+        return 'rounded-sm';
+      case 'md': 
+        return 'rounded-md';
+      case 'lg': 
+        return 'rounded-lg';
+      case 'xl': 
+        return 'rounded-xl';
+      case 'full': 
+        return 'rounded-full';
+      default: 
+        return 'rounded-lg';
+    }
+  };
+  
+  const getHoverEffectClass = () => {
+    switch (hoverEffect) {
+      case 'zoom': 
+        return 'hover:scale-110';
+      case 'blur': 
+        return 'hover:blur-sm';
+      case 'fade': 
+        return 'hover:opacity-70';
+      default: 
+        return '';
+    }
+  };
+  
   return (
-    <div className={cn(getVariantClasses(), className)}>
-      {items.map((item, index) => (
-        <div key={index} className="overflow-hidden">
-          <button
-            onClick={() => handleToggle(index)}
-            className="w-full flex items-center justify-between py-3 px-4 text-left font-medium text-soil focus:outline-none"
-          >
-            <span>{item.title}</span>
-            <ChevronDown
-              size={18}
-              className={`transition-transform duration-300 ${
-                openIndex === index ? 'rotate-180' : ''
-              }`}
-            />
-          </button>
-          
-          <AnimatePresence>
-            {openIndex === index && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-              >
-                <div className="px-4 pb-4 pt-1 text-sm text-soil/70">
-                  {item.content}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+    <div className={`relative overflow-hidden ${getAspectRatioClass()} ${getRoundedClass()} ${className}`}>
+      {!isLoaded && !error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-soil/10 animate-pulse">
+          <div className="w-8 h-8 border-4 border-soil/20 border-t-soil/40 rounded-full animate-spin"></div>
         </div>
-      ))}
+      )}
+      
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-soil/10">
+          <div className="text-soil/40 text-sm">Image failed to load</div>
+        </div>
+      )}
+      
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-all duration-700 ${getHoverEffectClass()} ${!isLoaded && 'opacity-0'}`}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => {
+          setError(true);
+          setIsLoaded(true);
+        }}
+      />
+      
+      {overlay && isLoaded && !error && (
+        <div 
+          className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+          style={{ background: overlayColor }}
+        ></div>
+      )}
     </div>
   );
 };
 
-// Animated number counter
-export const AnimatedCounter = ({
-  value,
-  prefix = '',
-  suffix = '',
-  className,
-  duration = 2000,
-}: {
+// Feature Card
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  variant?: 'default' | 'glass' | 'gradient' | 'soil' | 'saffron' | 'leaf';
+  className?: string;
+  onClick?: () => void;
+}
+
+export const FeatureCard: React.FC<FeatureCardProps> = ({
+  title,
+  description,
+  icon,
+  variant = 'default',
+  className = '',
+  onClick,
+}) => {
+  const getCardClasses = () => {
+    let classes = 'p-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ';
+    
+    switch (variant) {
+      case 'glass':
+        classes += 'bg-white/50 backdrop-blur-sm border border-white/30 ';
+        break;
+      case 'gradient':
+        classes += 'bg-gradient-to-br from-white/90 to-cream/70 border border-white/30 ';
+        break;
+      case 'soil':
+        classes += 'bg-soil/10 border border-soil/20 ';
+        break;
+      case 'saffron':
+        classes += 'bg-saffron/10 border border-saffron/20 ';
+        break;
+      case 'leaf':
+        classes += 'bg-leaf/10 border border-leaf/20 ';
+        break;
+      default:
+        classes += 'bg-white border border-soil/10 ';
+    }
+    
+    return classes + className;
+  };
+  
+  return (
+    <motion.div 
+      className={getCardClasses()}
+      onClick={onClick}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <div className="flex items-start gap-3">
+        <div className="mt-1 p-2 rounded-full bg-white shadow-sm">
+          {icon}
+        </div>
+        <div className="flex-1">
+          <h3 className="font-medium text-soil mb-1">{title}</h3>
+          <p className="text-sm text-soil/70">{description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Animated Counter
+interface AnimatedCounterProps {
   value: number;
+  duration?: number;
   prefix?: string;
   suffix?: string;
   className?: string;
-  duration?: number;
+}
+
+export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+  value,
+  duration = 2,
+  prefix = '',
+  suffix = '',
+  className = '',
 }) => {
   const [count, setCount] = useState(0);
-  const [inView, setInView] = useState(false);
-
+  const countRef = React.useRef(count);
+  
   useEffect(() => {
-    if (!inView) return;
+    const start = 0;
+    const end = value;
+    const totalFrames = Math.min(end, duration * 60);
+    const step = Math.floor(end / totalFrames);
     
-    let startTime: number | null = null;
-    const startValue = 0;
-    const endValue = value;
+    let frame = 0;
     
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
+    const counter = setInterval(() => {
+      frame++;
+      const progress = Math.min(frame * step, end);
+      setCount(progress);
+      countRef.current = progress;
       
-      setCount(Math.floor(progress * (endValue - startValue) + startValue));
-      
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
+      if (progress >= end) {
+        clearInterval(counter);
+        setCount(end);
       }
-    };
+    }, 1000 / 60);
     
-    window.requestAnimationFrame(step);
-  }, [value, duration, inView]);
-
-  return (
-    <div
-      ref={(ref) => {
-        if (ref) {
-          const observer = new IntersectionObserver(
-            ([entry]) => {
-              if (entry.isIntersecting) {
-                setInView(true);
-                observer.disconnect();
-              }
-            },
-            { threshold: 0.1 }
-          );
-          observer.observe(ref);
-        }
-      }}
-      className={className}
-    >
-      {prefix}
-      {count.toLocaleString()}
-      {suffix}
-    </div>
-  );
-};
-
-// Page section with enhanced styling
-export const PageSection = ({
-  children,
-  title,
-  subtitle,
-  className,
-  titleClassName,
-  subtitleClassName,
-  withDivider = false,
-  variant = 'default',
-  withGradientBackground = false,
-  withPattern = false,
-}: {
-  children: React.ReactNode;
-  title?: string;
-  subtitle?: string;
-  className?: string;
-  titleClassName?: string;
-  subtitleClassName?: string;
-  withDivider?: boolean;
-  variant?: 'default' | 'centered' | 'bordered' | 'glass';
-  withGradientBackground?: boolean;
-  withPattern?: boolean;
-}) => {
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'centered':
-        return 'text-center';
-      case 'bordered':
-        return 'border border-soil/10 rounded-xl p-6';
-      case 'glass':
-        return 'bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-6';
-      default:
-        return '';
+    return () => clearInterval(counter);
+  }, [value, duration]);
+  
+  const formatValue = (val: number): string => {
+    if (val >= 1000000) {
+      return (val / 1000000).toFixed(1) + 'M';
+    } else if (val >= 1000) {
+      return (val / 1000).toFixed(1) + 'K';
+    } else {
+      return val.toString();
     }
   };
-
+  
   return (
-    <section
-      className={cn(
-        'relative my-8',
-        getVariantClasses(),
-        withGradientBackground && 'bg-gradient-to-br from-soil/5 to-saffron/5',
-        withPattern && 'pattern-background',
-        className
-      )}
-    >
-      {title && (
-        <h2 className={cn('text-xl font-semibold text-soil mb-2', titleClassName)}>
-          {title}
-        </h2>
-      )}
-      
-      {subtitle && (
-        <p className={cn('text-sm text-soil/70 mb-5', subtitleClassName)}>
-          {subtitle}
-        </p>
-      )}
-      
-      {withDivider && title && <SectionDivider className="my-4" />}
-      
-      <div>{children}</div>
-    </section>
+    <span className={className}>
+      {prefix}{formatValue(count)}{suffix}
+    </span>
   );
 };
 
-// Progress indicator with animation
-export const ProgressBar = ({
-  value,
-  max = 100,
-  showLabel = true,
-  size = 'md',
-  variant = 'primary',
-  className,
-  labelPosition = 'right',
-  animated = true,
-}: {
+// Progress Bar
+interface ProgressBarProps {
   value: number;
   max?: number;
-  showLabel?: boolean;
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron';
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary' | 'leaf' | 'soil' | 'harvest';
-  className?: string;
-  labelPosition?: 'right' | 'top';
   animated?: boolean;
+  showValue?: boolean;
+  className?: string;
+}
+
+export const ProgressBar: React.FC<ProgressBarProps> = ({
+  value,
+  max = 100,
+  variant = 'primary',
+  size = 'md',
+  animated = false,
+  showValue = false,
+  className = '',
 }) => {
-  const percentage = Math.round((value / max) * 100);
-
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'secondary':
-        return 'bg-sky-500';
-      case 'leaf':
-        return 'bg-leaf-500';
-      case 'soil':
-        return 'bg-soil-500';
-      case 'harvest':
-        return 'bg-harvest-500';
-      default:
-        return 'bg-saffron';
-    }
-  };
-
-  const getSizeClasses = () => {
+  const percentage = Math.min(Math.max(0, (value / max) * 100), 100);
+  
+  const getTrackClasses = () => {
+    let classes = 'w-full rounded-full bg-soil/10 overflow-hidden ';
+    
     switch (size) {
       case 'sm':
-        return 'h-1.5';
+        classes += 'h-1 ';
+        break;
       case 'lg':
-        return 'h-4';
-      default:
-        return 'h-2.5';
+        classes += 'h-4 ';
+        break;
+      default: // md
+        classes += 'h-2 ';
     }
+    
+    return classes + className;
   };
-
-  return (
-    <div className={cn('w-full', className)}>
-      {showLabel && labelPosition === 'top' && (
-        <div className="flex justify-between mb-1 text-xs font-medium text-soil/70">
-          <span>{value}</span>
-          <span>{percentage}%</span>
-        </div>
-      )}
-      
-      <div className="relative">
-        <div className={cn('w-full bg-soil/10 rounded-full overflow-hidden', getSizeClasses())}>
-          <motion.div
-            initial={animated ? { width: 0 } : { width: `${percentage}%` }}
-            animate={{ width: `${percentage}%` }}
-            transition={{ duration: animated ? 1 : 0, ease: 'easeOut' }}
-            className={cn('h-full rounded-full', getVariantClasses())}
-          />
-        </div>
-        
-        {showLabel && labelPosition === 'right' && (
-          <div className="ml-2 text-xs font-medium text-soil/70 absolute right-0 top-0 -translate-y-1/3">
-            {percentage}%
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-// Step indicator for multi-step processes
-export const StepIndicator = ({
-  steps,
-  currentStep,
-  className,
-  orientation = 'horizontal',
-  variant = 'default',
-}: {
-  steps: string[];
-  currentStep: number;
-  className?: string;
-  orientation?: 'horizontal' | 'vertical';
-  variant?: 'default' | 'numbered' | 'detailed';
-}) => {
-  return (
-    <div
-      className={cn(
-        'flex',
-        orientation === 'vertical' ? 'flex-col space-y-4' : 'space-x-4',
-        className
-      )}
-    >
-      {steps.map((step, index) => {
-        const isActive = index < currentStep;
-        const isCurrent = index === currentStep - 1;
-        
-        return (
-          <div
-            key={index}
-            className={cn(
-              'flex',
-              orientation === 'vertical' ? 'flex-col space-y-2' : 'items-center'
-            )}
-          >
-            <div className="flex items-center">
-              <div
-                className={cn(
-                  'flex items-center justify-center rounded-full transition-colors',
-                  variant === 'numbered' ? 'w-8 h-8' : 'w-6 h-6',
-                  isActive
-                    ? 'bg-saffron text-white'
-                    : 'bg-gray-200 text-gray-400',
-                  isCurrent && 'ring-2 ring-saffron/30 ring-offset-2'
-                )}
-              >
-                {variant === 'numbered' ? (
-                  <span className="text-xs font-medium">{index + 1}</span>
-                ) : (
-                  isActive && <Check size={14} />
-                )}
-              </div>
-              
-              {index < steps.length - 1 && orientation === 'horizontal' && (
-                <div
-                  className={cn(
-                    'w-12 h-0.5 ml-2',
-                    index < currentStep - 1 ? 'bg-saffron' : 'bg-gray-200'
-                  )}
-                />
-              )}
-            </div>
-            
-            {variant === 'detailed' && (
-              <div
-                className={cn(
-                  'text-xs',
-                  isCurrent ? 'font-medium text-soil' : 'text-soil/60'
-                )}
-              >
-                {step}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-// Enhanced Stat Display
-export const StatDisplay = ({
-  value,
-  label,
-  icon,
-  change,
-  className,
-  variant = 'default',
-}: {
-  value: string | number;
-  label: string;
-  icon?: React.ReactNode;
-  change?: { value: string | number; direction: 'up' | 'down' };
-  className?: string;
-  variant?: 'default' | 'card' | 'compact' | 'glass';
-}) => {
-  const getVariantClasses = () => {
+  
+  const getProgressClasses = () => {
+    let classes = 'h-full rounded-full ';
+    
     switch (variant) {
-      case 'card':
-        return 'bg-white rounded-xl p-4 shadow-md';
-      case 'compact':
-        return 'bg-soil/5 rounded-lg p-3';
-      case 'glass':
-        return 'bg-white/20 backdrop-blur-md border border-white/30 rounded-xl p-4 shadow-md';
+      case 'primary':
+        classes += 'bg-gradient-to-r from-[#34C759] to-[#138808] ';
+        break;
+      case 'secondary':
+        classes += 'bg-gradient-to-r from-[#4285F4] to-[#0288D1] ';
+        break;
+      case 'soil':
+        classes += 'bg-gradient-to-r from-[#FF5722] to-[#E64A19] ';
+        break;
+      case 'leaf':
+        classes += 'bg-gradient-to-r from-[#4CAF50] to-[#2E7D32] ';
+        break;
+      case 'saffron':
+        classes += 'bg-gradient-to-r from-[#FF9933] to-[#FF8F00] ';
+        break;
       default:
-        return '';
+        classes += 'bg-gradient-to-r from-[#34C759] to-[#138808] ';
     }
+    
+    if (animated) {
+      classes += 'relative overflow-hidden ';
+    }
+    
+    return classes;
   };
-
+  
   return (
-    <div className={cn('flex', getVariantClasses(), className)}>
-      {icon && (
-        <div className="mr-3 flex items-center justify-center rounded-lg bg-soil/10 p-2 text-soil/80">
-          {icon}
-        </div>
-      )}
-      
-      <div>
-        <p className="text-xs text-soil/60 mb-1">{label}</p>
-        <div className="flex items-baseline">
-          <p className="text-xl font-semibold text-soil">{value}</p>
-          
-          {change && (
-            <span
-              className={cn(
-                'ml-2 text-xs font-medium',
-                change.direction === 'up' ? 'text-leaf-600' : 'text-soil-600'
-              )}
-            >
-              {change.direction === 'up' ? '↑' : '↓'} {change.value}
-            </span>
+    <div className="relative">
+      <div className={getTrackClasses()}>
+        <div 
+          className={getProgressClasses()}
+          style={{ width: `${percentage}%` }}
+        >
+          {animated && (
+            <div className="absolute inset-0 animate-shimmer bg-white/10 bg-[length:200%_100%]"></div>
           )}
         </div>
       </div>
+      
+      {showValue && (
+        <div className="absolute top-0 right-0 -mt-6 text-xs font-medium text-soil">
+          {value}/{max}
+        </div>
+      )}
     </div>
   );
 };
@@ -1105,99 +960,134 @@ export const EnhancedStyles = () => (
       }
     }
     
-    @keyframes shine {
-      from {
-        transform: translateX(-100%);
+    @keyframes pulse-gentle {
+      0%, 100% { 
+        transform: scale(1); 
       }
+      50% { 
+        transform: scale(1.05);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+    
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 5px var(--glow-color, rgba(255, 87, 34, 0.4));
+      }
+      100% {
+        box-shadow: 0 0 20px var(--glow-color, rgba(255, 87, 34, 0.7));
+      }
+    }
+    
+    @keyframes spin {
       to {
-        transform: translateX(100%);
+        transform: rotate(360deg);
       }
     }
     
-    .shine-effect {
-      position: relative;
-      overflow: hidden;
+    .glow-effect {
+      --glow-color: rgba(255, 153, 51, 0.5);
+      animation: glow 1.5s ease-in-out infinite alternate;
     }
     
-    .shine-effect::after {
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-shine::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
       width: 100%;
       height: 100%;
       background: linear-gradient(
-        90deg,
+        120deg,
         transparent,
-        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.4),
         transparent
       );
+      left: -100%;
       transition: 0.5s;
     }
     
-    .shine-effect:hover::after {
+    .btn-shine:hover::before {
       left: 100%;
     }
     
-    .animate-text-shimmer {
-      background-size: 200% auto;
-      animation: textShimmer 2s linear infinite;
+    .animate-shimmer {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0)
+      );
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
     }
     
-    @keyframes textShimmer {
-      0% {
-        background-position: 0% center;
-      }
-      100% {
-        background-position: 200% center;
-      }
+    .bg-size-200 {
+      background-size: 200% 100%;
     }
     
-    .hover-shine {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hover-shine::before {
+    .wavy-divider::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -75%;
-      z-index: 2;
-      width: 50%;
+      left: 0;
+      right: 0;
       height: 100%;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 100%
-      );
-      transform: skewX(-25deg);
-      transition: 0.75s;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='12' viewBox='0 0 100 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6C8.33333 6 8.33333 0 16.6667 0C25 0 25 6 33.3333 6C41.6667 6 41.6667 0 50 0C58.3333 0 58.3333 6 66.6667 6C75 6 75 0 83.3333 0C91.6667 0 91.6667 6 100 6V12H0V6Z' fill='rgba(255, 87, 34, 0.3)'/%3E%3C/svg%3E");
+      background-size: 100px 12px;
+      background-repeat: repeat-x;
     }
     
-    .hover-shine:hover::before {
-      left: 125%;
-    }
-    
-    .pattern-background {
-      background-image: url('/subtle-pattern.png');
-      background-repeat: repeat;
-      background-size: 200px;
-      background-blend-mode: overlay;
+    .mesh-gradient {
+      background-color: #FF9A8B;
+      background-image: 
+        radial-gradient(at 40% 20%, hsla(28, 100%, 74%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
     }
   `}} />
 );
 
 // Export all components with Styles
-export default function EnhancedUIProvider({
-  children
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <>
-      <EnhancedStyles />
-      {children}
-    </>
-  );
-}
+export {
+  EnhancedCard,
+  MotionButton,
+  GradientText,
+  IconBadge,
+  EnhancedBadge,
+  SectionDivider,
+  GlassContainer,
+  EnhancedImage,
+  FeatureCard,
+  AnimatedCounter,
+  ProgressBar,
+  EnhancedStyles
+};
