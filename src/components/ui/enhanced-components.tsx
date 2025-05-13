@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { theme, colors, gradients, shadows, animations } from '@/styles/theme';
+import { CardVariant } from '@/components/Card';
 
 // Define a type for custom CSS properties
 interface CustomCSSProperties extends React.CSSProperties {
@@ -1092,7 +1092,8 @@ export const StatDisplay = ({
 
 // Add @keyframes for animations to the style
 export const EnhancedStyles = () => (
-  <style jsx global>{`
+  <style dangerouslySetInnerHTML={{
+    __html: `
     @keyframes ripple {
       0% {
         transform: scale(0);
@@ -1184,7 +1185,7 @@ export const EnhancedStyles = () => (
       background-size: 200px;
       background-blend-mode: overlay;
     }
-  `}</style>
+  `}} />
 );
 
 // Export all components with Styles

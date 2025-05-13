@@ -9,10 +9,29 @@ interface CustomCSSProperties extends React.CSSProperties {
   '--animation-delay'?: string;
 }
 
+// Define all possible card variants
+export type CardVariant = 
+  | 'default' 
+  | 'glass' 
+  | 'gradient' 
+  | 'bordered' 
+  | 'elevated' 
+  | 'mesh' 
+  | 'tricolor' 
+  | 'farm' 
+  | 'minimal' 
+  | 'bordered-gradient'
+  | 'rich'
+  | 'image-card'
+  | 'warli'
+  | 'highlighted'
+  | 'clay'
+  | 'govt';
+
 interface CardProps {
   children: ReactNode;
   className?: string;
-  variant?: 'default' | 'glass' | 'gradient' | 'bordered' | 'elevated' | 'mesh' | 'tricolor' | 'farm' | 'minimal' | 'bordered-gradient';
+  variant?: CardVariant;
   onClick?: () => void;
   withImage?: boolean;
   imageSrc?: string;
@@ -66,6 +85,18 @@ const Card = ({
         return 'bg-transparent border border-soil/10';
       case 'bordered-gradient':
         return 'bg-white p-[1px] border-0 rounded-[inherit] relative before:absolute before:inset-0 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-saffron before:to-soil before:-z-10';
+      case 'rich':
+        return 'bg-gradient-to-r from-soil-50 to-saffron-50 border-l-4 border-l-saffron shadow-md';
+      case 'image-card':
+        return 'bg-white/90 shadow-lg overflow-hidden';
+      case 'warli':
+        return 'bg-gradient-to-r from-soil-100 to-white border-2 border-soil/20 bg-[url("/subtle-pattern.png")] bg-repeat bg-blend-overlay';
+      case 'highlighted':
+        return 'bg-gradient-to-r from-saffron/10 to-white border-l-4 border-l-saffron shadow-md';
+      case 'clay':
+        return 'bg-white border border-soil/10 shadow-inner';
+      case 'govt':
+        return 'bg-gradient-to-r from-[#FF9933]/10 via-white/80 to-[#138808]/10 border border-[#000080]/10';
       default:
         return 'bg-white';
     }
