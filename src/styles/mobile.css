@@ -1,0 +1,416 @@
+
+/* Enhanced Mobile-First Styles for Agricultural App */
+
+/* Base mobile optimizations */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+body {
+  min-height: -webkit-fill-available; /* Fix 100vh issue on iOS */
+  overscroll-behavior-y: none; /* Prevent pull-to-refresh */
+}
+
+/* Fix for iOS safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Enhanced touch targets */
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve tap highlight visibility */
+a:active,
+button:active,
+[role="button"]:active {
+  opacity: 0.7;
+  transition: opacity 0.1s;
+}
+
+/* Custom scrollbar for touch devices */
+.mobile-scrollbar {
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.mobile-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.mobile-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 152, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Hide scrollbars but keep functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom navigation bar */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.mobile-bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #795548;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+  padding: 8px 0;
+}
+
+.mobile-bottom-nav-item.active {
+  opacity: 1;
+  color: #FF9800;
+}
+
+.mobile-bottom-nav-icon {
+  margin-bottom: 4px;
+}
+
+/* Floating action button */
+.mobile-fab {
+  position: fixed;
+  bottom: 72px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #FF9800, #FF5722);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
+  z-index: 40;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-fab:active {
+  transform: scale(0.95);
+}
+
+/* Speed dial FAB menu */
+.mobile-fab-menu {
+  position: fixed;
+  bottom: 136px;
+  right: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 12px;
+  z-index: 39;
+}
+
+.mobile-fab-menu-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 24px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transform-origin: right bottom;
+  transition: all 0.2s;
+}
+
+.mobile-fab-menu-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 8px;
+  color: #795548;
+}
+
+.mobile-fab-menu-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: rgba(255, 152, 0, 0.1);
+  color: #FF9800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Swipeable cards */
+.swipeable-card-container {
+  position: relative;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.swipeable-card {
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.swipeable-card-action {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+}
+
+.swipeable-card-action.delete {
+  background-color: #F44336;
+}
+
+.swipeable-card-action.archive {
+  background-color: #4CAF50;
+}
+
+/* Pull to refresh */
+.pull-to-refresh {
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pull-to-refresh-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+}
+
+.pull-to-refresh-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 152, 0, 0.3);
+  border-top-color: #FF9800;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Mobile optimized forms */
+.mobile-form-control {
+  font-size: 16px; /* Prevent zoom on iOS */
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  margin-bottom: 16px;
+  appearance: none;
+}
+
+.mobile-form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #795548;
+}
+
+/* Mobile card optimizations */
+.mobile-card {
+  border-radius: 16px;
+  background-color: white;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Mobile grid layouts */
+.mobile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 0 12px;
+}
+
+/* Mobile-specific typography */
+.mobile-h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #3E2723;
+}
+
+.mobile-h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #3E2723;
+}
+
+.mobile-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(62, 39, 35, 0.8);
+}
+
+.mobile-small {
+  font-size: 0.8rem;
+  color: rgba(62, 39, 35, 0.6);
+}
+
+/* Mobile-specific containers */
+.mobile-container {
+  padding: 16px;
+  margin-bottom: 72px; /* Account for bottom navigation */
+}
+
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobile-footer {
+  padding: 16px;
+  margin-bottom: 64px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(62, 39, 35, 0.5);
+}
+
+/* Media queries for different mobile devices */
+/* Small phones (iPhone SE, etc) */
+@media screen and (max-width: 360px) {
+  .mobile-container {
+    padding: 12px;
+  }
+  
+  .mobile-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  
+  .mobile-h1 {
+    font-size: 1.3rem;
+  }
+  
+  .mobile-h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Larger phones */
+@media screen and (min-width: 400px) {
+  .mobile-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 640px) {
+  .mobile-bottom-nav {
+    height: 72px;
+  }
+  
+  .mobile-fab {
+    bottom: 80px;
+    right: 24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+  }
+  
+  .mobile-container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Landscape mode */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .mobile-bottom-nav {
+    height: 56px;
+  }
+  
+  .mobile-fab {
+    bottom: 64px;
+  }
+  
+  .mobile-bottom-nav-item {
+    flex-direction: row;
+    font-size: 0.75rem;
+  }
+  
+  .mobile-bottom-nav-icon {
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
+}
+
+/* Device-specific fixes */
+/* iPhone notch handling */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .notch-aware-container {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .mobile-header {
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+  
+  .mobile-bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}

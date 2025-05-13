@@ -1,202 +1,235 @@
 
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-
-interface CardProps {
-  children: ReactNode;
-  className?: string;
-  onClick?: () => void;
-  variant?: 'default' | 'bordered' | 'highlighted' | 'farm' | 'tricolor' | 'gradient' | 'image-card' | 'rich' | 'clay' | 'village' | 'jute' | 'kolam' | 'warli' | 'bandhani' | 'official' | 'govt' | 'glass' | 'neomorphic' | 'floating' | 'mesh' | '3d' | 'bordered-gradient';
-  imageUrl?: string;
-  imageAlt?: string;
-  imagePosition?: 'top' | 'left' | 'right' | 'bottom';
-  hoverEffect?: boolean;
-  withGlow?: boolean;
-}
 
 // Define a type that allows custom CSS properties
 interface CustomCSSProperties extends React.CSSProperties {
   '--glow-color'?: string;
+  '--animation-delay'?: string;
+}
+
+interface CardProps {
+  children: ReactNode;
+  className?: string;
+  variant?: 'default' | 'glass' | 'gradient' | 'bordered' | 'elevated' | 'mesh' | 'tricolor' | 'farm' | 'minimal' | 'bordered-gradient';
+  onClick?: () => void;
+  withImage?: boolean;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageHeight?: string;
+  imagePosition?: 'top' | 'left' | 'right' | 'bottom';
+  hoverEffect?: boolean;
+  withGlow?: boolean;
+  withAnimation?: boolean | 'fadeIn' | 'slideUp' | 'scaleIn';
+  withBadge?: boolean;
+  badgeText?: string;
 }
 
 const Card = ({ 
   children, 
   className = '', 
-  onClick, 
   variant = 'default',
-  imageUrl,
-  imageAlt,
+  onClick,
+  withImage = false,
+  imageSrc = '',
+  imageAlt = 'Card image',
+  imageHeight = '180px',
   imagePosition = 'top',
   hoverEffect = true,
-  withGlow = false
+  withGlow = false,
+  withAnimation = false,
+  withBadge = false,
+  badgeText = '',
 }: CardProps) => {
-  const variantClasses = {
-    default: 'bg-white/98 shadow-md backdrop-blur-sm',
-    bordered: 'border border-[#FF5722]/20 bg-white/98 shadow-sm',
-    highlighted: 'border-2 border-[#FF5722] bg-white/98 shadow-lg',
-    farm: 'bg-gradient-to-r from-[#4CAF50]/5 to-white/98 border-l-4 border-l-[#4CAF50] shadow-md',
-    tricolor: 'bg-white/98 shadow-md border-t-4 border-t-[#FF9933] border-b-4 border-b-[#138808]',
-    gradient: 'bg-gradient-to-br from-[#D7CCC8] via-white to-[#4CAF50]/5 shadow-md',
-    'image-card': 'bg-white/98 shadow-md overflow-hidden',
-    rich: 'bg-gradient-to-br from-white via-cream/30 to-white shadow-lg border border-[#FF5722]/20',
-    clay: 'bg-gradient-to-br from-[#E64A19]/10 to-[#D7CCC8]/30 shadow-md border border-[#E64A19]/30',
-    village: 'bg-gradient-to-br from-[#8D6E63]/10 to-white shadow-md border-2 border-[#8D6E63]/20',
-    jute: 'bg-gradient-to-r from-[#FFE082]/20 to-cream/50 shadow-md border border-[#8D6E63]/30',
-    kolam: 'bg-white/95 shadow-md border border-[#FF5722]/30 relative overflow-hidden',
-    warli: 'bg-cream/80 shadow-md border border-earth/30 relative overflow-hidden',
-    bandhani: 'bg-gradient-to-br from-white via-cream/50 to-white shadow-md border border-[#FF5722]/30 relative overflow-hidden',
-    official: 'bg-white shadow-md border-l-4 border-l-[#FF9933] border-r-4 border-r-[#138808] relative overflow-hidden',
-    govt: 'bg-gradient-to-br from-white/90 to-[#F8F8F8]/90 shadow-md border border-[#03A9F4]/20 relative overflow-hidden',
-    glass: 'bg-white/20 backdrop-blur-md border border-white/30 shadow-lg',
-    neomorphic: 'bg-[#f0f0f3] shadow-[5px_5px_10px_#d9d9d9,-5px_-5px_10px_#ffffff] border-none',
-    floating: 'bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300',
-    mesh: 'mesh-gradient shadow-lg text-white',
-    '3d': 'bg-white shadow-md transform-gpu hover:rotate-1 hover:scale-[1.02] transition-all duration-300',
-    'bordered-gradient': 'card-border-gradient'
+  // Determine if the card has an image
+  const hasImage = withImage && imageSrc;
+
+  // Get variant-specific styles
+  const getVariantClasses = () => {
+    switch (variant) {
+      case 'glass':
+        return 'bg-white/20 backdrop-blur-md border border-white/30';
+      case 'gradient':
+        return 'bg-gradient-to-br from-white/80 via-white/60 to-white/80 border border-white/50';
+      case 'bordered':
+        return 'bg-white border-2 border-soil/10 hover:border-soil/20';
+      case 'elevated':
+        return 'bg-white shadow-lg';
+      case 'mesh':
+        return 'bg-gradient-to-br from-soil-500 to-saffron shadow-lg text-white';
+      case 'tricolor':
+        return 'bg-gradient-to-r from-[#FF9933]/10 via-white/30 to-[#138808]/10 border-l-2 border-l-[#FF9933] border-r-2 border-r-[#138808]';
+      case 'farm':
+        return 'bg-gradient-to-r from-cream to-white border-l-4 border-l-saffron';
+      case 'minimal':
+        return 'bg-transparent border border-soil/10';
+      case 'bordered-gradient':
+        return 'bg-white p-[1px] border-0 rounded-[inherit] relative before:absolute before:inset-0 before:rounded-[inherit] before:p-[1px] before:bg-gradient-to-r before:from-saffron before:to-soil before:-z-10';
+      default:
+        return 'bg-white';
+    }
   };
-  
-  const hasImage = !!imageUrl;
-  
-  if (variant === 'image-card' && hasImage) {
-    return (
-      <div 
-        className={cn(
-          'rounded-xl overflow-hidden', 
-          variantClasses[variant], 
-          className, 
-          onClick ? 'cursor-pointer' : '', 
-          hoverEffect ? 'hover:shadow-lg transition-all duration-300 hover:-translate-y-1' : '',
-          withGlow ? 'glow-effect' : ''
-        )}
-        onClick={onClick}
-        style={{
-          '--glow-color': 'rgba(255, 87, 34, 0.3)'
-        } as CustomCSSProperties}
-      >
-        <div className="h-48 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-          <img 
-            src={imageUrl} 
-            alt={imageAlt || 'Card image'} 
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            loading="lazy"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = '/placeholder.svg';
-            }}
-          />
-        </div>
-        <div className="p-5 sm:p-6">
-          {children}
-        </div>
-      </div>
-    );
-  }
-  
-  const flexClasses = hasImage && (imagePosition === 'left' || imagePosition === 'right') 
-    ? 'flex flex-col sm:flex-row gap-4 items-center' 
-    : '';
-  
-  const imageOrder = imagePosition === 'right' ? 'sm:order-last' : '';
-  
-  // Special decorative elements for enhanced variants
+
+  // Glass variant has special background styles
+  const getGlassVariantStyle = () => {
+    if (variant === 'glass') {
+      return { backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' };
+    }
+    return {};
+  };
+
+  // Get animation properties
+  const getAnimationProps = () => {
+    if (!withAnimation) return {};
+    
+    const animationType = typeof withAnimation === 'string' ? withAnimation : 'fadeIn';
+    
+    switch (animationType) {
+      case 'slideUp':
+        return {
+          initial: { y: 20, opacity: 0 },
+          animate: { y: 0, opacity: 1 },
+          transition: { duration: 0.5, ease: 'easeOut' }
+        };
+      case 'scaleIn':
+        return {
+          initial: { scale: 0.95, opacity: 0 },
+          animate: { scale: 1, opacity: 1 },
+          transition: { duration: 0.4, ease: 'easeOut' }
+        };
+      case 'fadeIn':
+      default:
+        return {
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { duration: 0.4, ease: 'easeOut' }
+        };
+    }
+  };
+
+  // Render decorative elements for special cards
   const renderDecorations = () => {
-    if (variant === 'kolam') {
+    if (variant === 'mesh' || variant === 'gradient') {
       return (
         <>
-          <div className="absolute top-0 left-0 w-12 h-12 opacity-10" 
-               style={{backgroundImage: "url('/lovable-uploads/kolam-pattern.png')", backgroundSize: "cover"}}></div>
-          <div className="absolute bottom-0 right-0 w-12 h-12 opacity-10" 
-               style={{backgroundImage: "url('/lovable-uploads/kolam-pattern.png')", backgroundSize: "cover"}}></div>
-        </>
-      );
-    }
-    if (variant === 'warli') {
-      return (
-        <div className="absolute top-0 right-0 w-16 h-16 opacity-10" 
-             style={{backgroundImage: "url('/lovable-uploads/warli-art.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat"}}></div>
-      );
-    }
-    if (variant === 'bandhani') {
-      return (
-        <div className="absolute inset-0 opacity-5" 
-             style={{backgroundImage: "url('/lovable-uploads/bandhani-pattern.png')", backgroundSize: "100px", backgroundRepeat: "repeat"}}></div>
-      );
-    }
-    if (variant === 'official' || variant === 'govt') {
-      return (
-        <div className="absolute top-2 right-2 w-10 h-10 opacity-10" 
-             style={{backgroundImage: "url('/lovable-uploads/india-emblem.png')", backgroundSize: "contain", backgroundRepeat: "no-repeat"}}></div>
-      );
-    }
-    if (variant === 'glass' || variant === 'gradient') {
-      return (
-        <>
-          <div className="absolute -top-10 -right-10 w-20 h-20 rounded-full bg-gradient-to-br from-white/10 to-white/5 blur-xl"></div>
-          <div className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-gradient-to-br from-white/10 to-white/5 blur-xl"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-br from-white/10 to-transparent blur-xl -z-[1]"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tl from-white/10 to-transparent blur-xl -z-[1]"></div>
         </>
       );
     }
     return null;
   };
+
+  // Determine which component to use based on animation
+  const CardComponent = withAnimation ? motion.div : 'div';
   
-  // Handle glass variant background position based on className index
-  const getGlassVariantStyle = () => {
-    if (variant === 'glass') {
-      // Create a unique effect based on a hash of the className
-      const hash = className.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-      const topPos = hash % 100;
-      const leftPos = (hash * 1.5) % 100;
-      
-      return {
-        backgroundImage: `radial-gradient(circle at ${leftPos}% ${topPos}%, rgba(255, 255, 255, 0.15) 0%, transparent 70%)`
-      };
-    }
-    return {};
-  };
-  
+  // Get animation properties if needed
+  const animationProps = withAnimation ? getAnimationProps() : {};
+
   return (
-    <div 
+    <CardComponent
+      onClick={onClick}
       className={cn(
-        'p-4 sm:p-5 rounded-xl overflow-hidden relative',
-        variantClasses[variant],
-        flexClasses,
-        onClick ? 'cursor-pointer' : '',
-        hoverEffect && variant !== 'floating' && variant !== '3d' ? 'hover:shadow-lg transition-all duration-300 hover:-translate-y-1' : '',
-        withGlow ? 'glow-effect' : '',
+        'relative rounded-xl p-4 transition-all duration-300 overflow-hidden shadow-sm',
+        getVariantClasses(),
+        hoverEffect && !onClick && 'hover:-translate-y-1 hover:shadow-md',
+        hoverEffect && onClick && 'hover:-translate-y-1 hover:shadow-md cursor-pointer',
+        withGlow && 'hover:shadow-[0_0_15px_rgba(255,152,0,0.3)]',
+        variant === 'bordered-gradient' && 'before:content-[""]',
+        variant === 'bordered-gradient' ? 'relative' : '',
+        hasImage && imagePosition === 'top' ? 'pt-0' : '',
+        hasImage && imagePosition === 'bottom' ? 'pb-0' : '',
+        hasImage && imagePosition === 'left' ? 'pl-0 flex' : '',
+        hasImage && imagePosition === 'right' ? 'pr-0 flex' : '',
         className
       )}
-      onClick={onClick}
       style={{
-        '--glow-color': 'rgba(255, 87, 34, 0.3)',
+        '--glow-color': 'rgba(255, 152, 0, 0.3)',
         ...getGlassVariantStyle()
       } as CustomCSSProperties}
+      {...animationProps}
     >
       {renderDecorations()}
-      {hasImage && imagePosition !== 'top' && (
-        <div className={cn('w-full sm:w-1/3 rounded-lg overflow-hidden', imageOrder)}>
+      {withBadge && badgeText && (
+        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-saffron to-soil text-white text-xs font-medium px-2 py-0.5 rounded-full shadow-sm z-10">
+          {badgeText}
+        </div>
+      )}
+      
+      {hasImage && imagePosition === 'top' && (
+        <div className="h-48 overflow-hidden relative rounded-t-xl mb-4">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
           <img 
-            src={imageUrl} 
-            alt={imageAlt || 'Card image'} 
-            className="w-full h-40 sm:h-full object-cover hover:scale-105 transition-transform duration-700"
+            src={imageSrc} 
+            alt={imageAlt} 
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/placeholder.svg';
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://placehold.co/600x400/e9e9e9/999?text=Image+Error';
             }}
           />
         </div>
       )}
-      <div className={hasImage && imagePosition !== 'top' ? 'w-full sm:w-2/3 relative z-10' : 'w-full relative z-10'}>
+      
+      {hasImage && imagePosition === 'left' && (
+        <div className="w-1/3 overflow-hidden relative rounded-l-xl mr-4 -ml-4 min-h-[150px]">
+          <img 
+            src={imageSrc} 
+            alt={imageAlt} 
+            className="w-full h-full object-cover absolute inset-0"
+            loading="lazy" 
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://placehold.co/600x400/e9e9e9/999?text=Image+Error';
+            }}
+          />
+        </div>
+      )}
+      
+      <div className={cn(
+        'relative z-[1]',
+        hasImage && (imagePosition === 'left' || imagePosition === 'right') ? 'flex-1' : ''
+      )}>
         {children}
       </div>
       
-      {/* Enhanced decorations for special cards */}
-      {variant === 'floating' && (
-        <div className="absolute -z-10 inset-0 rounded-xl bg-white blur-md transform scale-[0.98] opacity-70"></div>
+      {hasImage && imagePosition === 'right' && (
+        <div className="w-1/3 overflow-hidden relative rounded-r-xl ml-4 -mr-4 min-h-[150px]">
+          <img 
+            src={imageSrc} 
+            alt={imageAlt} 
+            className="w-full h-full object-cover absolute inset-0"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://placehold.co/600x400/e9e9e9/999?text=Image+Error';
+            }}
+          />
+        </div>
       )}
+      
+      {hasImage && imagePosition === 'bottom' && (
+        <div className="h-48 overflow-hidden relative rounded-b-xl mt-4">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10"></div>
+          <img 
+            src={imageSrc} 
+            alt={imageAlt} 
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://placehold.co/600x400/e9e9e9/999?text=Image+Error';
+            }}
+          />
+        </div>
+      )}
+      
       {variant === 'bordered-gradient' && (
-        <div className="absolute inset-0 -z-10 rounded-xl p-[2px] bg-gradient-to-r from-[#FF5722] via-[#FF9800] to-[#FFC107]"></div>
+        <div className="absolute inset-[1px] bg-white rounded-[calc(0.75rem-1px)] -z-[5]"></div>
       )}
-    </div>
+    </CardComponent>
   );
 };
 
