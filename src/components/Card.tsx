@@ -14,6 +14,11 @@ interface CardProps {
   withGlow?: boolean;
 }
 
+// Define a type that allows custom CSS properties
+interface CustomCSSProperties extends React.CSSProperties {
+  '--glow-color'?: string;
+}
+
 const Card = ({ 
   children, 
   className = '', 
@@ -66,7 +71,7 @@ const Card = ({
         onClick={onClick}
         style={{
           '--glow-color': 'rgba(255, 87, 34, 0.3)'
-        } as React.CSSProperties}
+        } as CustomCSSProperties}
       >
         <div className="h-48 overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
@@ -164,7 +169,7 @@ const Card = ({
       style={{
         '--glow-color': 'rgba(255, 87, 34, 0.3)',
         ...getGlassVariantStyle()
-      } as React.CSSProperties}
+      } as CustomCSSProperties}
     >
       {renderDecorations()}
       {hasImage && imagePosition !== 'top' && (

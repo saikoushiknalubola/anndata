@@ -61,7 +61,7 @@ const FarmerTips = () => {
                     className="hover-lift transform transition-all duration-300"
                   >
                     <div className="flex items-start">
-                      <IconBadge icon={Users} variant="accent" className="mr-3 mt-0.5" />
+                      <IconBadge icon={Users} variant="primary" className="mr-3 mt-0.5" />
                       <div>
                         <p className="text-earth text-sm leading-relaxed">{tip.tip}</p>
                         
