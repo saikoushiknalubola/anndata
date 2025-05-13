@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Index';
 import CropAdvisor from './pages/CropAdvisor';
@@ -14,7 +13,6 @@ import FarmSubsidies from './pages/FarmSubsidies';
 import NotFound from './pages/NotFound';
 import { Toaster } from '@/components/ui/toaster';
 import VoiceAssistant from './components/VoiceAssistant';
-import GovernmentBranding from './components/GovernmentBranding';
 import WelcomeAudio from './components/WelcomeAudio';
 import './App.css';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -36,9 +34,8 @@ function App() {
     <LanguageProvider>
       <Router>
         <div className="app-container bg-gradient-to-b from-white to-cream/20 min-h-screen">
-          <GovernmentBranding />
           <WelcomeAudio />
-          <div className="pt-16 sm:pt-16 md:pt-16"> {/* Adjusted padding to accommodate the new header */}
+          <div className="pt-0"> {/* Removed padding that was for the header */}
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/crop-advisor" element={<CropAdvisor />} />
