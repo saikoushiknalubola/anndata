@@ -1,11 +1,30 @@
 
 import React from 'react';
 import { 
-  ProgressBar, 
-  ProgressBarProps, 
-  FeatureCard, 
-  FeatureCardProps 
+  ProgressBar,
+  FeatureCard
 } from '@/components/ui/enhanced-components';
+
+// First, define the base prop interfaces since they don't exist in the original module
+interface ProgressBarProps {
+  value: number;
+  max?: number;
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  animated?: boolean;
+  showValue?: boolean;
+  className?: string;
+}
+
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  variant?: 'default' | 'glass' | 'gradient' | 'soil' | 'saffron' | 'leaf';
+  className?: string;
+  onClick?: () => void;
+  children?: React.ReactNode;
+}
 
 // Extended ProgressBar component with label support
 interface ExtendedProgressBarProps extends ProgressBarProps {
@@ -56,23 +75,27 @@ export const EnhancedFeatureCard: React.FC<ExtendedFeatureCardProps> = ({
   onClick,
   badge,
   className,
+  children,
   ...rest 
 }) => {
   return (
-    <FeatureCard
-      title={title}
-      description={description}
-      icon={icon}
-      variant={variant}
-      onClick={onClick}
-      className={className}
-      {...rest}
-    >
+    <div className="relative">
+      <FeatureCard
+        title={title}
+        description={description}
+        icon={icon}
+        variant={variant}
+        onClick={onClick}
+        className={className}
+        {...rest}
+      >
+        {children}
+      </FeatureCard>
       {badge && (
         <div className="absolute top-2 right-2 bg-saffron/80 text-white text-xs px-2 py-0.5 rounded-full font-medium">
           {badge}
         </div>
       )}
-    </FeatureCard>
+    </div>
   );
 };
