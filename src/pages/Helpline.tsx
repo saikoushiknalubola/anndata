@@ -44,7 +44,7 @@ const Helpline = () => {
     <Layout title={t('helpline')} showBackButton variant="glass">
       <div className="px-4">
         <EnhancedSection variant="glass" className="mb-6">
-          <p className="text-earth text-sm mb-0 text-center">
+          <p className="text-soil text-sm mb-0 text-center">
             {t('helplineDesc')}
           </p>
         </EnhancedSection>
@@ -53,14 +53,18 @@ const Helpline = () => {
           {helplineContacts.map((contact, index) => (
             <Card 
               key={index}
-              variant={index % 2 === 0 ? "glass" : "bordered-gradient"}
+              variant={index % 2 === 0 ? "glass" : "gradient"}
               className="hover-lift"
               withGlow
             >
               <div className="flex items-start gap-3">
                 <IconBadge 
                   icon={contact.icon} 
-                  variant={contact.variant as any} 
+                  variant={(contact.variant === 'primary' || contact.variant === 'secondary' || 
+                           contact.variant === 'soil' || contact.variant === 'leaf' || 
+                           contact.variant === 'saffron' || contact.variant === 'sky' || 
+                           contact.variant === 'earth' || contact.variant === 'harvest') 
+                           ? contact.variant : 'primary'} 
                   size="lg"
                   withGlow
                 />
@@ -80,7 +84,7 @@ const Helpline = () => {
                   >
                     {contact.number}
                   </a>
-                  <div className="flex items-center text-xs text-earth/70 mt-2 bg-white/40 p-1.5 rounded-lg inline-flex">
+                  <div className="flex items-center text-xs text-soil/70 mt-2 bg-white/40 p-1.5 rounded-lg inline-flex">
                     <Clock size={12} className="mr-1" />
                     <span>{contact.hours}</span>
                   </div>

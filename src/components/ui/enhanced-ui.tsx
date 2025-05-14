@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { themeColors, shadows, animations } from '@/styles/theme';
+import { colors, shadows, animations } from '@/styles/theme';
 
 // Enhanced Section with custom background options
 export const EnhancedSection = ({

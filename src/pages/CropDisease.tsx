@@ -181,7 +181,7 @@ const CropDisease = () => {
                     View Similar Cases
                   </Button>
                   <Button 
-                    variant="ghost" 
+                    variant="link" 
                     className="text-xs ml-2" 
                     size="sm"
                   >

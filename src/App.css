@@ -203,8 +203,8 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
-    width: 90px !important;
-    height: 90px !important;
+    width: 70px !important;
+    height: 70px !important;
   }
 
   /* Add a subtle highlight behind the logo */
