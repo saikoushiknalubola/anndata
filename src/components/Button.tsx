@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'glass' | 'link' | 'voice' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'glass' | 'link' | 'voice' | 'ghost' | 'default';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
   icon?: ReactNode;
@@ -48,7 +48,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       glass: 'bg-white/30 backdrop-blur-md border border-white/50 text-soil shadow-sm hover:bg-white/40',
       link: 'bg-transparent text-soil underline hover:text-soil/80 p-0 h-auto shadow-none',
       voice: 'bg-gradient-to-r from-saffron via-white to-leaf text-soil font-bold shadow-md hover:shadow-lg',
-      ghost: 'bg-transparent hover:bg-gray-100/50 text-soil hover:text-soil/80'
+      ghost: 'bg-transparent hover:bg-gray-100/50 text-soil hover:text-soil/80',
+      default: 'bg-white shadow-sm hover:shadow-md text-soil hover:bg-gray-50'
     };
     
     // Default class sets based on variant and size

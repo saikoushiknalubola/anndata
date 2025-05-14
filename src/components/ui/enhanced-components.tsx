@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, ChevronDown, ChevronRight } from 'lucide-react';
@@ -113,7 +114,7 @@ interface EnhancedCardProps {
   onClick?: () => void;
 }
 
-export const EnhancedCard: React.FC<EnhancedCardProps> = ({ 
+const EnhancedCard: React.FC<EnhancedCardProps> = ({ 
   children, 
   className = '', 
   variant = 'default',
@@ -243,13 +244,15 @@ type ButtonVariant =
   | 'govt'
   | 'voice'
   | 'link'
-  | 'accent';
+  | 'accent'
+  | 'ghost'
+  | 'default';
 
 interface MotionButtonProps {
   children: React.ReactNode;
   className?: string;
   variant?: ButtonVariant;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
   withShine?: boolean;
   fullWidth?: boolean;
@@ -257,7 +260,7 @@ interface MotionButtonProps {
   onClick?: () => void;
 }
 
-export const MotionButton: React.FC<MotionButtonProps> = ({
+const MotionButton: React.FC<MotionButtonProps> = ({
   children,
   className = '',
   variant = 'primary',
@@ -273,6 +276,9 @@ export const MotionButton: React.FC<MotionButtonProps> = ({
     
     // Size classes
     switch (size) {
+      case 'xs':
+        classes += 'text-xs px-2 py-1 h-6 ';
+        break;
       case 'sm':
         classes += 'text-xs px-3 py-1.5 ';
         break;
@@ -318,6 +324,12 @@ export const MotionButton: React.FC<MotionButtonProps> = ({
       case 'accent':
         classes += 'bg-gradient-to-r from-accent/90 to-accent text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-accent hover:to-accent/90 ';
         break;
+      case 'ghost':
+        classes += 'bg-transparent hover:bg-gray-100/50 text-soil hover:text-soil/80 ';
+        break;
+      case 'default':
+        classes += 'bg-white shadow-sm hover:shadow-md text-soil hover:bg-gray-50 ';
+        break;
       default:
         classes += 'bg-gradient-to-r from-[#34C759] to-[#34C759]/90 text-white shadow-md hover:shadow-lg ';
     }
@@ -360,7 +372,7 @@ interface GradientTextProps {
   withAnimation?: boolean;
 }
 
-export const GradientText: React.FC<GradientTextProps> = ({
+const GradientText: React.FC<GradientTextProps> = ({
   children,
   variant = 'primary',
   className = '',
@@ -431,12 +443,12 @@ export const GradientText: React.FC<GradientTextProps> = ({
 interface IconBadgeProps {
   icon: React.ElementType;
   variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'earth' | 'saffron' | 'sky' | 'harvest' | 'success' | 'warning' | 'error';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
   withGlow?: boolean;
 }
 
-export const IconBadge: React.FC<IconBadgeProps> = ({
+const IconBadge: React.FC<IconBadgeProps> = ({
   icon: Icon,
   variant = 'primary',
   size = 'md',
@@ -448,6 +460,9 @@ export const IconBadge: React.FC<IconBadgeProps> = ({
     
     // Size classes
     switch (size) {
+      case 'xs':
+        classes += 'w-5 h-5 text-[10px] ';
+        break;
       case 'sm':
         classes += 'w-6 h-6 text-xs ';
         break;
@@ -515,12 +530,12 @@ export const IconBadge: React.FC<IconBadgeProps> = ({
 interface EnhancedBadgeProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'info' | 'success' | 'warning' | 'error';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
   withAnimation?: boolean;
 }
 
-export const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
+const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
   children,
   variant = 'primary',
   size = 'sm',
@@ -532,6 +547,9 @@ export const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
     
     // Size classes
     switch (size) {
+      case 'xs':
+        classes += 'text-[10px] px-1.5 py-0.25 ';
+        break;
       case 'sm':
         classes += 'text-xs px-2 py-0.5 ';
         break;
@@ -595,7 +613,7 @@ interface SectionDividerProps {
   className?: string;
 }
 
-export const SectionDivider: React.FC<SectionDividerProps> = ({
+const SectionDivider: React.FC<SectionDividerProps> = ({
   variant = 'default',
   className = '',
 }) => {
@@ -629,7 +647,7 @@ interface GlassContainerProps {
   className?: string;
 }
 
-export const GlassContainer: React.FC<GlassContainerProps> = ({
+const GlassContainer: React.FC<GlassContainerProps> = ({
   children,
   intensity = 'medium',
   className = '',
@@ -670,7 +688,7 @@ interface EnhancedImageProps {
   hoverEffect?: 'zoom' | 'blur' | 'fade' | 'none';
 }
 
-export const EnhancedImage: React.FC<EnhancedImageProps> = ({
+const EnhancedImage: React.FC<EnhancedImageProps> = ({
   src,
   alt,
   className = '',
@@ -775,7 +793,7 @@ interface FeatureCardProps {
   onClick?: () => void;
 }
 
-export const FeatureCard: React.FC<FeatureCardProps> = ({
+const FeatureCard: React.FC<FeatureCardProps> = ({
   title,
   description,
   icon,
@@ -838,7 +856,7 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   value,
   duration = 2,
   prefix = '',
@@ -893,13 +911,13 @@ interface ProgressBarProps {
   value: number;
   max?: number;
   variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   animated?: boolean;
   showValue?: boolean;
   className?: string;
 }
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({
+const ProgressBar: React.FC<ProgressBarProps> = ({
   value,
   max = 100,
   variant = 'primary',
@@ -914,6 +932,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     let classes = 'w-full rounded-full bg-soil/10 overflow-hidden ';
     
     switch (size) {
+      case 'xs':
+        classes += 'h-0.5 ';
+        break;
       case 'sm':
         classes += 'h-1 ';
         break;
@@ -980,7 +1001,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 };
 
 // Add @keyframes for animations to the style
-export const EnhancedStyles: React.FC = () => (
+const EnhancedStyles: React.FC = () => (
   <style dangerouslySetInnerHTML={{
     __html: `
     @keyframes ripple {
@@ -1110,8 +1131,7 @@ export const EnhancedStyles: React.FC = () => (
   `}} />
 );
 
-// IMPORTANT: Only export components once to avoid duplicate exports
-
+// Export components (ONLY ONCE)
 export {
   EnhancedCard,
   MotionButton,
@@ -1126,3 +1146,4 @@ export {
   ProgressBar,
   EnhancedStyles
 };
+

@@ -129,8 +129,8 @@ export const IconBadge = ({
 }: {
   icon: React.ElementType;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'earth' | 'soil' | 'leaf';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'earth' | 'soil' | 'leaf' | 'saffron' | 'sky' | 'harvest';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   withGlow?: boolean;
 }) => {
   const getVariantClasses = () => {
@@ -149,6 +149,12 @@ export const IconBadge = ({
         return 'bg-amber-900/20 text-amber-800';
       case 'leaf':
         return 'bg-green-100 text-green-700';
+      case 'saffron':
+        return 'bg-orange-100 text-orange-600';  
+      case 'sky':
+        return 'bg-blue-100 text-blue-600';
+      case 'harvest':
+        return 'bg-yellow-100 text-yellow-600';
       default:
         return 'bg-orange-100 text-orange-600';
     }
@@ -156,6 +162,8 @@ export const IconBadge = ({
 
   const getSizeClasses = () => {
     switch (size) {
+      case 'xs':
+        return 'p-1 rounded-md';
       case 'sm':
         return 'p-1.5 rounded-md';
       case 'lg':
@@ -167,6 +175,8 @@ export const IconBadge = ({
 
   const getIconSize = () => {
     switch (size) {
+      case 'xs':
+        return 14;
       case 'sm':
         return 16;
       case 'lg':

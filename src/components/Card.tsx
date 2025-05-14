@@ -30,7 +30,7 @@ interface CardProps {
   hoverEffect?: boolean;
   imageUrl?: string;
   imageAlt?: string;
-  imagePosition?: 'top' | 'bottom';
+  imagePosition?: 'top' | 'bottom' | 'left' | 'right';
   imageOverlay?: boolean;
 }
 
@@ -93,35 +93,47 @@ const Card = ({
     }
   };
 
+  // Handle different image positions
+  const renderImageForPosition = (position: 'top' | 'bottom' | 'left' | 'right') => {
+    if (!imageUrl) return null;
+    
+    return (
+      <div className="relative">
+        <img 
+          src={imageUrl} 
+          alt={imageAlt}
+          className={`object-cover ${position === 'left' || position === 'right' ? 'h-full' : 'w-full h-48'}`}
+        />
+        {imageOverlay && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        )}
+      </div>
+    );
+  };
+
+  // Render different layouts based on image position
+  if (imageUrl && (imagePosition === 'left' || imagePosition === 'right')) {
+    return (
+      <div className={getCardClasses()} onClick={onClick}>
+        <div className={`flex flex-col sm:flex-row ${imagePosition === 'right' ? 'sm:flex-row-reverse' : ''}`}>
+          <div className="sm:w-1/3">
+            {renderImageForPosition(imagePosition)}
+          </div>
+          <div className="p-4 sm:w-2/3">
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={getCardClasses()} onClick={onClick}>
-      {imageUrl && imagePosition === "top" && (
-        <div className="relative">
-          <img 
-            src={imageUrl} 
-            alt={imageAlt}
-            className="w-full h-48 object-cover"
-          />
-          {imageOverlay && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          )}
-        </div>
-      )}
-      <div className={imageUrl && imagePosition === "top" ? "p-4" : ""}>
+      {imageUrl && imagePosition === "top" && renderImageForPosition('top')}
+      <div className={imageUrl && (imagePosition === "top" || imagePosition === "bottom") ? "p-4" : ""}>
         {children}
       </div>
-      {imageUrl && imagePosition === "bottom" && (
-        <div className="relative">
-          <img 
-            src={imageUrl} 
-            alt={imageAlt}
-            className="w-full h-48 object-cover"
-          />
-          {imageOverlay && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          )}
-        </div>
-      )}
+      {imageUrl && imagePosition === "bottom" && renderImageForPosition('bottom')}
     </div>
   );
 };
