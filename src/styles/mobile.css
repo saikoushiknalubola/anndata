@@ -70,7 +70,7 @@ button:active,
   display: none;
 }
 
-/* Bottom navigation bar */
+/* Bottom navigation bar - enhanced for better UX */
 .mobile-bottom-nav {
   position: fixed;
   bottom: 0;
@@ -78,7 +78,7 @@ button:active,
   right: 0;
   height: 64px;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -86,6 +86,7 @@ button:active,
   justify-content: space-around;
   align-items: center;
   padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
 }
 
 .mobile-bottom-nav-item {
@@ -99,21 +100,23 @@ button:active,
   opacity: 0.7;
   transition: all 0.2s;
   padding: 8px 0;
+  position: relative;
 }
 
 .mobile-bottom-nav-item.active {
   opacity: 1;
   color: #FF9800;
+  font-weight: 500;
 }
 
 .mobile-bottom-nav-icon {
   margin-bottom: 4px;
 }
 
-/* Floating action button */
+/* Floating action button - enhanced with better animations */
 .mobile-fab {
   position: fixed;
-  bottom: 72px;
+  bottom: 76px;
   right: 16px;
   width: 56px;
   height: 56px;
@@ -123,19 +126,15 @@ button:active,
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
   z-index: 40;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.mobile-fab:active {
-  transform: scale(0.95);
-}
-
-/* Speed dial FAB menu */
+/* Speed dial FAB menu - enhanced for better visibility */
 .mobile-fab-menu {
   position: fixed;
-  bottom: 136px;
+  bottom: 140px;
   right: 16px;
   display: flex;
   flex-direction: column-reverse;
@@ -150,7 +149,7 @@ button:active,
   background: white;
   border-radius: 24px;
   padding: 8px 16px 8px 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   transform-origin: right bottom;
   transition: all 0.2s;
 }
@@ -163,121 +162,45 @@ button:active,
 }
 
 .mobile-fab-menu-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  background: rgba(255, 152, 0, 0.1);
-  color: #FF9800;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Swipeable cards */
-.swipeable-card-container {
-  position: relative;
-  user-select: none;
-  touch-action: pan-y;
-}
-
-.swipeable-card {
-  position: relative;
-  transition: transform 0.3s;
-}
-
-.swipeable-card-action {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 500;
-}
-
-.swipeable-card-action.delete {
-  background-color: #F44336;
-}
-
-.swipeable-card-action.archive {
-  background-color: #4CAF50;
-}
-
-/* Pull to refresh */
-.pull-to-refresh {
-  position: relative;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.pull-to-refresh-indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-100%);
-  transition: transform 0.2s;
-}
-
-.pull-to-refresh-spinner {
-  width: 24px;
-  height: 24px;
-  border: 2px solid rgba(255, 152, 0, 0.3);
-  border-top-color: #FF9800;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-/* Mobile optimized forms */
-.mobile-form-control {
-  font-size: 16px; /* Prevent zoom on iOS */
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  margin-bottom: 16px;
-  appearance: none;
-}
-
-.mobile-form-label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 4px;
-  color: #795548;
-}
-
-/* Mobile card optimizations */
+/* Enhanced card styles for mobile */
 .mobile-card {
   border-radius: 16px;
   background-color: white;
   padding: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   animation: slideUp 0.3s ease-out;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Mobile grid layouts */
+.mobile-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile grid layouts - enhanced for tighter spacing on small screens */
 .mobile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 12px;
   padding: 0 12px;
 }
 
-/* Mobile-specific typography */
+/* Mobile-specific typography - enhanced for better readability */
 .mobile-h1 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 12px;
   color: #3E2723;
+  line-height: 1.3;
 }
 
 .mobile-h2 {
@@ -285,6 +208,7 @@ button:active,
   font-weight: 600;
   margin-bottom: 10px;
   color: #3E2723;
+  line-height: 1.3;
 }
 
 .mobile-text {
@@ -298,17 +222,18 @@ button:active,
   color: rgba(62, 39, 35, 0.6);
 }
 
-/* Mobile-specific containers */
+/* Mobile-specific containers - enhanced with better spacing */
 .mobile-container {
   padding: 16px;
-  margin-bottom: 72px; /* Account for bottom navigation */
+  margin-bottom: 80px; /* Increased to account for enhanced bottom navigation */
+  overflow-x: hidden;
 }
 
 .mobile-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 12px 16px;
@@ -320,21 +245,21 @@ button:active,
 
 .mobile-footer {
   padding: 16px;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
   text-align: center;
   font-size: 0.8rem;
   color: rgba(62, 39, 35, 0.5);
 }
 
 /* Media queries for different mobile devices */
-/* Small phones (iPhone SE, etc) */
+/* Small phones (iPhone SE, etc) - enhanced for better fit */
 @media screen and (max-width: 360px) {
   .mobile-container {
     padding: 12px;
   }
   
   .mobile-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 8px;
   }
   
@@ -345,6 +270,22 @@ button:active,
   .mobile-h2 {
     font-size: 1.1rem;
   }
+
+  /* Smaller FAB for very small screens */
+  .mobile-fab {
+    width: 48px;
+    height: 48px;
+    bottom: 72px;
+  }
+
+  .mobile-fab-menu {
+    bottom: 130px;
+  }
+
+  /* More compact bottom nav */
+  .mobile-bottom-nav-item {
+    font-size: 0.65rem;
+  }
 }
 
 /* Larger phones */
@@ -354,18 +295,23 @@ button:active,
   }
 }
 
-/* Tablets */
+/* Tablets - more spacious layout */
 @media screen and (min-width: 640px) {
   .mobile-bottom-nav {
     height: 72px;
   }
   
   .mobile-fab {
-    bottom: 80px;
+    bottom: 84px;
     right: 24px;
     width: 64px;
     height: 64px;
     border-radius: 32px;
+  }
+  
+  .mobile-fab-menu {
+    bottom: 158px;
+    right: 24px;
   }
   
   .mobile-container {
@@ -373,9 +319,14 @@ button:active,
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Give bottom nav items more space on tablets */
+  .mobile-bottom-nav-item {
+    font-size: 0.8rem;
+  }
 }
 
-/* Landscape mode */
+/* Landscape mode - optimized layout for landscape orientation */
 @media screen and (orientation: landscape) and (max-height: 500px) {
   .mobile-bottom-nav {
     height: 56px;
@@ -394,10 +345,18 @@ button:active,
     margin-bottom: 0;
     margin-right: 4px;
   }
+
+  /* Adjust FAB menu positioning in landscape */
+  .mobile-fab-menu {
+    bottom: 120px;
+  }
+
+  .mobile-fab-menu-item {
+    padding: 6px 12px 6px 8px;
+  }
 }
 
-/* Device-specific fixes */
-/* iPhone notch handling */
+/* Device-specific fixes - enhanced with better safe area handling */
 @supports (padding-top: env(safe-area-inset-top)) {
   .notch-aware-container {
     padding-top: env(safe-area-inset-top);
@@ -412,5 +371,135 @@ button:active,
   
   .mobile-bottom-nav {
     padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: calc(64px + env(safe-area-inset-bottom, 0px));
   }
+}
+
+/* Enhanced animations for mobile interactions */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Toast notifications styling for mobile */
+.mobile-toast {
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: calc(100% - 32px);
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Mobile hero section styling */
+.mobile-hero {
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobile-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.mobile-hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+/* Add a subtle pulse animation for interactive elements */
+.pulse-subtle {
+  animation: pulseSoft 2s infinite ease-in-out;
+}
+
+@keyframes pulseSoft {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.03);
+    opacity: 0.8;
+  }
+}
+
+/* Add custom click effect for buttons on mobile */
+@keyframes click-effect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.click-effect {
+  animation: click-effect 0.3s;
+}
+
+/* "Why The App Matters" section specific mobile styling */
+.impact-item {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.impact-item:active {
+  transform: scale(0.98);
+}
+
+.impact-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #FF5722, #FF9800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Success stories cards enhancenemts */
+.success-story-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.success-story-card:active {
+  transform: scale(0.97);
 }

@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -398,45 +397,146 @@ const HomePage = () => {
           ))}
         </motion.div>
 
+        {/* Enhanced "Why The App Matters" Section with Mobile-First Improvements */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="mt-6"
         >
-          <EnhancedCard variant="bordered-gradient" className="mt-6 p-5">
-            <h2 className="text-xl font-decorative mb-3">
+          <EnhancedCard variant="bordered-gradient" className="p-4 sm:p-5">
+            <h2 className="text-xl font-decorative mb-3 text-center sm:text-left">
               <GradientText variant="primary">Why The App Matters</GradientText>
             </h2>
+            
+            {/* Mobile optimized: Stacked layout on mobile, better spacing and touch targets */}
             <div className="space-y-3 text-sm text-soil/90 font-medium">
-              <div className="flex items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#FF5722]/5 transition-all duration-300">
-                <IconBadge icon={Users2} variant="primary" className="mr-3 mt-0.5" withGlow />
-                <p>Empowers over 1 million farmers in Telangana's Warangal district with accessible technology</p>
-              </div>
-              <div className="flex items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#4CAF50]/5 transition-all duration-300">
-                <IconBadge icon={Smartphone} variant="leaf" className="mr-3 mt-0.5" withGlow />
-                <p>Voice-first technology overcomes literacy barriers (57% rural literacy) through local languages</p>
-              </div>
-              <div className="flex items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#8B4513]/5 transition-all duration-300">
-                <IconBadge icon={RefreshCw} variant="soil" className="mr-3 mt-0.5" withGlow />
-                <p>Reduces crop losses by 60% and increases income by ₹500-1000/month for small farmers</p>
-              </div>
-              <div className="flex items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#03A9F4]/5 transition-all duration-300">
-                <IconBadge icon={Globe} variant="sky" className="mr-3 mt-0.5" withGlow />
-                <p>Bridges the digital divide by providing expert farming knowledge in 22+ Indian languages</p>
-              </div>
+              <motion.div 
+                className="flex flex-col sm:flex-row items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#FF5722]/5 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center justify-center w-full sm:w-auto mb-2 sm:mb-0">
+                  <IconBadge 
+                    icon={Users2} 
+                    variant="primary" 
+                    className="sm:mr-3 mt-0.5" 
+                    size="md"
+                    withGlow 
+                  />
+                </div>
+                <p className="text-center sm:text-left">Empowers over <span className="font-bold text-[#FF5722]">1 million farmers</span> in Telangana's Warangal district with accessible technology</p>
+              </motion.div>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#4CAF50]/5 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center justify-center w-full sm:w-auto mb-2 sm:mb-0">
+                  <IconBadge 
+                    icon={Smartphone} 
+                    variant="leaf" 
+                    className="sm:mr-3 mt-0.5" 
+                    size="md"
+                    withGlow 
+                  />
+                </div>
+                <p className="text-center sm:text-left">Voice-first technology overcomes literacy barriers (<span className="font-bold text-leaf-600">57% rural literacy</span>) through local languages</p>
+              </motion.div>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#8B4513]/5 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center justify-center w-full sm:w-auto mb-2 sm:mb-0">
+                  <IconBadge 
+                    icon={RefreshCw} 
+                    variant="soil" 
+                    className="sm:mr-3 mt-0.5" 
+                    size="md"
+                    withGlow 
+                  />
+                </div>
+                <div className="w-full text-center sm:text-left">
+                  <p>Reduces crop losses by <span className="font-bold text-soil">60%</span> and increases income by <span className="font-bold text-soil">₹500-1000/month</span> for small farmers</p>
+                  <div className="mt-2 mx-auto sm:mx-0 max-w-xs">
+                    <ProgressBar 
+                      value={60} 
+                      max={100} 
+                      variant="soil" 
+                      size="sm" 
+                      animated={true}
+                      label="Crop Loss Reduction"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex flex-col sm:flex-row items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#03A9F4]/5 transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center justify-center w-full sm:w-auto mb-2 sm:mb-0">
+                  <IconBadge 
+                    icon={Globe} 
+                    variant="sky" 
+                    className="sm:mr-3 mt-0.5" 
+                    size="md"
+                    withGlow 
+                  />
+                </div>
+                <div className="w-full text-center sm:text-left">
+                  <p>Bridges the digital divide by providing expert farming knowledge in <span className="font-bold text-sky-600">22+ Indian languages</span></p>
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-1 mt-2">
+                    {['हिंदी', 'తెలుగు', 'தமிழ்', 'ಕನ್ನಡ', 'ଓଡ଼ିଆ'].map((lang, i) => (
+                      <span key={i} className="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full">
+                        {lang}
+                      </span>
+                    ))}
+                    <span className="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full">+17</span>
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* New: Engaging CTA Section */}
+              <motion.div 
+                className="mt-4 pt-2 border-t border-dashed border-soil/20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.0 }}
+              >
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2">
+                  <p className="text-xs text-soil/80 text-center sm:text-left">
+                    Experience how our app is transforming farming across rural India
+                  </p>
+                  <MotionButton
+                    variant="primary"
+                    size="sm"
+                    icon={<BarChart size={16} />}
+                    withShine
+                    onClick={() => navigate('/success-stories')}
+                    className="w-full sm:w-auto"
+                  >
+                    See Impact Data
+                  </MotionButton>
+                </div>
+              </motion.div>
             </div>
           </EnhancedCard>
         </motion.div>
 
-        {/* Enhanced How We Impact Farming Section */}
+        {/* Enhanced How We Impact Farming Section with Mobile Optimizations */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
         >
-          <EnhancedCard variant="gradient" className="mt-6 space-y-4 p-5">
+          <EnhancedCard variant="gradient" className="mt-6 space-y-4 p-4 sm:p-5">
             <div className="text-center">
-              <h2 className="inline-block text-xl font-decorative py-2 px-6 rounded-lg bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white shadow-md mb-3">
+              <h2 className="inline-block text-xl font-decorative py-2 px-4 sm:px-6 rounded-lg bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white shadow-md mb-3">
                 {t('howWeImpact')}
               </h2>
               <p className="text-sm text-soil/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm font-medium">
@@ -445,20 +545,30 @@ const HomePage = () => {
             </div>
             
             <EnhancedCard className="bg-gradient-to-r from-[#FF5722]/20 to-[#FF5722]/5 border border-[#FF5722]/30 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center p-4">
-                <IconBadge icon={Phone} variant="primary" size="lg" className="mr-3" withGlow />
-                <div className="text-left">
+              <div className="flex flex-col sm:flex-row items-center p-4 text-center sm:text-left">
+                <IconBadge icon={Phone} variant="primary" size="lg" className="mb-3 sm:mb-0 sm:mr-3" withGlow />
+                <div>
                   <h3 className="font-decorative text-soil">
                     <GradientText variant="primary">{t('helplineText')}</GradientText>
                   </h3>
                   <p className="text-[#FF5722] font-bold">{t('helplineNumber')}</p>
+                </div>
+                <div className="mt-3 sm:mt-0 sm:ml-auto">
+                  <MotionButton
+                    variant="outline"
+                    size="sm"
+                    icon={<Phone size={14} />}
+                    onClick={() => navigate('/helpline')}
+                  >
+                    Call Now
+                  </MotionButton>
                 </div>
               </div>
             </EnhancedCard>
           </EnhancedCard>
         </motion.div>
 
-        {/* Featured Stories Section */}
+        {/* Featured Stories Section with Mobile Optimizations */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -476,6 +586,7 @@ const HomePage = () => {
                 icon={<Leaf size={24} className="text-leaf-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
+                badge="Featured"
               />
               
               <FeatureCard
@@ -484,6 +595,7 @@ const HomePage = () => {
                 icon={<Droplet size={24} className="text-sky-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
+                badge="New"
               />
             </div>
           </div>
