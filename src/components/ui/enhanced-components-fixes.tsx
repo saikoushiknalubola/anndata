@@ -23,7 +23,6 @@ interface FeatureCardProps {
   variant?: 'default' | 'glass' | 'gradient' | 'soil' | 'saffron' | 'leaf';
   className?: string;
   onClick?: () => void;
-  children?: React.ReactNode;
 }
 
 // Extended ProgressBar component with label support
@@ -63,8 +62,9 @@ export const EnhancedProgressBar: React.FC<ExtendedProgressBarProps> = ({
 };
 
 // Extended FeatureCard component with badge support
-interface ExtendedFeatureCardProps extends FeatureCardProps {
+interface ExtendedFeatureCardProps extends Omit<FeatureCardProps, 'children'> {
   badge?: string;
+  children?: React.ReactNode;
 }
 
 export const EnhancedFeatureCard: React.FC<ExtendedFeatureCardProps> = ({ 
@@ -88,9 +88,8 @@ export const EnhancedFeatureCard: React.FC<ExtendedFeatureCardProps> = ({
         onClick={onClick}
         className={className}
         {...rest}
-      >
-        {children}
-      </FeatureCard>
+      />
+      {children}
       {badge && (
         <div className="absolute top-2 right-2 bg-saffron/80 text-white text-xs px-2 py-0.5 rounded-full font-medium">
           {badge}
