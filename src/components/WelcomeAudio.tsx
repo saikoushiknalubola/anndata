@@ -11,12 +11,9 @@ const WelcomeAudio: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [hasWelcomedUser, setHasWelcomedUser] = useState(true); // Set to true to disable welcome message
+  const [hasWelcomedUser, setHasWelcomedUser] = useState(false); // Set to false to enable welcome message
 
   useEffect(() => {
-    // Welcome message functionality is now disabled by default
-    // by setting hasWelcomedUser to true initially
-    
     // Check if we've already welcomed this user in this session
     const hasBeenWelcomed = localStorage.getItem('andata_welcomed');
     
@@ -40,6 +37,7 @@ const WelcomeAudio: React.FC = () => {
             title: t('welcomeToAndata'),
             description: welcomeMessage,
             duration: 5000,
+            className: "welcome-toast bg-gradient-to-r from-saffron/90 to-terracotta/90 text-white border-white/20"
           });
           
           // Set flag in localStorage so we don't welcome again in this session
@@ -67,6 +65,13 @@ const WelcomeAudio: React.FC = () => {
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
+    
+    toast({
+      title: isMuted ? t('voiceUnmuted') : t('voiceMuted'),
+      description: isMuted ? t('voiceUnmutedDesc') : t('voiceMutedDesc'),
+      duration: 2000,
+      className: "audio-toast"
+    });
   };
 
   return (
@@ -75,7 +80,7 @@ const WelcomeAudio: React.FC = () => {
       {isPlaying && (
         <button 
           onClick={toggleMute}
-          className="fixed left-4 bottom-4 bg-saffron/90 hover:bg-saffron text-white p-2 rounded-full shadow-md z-50"
+          className="fixed left-4 bottom-4 bg-saffron/90 hover:bg-saffron text-white p-2 rounded-full shadow-md z-50 transition-transform hover:scale-110 active:scale-95"
           aria-label={isMuted ? t('unmute') : t('mute')}
         >
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
