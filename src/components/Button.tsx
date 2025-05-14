@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils';
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'glass' | 'link' | 'voice';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'glass' | 'link' | 'voice' | 'ghost';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
   icon?: ReactNode;
   disabled?: boolean;
@@ -33,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }, ref) => {
     // Size classes
     const sizeClasses = {
+      xs: 'text-xs px-2 py-1 h-6',
       sm: 'text-xs px-3 py-1.5 h-8',
       md: 'text-sm px-4 py-2 h-10',
       lg: 'text-base px-6 py-3 h-12'
@@ -46,7 +47,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       outline: 'bg-transparent border-2 border-soil/70 text-soil hover:bg-soil/5',
       glass: 'bg-white/30 backdrop-blur-md border border-white/50 text-soil shadow-sm hover:bg-white/40',
       link: 'bg-transparent text-soil underline hover:text-soil/80 p-0 h-auto shadow-none',
-      voice: 'bg-gradient-to-r from-saffron via-white to-leaf text-soil font-bold shadow-md hover:shadow-lg'
+      voice: 'bg-gradient-to-r from-saffron via-white to-leaf text-soil font-bold shadow-md hover:shadow-lg',
+      ghost: 'bg-transparent hover:bg-gray-100/50 text-soil hover:text-soil/80'
     };
     
     // Default class sets based on variant and size

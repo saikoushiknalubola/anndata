@@ -30,7 +30,7 @@ interface CardProps {
   hoverEffect?: boolean;
   imageUrl?: string;
   imageAlt?: string;
-  imagePosition?: string;
+  imagePosition?: 'top' | 'bottom';
   imageOverlay?: boolean;
 }
 
