@@ -208,7 +208,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     
     // Add effect classes
     if (glowEffect) {
-      classes += 'glow-effect --glow-color: rgba(255, 153, 51, 0.4) ';
+      classes += 'glow-effect ';
     }
     
     if (hoverEffect) {
@@ -355,7 +355,7 @@ export const MotionButton: React.FC<MotionButtonProps> = ({
 // Enhanced Text Component with Gradient
 interface GradientTextProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'sky' | 'tricolor';
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'sky' | 'tricolor' | 'earth' | 'ocean' | 'sunrise' | 'sunset' | 'harvest' | 'vibrant';
   className?: string;
   withAnimation?: boolean;
 }
@@ -391,6 +391,24 @@ export const GradientText: React.FC<GradientTextProps> = ({
       case 'tricolor':
         classes += 'from-[#FF9933] via-white to-[#138808] ';
         break;
+      case 'earth':
+        classes += 'from-[#8B4513] to-[#5D4037] ';
+        break;
+      case 'ocean':
+        classes += 'from-[#03A9F4] to-[#01579B] ';
+        break;
+      case 'sunrise':
+        classes += 'from-[#ff9a9e] to-[#fad0c4] ';
+        break;
+      case 'sunset':
+        classes += 'from-[#a18cd1] to-[#fbc2eb] ';
+        break;
+      case 'harvest':
+        classes += 'from-[#F9A825] to-[#FF8F00] ';
+        break;
+      case 'vibrant':
+        classes += 'from-[#FF9933] via-[#FF5722] to-[#F44336] ';
+        break;
       default:
         classes += 'from-[#34C759] to-[#138808] ';
     }
@@ -412,7 +430,7 @@ export const GradientText: React.FC<GradientTextProps> = ({
 // Badge Component
 interface IconBadgeProps {
   icon: React.ElementType;
-  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'earth' | 'saffron' | 'sky' | 'harvest';
+  variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'earth' | 'saffron' | 'sky' | 'harvest' | 'success' | 'warning' | 'error';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   withGlow?: boolean;
@@ -466,6 +484,15 @@ export const IconBadge: React.FC<IconBadgeProps> = ({
       case 'harvest':
         classes += 'bg-gradient-to-br from-[#FFC107]/20 to-[#FFC107]/10 text-[#FFC107] ';
         break;
+      case 'success':
+        classes += 'bg-gradient-to-br from-[#4CAF50]/20 to-[#4CAF50]/10 text-[#4CAF50] ';
+        break;
+      case 'warning':
+        classes += 'bg-gradient-to-br from-[#FFC107]/20 to-[#FFC107]/10 text-[#FFC107] ';
+        break;
+      case 'error':
+        classes += 'bg-gradient-to-br from-[#F44336]/20 to-[#F44336]/10 text-[#F44336] ';
+        break;
       default:
         classes += 'bg-gradient-to-br from-[#34C759]/20 to-[#34C759]/10 text-[#34C759] ';
     }
@@ -488,7 +515,7 @@ export const IconBadge: React.FC<IconBadgeProps> = ({
 interface EnhancedBadgeProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'info' | 'success' | 'warning' | 'error';
-  size?: 'sm' | 'md' | 'lg' | 'xs';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
   withAnimation?: boolean;
 }
@@ -505,9 +532,6 @@ export const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
     
     // Size classes
     switch (size) {
-      case 'xs':
-        classes += 'text-[10px] px-1.5 py-0.5 ';
-        break;
       case 'sm':
         classes += 'text-xs px-2 py-0.5 ';
         break;

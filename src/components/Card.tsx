@@ -26,11 +26,36 @@ interface CardProps {
   className?: string;
   variant?: CardVariant;
   onClick?: () => void;
+  withGlow?: boolean;
+  hoverEffect?: boolean;
+  imageUrl?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+  imageOverlay?: boolean;
 }
 
-const Card = ({ children, className = "", variant = "default", onClick }: CardProps) => {
+const Card = ({ 
+  children, 
+  className = "", 
+  variant = "default", 
+  onClick,
+  withGlow = false,
+  hoverEffect = false,
+  imageUrl,
+  imageAlt = "Featured image",
+  imagePosition = "top",
+  imageOverlay = false
+}: CardProps) => {
   const getCardClasses = () => {
     let baseClasses = "rounded-xl overflow-hidden transition-all duration-300";
+    
+    if (withGlow) {
+      baseClasses += " glow-effect";
+    }
+    
+    if (hoverEffect) {
+      baseClasses += " hover-lift";
+    }
     
     switch (variant) {
       case "glass":
@@ -70,9 +95,36 @@ const Card = ({ children, className = "", variant = "default", onClick }: CardPr
 
   return (
     <div className={getCardClasses()} onClick={onClick}>
-      {children}
+      {imageUrl && imagePosition === "top" && (
+        <div className="relative">
+          <img 
+            src={imageUrl} 
+            alt={imageAlt}
+            className="w-full h-48 object-cover"
+          />
+          {imageOverlay && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          )}
+        </div>
+      )}
+      <div className={imageUrl && imagePosition === "top" ? "p-4" : ""}>
+        {children}
+      </div>
+      {imageUrl && imagePosition === "bottom" && (
+        <div className="relative">
+          <img 
+            src={imageUrl} 
+            alt={imageAlt}
+            className="w-full h-48 object-cover"
+          />
+          {imageOverlay && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 export default Card;
+export type { CardProps };

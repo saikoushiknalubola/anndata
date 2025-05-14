@@ -22,7 +22,7 @@ const Helpline = () => {
       number: '1800-425-3738',
       hours: '9:00 AM - 6:00 PM',
       icon: MessageSquare,
-      variant: 'accent',
+      variant: 'warning',
     },
     {
       title: t('weatherAdvisory'),
@@ -55,15 +55,15 @@ const Helpline = () => {
               key={index}
               variant={index % 2 === 0 ? "glass" : "gradient"}
               className="hover-lift"
-              withGlow
+              withGlow={true}
             >
               <div className="flex items-start gap-3">
                 <IconBadge 
                   icon={contact.icon} 
                   variant={(contact.variant === 'primary' || contact.variant === 'secondary' || 
                            contact.variant === 'soil' || contact.variant === 'leaf' || 
-                           contact.variant === 'saffron' || contact.variant === 'sky' || 
-                           contact.variant === 'earth' || contact.variant === 'harvest') 
+                           contact.variant === 'warning' || contact.variant === 'error' || 
+                           contact.variant === 'success' || contact.variant === 'earth') 
                            ? contact.variant : 'primary'} 
                   size="lg"
                   withGlow
@@ -72,7 +72,7 @@ const Helpline = () => {
                   <h3 className="font-medium mb-1">
                     <GradientText variant={
                       contact.variant === 'primary' ? 'primary' : 
-                      contact.variant === 'accent' ? 'earth' : 
+                      contact.variant === 'warning' ? 'earth' : 
                       contact.variant === 'secondary' ? 'ocean' : 'sunset'
                     }>
                       {contact.title}

@@ -1,0 +1,89 @@
+
+@layer utilities {
+  /* Opacity variants for soil color */
+  .text-soil\/10 {
+    color: rgba(139, 69, 19, 0.1);
+  }
+  .text-soil\/20 {
+    color: rgba(139, 69, 19, 0.2);
+  }
+  .text-soil\/30 {
+    color: rgba(139, 69, 19, 0.3);
+  }
+  .text-soil\/40 {
+    color: rgba(139, 69, 19, 0.4);
+  }
+  .text-soil\/50 {
+    color: rgba(139, 69, 19, 0.5);
+  }
+  .text-soil\/60 {
+    color: rgba(139, 69, 19, 0.6);
+  }
+  .text-soil\/70 {
+    color: rgba(139, 69, 19, 0.7);
+  }
+  .text-soil\/80 {
+    color: rgba(139, 69, 19, 0.8);
+  }
+  .text-soil\/90 {
+    color: rgba(139, 69, 19, 0.9);
+  }
+
+  /* Opacity variants for earth color */
+  .text-earth\/10 {
+    color: rgba(93, 64, 55, 0.1);
+  }
+  .text-earth\/20 {
+    color: rgba(93, 64, 55, 0.2);
+  }
+  .text-earth\/30 {
+    color: rgba(93, 64, 55, 0.3);
+  }
+  .text-earth\/40 {
+    color: rgba(93, 64, 55, 0.4);
+  }
+  .text-earth\/50 {
+    color: rgba(93, 64, 55, 0.5);
+  }
+  .text-earth\/60 {
+    color: rgba(93, 64, 55, 0.6);
+  }
+  .text-earth\/70 {
+    color: rgba(93, 64, 55, 0.7);
+  }
+  .text-earth\/80 {
+    color: rgba(93, 64, 55, 0.8);
+  }
+  .text-earth\/90 {
+    color: rgba(93, 64, 55, 0.9);
+  }
+
+  /* Opacity variants for saffron color */
+  .text-saffron\/10 {
+    color: rgba(255, 153, 51, 0.1);
+  }
+  .text-saffron\/20 {
+    color: rgba(255, 153, 51, 0.2);
+  }
+  .text-saffron\/30 {
+    color: rgba(255, 153, 51, 0.3);
+  }
+  .text-saffron\/40 {
+    color: rgba(255, 153, 51, 0.4);
+  }
+  .text-saffron\/50 {
+    color: rgba(255, 153, 51, 0.5);
+  }
+  .text-saffron\/60 {
+    color: rgba(255, 153, 51, 0.6);
+  }
+  .text-saffron\/70 {
+    color: rgba(255, 153, 51, 0.7);
+  }
+  .text-saffron\/80 {
+    color: rgba(255, 153, 51, 0.8);
+  }
+  .text-saffron\/90 {
+    color: rgba(255, 153, 51, 0.9);
+  }
+}
