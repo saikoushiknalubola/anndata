@@ -7,6 +7,7 @@ import Logo from './Logo';
 import LanguageSelector from './LanguageSelector';
 import MenuSection from './MenuSection';
 import MobileNavigation from './MobileNavigation';
+import PageFooter from './PageFooter';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useIsMobile } from '../hooks/use-mobile';
 import { GradientText } from './ui/enhanced-components';
@@ -18,6 +19,7 @@ interface LayoutProps {
   showBackButton?: boolean;
   variant?: 'default' | 'gradient' | 'glass' | 'minimal' | 'official' | 'soil' | 'leaf' | 'water';
   withWeather?: boolean;
+  hideFooter?: boolean;
 }
 
 const Layout = ({ 
@@ -26,6 +28,7 @@ const Layout = ({
   showBackButton = false,
   variant = 'default',
   withWeather = false,
+  hideFooter = false,
 }: LayoutProps) => {
   const location = useLocation();
   const [mounted, setMounted] = useState(false);
@@ -248,11 +251,13 @@ const Layout = ({
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
           className={cn(
-            "pb-28 md:pb-20 px-4 sm:px-5",
+            "pb-16 md:pb-12 px-4 sm:px-5",
             mounted ? 'animate-grow-fade' : 'opacity-0'
           )}
         >
           {children}
+          
+          {!hideFooter && <PageFooter />}
         </motion.main>
       </AnimatePresence>
 

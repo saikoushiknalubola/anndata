@@ -69,3 +69,126 @@
 .text-glow-leaf {
   text-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
 }
+
+/* Menu specific styles */
+.menu-category-title {
+  font-family: 'Yatra One', cursive;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.menu-category-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 153, 51, 0.8), rgba(139, 69, 19, 0.6));
+}
+
+.menu-link-item {
+  transition: all 0.3s ease;
+}
+
+.menu-link-item:hover {
+  background-color: rgba(255, 248, 225, 0.7);
+}
+
+.menu-icon-container {
+  transition: all 0.3s ease;
+}
+
+.menu-link-item:hover .menu-icon-container {
+  background-color: rgba(255, 153, 51, 0.2);
+  transform: scale(1.1);
+}
+
+/* Gradient background variants */
+.bg-grain-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(139, 69, 19, 0.1)' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: rgba(255, 153, 51, 0.05);
+  border-radius: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: rgba(139, 69, 19, 0.2);
+  border-radius: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 69, 19, 0.3);
+}
+
+/* Material card effects */
+.card-material {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 4px 6px -1px rgba(139, 69, 19, 0.05),
+    0 2px 4px -1px rgba(139, 69, 19, 0.03);
+  transition: all 0.3s ease;
+}
+
+.card-material:hover {
+  box-shadow: 
+    0 10px 15px -3px rgba(139, 69, 19, 0.1),
+    0 4px 6px -2px rgba(139, 69, 19, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Button and interactive elements */
+.btn-soil {
+  background: linear-gradient(to right, #8B4513, #A0522D);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-soil:hover {
+  background: linear-gradient(to right, #A0522D, #8B4513);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+}
+
+/* Enhanced badge styles */
+.badge-soil {
+  background: linear-gradient(to right, rgba(139, 69, 19, 0.2), rgba(160, 82, 45, 0.2));
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  color: #8B4513;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-leaf {
+  background: linear-gradient(to right, rgba(76, 175, 80, 0.2), rgba(46, 125, 50, 0.2));
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #2E7D32;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-saffron {
+  background: linear-gradient(to right, rgba(255, 153, 51, 0.2), rgba(255, 128, 0, 0.2));
+  border: 1px solid rgba(255, 153, 51, 0.3);
+  color: #FF8000;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
