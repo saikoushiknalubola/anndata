@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap');
 
 @tailwind base;
@@ -319,7 +320,7 @@
   }
 
   .logo-container {
-    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 !important;
+    @apply w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 !important;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
   }
 
@@ -491,7 +492,7 @@
 
 /* Voice-first technology indicator */
 .voice-tech-indicator {
-  @apply flex items-center gap-1.5 bg-white/50 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-earth/80 border border-cream/50 shadow-sm;
+  @apply flex items-center gap-1.5 bg-white/50 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-soil border border-cream/50 shadow-sm;
 }
 
 /* Card with gradient border */
@@ -697,7 +698,7 @@
   }
 
   .logo-container {
-    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 !important;
+    @apply w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 !important;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
   }
 
@@ -753,7 +754,7 @@
   }
 
   .logo-container {
-    @apply w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 !important;
+    @apply w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 !important;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
   }
 
@@ -799,11 +800,6 @@
   }
 }
 
-/* Voice-first technology indicator */
-.voice-tech-indicator {
-  @apply flex items-center gap-1.5 bg-white/50 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-earth/80 border border-cream/50 shadow-sm;
-}
-
 /* Card with gradient border */
 .gradient-border-card {
   @apply relative p-4 rounded-xl bg-white/80 shadow-md overflow-hidden;
@@ -836,58 +832,6 @@
 .adaptive-button {
   @apply w-full md:w-auto px-4 py-2 rounded-lg bg-gradient-to-r from-saffron to-saffron/80 text-white font-medium 
   shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2;
-}
-
-/* Responsive grid layouts */
-.responsive-grid-2 {
-  @apply grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4;
-}
-
-.responsive-grid-3 {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4;
-}
-
-.responsive-grid-4 {
-  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4;
-}
-
-/* Enhanced language selector styles for better visibility */
-.language-selector-button {
-  @apply flex items-center gap-1 text-xs md:text-sm text-white hover:text-saffron transition-colors 
-  px-2.5 py-1.5 rounded-full bg-earth/90 backdrop-blur-sm border border-cream/70 shadow-sm;
-}
-
-.language-selector-title {
-  @apply px-3 py-1.5 text-sm font-medium text-white bg-saffron/90 border-b border-cream/70;
-}
-
-.language-selector-item {
-  @apply w-full text-left px-3 py-2 text-sm hover:bg-cream/50 transition-colors;
-}
-
-.language-selector-item-active {
-  @apply text-white font-medium bg-saffron;
-}
-
-/* Enhanced menu section styles */
-.menu-category-title {
-  @apply px-5 py-2 text-sm font-bold text-white uppercase tracking-wider bg-gradient-to-r from-saffron to-earth/90 shadow-sm;
-}
-
-.menu-item {
-  @apply flex items-center gap-3 p-3 rounded-lg transition-all duration-200;
-}
-
-.menu-item-active {
-  @apply bg-gradient-to-r from-saffron/20 to-leaf/20 text-earth font-medium shadow-sm;
-}
-
-.menu-item-icon {
-  @apply p-1.5 rounded-full;
-}
-
-.menu-item-icon-active {
-  @apply bg-white/80 text-saffron;
 }
 
 /* Custom Button Styles with Indian inspiration */
@@ -996,17 +940,6 @@
   content: '';
   @apply absolute inset-0 rounded-full bg-saffron opacity-30;
   animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.3;
-  }
-  80%, 100% {
-    transform: scale(1.7);
-    opacity: 0;
-  }
 }
 
 /* Village-style card design */

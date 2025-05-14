@@ -78,10 +78,10 @@ const Logo = () => {
         <motion.img 
           src="/lovable-uploads/992d0dd2-6727-405a-98df-8665671e81a3.png" 
           alt="Andata Logo" 
-          className="w-full h-full object-contain rounded-full shadow-md border-2 border-saffron-500"
+          className="w-full h-full object-contain rounded-full shadow-md border-2 border-saffron"
           style={{ 
-            width: isMobile ? '68px' : '84px',  // Increased from 48px/64px
-            height: isMobile ? '68px' : '84px', // Increased from 48px/64px
+            width: isMobile ? '90px' : '110px',  // Increased from 68px/84px
+            height: isMobile ? '90px' : '110px', // Increased from 68px/84px
             maxWidth: '100%'
           }}
           loading="lazy"
@@ -110,7 +110,7 @@ const Logo = () => {
         
         {/* Pulsing glow effect */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-saffron-500/30 filter blur-md -z-10"
+          className="absolute inset-0 rounded-full bg-saffron/30 filter blur-md -z-10"
           animate={{ 
             scale: [1, 1.1, 1],
             opacity: [0.3, 0.5, 0.3]

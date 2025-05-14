@@ -241,7 +241,9 @@ type ButtonVariant =
   | 'outline' 
   | 'glass' 
   | 'govt'
-  | 'voice';
+  | 'voice'
+  | 'link'
+  | 'accent';
 
 interface MotionButtonProps {
   children: React.ReactNode;
@@ -309,6 +311,12 @@ export const MotionButton: React.FC<MotionButtonProps> = ({
         break;
       case 'voice':
         classes += 'bg-gradient-to-r from-saffron via-leaf to-saffron text-white shadow-lg hover:shadow-xl transition-all duration-200 ';
+        break;
+      case 'link':
+        classes += 'bg-transparent text-primary underline hover:text-primary/80 p-0 shadow-none ';
+        break;
+      case 'accent':
+        classes += 'bg-gradient-to-r from-accent/90 to-accent text-white shadow-md hover:shadow-lg active:shadow-sm hover:from-accent hover:to-accent/90 ';
         break;
       default:
         classes += 'bg-gradient-to-r from-[#34C759] to-[#34C759]/90 text-white shadow-md hover:shadow-lg ';
@@ -480,7 +488,7 @@ export const IconBadge: React.FC<IconBadgeProps> = ({
 interface EnhancedBadgeProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'soil' | 'leaf' | 'saffron' | 'info' | 'success' | 'warning' | 'error';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xs';
   className?: string;
   withAnimation?: boolean;
 }
@@ -497,6 +505,9 @@ export const EnhancedBadge: React.FC<EnhancedBadgeProps> = ({
     
     // Size classes
     switch (size) {
+      case 'xs':
+        classes += 'text-[10px] px-1.5 py-0.5 ';
+        break;
       case 'sm':
         classes += 'text-xs px-2 py-0.5 ';
         break;

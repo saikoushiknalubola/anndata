@@ -99,7 +99,7 @@
 /* Updated Language dropdown styling */
 .language-dropdown {
   @apply absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden z-50
-         border border-[#4285F4]/30 animate-fade-in;
+         border border-[#4285F4]/30;
 }
 
 .language-selector-title {
@@ -203,8 +203,8 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
-    width: 70px !important;
-    height: 70px !important;
+    width: 90px !important;
+    height: 90px !important;
   }
 
   /* Add a subtle highlight behind the logo */
