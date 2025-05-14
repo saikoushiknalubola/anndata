@@ -46,16 +46,16 @@ const PageFooter = () => {
             <div className="flex items-center mb-4">
               <img 
                 src="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png"
-                alt="Kisan Seva Logo" 
+                alt="Andata Logo" 
                 className="w-10 h-10"
               />
-              <span className="ml-3 text-xl font-decorative text-soil">Kisan Seva</span>
+              <span className="ml-3 text-xl font-decorative text-soil">Andata</span>
             </div>
             <p className="text-sm text-soil/70 mb-4">
               Empowering farmers with technology and knowledge for sustainable agriculture.
             </p>
             <p className="text-xs text-soil/60 mt-auto">
-              © {currentYear} Kisan Seva | {t('allRightsReserved')}
+              © {currentYear} Andata | {t('allRightsReserved')}
             </p>
           </div>
           

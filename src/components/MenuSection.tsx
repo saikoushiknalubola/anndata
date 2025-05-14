@@ -95,7 +95,7 @@ const MenuSection = () => {
               />
             </AspectRatio>
             <div className="ml-3">
-              <h3 className="text-soil font-decorative text-lg">Kisan Seva</h3>
+              <h3 className="text-soil font-decorative text-lg">Andata</h3>
               <p className="text-xs text-soil/70">Empowering farmers</p>
             </div>
           </div>
@@ -149,7 +149,7 @@ const MenuSection = () => {
         <div className="p-4 border-t border-cream bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 flex-shrink-0">
           <div className="bg-white/70 rounded-lg p-3 shadow-sm border border-saffron/20">
             <p className="text-xs text-center text-soil/80">
-              Kisan Seva © 2025 | Government of India Initiative
+              Andata © 2025 | Government of India Initiative
             </p>
           </div>
         </div>
