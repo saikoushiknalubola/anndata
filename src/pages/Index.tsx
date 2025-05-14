@@ -176,9 +176,9 @@ const HomePage = () => {
                   <IconBadge icon={card.icon.type} variant={index === 0 ? 'earth' : index === 1 ? 'sky' : 'primary'} size="sm" />
                 </div>
                 <div className="mt-1">
-                  <p className="text-xs text-soil/70">{card.title}</p>
+                  <p className="text-xs text-soil/90 font-medium">{card.title}</p>
                   <p className="text-sm font-bold text-soil">{card.value}</p>
-                  {card.subtitle && <p className="text-xs text-soil/60">{card.subtitle}</p>}
+                  {card.subtitle && <p className="text-xs text-soil/80">{card.subtitle}</p>}
                 </div>
               </EnhancedCard>
             </motion.div>
@@ -202,7 +202,7 @@ const HomePage = () => {
               <h1 className="text-2xl font-decorative mb-3">
                 <GradientText variant="primary" withAnimation>{t('empowerFarm')}</GradientText>
               </h1>
-              <p className="text-soil text-sm max-w-xs mx-auto">
+              <p className="text-soil text-sm max-w-xs mx-auto font-medium">
                 {t('modernSolutions')}
               </p>
               
@@ -214,7 +214,7 @@ const HomePage = () => {
                     suffix="+" 
                     className="text-lg font-bold text-soil" 
                   />
-                  <p className="text-xs text-soil/70">Farmers</p>
+                  <p className="text-xs text-soil/90">Farmers</p>
                 </div>
                 <div className="text-center">
                   <AnimatedCounter 
@@ -222,7 +222,7 @@ const HomePage = () => {
                     suffix="+" 
                     className="text-lg font-bold text-soil" 
                   />
-                  <p className="text-xs text-soil/70">Languages</p>
+                  <p className="text-xs text-soil/90">Languages</p>
                 </div>
                 <div className="text-center">
                   <AnimatedCounter 
@@ -230,7 +230,7 @@ const HomePage = () => {
                     suffix="%" 
                     className="text-lg font-bold text-soil" 
                   />
-                  <p className="text-xs text-soil/70">Crop Loss Reduction</p>
+                  <p className="text-xs text-soil/90">Crop Loss Reduction</p>
                 </div>
               </div>
             </div>
@@ -263,14 +263,14 @@ const HomePage = () => {
                   <GradientText variant="primary">Powered by Bhashini</GradientText>
                   <EnhancedBadge variant="info" className="ml-2" withAnimation>New</EnhancedBadge>
                 </h3>
-                <p className="text-sm text-soil/80">
+                <p className="text-sm text-soil/90 font-medium">
                   India's national language translation mission breaking barriers with AI voice technology in 22+ Indian languages
                 </p>
                 <div className="flex items-center mt-3 space-x-2">
                   <IconBadge icon={Mic} variant="primary" size="sm" />
                   <IconBadge icon={Volume2} variant="harvest" size="sm" />
                   <IconBadge icon={Headphones} variant="soil" size="sm" />
-                  <span className="text-xs font-medium text-soil/70">Voice-first technology</span>
+                  <span className="text-xs font-medium text-soil/90">Voice-first technology</span>
                 </div>
               </div>
               <motion.div 
@@ -295,24 +295,24 @@ const HomePage = () => {
           transition={{ delay: 0.6 }}
         >
           <EnhancedCard variant="glass" className="border border-[#03A9F4]/20 shadow-soft">
-            <h3 className="font-decorative mb-3 flex items-center">
+            <h3 className="font-decorative mb-3 flex items-center px-4 pt-4">
               <GradientText variant="sky">
                 <Languages size={18} className="inline mr-2" /> 
                 How Bhashini Empowers Farmers
               </GradientText>
             </h3>
-            <div className="space-y-3 text-sm">
+            <div className="space-y-3 text-sm px-4 pb-4">
               <div className="flex items-start bg-gradient-to-r from-white/50 to-transparent p-2 rounded-lg hover:from-[#03A9F4]/5 hover:to-transparent transition-colors duration-300">
                 <IconBadge icon={Globe} variant="sky" className="mt-0.5 mr-2" />
-                <p className="text-soil/80">Enables farmers to use the app in their native language, removing literacy barriers</p>
+                <p className="text-soil/90 font-medium">Enables farmers to use the app in their native language, removing literacy barriers</p>
               </div>
               <div className="flex items-start bg-gradient-to-r from-white/50 to-transparent p-2 rounded-lg hover:from-[#03A9F4]/5 hover:to-transparent transition-colors duration-300">
                 <IconBadge icon={Mic} variant="sky" className="mt-0.5 mr-2" />
-                <p className="text-soil/80">Voice input & output in 22+ Indian languages makes farming advice accessible to all</p>
+                <p className="text-soil/90 font-medium">Voice input & output in 22+ Indian languages makes farming advice accessible to all</p>
               </div>
               <div className="flex items-start bg-gradient-to-r from-white/50 to-transparent p-2 rounded-lg hover:from-[#03A9F4]/5 hover:to-transparent transition-colors duration-300">
                 <IconBadge icon={Sparkles} variant="sky" className="mt-0.5 mr-2" />
-                <p className="text-soil/80">AI-powered real-time translations increase reach to 500+ million rural Indians</p>
+                <p className="text-soil/90 font-medium">AI-powered real-time translations increase reach to 500+ million rural Indians</p>
               </div>
             </div>
           </EnhancedCard>
@@ -336,7 +336,7 @@ const HomePage = () => {
               <h3 className="font-decorative text-xl mb-2">
                 <GradientText variant="primary">Seasonal Farming Guide</GradientText>
               </h3>
-              <p className="text-soil/80 text-sm mb-3">
+              <p className="text-soil/90 text-sm mb-3 font-medium">
                 Get tailored crop recommendations based on the current season, local weather patterns, and soil conditions.
               </p>
               <ProgressBar 
@@ -407,7 +407,7 @@ const HomePage = () => {
             <h2 className="text-xl font-decorative mb-3">
               <GradientText variant="primary">Why The App Matters</GradientText>
             </h2>
-            <div className="space-y-3 text-sm text-soil/90">
+            <div className="space-y-3 text-sm text-soil/90 font-medium">
               <div className="flex items-start bg-white/70 p-3 rounded-lg shadow-ambient hover:bg-[#FF5722]/5 transition-all duration-300">
                 <IconBadge icon={Users2} variant="primary" className="mr-3 mt-0.5" withGlow />
                 <p>Empowers over 1 million farmers in Telangana's Warangal district with accessible technology</p>
@@ -439,13 +439,13 @@ const HomePage = () => {
               <h2 className="inline-block text-xl font-decorative py-2 px-6 rounded-lg bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white shadow-md mb-3">
                 {t('howWeImpact')}
               </h2>
-              <p className="text-sm text-soil/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm">
+              <p className="text-sm text-soil/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm font-medium">
                 {t('impactDesc')}
               </p>
             </div>
             
             <EnhancedCard className="bg-gradient-to-r from-[#FF5722]/20 to-[#FF5722]/5 border border-[#FF5722]/30 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center">
+              <div className="flex items-center p-4">
                 <IconBadge icon={Phone} variant="primary" size="lg" className="mr-3" withGlow />
                 <div className="text-left">
                   <h3 className="font-decorative text-soil">
@@ -473,7 +473,7 @@ const HomePage = () => {
               <FeatureCard
                 title="Increased Crop Yield by 40%"
                 description="Raju from Karimnagar improved his rice production using our soil analysis and crop recommendation system."
-                icon={<Leaf size={24} />}
+                icon={<Leaf size={24} className="text-leaf-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
               />
@@ -481,7 +481,7 @@ const HomePage = () => {
               <FeatureCard
                 title="Water Usage Reduced by 30%"
                 description="Lakshmi from Warangal implemented our water management techniques for sustainable cotton farming."
-                icon={<Droplet size={24} />}
+                icon={<Droplet size={24} className="text-sky-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
               />
@@ -498,7 +498,7 @@ const HomePage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <p className="text-xs text-soil/70">
+          <p className="text-xs text-soil/80 font-medium">
             {t('version')}
           </p>
         </motion.div>

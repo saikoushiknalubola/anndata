@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { theme, colors, gradients, shadows, animations } from '@/styles/theme';
-import { CardVariant } from '@/components/Card';
+import type { CardVariant } from '@/components/Card';
 
 // Define a type for custom CSS properties
 interface CustomCSSProperties extends React.CSSProperties {
@@ -946,7 +945,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 };
 
 // Add @keyframes for animations to the style
-export const EnhancedStyles = () => (
+export const EnhancedStyles: React.FC = () => (
   <style dangerouslySetInnerHTML={{
     __html: `
     @keyframes ripple {

@@ -94,7 +94,7 @@ const Layout = ({
   const getGradientVariant = () => {
     switch(variant) {
       case 'soil':
-        return 'earth';
+        return 'soil';
       case 'leaf':
         return 'leaf';
       case 'water':
@@ -171,7 +171,7 @@ const Layout = ({
         
         {/* Enhanced logo container with visual effects */}
         <motion.div 
-          className="logo-container relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center mb-5 mt-8"
+          className="logo-container relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mb-5 mt-8"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ 
