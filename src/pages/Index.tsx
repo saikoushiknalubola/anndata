@@ -339,7 +339,7 @@ const HomePage = () => {
               <p className="text-soil/90 text-sm mb-3 font-medium">
                 Get tailored crop recommendations based on the current season, local weather patterns, and soil conditions.
               </p>
-              <ProgressBar 
+              <EnhancedProgressBar 
                 value={75} 
                 max={100} 
                 variant="primary" 
@@ -463,7 +463,7 @@ const HomePage = () => {
                 <div className="w-full text-center sm:text-left">
                   <p>Reduces crop losses by <span className="font-bold text-soil">60%</span> and increases income by <span className="font-bold text-soil">₹500-1000/month</span> for small farmers</p>
                   <div className="mt-2 mx-auto sm:mx-0 max-w-xs">
-                    <ProgressBar 
+                    <EnhancedProgressBar
                       value={60} 
                       max={100} 
                       variant="soil" 
@@ -581,7 +581,7 @@ const HomePage = () => {
             </h2>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <FeatureCard
+              <EnhancedFeatureCard
                 title="Increased Crop Yield by 40%"
                 description="Raju from Karimnagar improved his rice production using our soil analysis and crop recommendation system."
                 icon={<Leaf size={24} className="text-leaf-600" />}
@@ -590,7 +590,7 @@ const HomePage = () => {
                 badge="Featured"
               />
               
-              <FeatureCard
+              <EnhancedFeatureCard
                 title="Water Usage Reduced by 30%"
                 description="Lakshmi from Warangal implemented our water management techniques for sustainable cotton farming."
                 icon={<Droplet size={24} className="text-sky-600" />}
