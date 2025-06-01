@@ -1,4 +1,5 @@
 
+
 @import "./styles/animations.css";
 
 @tailwind base;
@@ -87,7 +88,7 @@
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-medium;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
   
   .gradient-text {
@@ -102,3 +103,4 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
+
