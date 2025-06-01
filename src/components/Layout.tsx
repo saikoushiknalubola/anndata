@@ -41,11 +41,7 @@ const Layout = ({
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -55,94 +51,73 @@ const Layout = ({
   const getHeaderClasses = () => {
     switch(variant) {
       case 'gradient':
-        return 'bg-gradient-to-r from-[#FF5722]/10 via-[#FF9800]/5 to-[#FFC107]/10';
+        return 'bg-gradient-to-r from-leaf-50 via-white/80 to-leaf-50';
       case 'glass':
-        return 'bg-white/30 backdrop-blur-sm';
+        return 'bg-white/80 backdrop-blur-md border-b border-leaf-100';
       case 'minimal':
         return 'bg-transparent';
-      case 'official':
-        return 'bg-gradient-to-r from-[#FF9933]/20 via-white/10 to-[#138808]/20';
       case 'soil':
-        return 'bg-gradient-to-r from-soil-500/10 to-soil-700/5';
+        return 'bg-gradient-to-r from-soil-50 to-cream/50';
       case 'leaf':
-        return 'bg-gradient-to-r from-leaf-500/10 to-leaf-700/5';
+        return 'bg-gradient-to-r from-leaf-50 to-white/80';
       case 'water':
-        return 'bg-gradient-to-r from-sky-500/10 to-sky-700/5';
+        return 'bg-gradient-to-r from-sky-50 to-white/80';
       default:
-        return 'bg-white/50 backdrop-blur-sm';
+        return 'bg-white/95 backdrop-blur-md border-b border-leaf-100/50';
     }
   };
 
   const getTitleClasses = () => {
+    const baseClasses = 'font-decorative text-xl sm:text-2xl md:text-3xl font-bold';
     switch(variant) {
-      case 'gradient':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl';
-      case 'glass':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl';
-      case 'minimal':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl';
-      case 'official':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-[#FF9933] via-white to-[#138808] text-transparent bg-clip-text';
       case 'soil':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl text-soil';
+        return `${baseClasses} text-soil-700`;
       case 'leaf':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl text-leaf-700';
+        return `${baseClasses} text-leaf-700`;
       case 'water':
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl text-sky-700';
+        return `${baseClasses} text-sky-700`;
       default:
-        return 'font-decorative text-xl sm:text-2xl md:text-3xl text-soil';
+        return `${baseClasses} text-soil-800`;
     }
   };
 
   const getGradientVariant = () => {
     switch(variant) {
-      case 'soil':
-        return 'soil';
-      case 'leaf':
-        return 'leaf';
-      case 'water':
-        return 'sky';
-      case 'gradient':
-        return 'primary';
-      case 'official':
-        return 'saffron';
-      default:
-        return 'primary';
+      case 'soil': return 'soil';
+      case 'leaf': return 'leaf';
+      case 'water': return 'sky';
+      case 'gradient': return 'primary';
+      default: return 'primary';
     }
   };
   
-  // Weather data for demo
   const weatherInfo = {
     temp: '28°C',
     condition: 'Sunny',
     humidity: '65%',
-    icon: <Sun className="text-saffron" size={18} />
+    icon: <Sun className="text-amber-500" size={18} />
   };
 
   return (
-    <div className="page-container relative max-w-6xl mx-auto bg-gradient-to-b from-cream/30 to-white/60 min-h-screen notch-aware-container">
+    <div className="page-container relative max-w-6xl mx-auto bg-gradient-to-br from-leaf-25 via-white to-cream/30 min-h-screen">
       <header className={cn(
         "page-header flex flex-col items-center justify-center mb-6 sm:mb-8 md:mb-10 relative pt-4 sm:pt-5 md:pt-6",
-        scrolled && 'header-shadow'
+        scrolled && 'shadow-lg'
       )}>
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className={cn(
-            "w-full flex justify-between items-center fixed top-0 right-0 left-0 px-3 py-2 z-10 rounded-b-xl max-w-6xl mx-auto",
+            "w-full flex justify-between items-center fixed top-0 right-0 left-0 px-4 py-3 z-30 rounded-b-2xl max-w-6xl mx-auto transition-all duration-300",
             scrolled && getHeaderClasses(),
-            scrolled && 'shadow-sm'
+            scrolled && 'shadow-xl'
           )}
-          style={{
-            backdropFilter: scrolled ? 'blur(8px)' : 'none',
-            WebkitBackdropFilter: scrolled ? 'blur(8px)' : 'none'
-          }}
         >
           <div className="flex-1 flex items-center">
             {showBackButton ? (
-              <Link to="/" className="text-[#FF5722] hover:text-[#FF9800] transition-colors transform hover:scale-110 p-2 flex items-center">
-                <ChevronLeft size={24} />
+              <Link to="/" className="text-leaf-600 hover:text-leaf-700 transition-colors transform hover:scale-110 p-2 flex items-center bg-white/80 rounded-full shadow-sm">
+                <ChevronLeft size={20} />
                 <span className="text-sm font-medium ml-1 hidden sm:inline">Back</span>
               </Link>
             ) : (
@@ -152,18 +127,17 @@ const Layout = ({
             )}
           </div>
           
-          {/* Weather info in header when scrolled */}
           {withWeather && scrolled && (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex items-center bg-white/50 px-2 py-1 rounded-full text-xs border border-soil/10"
+              className="flex items-center bg-white/90 px-3 py-2 rounded-full text-xs border border-leaf-200 shadow-sm"
             >
               <span className="mr-1">{weatherInfo.icon}</span>
-              <span className="font-medium text-soil">{weatherInfo.temp}</span>
-              <span className="mx-1 text-soil/60">|</span>
+              <span className="font-semibold text-soil-700">{weatherInfo.temp}</span>
+              <span className="mx-2 text-soil-400">•</span>
               <Droplet size={12} className="text-sky-500 mr-1" />
-              <span className="text-soil/70">{weatherInfo.humidity}</span>
+              <span className="text-soil-600">{weatherInfo.humidity}</span>
             </motion.div>
           )}
 
@@ -172,71 +146,58 @@ const Layout = ({
           </div>
         </motion.div>
         
-        {/* Enhanced logo container with visual effects */}
         <motion.div 
-          className="logo-container relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex items-center justify-center mb-5 mt-8"
+          className="logo-container relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center mb-4 mt-8"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ 
             type: "spring",
-            stiffness: 260,
-            damping: 20,
+            stiffness: 300,
+            damping: 25,
             delay: 0.1 
           }}
         >
-          <div className={cn(
-            "absolute inset-0 rounded-full animate-pulse-gentle",
-            variant === 'official' 
-              ? 'bg-gradient-to-r from-[#FF9933]/10 via-white/5 to-[#138808]/10' 
-              : 'bg-gradient-to-r from-[#FF5722]/10 via-[#FF9800]/5 to-[#FFC107]/10'
-          )}></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-leaf-100 via-white/50 to-leaf-50 animate-pulse-gentle shadow-xl"></div>
           <Logo />
-          
-          {/* Add subtle glow effect */}
-          <div className="absolute inset-0 rounded-full bg-white/30 filter blur-xl -z-10 scale-75 opacity-50"></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-leaf-200/20 to-transparent blur-2xl -z-10 scale-110"></div>
         </motion.div>
         
         {title && (
           <motion.div 
-            className="mt-3 mb-5 w-full flex items-center justify-center"
+            className="mt-2 mb-5 w-full flex items-center justify-center"
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             <div className={cn(
-              "bg-gradient-to-r from-[#FF5722]/10 to-[#FF9800]/10 px-8 py-3 rounded-full shadow-md border border-[#FF5722]/20 text-center",
+              "bg-gradient-to-r from-white/90 to-leaf-50/90 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg border border-leaf-200/50 text-center",
               getTitleClasses()
             )}>
-              {variant === 'official' ? (
-                <span>{title}</span>
-              ) : (
-                <GradientText variant={getGradientVariant()}>{title}</GradientText>
-              )}
+              <GradientText variant={getGradientVariant()}>{title}</GradientText>
             </div>
           </motion.div>
         )}
         
-        {/* Weather widget if enabled */}
         {withWeather && !scrolled && (
           <motion.div 
-            className="mb-4 flex items-center justify-center gap-6 bg-white/70 px-4 py-2 rounded-full shadow-sm border border-soil/10"
+            className="mb-4 flex items-center justify-center gap-6 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg border border-leaf-100"
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
             <div className="flex items-center">
-              <Sun className="text-saffron mr-2" size={20} />
+              <Sun className="text-amber-500 mr-3" size={24} />
               <div>
-                <p className="text-sm font-medium text-soil">28°C</p>
-                <p className="text-xs text-soil/70">Sunny</p>
+                <p className="text-base font-bold text-soil-800">28°C</p>
+                <p className="text-sm text-soil-600">Sunny</p>
               </div>
             </div>
-            <div className="h-8 w-px bg-soil/10"></div>
+            <div className="h-10 w-px bg-leaf-200"></div>
             <div className="flex items-center">
-              <Droplet className="text-sky-500 mr-2" size={20} />
+              <Droplet className="text-sky-500 mr-3" size={24} />
               <div>
-                <p className="text-sm font-medium text-soil">65%</p>
-                <p className="text-xs text-soil/70">Humidity</p>
+                <p className="text-base font-bold text-soil-800">65%</p>
+                <p className="text-sm text-soil-600">Humidity</p>
               </div>
             </div>
           </motion.div>
@@ -251,7 +212,7 @@ const Layout = ({
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
           className={cn(
-            "pb-16 md:pb-12 px-4 sm:px-5",
+            "pb-20 md:pb-16 px-4 sm:px-6",
             mounted ? 'animate-grow-fade' : 'opacity-0'
           )}
         >
@@ -261,12 +222,10 @@ const Layout = ({
         </motion.main>
       </AnimatePresence>
 
-      {/* Mobile Navigation */}
       {isMobile && <MobileNavigation />}
       
-      {/* Floating background elements for visual enhancement */}
-      <div className="floating-bg-1 top-[20%] right-[-10%] opacity-70 hidden md:block"></div>
-      <div className="floating-bg-2 bottom-[30%] left-[-5%] opacity-70 hidden md:block"></div>
+      <div className="fixed top-1/4 right-0 w-32 h-32 bg-gradient-to-bl from-leaf-100/30 to-transparent rounded-full blur-3xl -z-10 animate-pulse-gentle"></div>
+      <div className="fixed bottom-1/3 left-0 w-24 h-24 bg-gradient-to-tr from-amber-100/20 to-transparent rounded-full blur-3xl -z-10 animate-pulse-gentle"></div>
     </div>
   );
 };

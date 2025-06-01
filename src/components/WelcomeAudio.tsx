@@ -10,14 +10,12 @@ const WelcomeAudio: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [hasWelcomedUser, setHasWelcomedUser] = useState(true); // Set to true to disable welcome message
+  const [hasWelcomedUser, setHasWelcomedUser] = useState(true);
 
   useEffect(() => {
-    // Disabled welcome message functionality - no automatic popup
-    // Users can still access voice features through the voice assistant
+    // Disabled welcome message functionality
   }, []);
 
-  // Update audio when mute status changes
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.muted = isMuted;
@@ -34,10 +32,10 @@ const WelcomeAudio: React.FC = () => {
       {isPlaying && (
         <button 
           onClick={toggleMute}
-          className="fixed left-4 bottom-4 bg-saffron/90 hover:bg-saffron text-white p-2 rounded-full shadow-md z-50 transition-transform hover:scale-110 active:scale-95"
+          className="fixed left-4 bottom-4 bg-leaf-500/90 hover:bg-leaf-600 text-white p-3 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm border border-white/20"
           aria-label={isMuted ? t('unmute') : t('mute')}
         >
-          {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
       )}
     </>
