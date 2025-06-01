@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -14,7 +15,6 @@ import Card from '../components/Card';
 import SeasonalCalendar from '../components/SeasonalCalendar';
 import Disclaimer from '../components/Disclaimer';
 import VoiceAssistant from '../components/VoiceAssistant';
-import { toast } from '@/components/ui/use-toast';
 import { useLanguage } from '../contexts/LanguageContext';
 import { 
   EnhancedCard, 
@@ -34,14 +34,6 @@ import { EnhancedProgressBar, EnhancedFeatureCard } from '@/components/ui/enhanc
 const HomePage = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
-
-  useEffect(() => {
-    toast({
-      title: t('welcomeMessage'),
-      description: t('aiPoweredAssistance'),
-      duration: 3000,
-    });
-  }, [t]);
 
   // Enhanced feature buttons with improved visual design
   const navButtons = [
@@ -185,7 +177,7 @@ const HomePage = () => {
           ))}
         </motion.div>
 
-        {/* Main government-inspired card */}
+        {/* Main app card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -407,7 +399,7 @@ const HomePage = () => {
         >
           <EnhancedCard variant="bordered-gradient" className="p-4 sm:p-5">
             <h2 className="text-xl font-decorative mb-3 text-center sm:text-left">
-              <GradientText variant="primary">Why The App Matters</GradientText>
+              <GradientText variant="primary">Why Andata Matters</GradientText>
             </h2>
             
             {/* Mobile optimized: Stacked layout on mobile, better spacing and touch targets */}
@@ -426,7 +418,7 @@ const HomePage = () => {
                     withGlow 
                   />
                 </div>
-                <p className="text-center sm:text-left">Empowers over <span className="font-bold text-[#FF5722]">1 million farmers</span> in Telangana's Warangal district with accessible technology</p>
+                <p className="text-center sm:text-left">Empowers over <span className="font-bold text-[#FF5722]">1 million farmers</span> with smart farming technology</p>
               </motion.div>
               
               <motion.div 
@@ -443,7 +435,7 @@ const HomePage = () => {
                     withGlow 
                   />
                 </div>
-                <p className="text-center sm:text-left">Voice-first technology overcomes literacy barriers (<span className="font-bold text-leaf-600">57% rural literacy</span>) through local languages</p>
+                <p className="text-center sm:text-left">Voice-first technology overcomes literacy barriers through <span className="font-bold text-leaf-600">22+ local languages</span></p>
               </motion.div>
               
               <motion.div 
@@ -461,7 +453,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="w-full text-center sm:text-left">
-                  <p>Reduces crop losses by <span className="font-bold text-soil">60%</span> and increases income by <span className="font-bold text-soil">₹500-1000/month</span> for small farmers</p>
+                  <p>Reduces crop losses by <span className="font-bold text-soil">60%</span> and increases income by <span className="font-bold text-soil">₹500-1000/month</span></p>
                   <div className="mt-2 mx-auto sm:mx-0 max-w-xs">
                     <EnhancedProgressBar
                       value={60} 
@@ -469,7 +461,6 @@ const HomePage = () => {
                       variant="soil" 
                       size="sm" 
                       animated={true}
-                      label="Crop Loss Reduction"
                     />
                   </div>
                 </div>
@@ -490,7 +481,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="w-full text-center sm:text-left">
-                  <p>Bridges the digital divide by providing expert farming knowledge in <span className="font-bold text-sky-600">22+ Indian languages</span></p>
+                  <p>Bridges the digital divide with farming knowledge in <span className="font-bold text-sky-600">22+ Indian languages</span></p>
                   <div className="flex flex-wrap justify-center sm:justify-start gap-1 mt-2">
                     {['हिंदी', 'తెలుగు', 'தமிழ்', 'ಕನ್ನಡ', 'ଓଡ଼ିଆ'].map((lang, i) => (
                       <span key={i} className="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full">
@@ -511,7 +502,7 @@ const HomePage = () => {
               >
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-2">
                   <p className="text-xs text-soil/80 text-center sm:text-left">
-                    Experience how our app is transforming farming across rural India
+                    Experience how Andata is transforming farming with smart technology
                   </p>
                   <MotionButton
                     variant="primary"
@@ -538,10 +529,10 @@ const HomePage = () => {
           <EnhancedCard variant="gradient" className="mt-6 space-y-4 p-4 sm:p-5">
             <div className="text-center">
               <h2 className="inline-block text-xl font-decorative py-2 px-4 sm:px-6 rounded-lg bg-gradient-to-r from-[#FF5722] to-[#FF9800] text-white shadow-md mb-3">
-                {t('howWeImpact')}
+                Smart Farming Impact
               </h2>
               <p className="text-sm text-soil/90 max-w-xl mx-auto mb-4 bg-white/80 rounded-lg p-3 shadow-sm font-medium">
-                {t('impactDesc')}
+                Empowering farmers with technology-driven solutions for sustainable agriculture
               </p>
             </div>
             
@@ -587,7 +578,6 @@ const HomePage = () => {
                 icon={<Leaf size={24} className="text-leaf-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
-                badge="Featured"
               />
               
               <EnhancedFeatureCard
@@ -596,7 +586,6 @@ const HomePage = () => {
                 icon={<Droplet size={24} className="text-sky-600" />}
                 variant="glass"
                 onClick={() => navigate('/success-stories')}
-                badge="New"
               />
             </div>
           </div>

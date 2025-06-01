@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Leaf } from 'lucide-react';
 
 const PageFooter = () => {
   const { t } = useLanguage();
@@ -32,7 +33,7 @@ const PageFooter = () => {
       links: [
         { name: t('helpline'), url: '/helpline' },
         { name: 'FAQ', url: '/knowledge-base' },
-        { name: 'Government Schemes', url: '/farm-subsidies' },
+        { name: 'Farm Subsidies', url: '/farm-subsidies' },
         { name: 'Contact Us', url: '/helpline' },
       ]
     }
@@ -44,11 +45,9 @@ const PageFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="flex flex-col">
             <div className="flex items-center mb-4">
-              <img 
-                src="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png"
-                alt="Andata Logo" 
-                className="w-10 h-10"
-              />
+              <div className="w-10 h-10 bg-gradient-to-br from-saffron/20 to-soil/20 rounded-full flex items-center justify-center border border-saffron/30">
+                <Leaf className="w-6 h-6 text-saffron" />
+              </div>
               <span className="ml-3 text-xl font-decorative text-soil">Andata</span>
             </div>
             <p className="text-sm text-soil/70 mb-4">
@@ -80,20 +79,8 @@ const PageFooter = () => {
         
         <div className="mt-8 pt-4 border-t border-soil/10 text-center">
           <p className="text-xs text-soil/60">
-            In collaboration with Ministry of Agriculture & Farmers' Welfare, Government of India
+            Smart Farming Platform for Modern Agriculture
           </p>
-          <div className="flex items-center justify-center mt-3 space-x-4">
-            <img 
-              src="/lovable-uploads/0e1f044e-2162-4da1-b219-a810bd119ff2.png" 
-              alt="Government of India" 
-              className="h-8 opacity-80"
-            />
-            <img 
-              src="/lovable-uploads/6f8147b2-570c-4b9c-9982-c979295d71a3.png" 
-              alt="Digital India" 
-              className="h-8 opacity-80"
-            />
-          </div>
         </div>
       </div>
     </footer>

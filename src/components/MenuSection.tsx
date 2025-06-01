@@ -87,16 +87,12 @@ const MenuSection = () => {
             </SheetClose>
           </div>
           <div className="flex items-center px-2">
-            <AspectRatio ratio={4/3} className="w-10 h-10 bg-white/70 rounded-full flex items-center justify-center">
-              <img 
-                src="/lovable-uploads/076d86c2-8822-48f5-8d2a-a9bce74c1509.png" 
-                alt="Logo" 
-                className="w-8 h-8 object-contain"
-              />
-            </AspectRatio>
+            <div className="w-10 h-10 bg-gradient-to-br from-saffron/20 to-soil/20 rounded-full flex items-center justify-center border border-saffron/30">
+              <Leaf className="w-6 h-6 text-saffron" />
+            </div>
             <div className="ml-3">
               <h3 className="text-soil font-decorative text-lg">Andata</h3>
-              <p className="text-xs text-soil/70">Empowering farmers</p>
+              <p className="text-xs text-soil/70">Smart Farming Solutions</p>
             </div>
           </div>
         </SheetHeader>
@@ -149,7 +145,7 @@ const MenuSection = () => {
         <div className="p-4 border-t border-cream bg-gradient-to-r from-[#FF9933]/10 via-white to-[#138808]/10 flex-shrink-0">
           <div className="bg-white/70 rounded-lg p-3 shadow-sm border border-saffron/20">
             <p className="text-xs text-center text-soil/80">
-              Andata © 2025 | Government of India Initiative
+              Andata © 2025 | Smart Farming Platform
             </p>
           </div>
         </div>
