@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, MicOff, Volume2, VolumeX, Settings, X, Headphones } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { generateSpeech, playAudio } from '../utils/audioUtils';
 import { cn } from '@/lib/utils';
 
 interface VoiceAssistantProps {
@@ -106,16 +105,22 @@ const VoiceAssistant: React.FC<VoiceAssistantProps> = ({ homeMode = false }) => 
     
     try {
       setIsPlaying(true);
-      const audioUrl = await generateSpeech(text, language, voiceGender, pitch, rate);
       
-      if (audioRef.current) {
-        audioRef.current.src = audioUrl;
-        audioRef.current.volume = volume / 100;
-        await playAudio(audioRef.current);
+      // Use Web Speech API for text-to-speech
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = language === 'hi' ? 'hi-IN' : 'en-US';
+        utterance.pitch = pitch;
+        utterance.rate = rate;
+        utterance.volume = volume / 100;
+        
+        utterance.onend = () => setIsPlaying(false);
+        utterance.onerror = () => setIsPlaying(false);
+        
+        speechSynthesis.speak(utterance);
       }
     } catch (error) {
       console.error('Error playing speech:', error);
-    } finally {
       setIsPlaying(false);
     }
   };

@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family+Yatra+One&family+Roboto:wght@300;400;500;700&display=swap');
 
 #root {
   max-width: 100%;
@@ -265,7 +265,7 @@ button:active, .button:active, [type="button"]:active {
 
 /* Voice interface styles */
 .voice-button {
-  @apply fixed bottom-20 right-4 md:right-6 md:bottom-6 w-16 h-16 md:w-18 md:h-18
+  @apply fixed bottom-20 right-4 md:right-6 md:bottom-6 w-16 h-16 md:w-20 md:h-20
          rounded-full bg-gradient-to-br from-leaf-500 to-leaf-600 text-white
          shadow-2xl flex items-center justify-center z-30
          transform transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20;
