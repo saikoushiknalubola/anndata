@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Wheat, Users, TrendingUp, Droplets, Scales, GraduationCap, CloudRain, Microscope, ArrowRight, Leaf, Sparkles } from 'lucide-react';
+import { Wheat, Users, TrendingUp, Droplets, Scale, GraduationCap, CloudRain, Microscope, ArrowRight, Leaf, Sparkles } from 'lucide-react';
 import CulturalShowcase from '../components/CulturalShowcase';
 import Logo from '../components/Logo';
 
@@ -62,7 +61,7 @@ const HomePage: React.FC = () => {
       title: t('marketPrices') || 'Market Intelligence',
       description: t('marketPricesDescription') || 'Real-time commodity prices and market trends for informed trading decisions.',
       link: '/market-prices',
-      icon: <Scales className="text-white" size={24} />,
+      icon: <Scale className="text-white" size={24} />,
       gradient: 'from-[#F4A460] to-[#CD853F]'
     },
     {
